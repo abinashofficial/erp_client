@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
+
 
 interface SignupFormData {
     first_name: string;
@@ -15,6 +17,7 @@ interface SignupFormData {
   }
 
 const SignUp: React.FC = () => {
+    const { login, empDetail } = useAuth();
 
     const [formData, setFormData] = useState<SignupFormData>({
         first_name: '',
@@ -26,6 +29,7 @@ const SignUp: React.FC = () => {
         password: '',
         confirmPassword:'',
       });
+      const [err, setErr] = useState<any>({});
  const navigate = useNavigate()
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -58,17 +62,22 @@ const SignUp: React.FC = () => {
           created_at: new Date().toISOString(), // Set created_at to current timestamp
         }),
       });
+      const result = await response.json();
+      setErr(result)
+      console.log('result :', result);
 
       if (response.ok) {
-        const result = await response.json();
         console.log('Signup successful:', result);
+        login(result);
         navigate('/home'); // Redirect to dashboard after login
 
       } else {
-        console.error('Signup failed:', response.statusText);
+        console.error('Signup failed:', result);
 
       }
     } catch (error) {
+        console.log('err :', err);
+
         alert("Internal server Error");
       console.error('Error:', error);
     }

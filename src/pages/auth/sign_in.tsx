@@ -65,18 +65,6 @@ const apiUrl = 'http://localhost:8080/public/signin';
      login(result);
      console.log("empDetail: ", empDetail)
 
-    //  setEmpDetail( {...empDetail,
-    //     employee_id: result.employee_id,
-    //     first_name: result.first_name,
-    //     last_name: result.last_name,
-    //     mobile_number:result.mobile_number,
-    //     email: result.email,
-    //     date_of_birth:result.date_of_birth,
-    //     gender:result.gender,
-    //     password: result.password,
-    //  })
-    //  console.log("empDetailjgcyfx: ", empDetail)
-
      navigate('/home'); // Redirect to dashboard after login
      // Handle successful sign-in (e.g., redirect or store token)
    } else {
