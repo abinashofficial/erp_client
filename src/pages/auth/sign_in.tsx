@@ -1,25 +1,94 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Password } from '@mui/icons-material';
+
+interface SignInFormData {
+    email: string;
+    password: string;
+  }
+
+  interface SignupFormData {
+    employee_id:any;
+    first_name: any;
+    last_name: any;
+    mobile_number: any;
+    email: any;
+    date_of_birth: any;
+    gender: any;
+    password: any;
+    confirmPassword:any;
+  }
 
 
 const SignIn: React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const { login } = useAuth();
+    const [formData, setFormData] = useState<SignInFormData>({
+        email: '',
+        password: '',
+      });
+    const { login, empDetail } = useAuth();
     const navigate = useNavigate();
+    // const { empDetail, setEmpDetail} = useContext(locateContext);
 
-    const handleSignin = (e: React.FormEvent) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        console.log(name)
+        setFormData({ ...formData, [name]: value });
+      };
+
+    const handleSignin = async(e: React.FormEvent) => {
         e.preventDefault();
-        login(email, password);
-        navigate('/home'); // Redirect to dashboard after login
+        // login(formData.email, formData.password);
+
+ // Add your API endpoint here
+//  const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
+const apiUrl = 'http://localhost:8080/public/signin';
+
+
+ try {
+   const response = await fetch(apiUrl, {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify(formData),
+   });
+    console.log("response: ", response)
+    const result:SignupFormData = await response.json();
+
+
+   if (response.ok) {
+     console.log('Sign-in successful:', result.employee_id);
+     login(result);
+     console.log("empDetail: ", empDetail)
+
+    //  setEmpDetail( {...empDetail,
+    //     employee_id: result.employee_id,
+    //     first_name: result.first_name,
+    //     last_name: result.last_name,
+    //     mobile_number:result.mobile_number,
+    //     email: result.email,
+    //     date_of_birth:result.date_of_birth,
+    //     gender:result.gender,
+    //     password: result.password,
+    //  })
+    //  console.log("empDetailjgcyfx: ", empDetail)
+
+     navigate('/home'); // Redirect to dashboard after login
+     // Handle successful sign-in (e.g., redirect or store token)
+   } else {
+     console.error('Sign-in failed:', result);
+   }
+ } catch (error) {
+    alert("Sign-in failed")
+    console.error('Error:', error);
+ }
+
     };
 
-    const handleSignup = (e: React.FormEvent) => {
-        e.preventDefault();
-        navigate('/signup'); // Redirect to dashboard after login
-    };
 
     return (
         <div className="form-container">
@@ -29,16 +98,18 @@ const SignIn: React.FC = () => {
             <form onSubmit={handleSignin}>
                 <input
                     type="email"
+                    name='email'
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                 />
                 <input
                     type="password"
+                    name='password'
                     placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formData.password}
+                    onChange={handleChange}
                     required
                 />
                 <button type="submit">Sign In</button>

@@ -1,8 +1,26 @@
 import React, { createContext, useContext, useState, ReactNode,useEffect } from 'react';
 
+
+interface SignupFormData {
+    employee_id:any;
+    first_name: any;
+    last_name: any;
+    mobile_number: any;
+    email: any;
+    date_of_birth: any;
+    gender: any;
+    password: any;
+    confirmPassword:any;
+  }
+  
+  
+
+
+
 interface AuthContextType {
     isAuthenticated: boolean;
-    login: (email: string, password: string) => void;
+    empDetail:any;
+    login: (result: SignupFormData) => void;
     logout: () => void;
 }
 
@@ -12,8 +30,30 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
 
-    const login = (email: string, password: string) => {
+    const [empDetail, setEmpDetail] = useState<SignupFormData>({
+        employee_id:'',
+        first_name: '',
+        last_name: '',
+        mobile_number: '',
+        email: '',
+        date_of_birth: '',
+        gender: '',
+        password: '',
+        confirmPassword:'',
+      });
+
+    const login = (result: SignupFormData) => {
         setIsAuthenticated(true);
+        setEmpDetail({...empDetail,
+            employee_id: result.employee_id,
+            first_name: result.first_name,
+            last_name: result.last_name,
+            mobile_number: result.mobile_number,
+            email: result.email,
+            date_of_birth: result.date_of_birth,
+            gender: result.gender,
+            password: result.password,
+        })
         const id = window.setTimeout(() => {
             logout();
             alert("Your session has expired. Please log in again.");
@@ -51,7 +91,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [timeoutId]);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
