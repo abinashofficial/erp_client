@@ -53,6 +53,8 @@ const SignUp: React.FC = () => {
 
     const handleSignUp = async(e: React.FormEvent) => {
         e.preventDefault();
+        setVisible(false)
+
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords doesn't match");
             return;
@@ -85,7 +87,7 @@ const SignUp: React.FC = () => {
           employee_id: result.employee_id,
           first_name: result.first_name,
           last_name: result.last_name,
-          full_name:result.first_name + " " + result.last_name,
+          full_name: (result.first_name + " " + result.last_name),
           mobile_number: result.mobile_number,
           email: result.email,
           date_of_birth: result.date_of_birth,
@@ -93,21 +95,36 @@ const SignUp: React.FC = () => {
           password: result.password,
           photo_url:result.photo_url,
       })
-        login(result);
+      const empDetail = ({
+        employee_id: result.employee_id,
+        first_name: result.first_name,
+        last_name: result.last_name,
+        full_name:result.first_name + " " + result.last_name,
+        mobile_number: result.mobile_number,
+        email: result.email,
+        date_of_birth: result.date_of_birth,
+        gender: result.gender,
+        password: result.password,
+        photo_url:"",
+        confirmPassword:result.confirmPassword,
+      });
+        login(empDetail);
         toast.success('Signed up successful');
-        setVisible(false)
         setTimeout(() => {
          navigate('/home'); // Redirect to dashboard after login
        }, 5000);
 
       }else if (response.status===401){
+        setVisible(true)
         alert("Invalid Password");
       }else if (response.status===400){
+        setVisible(true)
         alert("Invalid Email");
       }else{
         console.error('Signup failed:', response);
       }
     } catch (error) {
+      setVisible(true)
         alert("Internal server Error");
       console.error('Error:', error);
     }
@@ -124,7 +141,7 @@ const SignUp: React.FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-              {visible && (
+              {visible ? (
 
         <div className="form-container">
             <h2>Sign Up</h2>
@@ -203,7 +220,7 @@ const SignUp: React.FC = () => {
                 <button type="submit">Sign Up</button>
             </form>
             <p>Already have an account? <Link to="/">Sign In</Link></p>
-        </div>)}
+        </div>):(<div className="spinner"> </div>)}
         <ToastContainer/>
 
         </div>

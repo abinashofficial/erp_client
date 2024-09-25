@@ -35,10 +35,13 @@ const ForgetPassword: React.FC = () => {
 
     const handlePassword = async(e: React.FormEvent) => {
         e.preventDefault();
+
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords doesn't match");
             return;
         }
+        setVisible(false)
+
 
          // Add your API endpoint here
  const apiUrl = 'https://erp-iliw.onrender.com/public/recovery';
@@ -57,7 +60,6 @@ const ForgetPassword: React.FC = () => {
    if (response.ok) {
      const result = await response.json();
      toast.success('Password Changed successfull');
-     setVisible(false)
      setTimeout(() => {
       navigate('/'); // Redirect to dashboard after login
     }, 5000);
@@ -65,10 +67,13 @@ const ForgetPassword: React.FC = () => {
      // Handle successful sign-in (e.g., redirect or store token)
    }else if (response.status===400){
     alert("Invalid Email");
+    setVisible(true)
+
   } else {
     console.error('recover failed:', response);
    }
  } catch (error) {
+  setVisible(true)
   alert("Internal server Error");
    console.error('Error:', error);
  }
@@ -88,7 +93,8 @@ const ForgetPassword: React.FC = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-      {visible && (
+
+      {visible ? (
         <div className="form-container" >
             <h2>Recovery Password</h2>
             <form onSubmit={handlePassword}>
@@ -100,8 +106,8 @@ const ForgetPassword: React.FC = () => {
             </form>
             <p>Already have an account? <Link to="/">Sign In</Link></p>
             </div>
+          ):(<div className="spinner"> </div>
           )}
-
 <ToastContainer/>
 
         </div>

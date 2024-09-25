@@ -30,6 +30,8 @@ const SignIn: React.FC = () => {
         email: '',
         password: '',
       });
+      const [visible, setVisible] = useState<Boolean>(true);
+
 
 
     const { login } = useAuth();
@@ -48,6 +50,8 @@ const SignIn: React.FC = () => {
 
     const handleSignin = async(e: React.FormEvent) => {
         e.preventDefault();
+        setVisible(false)
+
         // login(formData.email, formData.password);
 
  // Add your API endpoint here
@@ -83,22 +87,25 @@ const SignIn: React.FC = () => {
     confirmPassword:result.confirmPassword,
 
   });
+  
     login(empDetail);
     navigate('/home'); // Redirect to dashboard after login
 
   }else if (response.status===401){
+    setVisible(true)
     alert("Invalid Password");
   }else if (response.status===400){
+    setVisible(true)
     alert("Invalid Email");
   }else{
     console.error('Signup failed:', response);
   }
  } catch (error) {
+  setVisible(true)
   alert("Internal server Error");
   console.log('result :', error);
 
  }
-
     };
 
     
@@ -114,6 +121,7 @@ const SignIn: React.FC = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+      {visible ? (
         <div className="form-container">
 
             <h2>Sign In </h2>
@@ -155,6 +163,7 @@ const SignIn: React.FC = () => {
 <GoogleSignIn/>
 
         </div>
+        ):(<div className="spinner"> </div>)}
         </div>
     );
 };
