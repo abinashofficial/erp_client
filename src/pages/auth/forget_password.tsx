@@ -2,7 +2,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import { useAuth } from '../../context/authContext';
+
 
 
 
@@ -13,6 +16,8 @@ interface SignInFormData {
   }
 
 const ForgetPassword: React.FC = () => {
+  const [visible, setVisible] = useState<Boolean>(true);
+
     const [formData, setFormData] = useState<SignInFormData>({
         email: '',
         password: '',
@@ -31,12 +36,14 @@ const ForgetPassword: React.FC = () => {
     const handlePassword = async(e: React.FormEvent) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
-            alert("Passwords don't match");
+            alert("Passwords doesn't match");
             return;
         }
 
          // Add your API endpoint here
  const apiUrl = 'https://erp-iliw.onrender.com/public/recovery';
+// const apiUrl = 'http://localhost:8080/public/recovery';
+
 
  try {
    const response = await fetch(apiUrl, {
@@ -49,16 +56,20 @@ const ForgetPassword: React.FC = () => {
 
    if (response.ok) {
      const result = await response.json();
-     console.log('Sign-in successful:', result);
-     toast.success('Password Changed successful!');
+     toast.success('Password Changed successfull');
+     setVisible(false)
+     setTimeout(() => {
+      navigate('/'); // Redirect to dashboard after login
+    }, 5000);
 
-     navigate('/'); // Redirect to dashboard after login
      // Handle successful sign-in (e.g., redirect or store token)
-   } else {
-     console.error('Sign-in failed:', response.statusText);
+   }else if (response.status===400){
+    alert("Invalid Email");
+  } else {
+    console.error('recover failed:', response);
    }
  } catch (error) {
-    alert("Sign-in failed")
+  alert("Internal server Error");
    console.error('Error:', error);
  }
         // In a real app, add sign-up logic here
@@ -66,15 +77,33 @@ const ForgetPassword: React.FC = () => {
     };
 
     return (
-        <div className="form-container">
+
+        <div style={{
+          // backgroundColor: "lightblue", // Dynamically change background color
+          background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+
+          height: '100vh', // Ensure it takes full viewport height
+          width: '100vw',  // Ensure it takes full viewport width
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+      {visible && (
+        <div className="form-container" >
             <h2>Recovery Password</h2>
             <form onSubmit={handlePassword}>
                 <input type="email" name='email' placeholder="Email" value={formData.email} onChange={handleChange} required />
                 <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
                 <input type="password" name='confirmPassword' placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
                 <button type="submit">Change Password</button>
+
             </form>
             <p>Already have an account? <Link to="/">Sign In</Link></p>
+            </div>
+          )}
+
+<ToastContainer/>
+
         </div>
     );
 };

@@ -3,31 +3,42 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
+import { toast, ToastContainer } from 'react-toastify';
+
+
 
 
 interface SignupFormData {
-    first_name: string;
-    last_name: string;
-    mobile_number: string;
-    email: string;
-    date_of_birth: string;
-    gender: string;
-    password: string;
-    confirmPassword:string;
-  }
+  employee_id:any;
+  first_name: any;
+  last_name: any;
+  full_name: any;
+  mobile_number: any;
+  email: any;
+  date_of_birth: any;
+  gender: any;
+  password: any;
+  confirmPassword:any;
+  photo_url:any;
+}
 
 const SignUp: React.FC = () => {
-    const { login, empDetail } = useAuth();
+  const [visible, setVisible] = useState<Boolean>(true);
 
-    const [formData, setFormData] = useState<SignupFormData>({
+    const { login } = useAuth();
+
+      const [formData, setFormData] = useState<SignupFormData>({
+        employee_id:'',
         first_name: '',
         last_name: '',
+        full_name: '',
         mobile_number: '',
         email: '',
         date_of_birth: '',
         gender: '',
         password: '',
         confirmPassword:'',
+        photo_url:"",
       });
       const [err, setErr] = useState<any>({});
  const navigate = useNavigate()
@@ -49,7 +60,9 @@ const SignUp: React.FC = () => {
         // In a real app, add sign-up logic here
         console.log('Signing up with', formData);
         // Add your API endpoint here
-    const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
+         const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
+
+    // const apiUrl = 'http://localhost:8080/public/signup';
 
     try {
       const response = await fetch(apiUrl, {
@@ -67,23 +80,52 @@ const SignUp: React.FC = () => {
       console.log('result :', result);
 
       if (response.ok) {
-        console.log('Signup successful:', result);
+        console.log('Signed up successful:', result);
+        setFormData({...formData,
+          employee_id: result.employee_id,
+          first_name: result.first_name,
+          last_name: result.last_name,
+          full_name:result.first_name + " " + result.last_name,
+          mobile_number: result.mobile_number,
+          email: result.email,
+          date_of_birth: result.date_of_birth,
+          gender: result.gender,
+          password: result.password,
+          photo_url:result.photo_url,
+      })
         login(result);
-        navigate('/home'); // Redirect to dashboard after login
+        toast.success('Signed up successful');
+        setVisible(false)
+        setTimeout(() => {
+         navigate('/home'); // Redirect to dashboard after login
+       }, 5000);
 
-      } else {
-        console.error('Signup failed:', result);
-
+      }else if (response.status===401){
+        alert("Invalid Password");
+      }else if (response.status===400){
+        alert("Invalid Email");
+      }else{
+        console.error('Signup failed:', response);
       }
     } catch (error) {
-        console.log('err :', err);
-
         alert("Internal server Error");
       console.error('Error:', error);
     }
     };
 
     return (
+      <div style={{
+        // backgroundColor: "lightblue", // Dynamically change background color
+        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+
+        height: '100vh', // Ensure it takes full viewport height
+        width: '100vw',  // Ensure it takes full viewport width
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+              {visible && (
+
         <div className="form-container">
             <h2>Sign Up</h2>
             <form onSubmit={handleSignUp}>
@@ -161,6 +203,9 @@ const SignUp: React.FC = () => {
                 <button type="submit">Sign Up</button>
             </form>
             <p>Already have an account? <Link to="/">Sign In</Link></p>
+        </div>)}
+        <ToastContainer/>
+
         </div>
     );
 };
