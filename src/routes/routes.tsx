@@ -14,6 +14,7 @@ const Main: React.FC = () => {
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/recoverypassword" element={<ForgetPassword />} />
+
         <Route 
             path="/home" 
             element={

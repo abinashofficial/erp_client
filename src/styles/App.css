@@ -13,7 +13,7 @@
   padding: 20px;
   /* border-radius: 5px; */
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
-  width: 300px;
+  /* width: 300px; */
 }
 
 form {
@@ -64,4 +64,58 @@ nav a {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: #f4f4f4; */
+  color: #333;
+}
+
+header {
+  /* background: white; */
+  color: black;
+  padding: 20px;
+  text-align: center;
+  /* position: fixed; */
+
+}
+
+section {
+  margin: 20px;
+  padding: 20px;
+  /* background: #fff; */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: black;
+  color: white;
+  width: 100%;
+  bottom: 0;
+}
+
+
+
+.social-media-icons {
+  display: flex;
+  gap: 15px; /* Space between icons */
+  justify-content: center; /* Center the icons */
+  margin-top: 20px; /* Add some margin */
+  background: black;
+}
+
+.social-media-icons a {
+  color: white; /* Default color */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.social-media-icons a:hover {
+  color: #ff99ff; /* Change color on hover */
 }
