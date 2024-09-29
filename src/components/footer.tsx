@@ -1,5 +1,7 @@
 import React from 'react';
-import { FaLinkedin, FaWhatsapp, FaInstagram, FaEarlybirds } from 'react-icons/fa';
+import { FaLinkedin, FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
+
 
 
 import { SiGmail } from 'react-icons/si';
@@ -31,6 +33,9 @@ const Footer: React.FC = () => {
 
         <a href="mailto:abinash1411999@gmail.com">
             <SiGmail size={30} />
+        </a>
+        <a href="https://x.com/abinash9985496?s=09">
+            <FaXTwitter size={30} />
         </a>
         
     </div>

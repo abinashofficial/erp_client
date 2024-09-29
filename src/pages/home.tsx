@@ -33,20 +33,20 @@ const Home: React.FC = () => {
 <div  style={{
         display:"flex",
         flexDirection:"column",
-        justifyContent:"space-around",
+        // justifyContent:"space-around",
+        gap:"10px",
         background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
         height: '100vh', // Ensure it takes full viewport height
         width: '100vw', 
       }}>
 
 
-        <div>
         <div 
         style={{
           display: 'flex',
           justifyContent: "space-around",
           alignItems: 'center',
-        //   padding:"10px"
+          padding:"10px"
         }}
         >
         {empDetail.photo_url && (
@@ -76,8 +76,6 @@ const Home: React.FC = () => {
       </div>
 
 
-        </div>
-
 
        
 
@@ -87,14 +85,6 @@ const Home: React.FC = () => {
 
 
 
-  <div style={{
-  display:"flex",
-  justifyContent:"center",
-}}>
-  <a href="https://1drv.ms/w/c/a969a5ec561b8918/IQQYiRtW7KVpIICpiQAAAAAAAVnP4roQuAapbeOeWi7Y0cE?em=2" target="_blank" rel="noopener noreferrer">
-  Get CV        </a>
-
-</div>
 </div>
     );
 };

@@ -66,25 +66,16 @@ const Header: React.FC = () => {
         }}>
 
 
-        <div style={{
-          display:"flex",
-          padding:"20px",
-          gap:"10px",
 
-        }}>
           <div style={{
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"center",
             color:"white",
+            padding:"10px",
           }}>
           <FaEarlybirds size={50} />
           </div>
-          <div style={{
-            color:"white",
-          }}>
-            <h2>
-            Prison Bird
-            </h2>
-          </div>
-        </div>
 
         <div style={{
 
