@@ -41,7 +41,9 @@ const SignUp: React.FC = () => {
         photo_url:"",
       });
       const [err, setErr] = useState<any>({});
+
  const navigate = useNavigate()
+
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
             // Allow only numbers in mobile_number field
@@ -57,6 +59,7 @@ const SignUp: React.FC = () => {
 
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords doesn't match");
+            setVisible(true)
             return;
         }
         // In a real app, add sign-up logic here
@@ -116,10 +119,10 @@ const SignUp: React.FC = () => {
 
       }else if (response.status===401){
         setVisible(true)
-        alert("Invalid Password");
+        alert("This mobile number is already registered.");
       }else if (response.status===400){
         setVisible(true)
-        alert("Invalid Email");
+        alert("This Email is already registered.");
       }else{
         console.error('Signup failed:', response);
       }
