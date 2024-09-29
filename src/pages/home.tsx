@@ -38,8 +38,8 @@ const Home: React.FC = () => {
         // justifyContent:"space-around",
         gap:"10px",
         background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw', 
+        height: '100%', // Ensure it takes full viewport height
+        width: '100%', 
       }}>
 
 
@@ -79,6 +79,7 @@ const Home: React.FC = () => {
       <div style={
         {
           display: 'flex',
+          flexDirection:"column",
           justifyContent: "space-around",
           alignItems: 'center',          
         }
@@ -87,11 +88,13 @@ const Home: React.FC = () => {
 <div style={{
         display:"flex",
         flexDirection:"column",
-        // gap:"10px",
-
-justifyContent:"space-around",
+// justifyContent:"space-around",
+gap:"10px",
+margin:"10px",
       }}>
       <h1>   Watch this video!</h1>
+
+
       <div style={{
         height:"350px",
         width:"350px",
@@ -99,7 +102,7 @@ justifyContent:"space-around",
         // padding:"20px"
       }}>
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=BswOY0bYgKg&list=PLL7RrfYQRQayzK8i2-9R1p5iPAv6WRcnc"
+        url="https://www.youtube.com/shorts/Ec8cmkK7Wxk"
         width="100%"
         height="100%"
         controls={true}  // Adds play/pause controls
@@ -109,8 +112,14 @@ justifyContent:"space-around",
     </div>
 
 
+
+
+
+
       </div>
 
+
+      
 
 </div>
     );
