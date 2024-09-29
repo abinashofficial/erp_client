@@ -8,40 +8,60 @@ import ForgetPassword from '.././pages/auth/forget_password';
 import Blog from '../pages/blog';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import Service from '../pages/service';
+import { useAuth } from '../context/authContext';
 
 
 
 const Main: React.FC = () => {
-    return (
-    //     <BrowserRouter>
-    //     <Header/>
-    //     <Routes>
-    //     <Route path="/" element={<SignIn />} />
-    //     <Route path="/signup" element={<SignUp />} />
-    //     <Route path="/recoverypassword" element={<ForgetPassword />} />
+    const { isAuthenticated } = useAuth();
 
-    //     <Route 
-    //         path="/home" 
-    //         element={
-    //             <ProtectedRoute>
-    //                 <Home />
-    //             </ProtectedRoute>
-    //         } 
-    //     />
-    //             <Route 
-    //         path="/blog" 
-    //         element={
-    //             <ProtectedRoute>
-    //                 <Blog />
-    //             </ProtectedRoute>
-    //         } 
-    //     />
-    // </Routes>
-    // <Footer/>
-    // </BrowserRouter>
-    <div>
-        
+    return (
+        <div>
+            {
+                isAuthenticated ?         <Header/>:""
+            }
+
+
+        <Routes>
+
+        <Route path="/" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/recoverypassword" element={<ForgetPassword />} />
+        <Route 
+            path="/home" 
+            element={
+                <ProtectedRoute>
+                    <Home />
+                </ProtectedRoute>
+            } 
+        />
+
+<Route 
+            path="/blog" 
+            element={
+                <ProtectedRoute>
+                    <Blog />
+                </ProtectedRoute>
+            } 
+        />
+
+
+<Route 
+            path="/service" 
+            element={
+                <ProtectedRoute>
+                    <Service />
+                </ProtectedRoute>
+            } 
+        />
+
+
+    </Routes>
+    <Footer/>
     </div>
+
+
     );
 };
 
