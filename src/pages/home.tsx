@@ -102,7 +102,7 @@ margin:"10px",
         // padding:"20px"
       }}>
       <ReactPlayer
-        url="https://www.youtube.com/shorts/Ec8cmkK7Wxk"
+        url="https://www.youtube.com/watch?v=Fg1sMa2qB1Q&t=8s"
         width="100%"
         height="100%"
         controls={true}  // Adds play/pause controls
