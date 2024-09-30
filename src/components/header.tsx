@@ -2,6 +2,7 @@ import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
 import { FaLinkedin, FaWhatsapp, FaInstagram, FaEarlybirds } from 'react-icons/fa';
 
+import { Link } from 'react-router-dom';
 
 import { SiGmail } from 'react-icons/si';
 import { useNavigate } from 'react-router-dom';
@@ -67,6 +68,9 @@ const Header: React.FC = () => {
 
 
 
+
+
+
           <div style={{
             display:"flex",
             flexDirection:"column",
@@ -76,6 +80,62 @@ const Header: React.FC = () => {
           }}>
           <FaEarlybirds size={50} />
           </div>
+
+
+          {/* <div style={{
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            color:"white",
+            padding:"10px",
+          }}>
+            Home
+          </div>
+
+          <div style={{
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            color:"white",
+            padding:"10px",
+          }}>
+            Service
+          </div> */}
+ 
+
+
+ <nav style={{
+                      display:"flex",
+                      flexDirection:"column",
+                      justifyContent:"center",
+                      padding:"10px",
+        }}>            <Link style={{
+              color:"white",
+            }} to="/home">Home</Link>
+        </nav>   
+
+        <nav style={{
+                      display:"flex",
+                      flexDirection:"column",
+                      justifyContent:"center",
+                      padding:"10px",
+        }}>            <Link style={{
+              color:"white",
+            }} to="/blog">Blog</Link>
+        </nav>   
+
+        <nav style={{
+                      display:"flex",
+                      flexDirection:"column",
+                      justifyContent:"center",
+                      padding:"10px",
+        }}>
+            <Link style={{
+              color:"white",
+            }} to="/service">Service</Link>
+        </nav>   
+
+
 
         <div style={{
 

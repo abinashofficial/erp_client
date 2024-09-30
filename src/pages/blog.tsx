@@ -16,7 +16,7 @@ interface Project {
 
 const Blog: React.FC = () => {
     const { logout ,empDetail} = useAuth();
-    const [paragraph, setFormData] = useState("  hi.. I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
+    const [paragraph, setFormData] = useState("   I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
 
     
     const [displayedText, setDisplayedText] = useState('');
@@ -61,7 +61,7 @@ const Blog: React.FC = () => {
 
 
         <div className="home-container">
-            <h2>Welcome... {empDetail.full_name}</h2>
+            <h2>Hi... {empDetail.full_name}</h2>
             <div>{displayedText}</div>
         </div>
 
