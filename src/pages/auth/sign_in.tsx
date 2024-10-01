@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'
 import GoogleSignIn from './google'; // Adjust the path as necessary
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from './firebaseConfig'; // Adjust the path as necessary
+
+
 
 
 
@@ -109,6 +113,41 @@ const SignIn: React.FC = () => {
  }
     };
 
+
+
+    const handleGoogleSignIn = async () => {
+      setVisible(false)
+
+      try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user; // The signed-in user info
+        console.log('User Info:', user);
+  
+  
+        const empDetail= ({
+          employee_id:'',
+          first_name: '',
+          last_name: '',
+          mobile_number: '',
+          date_of_birth: '',
+          gender: '',
+          password: '',
+          confirmPassword:'',
+          full_name: user.displayName, 
+          email: user.email,
+  
+          photo_url:user.photoURL,
+        });
+  
+        login(empDetail)
+        navigate('/home'); // Redirect to dashboard after login
+  
+        // Handle user info and proceed with your signup logic
+      } catch (error) {
+          console.log('result :', error);
+      }
+    };
+
     
 
 
@@ -161,7 +200,7 @@ const SignIn: React.FC = () => {
         </nav>
 
 </div>
-<GoogleSignIn/>
+<button onClick={handleGoogleSignIn}>Sign in with Google</button>
 
         </div>
         ):(<div className="spinner"> </div>)}
@@ -171,6 +210,3 @@ const SignIn: React.FC = () => {
 
 
 export default SignIn;
-
-
-
