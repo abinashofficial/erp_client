@@ -48,7 +48,7 @@ const Home: React.FC = () => {
           display: 'flex',
           justifyContent: "space-around",
           alignItems: 'center',
-          padding:"10px"
+          padding:"10px",
         }}
         >
         {empDetail.photo_url && (
@@ -59,12 +59,13 @@ const Home: React.FC = () => {
               width: '100px',
               height: '100px',
               objectFit: 'cover',
-              borderRadius: '8px',
+              borderRadius: '50px',
             //   marginTop: '10px',
             }}
           />
         )}
       </div>
+      
       <div
              style={{
               display: 'flex',

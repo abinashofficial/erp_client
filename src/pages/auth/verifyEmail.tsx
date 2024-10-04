@@ -15,7 +15,7 @@ interface SignInFormData {
     confirmPassword:string
   }
 
-const ForgetPassword: React.FC = () => {
+const VerifyEmail: React.FC = () => {
   const [visible, setVisible] = useState<Boolean>(true);
 
     const [formData, setFormData] = useState<SignInFormData>({
@@ -96,12 +96,12 @@ const ForgetPassword: React.FC = () => {
 
       {visible ? (
         <div className="form-container" >
-            <h2>Change Password</h2>
+            <h2>Recovery Password</h2>
             <form onSubmit={handlePassword}>
                 <input type="email" name='email' placeholder="Email" value={formData.email} onChange={handleChange} required />
-                <input type="password" name="password" placeholder="New Password" value={formData.password} onChange={handleChange} required />
+                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
                 <input type="password" name='confirmPassword' placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
-                <button type="submit">Continue</button>
+                <button type="submit">Change Password</button>
 
             </form>
             <p>Already have an account? <Link to="/">Sign In</Link></p>
@@ -114,4 +114,4 @@ const ForgetPassword: React.FC = () => {
     );
 };
 
-export default ForgetPassword;
+export default VerifyEmail;

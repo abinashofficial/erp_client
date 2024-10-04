@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
+import { Select } from '@mui/material';
 
 
-
+const countryCodes = [
+  { code: '+1', country: 'USA' },
+  { code: '+44', country: 'UK' },
+  { code: '+91', country: 'India' },
+  // Add more country codes as needed
+];
 
 interface SignupFormData {
   employee_id:any;
@@ -20,6 +26,7 @@ interface SignupFormData {
   password: any;
   confirmPassword:any;
   photo_url:any;
+  countryCode:any;
 }
 
 const SignUp: React.FC = () => {
@@ -39,6 +46,7 @@ const SignUp: React.FC = () => {
         password: '',
         confirmPassword:'',
         photo_url:"",
+        countryCode:"",
       });
       const [err, setErr] = useState<any>({});
 
@@ -164,7 +172,32 @@ const SignUp: React.FC = () => {
           value={formData.last_name}
           onChange={handleChange}
         />
-        <input
+        <div style={{
+          display:"flex",
+          justifyContent:"space-between",
+        }}>
+          <div style={{
+            display:"flex",
+            alignItems:"center",
+          }}>
+          <select
+          style={{
+            height:"40px",
+            borderRadius:"10px",
+          }}
+              name="countryCode"
+              value={formData.countryCode}
+              onChange={handleChange}
+            >
+              {countryCodes.map((country) => (
+                <option key={country.code} value={country.code}>
+                  {country.code} ({country.country})
+                </option>
+              ))}
+            </select>
+          </div>
+       
+            <input
           type="text"
           name="mobile_number"
           placeholder="Mobile Number"
@@ -172,6 +205,7 @@ const SignUp: React.FC = () => {
           onChange={handleChange}
           required
         />
+        </div>
         <input
           type="email"
           name="email"
@@ -193,6 +227,10 @@ const SignUp: React.FC = () => {
       <div>
         <label>Gender:</label>
         <select
+                  style={{
+                    height:"40px",
+                    borderRadius:"10px",
+                  }}
           name="gender"
           value={formData.gender}
           onChange={handleChange}
