@@ -139,6 +139,8 @@ footer {
   border: none;
   background: none;
   margin: 20px;
+  transition: 'background-color 0.3s ease',
+
 }
 
 /* Sidebar styling */
@@ -205,3 +207,45 @@ footer {
 }
 
 
+.link-button {
+  background: none;
+  border: none;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+button.link-button:hover {
+  color: black !important; /* Change color on hover */
+  background-color: white !important;
+}
+
+
+button.menu-btn:hover {
+  color: black !important; /* Change color on hover */
+  background-color: transparent !important;
+}
+
+
+
+.header-btn{
+  color: white ;
+  background-color: #ff99ff;
+}
+
+.header-btn.clicked{
+  color: black !important ;
+
+}
+
+button.header-btn:hover {
+  color: black !important; /* Change color on hover */
+  background-color: #ff99ff !important;
+}
+
+
+button.close-btn:hover {
+  background-color: transparent !important;
+}

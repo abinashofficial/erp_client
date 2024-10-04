@@ -4,15 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
-import { Select } from '@mui/material';
 
-
-const countryCodes = [
-  { code: '+1', country: 'USA' },
-  { code: '+44', country: 'UK' },
-  { code: '+91', country: 'India' },
-  // Add more country codes as needed
-];
 
 interface SignupFormData {
   employee_id:any;
@@ -48,7 +40,6 @@ const SignUp: React.FC = () => {
         photo_url:"",
         countryCode:"",
       });
-      const [err, setErr] = useState<any>({});
 
  const navigate = useNavigate()
 
@@ -89,7 +80,6 @@ const SignUp: React.FC = () => {
         }),
       });
       const result = await response.json();
-      setErr(result)
       console.log('result :', result);
 
       if (response.ok) {
@@ -188,12 +178,13 @@ const SignUp: React.FC = () => {
               name="countryCode"
               value={formData.countryCode}
               onChange={handleChange}
+              required
             >
-              {countryCodes.map((country) => (
-                <option key={country.code} value={country.code}>
-                  {country.code} ({country.country})
-                </option>
-              ))}
+                  <option value="">Select Country</option>
+
+    <option value="+1">+1 (USA)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+91">+91 (India)</option>
             </select>
           </div>
        

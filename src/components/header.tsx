@@ -1,27 +1,20 @@
 import { useAuth } from '../context/authContext';
-import React, { useState, useEffect } from 'react';
-import { FaLinkedin, FaWhatsapp, FaInstagram, FaEarlybirds } from 'react-icons/fa';
-
-import { Link } from 'react-router-dom';
-
-import { SiGmail } from 'react-icons/si';
+import React, { useState } from 'react';
+import {  FaEarlybirds } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-interface Project {
-  title: string;
-  description: string;
-}
+type ButtonKey = 'button1' | 'button2' | 'button3';
 
 
 const Header: React.FC = () => {
-    const { logout ,empDetail} = useAuth();
-    const [paragraph, setFormData] = useState("  hi.. I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
-
+    const { logout } = useAuth();
     
     const navigate = useNavigate()
+    const [clickedButtons, setClickedButtons] = useState({
+      "button1": false,
+      "button2": false,
+      "button3": false,
+    });
 
   
 
@@ -46,9 +39,20 @@ const Header: React.FC = () => {
         logout()
     };
 
+    const headerButtonHandle = (buttonKey: ButtonKey, result:string) => {
+      navigate(result)
+      setClickedButtons((prevState) => ({
+        ...prevState,
+        "button1": false,
+        "button2": false,
+        "button3": false,
 
-
-    
+      }));
+      setClickedButtons((prevState) => ({
+        ...prevState,
+        [buttonKey]: !prevState[buttonKey],
+      }));
+         };
     return (
 
 
@@ -66,11 +70,6 @@ const Header: React.FC = () => {
           justifyContent:"space-between",
         }}>
 
-
-
-
-
-
           <div style={{
             display:"flex",
             flexDirection:"column",
@@ -80,60 +79,9 @@ const Header: React.FC = () => {
           }}>
           <FaEarlybirds size={50} />
           </div>
-
-
-          {/* <div style={{
-            display:"flex",
-            flexDirection:"column",
-            justifyContent:"center",
-            color:"white",
-            padding:"10px",
-          }}>
-            Home
-          </div>
-
-          <div style={{
-            display:"flex",
-            flexDirection:"column",
-            justifyContent:"center",
-            color:"white",
-            padding:"10px",
-          }}>
-            Service
-          </div> */}
- 
-
-
- <nav style={{
-                      display:"flex",
-                      flexDirection:"column",
-                      justifyContent:"center",
-                      padding:"10px",
-        }}>            <Link style={{
-              color:"white",
-            }} to="/home">Home</Link>
-        </nav>   
-
-        <nav style={{
-                      display:"flex",
-                      flexDirection:"column",
-                      justifyContent:"center",
-                      padding:"10px",
-        }}>            <Link style={{
-              color:"white",
-            }} to="/blog">Blog</Link>
-        </nav>   
-
-        <nav style={{
-                      display:"flex",
-                      flexDirection:"column",
-                      justifyContent:"center",
-                      padding:"10px",
-        }}>
-            <Link style={{
-              color:"white",
-            }} to="/service">Service</Link>
-        </nav>   
+<button onClick={() => headerButtonHandle("button1", '/home')} className={`header-btn ${clickedButtons.button1 ? 'clicked' : ''}`}>Home</button>
+<button onClick={() => headerButtonHandle("button2", '/blog')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Blog</button>
+<button onClick={() => headerButtonHandle("button3",  '/service')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Service</button>
 
 
 
@@ -163,10 +111,16 @@ const Header: React.FC = () => {
           ×
         </button>
         <ul>
-          <li><a onClick={() => landPage('/home')}>Home</a></li>
+            <li><button onClick={() => landPage('/home')} className="link-button">Home</button></li>
+            <li><button onClick={() => landPage('/blog')} className="link-button">Blog</button></li>
+            <li><button onClick={() => landPage('/service')} className="link-button">Services</button></li>
+
+          {/* <li><a onClick={() => landPage('/home')}>Home</a></li>
           <li><a onClick={() => landPage('/service')}>Services</a></li>
-          <li><a onClick={() => landPage('/blog')}>Blog</a></li>
-          <li><a  onClick={handleLogout}>Logout</a></li>
+          <li><a onClick={() => landPage('/blog')}>Blog</a></li> */}
+          {/* <li><a  onClick={handleLogout}>Logout</a></li> */}
+          <li><button onClick={handleLogout} className="link-button">Logout</button></li>
+
         </ul>
       </div>
 

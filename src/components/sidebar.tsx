@@ -9,12 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-interface Project {
-  title: string;
-  description: string;
-}
-
-
 const Home: React.FC = () => {
     const { logout ,empDetail} = useAuth();
     const [paragraph, setFormData] = useState("  hi.. I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
