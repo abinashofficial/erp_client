@@ -194,6 +194,12 @@ footer {
   cursor: pointer;
 }
 
+button.close-btn:hover {
+  color: black !important; /* Change color on hover */
+  background-color: white !important;}
+
+
+
 /* Overlay background when sidebar is open */
 .overlay {
   position: fixed;
@@ -214,6 +220,8 @@ footer {
   text-decoration: underline;
   cursor: pointer;
   padding: 0;
+  font-size: 1rem; /* Increase font size */
+  padding: 10px 20px; /* Increase padding for a bigger button */
 }
 
 
@@ -223,6 +231,7 @@ button.link-button:hover {
 }
 
 
+
 button.menu-btn:hover {
   color: black !important; /* Change color on hover */
   background-color: transparent !important;
@@ -230,9 +239,11 @@ button.menu-btn:hover {
 
 
 
+
 .header-btn{
   color: white ;
   background-color: #ff99ff;
+  font-size: 1rem;
 }
 
 .header-btn.clicked{
@@ -246,6 +257,14 @@ button.header-btn:hover {
 }
 
 
-button.close-btn:hover {
-  background-color: transparent !important;
+
+
+
+.menu-list-item {
+  font-size: 1.5rem; /* Increase font size */
+  padding: 10px; /* Increase padding */
+}
+
+.menu-item-icon{
+  color: white;
 }

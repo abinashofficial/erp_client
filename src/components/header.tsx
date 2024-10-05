@@ -1,7 +1,8 @@
 import { useAuth } from '../context/authContext';
 import React, { useState } from 'react';
-import {  FaEarlybirds } from 'react-icons/fa';
+import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
 
 type ButtonKey = 'button1' | 'button2' | 'button3';
 
@@ -11,7 +12,7 @@ const Header: React.FC = () => {
     
     const navigate = useNavigate()
     const [clickedButtons, setClickedButtons] = useState({
-      "button1": false,
+      "button1": true,
       "button2": false,
       "button3": false,
     });
@@ -22,8 +23,19 @@ const Header: React.FC = () => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const landPage = (result: string) => {
+    const landPage = (buttonKey: ButtonKey, result: string) => {
         navigate(result)
+        setClickedButtons((prevState) => ({
+          ...prevState,
+          "button1": false,
+          "button2": false,
+          "button3": false,
+  
+        }));
+        setClickedButtons((prevState) => ({
+          ...prevState,
+          [buttonKey]: !prevState[buttonKey],
+        }));
         setIsOpen(!isOpen);
 
     }
@@ -110,16 +122,11 @@ const Header: React.FC = () => {
         <button className="close-btn" onClick={toggleDrawer}>
           ×
         </button>
-        <ul>
-            <li><button onClick={() => landPage('/home')} className="link-button">Home</button></li>
-            <li><button onClick={() => landPage('/blog')} className="link-button">Blog</button></li>
-            <li><button onClick={() => landPage('/service')} className="link-button">Services</button></li>
-
-          {/* <li><a onClick={() => landPage('/home')}>Home</a></li>
-          <li><a onClick={() => landPage('/service')}>Services</a></li>
-          <li><a onClick={() => landPage('/blog')}>Blog</a></li> */}
-          {/* <li><a  onClick={handleLogout}>Logout</a></li> */}
-          <li><button onClick={handleLogout} className="link-button">Logout</button></li>
+        <ul >
+            <li> <FaHome className="menu-item-icon" /><button onClick={() => landPage("button1", '/home')} className="link-button">Home</button></li>
+            <li> <FaBlog className="menu-item-icon"  /> <button onClick={() => landPage("button2", '/blog')} className="link-button">Blog</button></li>
+            <li> <FaServicestack className="menu-item-icon" /> <button onClick={() => landPage("button3", '/service')} className="link-button">Services</button></li>
+          <li>  <FaSignOutAlt className="menu-item-icon" /><button onClick={handleLogout} className="link-button">  Logout</button></li>
 
         </ul>
       </div>

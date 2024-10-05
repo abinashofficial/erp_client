@@ -10,7 +10,8 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import Service from '../pages/service';
 import { useAuth } from '../context/authContext';
-
+import Course from '../pages/course';
+import Project from '../pages/project';
 
 
 const Main: React.FC = () => {
@@ -52,6 +53,24 @@ const Main: React.FC = () => {
             element={
                 <ProtectedRoute>
                     <Service />
+                </ProtectedRoute>
+            } 
+        />
+
+<Route 
+            path="/course" 
+            element={
+                <ProtectedRoute>
+                    <Course />
+                </ProtectedRoute>
+            } 
+        />
+
+<Route 
+            path="/project" 
+            element={
+                <ProtectedRoute>
+                    <Project />
                 </ProtectedRoute>
             } 
         />
