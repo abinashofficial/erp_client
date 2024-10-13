@@ -13,6 +13,7 @@ interface SignupFormData {
     password: any;
     confirmPassword:any;
     photo_url:any;
+    access_token:any;
   }
   
   
@@ -45,6 +46,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         password: '',
         confirmPassword:'',
         photo_url:"",
+        access_token:"",
       });
 
     const login = (result: SignupFormData) => {
@@ -58,8 +60,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             email: result.email,
             date_of_birth: result.date_of_birth,
             gender: result.gender,
-            password: result.password,
+            password: "",
             photo_url:result.photo_url,
+            access_token:result.access_token,
         })
 
         console.log("empDetail:-", empDetail)
@@ -70,8 +73,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     
         // Optional: Set an alert for 14 minutes
         const alertId = window.setTimeout(() => {
-            alert("Your session will expire in 1 minute. Please save your work.");
-        }, 14 * 60 * 1000); // 14 minutes
+            alert("Your session will expire in 2 minute. Please save your work.");
+        }, 13 * 60 * 1000); // 14 minutes
     
         setTimeoutId(id);
     

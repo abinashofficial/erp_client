@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'
-import GoogleSignIn from './google'; // Adjust the path as necessary
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebaseConfig'; // Adjust the path as necessary
+
 
 
 
@@ -28,6 +28,7 @@ interface SignInFormData {
     password: any;
     confirmPassword:any;
     photo_url:any;
+    access_token:any;
   }
 
 const SignIn: React.FC = () => {
@@ -90,7 +91,7 @@ const SignIn: React.FC = () => {
     password: result.password,
     photo_url:result.photo_url,
     confirmPassword:result.confirmPassword,
-
+    access_token: result.access_token,
   });
   
     login(empDetail);
@@ -135,8 +136,8 @@ const SignIn: React.FC = () => {
           confirmPassword:'',
           full_name: user.displayName, 
           email: user.email,
-  
           photo_url:user.photoURL,
+          access_token:"",
         });
   
         login(empDetail)

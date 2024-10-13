@@ -1,35 +1,11 @@
 import { useAuth } from '../context/authContext';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactPlayer from 'react-player/youtube';
 
 
 
-import { SiGmail } from 'react-icons/si';
-import { useNavigate } from 'react-router-dom';
-
-
-
-
-interface Project {
-  title: string;
-  description: string;
-}
-
-
 const Home: React.FC = () => {
-    const { logout ,empDetail} = useAuth();
-
-  
-
-  
-
-
-
-
-
-
-
-    
+    const {empDetail} = useAuth();
     return (
 
 <div  style={{

@@ -1,10 +1,10 @@
 import { useAuth } from '../context/authContext';
 import React, { useState } from 'react';
-import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt } from 'react-icons/fa';
+import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 
-type ButtonKey = 'button1' | 'button2' | 'button3';
+type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4';
 
 
 const Header: React.FC = () => {
@@ -15,6 +15,8 @@ const Header: React.FC = () => {
       "button1": true,
       "button2": false,
       "button3": false,
+      "button4": false,
+
     });
 
   
@@ -30,7 +32,8 @@ const Header: React.FC = () => {
           "button1": false,
           "button2": false,
           "button3": false,
-  
+          "button4": false,
+
         }));
         setClickedButtons((prevState) => ({
           ...prevState,
@@ -58,7 +61,7 @@ const Header: React.FC = () => {
         "button1": false,
         "button2": false,
         "button3": false,
-
+        "button4": false,
       }));
       setClickedButtons((prevState) => ({
         ...prevState,
@@ -124,6 +127,7 @@ const Header: React.FC = () => {
         </button>
         <ul >
             <li> <FaHome className="menu-item-icon" /><button onClick={() => landPage("button1", '/home')} className="link-button">Home</button></li>
+            <li> <FaUser className="menu-item-icon"  /> <button onClick={() => landPage("button4", '/profile')} className="link-button">Profile</button></li>
             <li> <FaBlog className="menu-item-icon"  /> <button onClick={() => landPage("button2", '/blog')} className="link-button">Blog</button></li>
             <li> <FaServicestack className="menu-item-icon" /> <button onClick={() => landPage("button3", '/service')} className="link-button">Services</button></li>
           <li>  <FaSignOutAlt className="menu-item-icon" /><button onClick={handleLogout} className="link-button">  Logout</button></li>

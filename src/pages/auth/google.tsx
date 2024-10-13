@@ -27,8 +27,8 @@ const GoogleSignIn: React.FC = () => {
         confirmPassword:'',
         full_name: user.displayName, 
         email: user.email,
-
         photo_url:user.photoURL,
+        access_token:"",
       });
 
       login(empDetail)

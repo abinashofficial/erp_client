@@ -19,6 +19,7 @@ interface SignupFormData {
   confirmPassword:any;
   photo_url:any;
   countryCode:any;
+  access_token:any;
 }
 
 const SignUp: React.FC = () => {
@@ -39,6 +40,7 @@ const SignUp: React.FC = () => {
         confirmPassword:'',
         photo_url:"",
         countryCode:"",
+        access_token:"",
       });
 
  const navigate = useNavigate()
@@ -84,6 +86,8 @@ const SignUp: React.FC = () => {
 
       if (response.ok) {
         console.log('Signed up successful:', result);
+
+
         setFormData({...formData,
           employee_id: result.employee_id,
           first_name: result.first_name,
@@ -95,7 +99,10 @@ const SignUp: React.FC = () => {
           gender: result.gender,
           password: result.password,
           photo_url:result.photo_url,
+          access_token:result.access_token,
       })
+
+
       const empDetail = ({
         employee_id: result.employee_id,
         first_name: result.first_name,
@@ -108,6 +115,7 @@ const SignUp: React.FC = () => {
         password: result.password,
         photo_url:"",
         confirmPassword:result.confirmPassword,
+        access_token:result.access_token,
       });
         login(empDetail);
         toast.success('Signed up successful');
@@ -205,7 +213,11 @@ const SignUp: React.FC = () => {
           onChange={handleChange}
           required
         />
-      <div>
+      <div       style={{
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"space-between",
+      }}>
         <label>Date of Birth:</label>
         <input
           type="date"
@@ -215,7 +227,12 @@ const SignUp: React.FC = () => {
           required
         />
       </div>
-      <div>
+      <div
+            style={{
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"space-between",
+            }}>
         <label>Gender:</label>
         <select
                   style={{

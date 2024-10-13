@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/home';
 import SignIn from '../pages/auth/sign_in';
 import SignUp from '../pages/auth/sign_up';
@@ -12,6 +12,8 @@ import Service from '../pages/service';
 import { useAuth } from '../context/authContext';
 import Course from '../pages/course';
 import Project from '../pages/project';
+import Profile from '../pages/profile';
+import EditProfile from '../pages/editProfile';
 
 
 const Main: React.FC = () => {
@@ -71,6 +73,24 @@ const Main: React.FC = () => {
             element={
                 <ProtectedRoute>
                     <Project />
+                </ProtectedRoute>
+            } 
+        />
+
+<Route 
+            path="/profile" 
+            element={
+                <ProtectedRoute>
+                    <Profile />
+                </ProtectedRoute>
+            } 
+        />
+
+<Route 
+            path="/editprofile" 
+            element={
+                <ProtectedRoute>
+                    <EditProfile />
                 </ProtectedRoute>
             } 
         />

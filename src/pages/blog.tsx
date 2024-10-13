@@ -2,26 +2,13 @@ import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
 
 
-import { SiGmail } from 'react-icons/si';
-import { useNavigate } from 'react-router-dom';
-
-
-
-
-interface Project {
-  title: string;
-  description: string;
-}
-
 
 const Blog: React.FC = () => {
-    const { logout ,empDetail} = useAuth();
-    const [paragraph, setFormData] = useState("   I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
-
+    const { empDetail} = useAuth();
+    // const [paragraph, setFormData] = useState("   I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
+    const paragraph = "   I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch."
     
     const [displayedText, setDisplayedText] = useState('');
-    const navigate = useNavigate()
-
   
     useEffect(() => {
         // if (empDetail.mobile_number === "8925184971"){
