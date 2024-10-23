@@ -13,7 +13,7 @@ const Home: React.FC = () => {
         flexDirection:"column",
         // justifyContent:"space-around",
         gap:"10px",
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
         height: '100%', // Ensure it takes full viewport height
         width: '100%', 
       }}>

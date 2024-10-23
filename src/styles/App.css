@@ -74,6 +74,7 @@ body {
   margin: 0;
   padding: 0;
   /* background-color: #f4f4f4; */
+  background: linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%);
   color: #333;
 }
 
