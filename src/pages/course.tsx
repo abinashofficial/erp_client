@@ -108,6 +108,50 @@ href="https://youtube.com/playlist?list=PLJ7-HiqskdZKn03J2X0y37agMrYCnhvEU&si=Se
         display:"flex",
         justifyContent:"center",
         }}>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7_GCEX2LRWIwLy7DavJqsBuk3TEqxRfq44Q&s" alt="" />
+
+      </div>
+
+      <div style={{
+  background:"#04AA6D",
+  borderRadius:"5px",
+  width:"290px",
+  display:"flex",
+  justifyContent:"center",
+}}>
+
+<nav style={{
+marginTop:"15px"
+}}>
+  <a 
+      style={{ color: "white" }}
+
+href="https://www.youtube.com/watch?v=CgkZ7MvWUAA&list=LL&index=46&t=4279s" target="_blank" rel="noopener noreferrer">
+    View Course
+    </a>
+        </nav>  
+</div>  
+      </div>
+
+
+
+
+      <div style={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"250px",
+        width:"300px",
+        background:"white",
+        gap:"20px",
+        padding:"10px",
+        borderRadius:"10px"
+      }}>
+                <div style={{
+        display:"flex",
+        justifyContent:"center",
+        }}>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS6AUfDIZzaVfVqS2yMgrQ2BxcQYjofHhUH-D2N12_usfq6Agj0z-i51L6e0e_q6_raco&usqp=CAU" alt="" />
 
       </div>
@@ -186,6 +230,92 @@ Get CV        </a> */}
 
       </div>
 
+
+
+
+      <div style={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"250px",
+        width:"300px",
+        background:"white",
+        gap:"20px",
+        padding:"10px",
+        borderRadius:"10px"
+      }}>
+                <div style={{
+        display:"flex",
+        justifyContent:"center",
+        }}>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq80Y2NejsbkqNNb4RSLqFQAm-fY_N-EGcyQ&s" alt="" />
+
+      </div>
+
+      <div style={{
+  background:"#04AA6D",
+  borderRadius:"5px",
+  width:"290px",
+  display:"flex",
+  justifyContent:"center",
+}}>
+
+<nav style={{
+marginTop:"15px"
+}}>
+  <a 
+      style={{ color: "white" }}
+
+href="https://www.youtube.com/watch?v=qw--VYLpxG4&t=681s" target="_blank" rel="noopener noreferrer">
+    View Course
+    </a>
+        </nav>  
+</div>  
+      </div>
+
+
+
+      <div style={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"250px",
+        width:"300px",
+        background:"white",
+        gap:"20px",
+        padding:"10px",
+        borderRadius:"10px"
+      }}>
+                <div style={{
+        display:"flex",
+        justifyContent:"center",
+        }}>
+        <img src="data:image/png;base64,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" alt="" />
+
+      </div>
+
+      <div style={{
+  background:"#04AA6D",
+  borderRadius:"5px",
+  width:"290px",
+  display:"flex",
+  justifyContent:"center",
+}}>
+
+<nav style={{
+marginTop:"15px"
+}}>
+  <a 
+      style={{ color: "white" }}
+
+href="https://www.youtube.com/watch?v=0zwYbudzaJc" target="_blank" rel="noopener noreferrer">
+    View Course
+    </a>
+        </nav>  
+</div>  
+      </div>
 
 
 

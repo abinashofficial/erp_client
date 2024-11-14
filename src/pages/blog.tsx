@@ -59,7 +59,8 @@ const Blog: React.FC = () => {
   display:"flex",
   justifyContent:"center",
 }}>
-  <a href="https://1drv.ms/w/c/a969a5ec561b8918/IQQYiRtW7KVpIICpiQAAAAAAAVnP4roQuAapbeOeWi7Y0cE?em=2" target="_blank" rel="noopener noreferrer">
+  
+  <a href="https://drive.google.com/file/d/1tVxBDLWgPrAlIxg1jJWM0w67LKU7_iev/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
   Get CV        </a>
 
 </div>
