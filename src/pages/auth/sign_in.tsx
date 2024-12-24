@@ -9,7 +9,10 @@ import Lottie from "lottie-react";
 import smileEmoji from "../../assets/animations/smile_emoji.json";
 import peekEmoji from "../../assets/animations/peeking_emoji.json"; 
 import thinkEmoji from "../../assets/animations/thinking_emoji.json"; 
+import curseEmoji from "../../assets/animations/cursing_emoji.json"; 
+
 import { FcGoogle } from "react-icons/fc";
+import { dividerClasses } from '@mui/material';
 
 
 
@@ -49,6 +52,10 @@ const SignIn: React.FC = () => {
       const [isSmile, setIsSmile] = useState(true);
       const [isPeek, setIsPeek] = useState(false);
       const [isThink, setIsThink] = useState(false);
+      const [touchEmoji, setTouchEmoji] = useState(true);
+      const [unTouchEmoji, setUnTouchEmoji] = useState(false);
+
+
 
 
 
@@ -63,8 +70,6 @@ const SignIn: React.FC = () => {
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setIsSmile(e.target.value.length > 0);
-      console.log(isSmile, "isSmile")
 
         const { name, value } = e.target;
         console.log(name)
@@ -73,21 +78,24 @@ const SignIn: React.FC = () => {
           if (name === "email"){
             setIsPeek(false);
             setIsThink(e.target.value.length > 0);
-            setIsSmile(false);
+            setTouchEmoji(false) 
+            setUnTouchEmoji(false) 
 
 
   
           }else if( name === "password"){
             setIsPeek(e.target.value.length > 0);
             setIsThink(false);
-            setIsSmile(false);
+            setTouchEmoji(false) 
+            setUnTouchEmoji(false) 
 
   
           } 
         }else{
-          setIsSmile(true);
           setIsThink(false);
           setIsPeek(false);
+          setTouchEmoji(true) 
+          setUnTouchEmoji(false) 
         }
 
       };
@@ -95,8 +103,9 @@ const SignIn: React.FC = () => {
     const handleSignin = async(e: React.FormEvent) => {
         e.preventDefault();
         setVisible(false)
+        const controller = new AbortController();
 
-        // login(formData.email, formData.password);
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
  // Add your API endpoint here
  const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
@@ -110,6 +119,7 @@ const SignIn: React.FC = () => {
        'Content-Type': 'application/json',
      },
      body: JSON.stringify(formData),
+     signal: controller.signal, // Attach the abort signal to the fetch request
    });
     console.log("response: ", response)
 
@@ -144,11 +154,16 @@ const SignIn: React.FC = () => {
   }else{
     console.error('Signup failed:', response);
   }
- } catch (error) {
-  setVisible(true)
-  alert("Internal server Error");
-  console.log('result :', error);
-
+ } catch (error: any) {
+  if (error.name === "AbortError") {
+    setVisible(true)
+    alert("Request timed out");
+    // setError("Request timed out");
+  } else {
+    setVisible(true)
+    alert("Internal server Error");
+    // setError("Failed to fetch data: " + err.message);
+  }
  }
     };
 
@@ -188,7 +203,7 @@ const SignIn: React.FC = () => {
     };
 
     
-
+console.log(touchEmoji)
 
 
     return (
@@ -209,8 +224,29 @@ const SignIn: React.FC = () => {
     }}>
 
 
-<div style={{ width: 100, height: 100}}>
-    {isSmile ? <Lottie animationData={smileEmoji} loop autoplay /> : <div/>}
+
+
+<div  style={{ width: 100, height: 100}}>
+
+    {touchEmoji ? <Lottie
+  onClick={() => {
+    setTouchEmoji((touchEmoji) => !touchEmoji); // Toggle touchEmoji
+    setUnTouchEmoji((unTouchEmoji) => !unTouchEmoji); // Toggle unTouchEmoji
+  }}
+  animationData={smileEmoji}
+  loop
+  autoplay
+/> : <div/>}
+
+    {unTouchEmoji ? <Lottie
+  onClick={() => {
+    setTouchEmoji((touchEmoji) => !touchEmoji); // Toggle touchEmoji
+    setUnTouchEmoji((unTouchEmoji) => !unTouchEmoji); // Toggle unTouchEmoji
+  }}
+  animationData={curseEmoji}
+  loop
+  autoplay
+/> : <div/>}
 
       {isPeek ? <Lottie animationData={peekEmoji} loop autoplay /> : <div/>}
       {isThink ? <Lottie animationData={thinkEmoji} loop autoplay /> : <div/> }
