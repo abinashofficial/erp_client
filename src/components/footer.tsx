@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLinkedin, FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin, FaWhatsapp, FaInstagram  } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
 
 

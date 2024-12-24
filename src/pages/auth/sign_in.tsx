@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebaseConfig'; // Adjust the path as necessary
+import Lottie from "lottie-react";
+import smileEmoji from "../../assets/animations/smile_emoji.json";
+import peekEmoji from "../../assets/animations/peeking_emoji.json"; 
+import thinkEmoji from "../../assets/animations/thinking_emoji.json"; 
+import { FcGoogle } from "react-icons/fc";
+
+
+
+
 
 
 
@@ -37,6 +46,11 @@ const SignIn: React.FC = () => {
         password: '',
       });
       const [visible, setVisible] = useState<Boolean>(true);
+      const [isSmile, setIsSmile] = useState(true);
+      const [isPeek, setIsPeek] = useState(false);
+      const [isThink, setIsThink] = useState(false);
+
+
 
 
 
@@ -49,9 +63,33 @@ const SignIn: React.FC = () => {
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setIsSmile(e.target.value.length > 0);
+      console.log(isSmile, "isSmile")
+
         const { name, value } = e.target;
         console.log(name)
         setFormData({ ...formData, [name]: value });
+        if (e.target.value.length > 0){
+          if (name === "email"){
+            setIsPeek(false);
+            setIsThink(e.target.value.length > 0);
+            setIsSmile(false);
+
+
+  
+          }else if( name === "password"){
+            setIsPeek(e.target.value.length > 0);
+            setIsThink(false);
+            setIsSmile(false);
+
+  
+          } 
+        }else{
+          setIsSmile(true);
+          setIsThink(false);
+          setIsPeek(false);
+        }
+
       };
 
     const handleSignin = async(e: React.FormEvent) => {
@@ -165,7 +203,23 @@ const SignIn: React.FC = () => {
       {visible ? (
         <div className="form-container">
 
-            <h2>Sign In </h2>
+    <div style={{
+      display:"flex",
+      justifyContent:"center",
+    }}>
+
+
+<div style={{ width: 100, height: 100}}>
+    {isSmile ? <Lottie animationData={smileEmoji} loop autoplay /> : <div/>}
+
+      {isPeek ? <Lottie animationData={peekEmoji} loop autoplay /> : <div/>}
+      {isThink ? <Lottie animationData={thinkEmoji} loop autoplay /> : <div/> }
+    </div>
+
+    </div>
+
+
+
             <div>
 
             <form onSubmit={handleSignin}>
@@ -201,7 +255,23 @@ const SignIn: React.FC = () => {
         </nav>
 
 </div>
-<button onClick={handleGoogleSignIn}>Sign in with Google</button>
+
+<div style={{
+  display:"flex",
+  gap:"10px"
+  
+}}>
+<FcGoogle style={{
+  height:"40px",
+  width:"40px",
+}} />
+
+<button onClick={handleGoogleSignIn}>
+  Sign in with Google
+  </button>
+  </div>
+
+  
 
         </div>
         ):(<div className="spinner"> </div>)}

@@ -60,7 +60,7 @@ const Blog: React.FC = () => {
   justifyContent:"center",
 }}>
   
-  <a href="https://drive.google.com/file/d/1tVxBDLWgPrAlIxg1jJWM0w67LKU7_iev/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+  <a href="https://drive.google.com/file/d/18VIkikA2fXG81pU9Qbwr9a2SJYKpm8Qh/view?usp=sharing" target="_blank" rel="noopener noreferrer">
   Get CV        </a>
 
 </div>
