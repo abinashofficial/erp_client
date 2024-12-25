@@ -70,6 +70,7 @@ const SignIn: React.FC = () => {
             setTouchEmoji(false) 
             setUnTouchEmoji(false) 
             setIsSleep(false)
+            setIsHeart(false)
 
 
 
@@ -80,11 +81,8 @@ const SignIn: React.FC = () => {
             setUnTouchEmoji(false) 
             setIsSleep(false)
             setSingleTouchEmoji(false)
-            setIsPeek(e.target.value.length > 0);
-
-
-
-  
+            setIsHeart(false)
+            setIsPeek(e.target.value.length > 0)
           } 
         }else{
           setIsThink(false);
@@ -93,6 +91,8 @@ const SignIn: React.FC = () => {
           setUnTouchEmoji(false) 
           setIsSleep(false)
           setSingleTouchEmoji(false)
+          setIsHeart(false)
+
 
 
         }
