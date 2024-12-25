@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
+import { RxAvatar } from "react-icons/rx";
+
 
 
 interface SignupFormData {
@@ -153,7 +155,20 @@ const SignUp: React.FC = () => {
               {visible ? (
 
         <div className="form-container">
-            <h2>Sign Up</h2>
+            <div>
+            <div style={{
+              display:"flex",
+fontSize:"100px",
+justifyContent:"center",
+
+            }}>
+              
+            < RxAvatar />
+
+            </div>
+            </div>
+
+
             <form onSubmit={handleSignUp}>
         <input
           type="text"

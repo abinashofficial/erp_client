@@ -10,17 +10,12 @@ import smileEmoji from "../../assets/animations/smile_emoji.json";
 import peekEmoji from "../../assets/animations/peeking_emoji.json"; 
 import thinkEmoji from "../../assets/animations/thinking_emoji.json"; 
 import curseEmoji from "../../assets/animations/cursing_emoji.json"; 
-
+import angryEmoji from "../../assets/animations/angry_emoji.json"; 
+import heartFaceEmoji from "../../assets/animations/heartface_emoji.json"; 
+import sleepEmoji from "../../assets/animations/sleep_emoji.json"; 
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { dividerClasses } from '@mui/material';
-
-
-
-
-
-
-
-
 
 
 interface SignInFormData {
@@ -49,24 +44,17 @@ const SignIn: React.FC = () => {
         password: '',
       });
       const [visible, setVisible] = useState<Boolean>(true);
-      const [isSmile, setIsSmile] = useState(true);
       const [isPeek, setIsPeek] = useState(false);
       const [isThink, setIsThink] = useState(false);
       const [touchEmoji, setTouchEmoji] = useState(true);
+      const [singleTouchEmoji, setSingleTouchEmoji] = useState(false);
+      const [isSleep, setIsSleep] = useState(false);
+      const [isHeart, setIsHeart] = useState(false);
       const [unTouchEmoji, setUnTouchEmoji] = useState(false);
-
-
-
-
-
-
-
+      const [showPassword, setShowPassword] = useState<boolean>(false);
+      const [count, setCount] = useState(0);
     const { login } = useAuth();
-
-
-
     const navigate = useNavigate();
-    // const { empDetail, setEmpDetail} = useContext(locateContext);
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,18 +64,25 @@ const SignIn: React.FC = () => {
         setFormData({ ...formData, [name]: value });
         if (e.target.value.length > 0){
           if (name === "email"){
+            setSingleTouchEmoji(false)
             setIsPeek(false);
             setIsThink(e.target.value.length > 0);
             setTouchEmoji(false) 
             setUnTouchEmoji(false) 
+            setIsSleep(false)
+
 
 
   
           }else if( name === "password"){
-            setIsPeek(e.target.value.length > 0);
             setIsThink(false);
             setTouchEmoji(false) 
             setUnTouchEmoji(false) 
+            setIsSleep(false)
+            setSingleTouchEmoji(false)
+            setIsPeek(e.target.value.length > 0);
+
+
 
   
           } 
@@ -96,6 +91,10 @@ const SignIn: React.FC = () => {
           setIsPeek(false);
           setTouchEmoji(true) 
           setUnTouchEmoji(false) 
+          setIsSleep(false)
+          setSingleTouchEmoji(false)
+
+
         }
 
       };
@@ -202,8 +201,112 @@ const SignIn: React.FC = () => {
       }
     };
 
+
     
-console.log(touchEmoji)
+
+
+    
+
+    const handleClick = async () => {
+      setCount(count + 1);
+
+      if (count >0){
+        setTouchEmoji( false); // Toggle touchEmoji
+        setUnTouchEmoji(true); // Toggle unTouchEmoji
+        setIsHeart(false)
+        setIsSleep(false)
+
+        await sleep(3000); // 3 seconds
+
+        setIsThink(false);
+        setIsPeek(false);
+        setTouchEmoji(true) 
+        setUnTouchEmoji(false) 
+        setIsSleep(false)
+        setSingleTouchEmoji(false)
+        setIsHeart(false)
+        setCount(0)
+      }else{
+        setTouchEmoji(false); // Toggle touchEmoji
+        setSingleTouchEmoji(!singleTouchEmoji)
+        setIsHeart(false)
+        setIsSleep(false)
+        
+        await sleep(3000); // 3 seconds
+        setIsThink(false);
+        setIsPeek(false);
+        setTouchEmoji(true) 
+        setUnTouchEmoji(false) 
+        setIsSleep(false)
+        setSingleTouchEmoji(false)
+        setIsHeart(false)
+
+        // setUnTouchEmoji( false); // Toggle unTouchEmoji
+        // setCount(1)
+
+      }
+
+    };
+
+    const handleSleep =  () => {
+      setIsThink(false);
+      setIsPeek(false);
+      setTouchEmoji(true) 
+      setUnTouchEmoji(false) 
+      setIsSleep(false)
+      setSingleTouchEmoji(false)
+      setIsHeart(false)
+
+    }
+
+    const enterTouchEmoji =  () => {
+console.log("leave")
+setIsThink(false);
+setIsPeek(false);
+setTouchEmoji(false) 
+setUnTouchEmoji(false) 
+setIsSleep(false)
+setSingleTouchEmoji(false)
+setIsHeart(true)
+    }
+
+    const leaveHeartEmoji =  () => {
+      console.log("leave")
+      setIsThink(false);
+      setIsPeek(false);
+      setTouchEmoji(true) 
+      setUnTouchEmoji(false) 
+      setIsSleep(false)
+      setSingleTouchEmoji(false)
+      setIsHeart(false)
+          }
+
+          useEffect(() => {
+            // Start the interval
+
+            
+            const intervalId = window.setInterval(() => {
+              if (!isPeek && !isThink && !isPeek && !singleTouchEmoji && !unTouchEmoji  && touchEmoji && !unTouchEmoji && !isHeart){
+
+              setTouchEmoji(false)
+              setIsThink(false);
+        setIsPeek(false);
+        setTouchEmoji(false) 
+        setUnTouchEmoji(false) 
+        setIsSleep(true)
+        setIsHeart(false)
+
+              }
+            }, 20000); // 10 seconds
+          
+        
+            // Cleanup the interval when the component is unmounted
+            return () => {
+              clearInterval(intervalId);
+            };
+          
+          }, []);
+
 
 
     return (
@@ -215,6 +318,12 @@ console.log(touchEmoji)
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+
+        <div style={{
+        borderRadius: "5px",
+        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
+        }}>
+
       {visible ? (
         <div className="form-container">
 
@@ -224,32 +333,44 @@ console.log(touchEmoji)
     }}>
 
 
+<div  style={{ width: 100, height: 100,                 cursor: "pointer",
+}}>
 
-
-<div  style={{ width: 100, height: 100}}>
-
-    {touchEmoji ? <Lottie
-  onClick={() => {
-    setTouchEmoji((touchEmoji) => !touchEmoji); // Toggle touchEmoji
-    setUnTouchEmoji((unTouchEmoji) => !unTouchEmoji); // Toggle unTouchEmoji
-  }}
+    {touchEmoji ?
+     <Lottie
+  onClick={()=> handleClick()}
+  onMouseEnter={()=> enterTouchEmoji()}
   animationData={smileEmoji}
+  loop
+  autoplay
+/> 
+
+: <div/>}
+
+    {unTouchEmoji ? <Lottie
+  animationData={curseEmoji}
   loop
   autoplay
 /> : <div/>}
 
-    {unTouchEmoji ? <Lottie
-  onClick={() => {
-    setTouchEmoji((touchEmoji) => !touchEmoji); // Toggle touchEmoji
-    setUnTouchEmoji((unTouchEmoji) => !unTouchEmoji); // Toggle unTouchEmoji
-  }}
-  animationData={curseEmoji}
+{singleTouchEmoji ? <Lottie
+  animationData={angryEmoji}
   loop
   autoplay
 /> : <div/>}
 
       {isPeek ? <Lottie animationData={peekEmoji} loop autoplay /> : <div/>}
       {isThink ? <Lottie animationData={thinkEmoji} loop autoplay /> : <div/> }
+      {isSleep ? <Lottie    onClick={()=> handleSleep()}
+ 
+ animationData={sleepEmoji} loop autoplay /> : <div/> }
+      {isHeart ? <Lottie
+      onMouseLeave={()=> leaveHeartEmoji()}
+      onClick={()=> handleClick()}
+
+      animationData={heartFaceEmoji} loop autoplay /> : <div/> }
+
+
     </div>
 
     </div>
@@ -267,21 +388,48 @@ console.log(touchEmoji)
                     onChange={handleChange}
                     required
                 />
+                <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      position: "relative",
+                }}>
+
+                  
                 <input
-                    type="password"
+                style={{
+                  flex: 1,
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ccc",
+                }}
+                    type={showPassword ? "text" : "password"}
                     name='password'
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
                     required
                 />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{    position: "absolute",
+                right: "10px",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "18px",
+                color: "black",}}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+              
+            </div>
                 <button type="submit">Sign In</button>
-
-
             </form>
             </div>
 <div style={{
-  marginTop:"10px"
+  marginTop:"20px"
 }}>
 <nav>
             <Link to="/recoverypassword">Forget Password</Link>
@@ -310,10 +458,10 @@ console.log(touchEmoji)
   
 
         </div>
-        ):(<div className="spinner"> </div>)}
+        ):(<div className="spinner"> </div>)} </div>
         </div>
     );
 };
 
-
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export default SignIn;
