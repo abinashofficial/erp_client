@@ -193,13 +193,14 @@ interface SignInFormData {
 
 
     const verifyOtp = async () => {
-
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+      setVerify(false)
+      setSpinner(true)
         try {
           const otplength = otpValues.join("")
           if (otplength.length == 6) {
           const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
-          // setVerify(false)
-          // setSpinner(true)
           // const apiUrl = 'http://localhost:8080/public/verify-otp';
 const response = await fetch(apiUrl, {
   method: "POST",
@@ -208,18 +209,20 @@ const response = await fetch(apiUrl, {
 });
 const data = await response.json();
 if (data.valid) {
-  // setSpinner(false)
+  setSpinner(false)
   showSnackbar("OTP verified", data.message);
   empDetail.email = email
   navigate('/signup'); // Redirect to dashboard after login
 
 } else {
-  // setSpinner(false)
+  setSpinner(false)
+  setVerify(true)
   showSnackbar("Invalid OTP", "error");
-  // setVerify(true)
 }
 }else{
   showSnackbar("Invalid OTP", "error");
+  setSpinner(false)
+  setVerify(true)
 
 }
 } catch (error) {
