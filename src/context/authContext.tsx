@@ -33,7 +33,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
 
-
     const [empDetail, setEmpDetail] = useState<SignupFormData>({
         employee_id:'',
         first_name: '',

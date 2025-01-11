@@ -181,12 +181,44 @@ const SignIn: React.FC = () => {
           photo_url:user.photoURL,
           access_token:"",
         });
-  
+
+
+        const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(empDetail),
+        });
+
+            
+       if (response.ok) {   
+        const result:SignupFormData = await response.json();
+        const empDetail = ({
+          employee_id: result.employee_id,
+          first_name: result.first_name,
+          last_name: result.last_name,
+          full_name:result.first_name + " " + result.last_name,
+          mobile_number: result.mobile_number,
+          email: result.email,
+          date_of_birth: result.date_of_birth,
+          gender: result.gender,
+          password: result.password,
+          photo_url:user.photoURL,
+          confirmPassword:result.confirmPassword,
+          access_token: result.access_token,
+        });
+        login(empDetail)
+        navigate('/home'); // Redirect to dashboard after login
+        // Handle successful sign-in (e.g., redirect or store token)
+      }else{  
         login(empDetail)
         navigate('/home'); // Redirect to dashboard after login
   
         // Handle user info and proceed with your signup logic
-      } catch (error) {
+      } 
+    }catch (error) {
           console.log('result :', error);
       }
     };

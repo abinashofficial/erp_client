@@ -52,6 +52,7 @@ const Header: React.FC = () => {
     const handleLogout = () => {
         setIsOpen(!isOpen);
         logout()
+        navigate('/'); // Redirect to dashboard after login
     };
 
     const headerButtonHandle = (buttonKey: ButtonKey, result:string) => {
