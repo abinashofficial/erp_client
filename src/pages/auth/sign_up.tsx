@@ -27,7 +27,7 @@ interface SignupFormData {
 const SignUp: React.FC = () => {
   const [visible, setVisible] = useState<Boolean>(true);
 
-    const { login } = useAuth();
+    const { login, empDetail } = useAuth();
 
       const [formData, setFormData] = useState<SignupFormData>({
         employee_id:'',
@@ -35,7 +35,7 @@ const SignUp: React.FC = () => {
         last_name: '',
         full_name: '',
         mobile_number: '',
-        email: '',
+        email: empDetail.email,
         date_of_birth: '',
         gender: '',
         password: '',
@@ -67,6 +67,8 @@ const SignUp: React.FC = () => {
         }
         // In a real app, add sign-up logic here
         console.log('Signing up with', formData);
+        const controller = new AbortController();
+        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
         // Add your API endpoint here
          const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
 
@@ -143,7 +145,6 @@ const SignUp: React.FC = () => {
 
     return (
       <div style={{
-        // backgroundColor: "lightblue", // Dynamically change background color
         background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
 
         height: '100vh', // Ensure it takes full viewport height
@@ -220,14 +221,14 @@ justifyContent:"center",
           required
         />
         </div>
-        <input
+        {/* <input
           type="email"
           name="email"
           placeholder = "Email"
           value={formData.email}
           onChange={handleChange}
           required
-        />
+        /> */}
       <div       style={{
         display:"flex",
         alignItems:"center",

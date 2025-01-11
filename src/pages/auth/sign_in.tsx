@@ -55,10 +55,7 @@ const SignIn: React.FC = () => {
       const [count, setCount] = useState(0);
     const { login } = useAuth();
     const navigate = useNavigate();
-
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
         const { name, value } = e.target;
         console.log(name)
         setFormData({ ...formData, [name]: value });
@@ -70,11 +67,7 @@ const SignIn: React.FC = () => {
             setTouchEmoji(false) 
             setUnTouchEmoji(false) 
             setIsSleep(false)
-            setIsHeart(false)
-
-
-
-  
+            setIsHeart(false)  
           }else if( name === "password"){
             setIsThink(false);
             setTouchEmoji(false) 
@@ -101,16 +94,13 @@ const SignIn: React.FC = () => {
 
     const handleSignin = async(e: React.FormEvent) => {
         e.preventDefault();
-        setVisible(false)
+        setVisible(false);
         const controller = new AbortController();
-
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
  // Add your API endpoint here
  const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
 // const apiUrl = 'http://localhost:8080/public/signin';
-
-
  try {
    const response = await fetch(apiUrl, {
      method: 'POST',
@@ -283,8 +273,6 @@ setIsHeart(true)
 
           useEffect(() => {
             // Start the interval
-
-            
             const intervalId = window.setInterval(() => {
               if (!isPeek && !isThink && !isPeek && !singleTouchEmoji && !unTouchEmoji  && touchEmoji && !unTouchEmoji && !isHeart){
 
@@ -299,13 +287,12 @@ setIsHeart(true)
               }
             }, 20000); // 10 seconds
           
-        
             // Cleanup the interval when the component is unmounted
             return () => {
               clearInterval(intervalId);
             };
           
-          }, []);
+          }, [isPeek, isThink, singleTouchEmoji, unTouchEmoji, touchEmoji, isHeart]);
 
 
 
@@ -434,7 +421,7 @@ setIsHeart(true)
 <nav>
             <Link to="/recoverypassword">Forget Password</Link>
 
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/otpverify">Sign Up</Link>
 
         </nav>
 
