@@ -7,10 +7,14 @@ import MuiAlert from "@mui/material/Alert";
 import { AlertColor } from "@mui/material/Alert";
 import { useAuth } from '../../context/authContext';
 import { Link } from 'react-router-dom';
+import { error } from "console";
 
 
 
-
+interface SignInFormData {
+  email: string;
+  password: string;
+}
 
 // Generate OTP For Users
   export const GenerateOTP = (function () {
@@ -29,7 +33,10 @@ import { Link } from 'react-router-dom';
 //Otp input function for check expired or not and invalid or Valid
   export function Otp() {
     const {empDetail } = useAuth();
-
+    const [formData, setFormData] = useState<SignInFormData>({
+        email: '',
+        password: '',
+      });
       const [email, setEmail] = useState("");
       const [otp, setOtp] = useState("");
       const [otpSent, setOtpSent] = useState(true);
@@ -52,8 +59,7 @@ import { Link } from 'react-router-dom';
 
         const handleSend = async(e: React.FormEvent) => {
             e.preventDefault();
-            sendOtp()
-
+            emailVerify()
         };
   
     const showSnackbar = (message: string, severity: AlertColor = "success") => {
@@ -61,6 +67,47 @@ import { Link } from 'react-router-dom';
       setSnackbarSeverity(severity);
       setSnackbarOpen(true);
     };
+
+    const emailVerify = async () => {
+      empDetail.email = email
+
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+
+    
+             // Add your API endpoint here
+    //  const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+    const apiUrl = 'http://localhost:8080/public/get-user';
+    
+    
+     try {
+       const response = await fetch(apiUrl, {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(empDetail),
+       });
+
+    
+       if (response.ok) {
+         showSnackbar("Email Already exists", "error");
+         return
+    
+         // Handle successful sign-in (e.g., redirect or store token)
+       }else if (response.status===400){
+        sendOtp()
+
+      } 
+     } catch (error) {
+      // showSnackbar("Internal Server Error");
+      console.error(error)
+
+     }
+        };
+
+      
+
 
     const sendOtp = async () => {
       setOtpSent(false)
@@ -83,7 +130,7 @@ import { Link } from 'react-router-dom';
           // setOtpSent(true);
           setSpinner(false)
           setVerify(true)
-          showSnackbar("OTP sent successfully", data.message);
+          // showSnackbar("OTP sent successfully", data.message);
         } else {
           showSnackbar("Failed to send OTP", data.message);
           setOtpSent(true)
@@ -106,7 +153,7 @@ import { Link } from 'react-router-dom';
             if (prevTime === 1) {
               clearInterval(timer);
               setResendVisible(true);
-              showSnackbar("OTP Expired", "error");
+              // showSnackbar("OTP Expired", "error");
             }
             return prevTime - 1;
           });
@@ -146,13 +193,13 @@ import { Link } from 'react-router-dom';
 
 
     const verifyOtp = async () => {
-      setVerify(false)
-      setSpinner(true)
-      const otplength = otpValues.join("")
-      if (otplength.length == 6) {
-        try {
-          const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
 
+        try {
+          const otplength = otpValues.join("")
+          if (otplength.length == 6) {
+          const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
+          // setVerify(false)
+          // setSpinner(true)
           // const apiUrl = 'http://localhost:8080/public/verify-otp';
 const response = await fetch(apiUrl, {
   method: "POST",
@@ -161,25 +208,27 @@ const response = await fetch(apiUrl, {
 });
 const data = await response.json();
 if (data.valid) {
-  setSpinner(false)
+  // setSpinner(false)
   showSnackbar("OTP verified", data.message);
   empDetail.email = email
   navigate('/signup'); // Redirect to dashboard after login
 
 } else {
-  setSpinner(false)
-  showSnackbar("Invalid OTP", data.message);
+  // setSpinner(false)
+  showSnackbar("Invalid OTP", "error");
+  // setVerify(true)
+}
+}else{
+  showSnackbar("Invalid OTP", "error");
+
 }
 } catch (error) {
 console.error("Error verifying OTP:", error);
 }
-      }else {
-        showSnackbar("Invalid OTP", "error");
-
-      } 
+      };
 
 
-    };
+    
   
     const handleResend = () => {
       setExpiryTime(60);
@@ -187,7 +236,9 @@ console.error("Error verifying OTP:", error);
       setResendClicked(true);
       setOtpValues(["", "", "", "", "", ""])
       setOtp("")
-      sendOtp()
+      // sendOtp()
+      setVerify(false)
+      setOtpSent(true)
     };
   
     const resendCss = {
@@ -247,6 +298,7 @@ console.error("Error verifying OTP:", error);
         />
                 <button
                 type="submit"          >
+                  
             Send OTP
           </button>
           <p>Already have an account? <Link to="/">Sign In</Link></p>
@@ -345,6 +397,7 @@ console.error("Error verifying OTP:", error);
         >
         <button
             onClick={verifyOtp}
+            type="button"
           >
             Verify
           </button>
