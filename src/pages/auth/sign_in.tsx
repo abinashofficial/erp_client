@@ -159,13 +159,13 @@ const SignIn: React.FC = () => {
 
 
     const handleGoogleSignIn = async () => {
-      setVisible(false)
 
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user; // The signed-in user info
         console.log('User Info:', user);
-  
+        setVisible(false)
+
   
         const empDetail= ({
           employee_id:'',
@@ -384,19 +384,17 @@ setIsHeart(true)
     </div>
         <form onSubmit={handleSignin}>
           <div className="input-group">
-            <label htmlFor="email">Email</label>
             <input
               id="email"
               name="email"
               type="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Email"
               required
             />
           </div>
           <div className="input-group password-group">
-            <label htmlFor="password">Password</label>
             <div className="password-wrapper">
               <input
                 id="password"
@@ -404,7 +402,7 @@ setIsHeart(true)
                 type={showPassword ? "text" : "password"}
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Enter your password"
+                placeholder="Password"
                 required
               />
               <button
