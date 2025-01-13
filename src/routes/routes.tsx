@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/home';
+import Dashboard from '../pages/dashboard';
+
 import SignIn from '../pages/auth/sign_in';
 import SignUp from '../pages/auth/sign_up';
 import Otp from '../pages/auth/otp';
@@ -15,21 +17,28 @@ import Course from '../pages/course';
 import Project from '../pages/project';
 import Profile from '../pages/profile';
 import EditProfile from '../pages/editProfile';
+import '../styles/App.css';
 
 
 const Main: React.FC = () => {
     const { isAuthenticated } = useAuth();
 
     return (
-        <div>
-            {
+        <div className="page-container">
+
+
+
+{
                 isAuthenticated ?         <Header/>:""
             }
 
-
         <Routes>
 
+
         <Route path="/" element={<SignIn />} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="/signup" element={<SignUp />} />
         <Route path="/otpverify" element={<Otp />} />
 
@@ -98,9 +107,9 @@ const Main: React.FC = () => {
             } 
         />
 
-
     </Routes>
     <Footer/>
+
     </div>
 
 

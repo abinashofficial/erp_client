@@ -1,28 +1,6 @@
-import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
-import { FaLinkedin, FaWhatsapp, FaInstagram, FaEarlybirds } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
-import ReactPlayer from 'react-player/youtube';
-
-import { SiGmail } from 'react-icons/si';
-import { useNavigate } from 'react-router-dom';
-import { colors } from '@mui/material';
-
-
-
-
 const Service: React.FC = () => {
-
-    
-
-
-
-
-
-
-
-    
     return (
 
 
@@ -32,7 +10,7 @@ const Service: React.FC = () => {
         flexDirection:"column",
         // justifyContent:"space-around",
         gap:"10px",
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
         height: '100vh', // Ensure it takes full viewport height
         width: '100vw', 
       }}>
@@ -49,18 +27,7 @@ margin:"50px",
 
 
 
-      <div style={{
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center",
-        height:"250px",
-        width:"300px",
-        background:"white",
-        gap:"20px",
-        padding:"10px",
-        borderRadius:"10px"
-      }}>
+      <div className='service_box'>
         <div style={{
         display:"flex",
         justifyContent:"center",
@@ -94,18 +61,8 @@ marginTop:"15px"
 
 
 
-      <div style={{
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center",
-        height:"250px",
-        width:"300px",
-        background:"white",
-        gap:"20px",
-        padding:"10px",
-        borderRadius:"10px"
-      }}>
+      <div className='service_box'>
+
                 <div style={{
         display:"flex",
         justifyContent:"center",

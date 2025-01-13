@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
+import Select from "react-select";
 
 
 
@@ -24,10 +25,16 @@ interface SignupFormData {
   access_token:any;
 }
 
+interface CountryOption {
+  value: string;
+  label: JSX.Element;
+}
+
 const SignUp: React.FC = () => {
   const [visible, setVisible] = useState<Boolean>(true);
 
     const { login, empDetail } = useAuth();
+    const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
       const [formData, setFormData] = useState<SignupFormData>({
         employee_id:'',
@@ -66,13 +73,18 @@ const SignUp: React.FC = () => {
             return;
         }
         // In a real app, add sign-up logic here
+        if (selectedCountry?.value ==="" || selectedCountry?.value ===null){
+
+        }else{
+          formData.mobile_number = selectedCountry?.value + formData.mobile_number
+        }
         console.log('Signing up with', formData);
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
         // Add your API endpoint here
-         const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
+        //  const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
 
-    // const apiUrl = 'http://localhost:8080/public/signup';
+    const apiUrl = '';
 
     try {
       const response = await fetch(apiUrl, {
@@ -143,9 +155,56 @@ const SignUp: React.FC = () => {
     }
     };
 
+    const countryData = [
+      {
+        name: "United States",
+        dialCode: "1",
+        flag: "https://flagcdn.com/us.svg",
+      },
+      {
+        name: "India",
+        dialCode: "91",
+        flag: "https://flagcdn.com/in.svg",
+      },
+      {
+        name: "United Kingdom",
+        dialCode: "44",
+        flag: "https://flagcdn.com/gb.svg",
+      },
+      {
+        name: "Canada",
+        dialCode: "1",
+        flag: "https://flagcdn.com/ca.svg",
+      },
+      {
+        name: "Australia",
+        dialCode: "61",
+        flag: "https://flagcdn.com/au.svg",
+      },
+    ];
+    
+    
+  
+    const countryOptions = countryData.map((country) => ({
+      value: country.dialCode,
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src={country.flag}
+            alt={`${country.name} flag`}
+            style={{ width: "20px", height: "15px" }}
+          />
+          {country.name} ({country.dialCode})
+        </div>
+      ),
+    }));
+
+    const handleCountryChange = (selected: CountryOption | null) => {
+      setSelectedCountry(selected);
+    };
     return (
       <div style={{
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
 
         height: '100vh', // Ensure it takes full viewport height
         width: '100vw',  // Ensure it takes full viewport width
@@ -186,31 +245,25 @@ justifyContent:"center",
           value={formData.last_name}
           onChange={handleChange}
         />
-        <div style={{
+        {/* <div style={{
           display:"flex",
           justifyContent:"space-between",
         }}>
-          <div style={{
-            display:"flex",
-            alignItems:"center",
-          }}>
-          <select
-          style={{
-            height:"40px",
-            borderRadius:"10px",
-          }}
-              name="countryCode"
-              value={formData.countryCode}
-              onChange={handleChange}
-              required
-            >
-                  <option value="">Select Country</option>
 
-    <option value="+1">+1 (USA)</option>
-              <option value="+44">+44 (UK)</option>
-              <option value="+91">+91 (India)</option>
-            </select>
-          </div>
+<div style={{
+  display:"flex",
+  alignItems:"center",
+}}>
+<Select
+                  options={countryOptions}
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                  placeholder="Select Country"
+                  // className="country-select"
+                />
+</div>
+
+          
        
             <input
           type="text"
@@ -220,7 +273,7 @@ justifyContent:"center",
           onChange={handleChange}
           required
         />
-        </div>
+        </div> */}
         {/* <input
           type="email"
           name="email"

@@ -36,21 +36,13 @@ const Blog: React.FC = () => {
     
     return (
 
-<div  style={{
-        display:"flex",
-        flexDirection:"column",
-        // justifyContent:"space-around",
-        gap:"10px",
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw', 
-      }}>
+      <div className='main-content'>
+<div>
 
 
-        <div className="home-container">
+
             <h2>Hi... {empDetail.full_name}</h2>
             <div>{displayedText}</div>
-        </div>
 
 
 
@@ -65,6 +57,9 @@ const Blog: React.FC = () => {
 
 </div>
 </div>
+</div>
+
+
     );
 };
 

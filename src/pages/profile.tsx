@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
+import { RxAvatar } from "react-icons/rx";
+
 
 interface SignupFormData {
   employee_id:any;
@@ -60,7 +62,7 @@ const Profile: React.FC = () => {
     return (
       <div style={{
         // backgroundColor: "lightblue", // Dynamically change background color
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
 
         height: '100vh', // Ensure it takes full viewport height
         width: '100vw',  // Ensure it takes full viewport width
@@ -70,8 +72,19 @@ const Profile: React.FC = () => {
       }}>
 
         <div className="form-container">
-            <h2>Profile Detail</h2>
-            <form >
+                        <div>
+                        <div style={{
+                          display:"flex",
+            fontSize:"100px",
+            justifyContent:"center",
+            
+                        }}>
+                          
+                        < RxAvatar />
+            
+                        </div>
+                        </div>  
+                                  <form >
 
 
 
@@ -102,7 +115,7 @@ const Profile: React.FC = () => {
             justifyContent:"space-between",
           }}>
             <h3>
-            Mobile Number :
+            Mobile :
             </h3>
 
 

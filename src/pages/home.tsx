@@ -12,10 +12,11 @@ const Home: React.FC = () => {
         display:"flex",
         flexDirection:"column",
         // justifyContent:"space-around",
-        gap:"10px",
+        // gap:"5px",
         // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
         height: '100%', // Ensure it takes full viewport height
         width: '100%', 
+        background:"white",
       }}>
 
 

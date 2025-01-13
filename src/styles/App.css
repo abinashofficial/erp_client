@@ -1,18 +1,20 @@
-/* src/styles/App.css */
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+Reset body styles
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
 }
 
-.form-container, .home-container {
-  padding: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+/* Main content styles */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
+
 
 form {
   display: flex;
@@ -65,14 +67,7 @@ nav a {
 }
 
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  /* background-color: #f4f4f4; */
-  background: linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%);
-  color: #333;
-}
+
 
 header {
   /* background: white; */
@@ -93,11 +88,12 @@ section {
 
 footer {
   text-align: center;
-  padding: 10px;
-  background: black;
-  color: white;
+  /* padding: 10px; */
+  /* background: black; */
+  color: black;
   width: 100%;
-  bottom: 0;
+  /* bottom: 0; */
+  /* margin-bottom: 0px; */
   /* margin-top: 10px; */
 }
 
@@ -108,11 +104,12 @@ footer {
   gap: 15px; /* Space between icons */
   justify-content: center; /* Center the icons */
   margin-top: 20px; /* Add some margin */
-  background: black;
+  /* background: black; */
+  color: black;
 }
 
 .social-media-icons a {
-  color: white; /* Default color */
+  color: black; /* Default color */
   transition: color 0.3s; /* Smooth transition for hover effect */
 }
 
@@ -126,6 +123,7 @@ footer {
 .drawer-container {
   position: relative;
   margin-top: 0%;
+  background: "white";
 }
 
 /* Menu button */
@@ -134,9 +132,9 @@ footer {
   /* padding: 10px; */
   cursor: pointer;
   border: none;
-  background: none;
+  /* background: none; */
   margin: 20px;
-  transition: 'background-color 0.3s ease',
+  /* transition: 'background-color 0.3s ease', */
 
 }
 
@@ -147,7 +145,7 @@ footer {
   position: fixed;
   top: 0;
   left: -250px; /* Initially hidden */
-  background-color: #333;
+  background: white;
   overflow-x: hidden;
   transition: 0.3s;
   padding-top: 60px;
@@ -155,16 +153,21 @@ footer {
 
 .sidebar.open {
   left: 0; /* When open, it slides in from the left */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  background: #f2f4f7;
 }
 
 /* Sidebar links */
 .sidebar ul {
   list-style-type: none;
-  padding: 0;
+  /* padding: 0; */
+
 }
 
 .sidebar ul li {
-  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .sidebar ul li a {
@@ -176,7 +179,7 @@ footer {
 }
 
 .sidebar ul li a:hover {
-  background-color: #575757;
+  /* background-color: white; */
 }
 
 /* Close button inside the sidebar */
@@ -187,7 +190,7 @@ footer {
   font-size: 36px;
   background: none;
   border: none;
-  color: #fff;
+  color: black;
   cursor: pointer;
 }
 
@@ -213,13 +216,16 @@ button.close-btn:hover {
 .link-button {
   background: none;
   border: none;
-  color: white;
+  color: black;
   text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
+  /* cursor: pointer; */
+  /* padding: 0; */
   font-size: 1rem; /* Increase font size */
-  padding: 10px 20px; /* Increase padding for a bigger button */
+  display: flex;
+  /* justify-content: space-around; */
+  gap: 20px;
 }
+
 
 
 button.link-button:hover {
@@ -231,15 +237,24 @@ button.link-button:hover {
 
 button.menu-btn:hover {
   color: black !important; /* Change color on hover */
-  background-color: transparent !important;
+  /* background-color: transparent !important; */
+  /* background-color: white !important; */
+  background-color: white !important;
+
+
+}
+
+button.menu-btn{
+  background: white !important;
+  color: black !important;
 }
 
 
 
 
 .header-btn{
-  color: white ;
-  background-color: #ff99ff;
+  color: black ;
+  background-color: white;
   font-size: 1rem;
 }
 
@@ -250,8 +265,12 @@ button.menu-btn:hover {
 
 button.header-btn:hover {
   color: black !important; /* Change color on hover */
-  background-color: #ff99ff !important;
+  background-color: white !important;
 }
+
+/* li{
+  cursor: pointer;
+} */
 
 
 
@@ -263,7 +282,7 @@ button.header-btn:hover {
 }
 
 .menu-item-icon{
-  color: white;
+  color: black;
 }
 
 
@@ -363,5 +382,247 @@ button.header-btn:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* gap: 2px; */
+  /* gap: 8px; */
 }
+
+
+.service_box{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:250px;
+  width:300px;
+  background:white;
+  gap:20px;
+  padding:10px;
+  border-radius:10px;
+  box-shadow :1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.form-container, .home-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Full-page container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Heading styles */
+.heading {
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Input group styles */
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.input-group input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Input group */
+.input-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Password group wrapper */
+.password-group {
+  position: relative;
+}
+
+/* Password input wrapper */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Password input */
+.password-wrapper input {
+  flex: 1;
+  padding-right: 40px; /* Leave space for the icon */
+}
+
+/* Toggle password button */
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+
+.toggle-password-btn:hover {
+  color: #000;
+}
+
+
+/* Login button styles */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #2575fc;
+}
+
+
+/* Additional options section */
+.additional-options {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+/* Google Sign-In button */
+/* Google Sign-In button */
+.google-signin-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.google-signin-button:hover {
+  background-color: #357ae8;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/* Links for "Forgot Password" and "Sign Up" */
+.links {
+  margin-top: 20px;
+  /* font-size: 14px; */
+}
+
+.link {
+  color: #6a11cb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #2575fc;
+}
+
+  /* Method selection buttons */
+  .method-selection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  
+  .method-button {
+    flex: 1;
+    padding: 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background: #f1f1f1;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: black;
+  }
+  
+  .method-button.active {
+    background: #6a11cb;
+    color: white;
+  }
+  
+  .method-button:hover {
+    background: #ddd;
+  }
+
+      /* Verify button */
+      .verify-button {
+        width: 100%;
+        padding: 10px;
+        background: #6a11cb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .verify-button:hover {
+        background: #2575fc;
+      }
+
+      
+
+
+
+
+
+
+
+
+
+
+
+

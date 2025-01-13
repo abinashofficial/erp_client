@@ -9,6 +9,13 @@ import { useAuth } from '../../context/authContext';
 import { Link } from 'react-router-dom';
 import { error } from "console";
 
+import Select from "react-select";
+
+interface CountryOption {
+  value: string;
+  label: JSX.Element;
+}
+
 
 
 interface SignInFormData {
@@ -32,16 +39,15 @@ interface SignInFormData {
 
 //Otp input function for check expired or not and invalid or Valid
   export function Otp() {
+    const [verificationMethod, setVerificationMethod] = useState<"email id" | "mobile no">("email id");
+    const [mobileNumber, setMobileNumber] = useState("");
+    const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
     const {empDetail } = useAuth();
-    const [formData, setFormData] = useState<SignInFormData>({
-        email: '',
-        password: '',
-      });
       const [email, setEmail] = useState("");
       const [otp, setOtp] = useState("");
       const [otpSent, setOtpSent] = useState(true);
       const [verify, setVerify] = useState(false);
-      const [spinner, setSpinner] = useState(false);
+      const [spinner, setSpinner] = useState(true);
     const navigate = useNavigate();
     const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
     const [expiryTime, setExpiryTime] = useState(60);
@@ -67,10 +73,12 @@ interface SignInFormData {
       setSnackbarSeverity(severity);
       setSnackbarOpen(true);
     };
+    
 
     const emailVerify = async () => {
       empDetail.email = email
-
+      empDetail.mobile_number = selectedCountry?.value+mobileNumber
+console.log(empDetail)
       const controller = new AbortController();
       setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
@@ -80,7 +88,7 @@ interface SignInFormData {
     // const apiUrl = 'http://localhost:8080/public/get-user';
     
     
-     try {
+     try {  
        const response = await fetch(apiUrl, {
          method: 'POST',
          headers: {
@@ -89,13 +97,14 @@ interface SignInFormData {
          body: JSON.stringify(empDetail),
        });
 
-    
+    console.log(response)
        if (response.ok) {
-         showSnackbar("Email Already exists", "error");
+         showSnackbar(verificationMethod + " Already exists", "error");
          return
     
          // Handle successful sign-in (e.g., redirect or store token)
        }else if (response.status===400){
+        console.log("400")
         sendOtp()
 
       } 
@@ -109,41 +118,57 @@ interface SignInFormData {
       
 
 
-    const sendOtp = async () => {
+    const   sendOtp = async () => {
       setOtpSent(false)
-      setSpinner(true)
+      setSpinner(false)
+
+      
 
       try {
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
-          const apiUrl = 'https://erp-iliw.onrender.com/public/send-otp';
-  
-          // const apiUrl = 'http://localhost:8080/public/send-otp';
+                    let apiUrl = 'https://erp-iliw.onrender.com/public/send-otp-email';
+
+
+          // let apiUrl = 'http://localhost:8080/public/send-otp-email';
+
+          if (verificationMethod === "mobile no"){
+            apiUrl = 'https://erp-iliw.onrender.com/public/send-otp-mobile-no';
+
+            //  apiUrl = "http://localhost:8080/public/send-otp-mobile-no";
+          }
+  empDetail.mobile_number = selectedCountry?.value+ mobileNumber
+  empDetail.email = email
   
         const response = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ ...empDetail}),
         });
         const data = await response.json();
         if (response.ok) {
           // setOtpSent(true);
-          setSpinner(false)
+          setSpinner(true)
           setVerify(true)
+          console.log("send otp", spinner)
+
           // showSnackbar("OTP sent successfully", data.message);
         } else {
           showSnackbar("Failed to send OTP", data.message);
           setOtpSent(true)
-          setSpinner(false)
+          setSpinner(true)
+          console.log("not send otp", spinner)
+
 
         }
       } catch (error) {
         showSnackbar("Failed to send OTP", "error");
         setOtpSent(true)
-        setSpinner(false)
+        setSpinner(true)
+        console.log("catch not send otp", spinner)
       }
     };
-    // console.log("spiinner", spinner);
+    console.log("spiinner", spinner);
 
   
     useEffect(() => {
@@ -191,37 +216,43 @@ interface SignInFormData {
       }
     };
 
-
+console.log(selectedCountry?.value+ mobileNumber, email, otp)
     const verifyOtp = async () => {
       const controller = new AbortController();
       setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
       setVerify(false)
-      setSpinner(true)
+      setSpinner(false)
         try {
           const otplength = otpValues.join("")
           if (otplength.length == 6) {
           const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
           // const apiUrl = 'http://localhost:8080/public/verify-otp';
+          const temp = {
+            mobile_number : selectedCountry?.value+ mobileNumber,
+            email: email,
+            otp:otp,
+          }
+
 const response = await fetch(apiUrl, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ email, otp }),
+  body: JSON.stringify( {...temp}),
 });
 const data = await response.json();
 if (data.valid) {
-  setSpinner(false)
+  setSpinner(true)
   showSnackbar("OTP verified", data.message);
   empDetail.email = email
   navigate('/signup'); // Redirect to dashboard after login
 
 } else {
-  setSpinner(false)
+  setSpinner(true)
   setVerify(true)
   showSnackbar("Invalid OTP", "error");
 }
 }else{
   showSnackbar("Invalid OTP", "error");
-  setSpinner(false)
+  setSpinner(true)
   setVerify(true)
 
 }
@@ -258,188 +289,284 @@ console.error("Error verifying OTP:", error);
       margin: "10px",
       color: "black",
       // border: "white",
+      backround:"grey",
       padding: "8px 19.2px",
     };
   
     const resendTimerCss = {
-      color: "black",
+      // color: "black",
       border: "white",
       fontWeight: "bold",
       padding: "8px 19.2px",
+      backround:"grey",
+    };
+
+
+    const handleVerificationChange = (method: "email id" | "mobile no") => {
+      setVerificationMethod(method);
+      setEmail("");
+      setMobileNumber("");
+    };
+
+    const countryData = [
+      {
+        name: "United States",
+        dialCode: "1",
+        flag: "https://flagcdn.com/us.svg",
+      },
+      {
+        name: "India",
+        dialCode: "91",
+        flag: "https://flagcdn.com/in.svg",
+      },
+      {
+        name: "United Kingdom",
+        dialCode: "44",
+        flag: "https://flagcdn.com/gb.svg",
+      },
+      {
+        name: "Canada",
+        dialCode: "1",
+        flag: "https://flagcdn.com/ca.svg",
+      },
+      {
+        name: "Australia",
+        dialCode: "61",
+        flag: "https://flagcdn.com/au.svg",
+      },
+    ];
+      
+    const countryOptions = countryData.map((country) => ({
+      value: country.dialCode,
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src={country.flag}
+            alt={`${country.name} flag`}
+            style={{ width: "20px", height: "15px" }}
+          />
+          {country.name} ({country.dialCode})
+        </div>
+      ),
+    }));
+
+    const handleCountryChange = (selected: CountryOption | null) => {
+      setSelectedCountry(selected);
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (verificationMethod === "email id") setEmail(e.target.value);
+      if (verificationMethod === "mobile no") setMobileNumber(e.target.value);
     };
   
     return (
-      <div style={{
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw',  // Ensure it takes full viewport width
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-
-      <form
-        onSubmit={handleSend}
-      >
-      <div>
-               {otpSent ? (<div className="otp_container">
-  <h2>
-            Email Verification
-          </h2>
-
-          <input
-          style={{
-            width:"200px"
-
-          }}
-          type="email"
-          name="email"
-          placeholder = "Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-                <button
-                type="submit"          >
-                  
-            Send OTP
-          </button>
-          <p>Already have an account? <Link to="/">Sign In</Link></p>
-
-</div>):
-(<div > </div>)}
-{verify ? 
-(<div className="otp_container">
+      <div className="main-content">
 
 
-          <h4>
-          {email}
-          </h4>
-       {resendClicked ? (
+      {spinner ?(
+                <div className="form-container">
 
-            <h4>
-              OTP has been Re-Sent 
-            </h4>
-          ) : (
-            <h4
-            >
-              OTP has been Sent
-            </h4>
-          )}
+                {otpSent ? (
   
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            // background: "white",
-            gap: "5px",
-          }}
+  <div>
+  <h2 className="heading">Choose Verification Method</h2>
+          <div className="method-selection">
+            <button
+              className={`method-button ${verificationMethod === "email id" ? "active" : ""}`}
+              onClick={() => handleVerificationChange("email id")}
+            >
+              Email
+            </button>
+            <button
+              className={`method-button ${verificationMethod === "mobile no" ? "active" : ""}`}
+              onClick={() => handleVerificationChange("mobile no")}
+            >
+              Mobile Number
+            </button>
+          </div>
+  
+  </div>): (<div></div>)}
+  
+                
+        <form
+          onSubmit={handleSend}
         >
-          {otpValues.map((value, index) => (
-            <React.Fragment key={index}>
-              <TextField
-                variant="outlined"
-                id={`otp-input-${index}`}
-                sx={{
-                  width: "40px",
-                  height: "10px",
-                  // background: "white",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  fontSize: "24px",
-                  textAlign: "center",
-                  "& input": {
-                    fontSize: "20px",
-                    padding: "10",
+                 {otpSent ? (<div>
+  
+            {verificationMethod === "email id" ? (
+              <div className="input-group">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+            ) : (
+              <div className="input-group">
+                <label htmlFor="mobile-number">Mobile Number</label>
+                <div className="mobile-input-wrapper">
+                  <div style={{
+                    display:"flex",
+                    flexDirection:"row",
+                  }}>
+                  
+                  <div style={{
+  display:"flex",
+  alignItems:"center",
+}}>
+<Select
+                  options={countryOptions}
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                  placeholder="Select Country"
+                  // className="country-select"
+                />
+</div>
+                  
+                  <input
+                    id="mobile-number"
+                    type="tel"
+                    value={mobileNumber}
+                    onChange={handleInputChange}
+                    placeholder="Enter your mobile number"
+                    required
+                    className="mobile-input"
+                  />
+                  </div>
+  
+                </div>
+              </div>
+            )}
+            <button type="submit" className="verify-button">
+              Send Verification Code
+            </button>
+          <p>Already have an account? <Link to="/">Sign In</Link></p>
+  
+  
+  </div>):
+  (<div > </div>)}
+  {verify ? 
+  (<div>
+  
+          <div className="otp-form">
+        <h2 className="otp-heading">OTP Verification</h2>
+        <p className="otp-instructions">
+          Please enter the 6-digit OTP sent to your registered email or mobile
+          number.
+        </p>
+        <form onSubmit={handleResend}>
+          <div className="input-group">
+            <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              // background: "white",
+              gap: "5px",
+            }}
+          >
+            {otpValues.map((value, index) => (
+              <React.Fragment key={index}>
+                <TextField
+                  variant="outlined"
+                  id={`otp-input-${index}`}
+                  sx={{
+                    width: "40px",
+                    height: "10px",
+                    // background: "white",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    border: "none",
-                    outline: "none",
-                    boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                    height: "0.9em",
-                  },
-                }}
-                type="text"
-                value={value}
-                onChange={(e) => handleInput(index, e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Backspace") {
-                    e.preventDefault();
-                    handleInput(index, "");
-                  }
-                }}
-                inputProps={{
-                  maxLength: 1,
-                }}
-              />
-              {index === 1 || index === 3 ? (
-                <h6
-                  style={{
-                    color: "black",
+                    fontSize: "24px",
+                    textAlign: "center",
+                    "& input": {
+                      fontSize: "20px",
+                      padding: "10",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      border: "none",
+                      outline: "none",
+                      boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
+                      height: "0.9em",
+                    },
                   }}
-                >
-                  -
-                </h6>
-              ) : null}
-            </React.Fragment>
-          ))}
-        </div>
-
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop:"15px",
-            gap:"10px"
-          }}
-        >
-        <button
-            onClick={verifyOtp}
-            type="button"
+                  type="text"
+                  value={value}
+                  onChange={(e) => handleInput(index, e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Backspace") {
+                      e.preventDefault();
+                      handleInput(index, "");
+                    }
+                  }}
+                  inputProps={{
+                    maxLength: 1,
+                  }}
+                />
+                {index === 1 || index === 3 ? (
+                  <h6
+                    style={{
+                      color: "black",
+                    }}
+                  >
+                    -
+                  </h6>
+                ) : null}
+              </React.Fragment>
+            ))}
+          </div>
+          
+          </div>
+          <button  className="verify-button"
+          onClick={verifyOtp}
           >
-            Verify
+            Verify OTP
           </button>
-
-
+        </form>
+        <p className="resend-instructions">
+          Didn't receive the OTP?{" "}
           <button
+            className="resend-button"
             onClick={handleResend}
-            disabled={!resendVisible}
-            style={resendVisible ? resendCss : resendTimerCss}
+            disabled={expiryTime > 0}
           >
-            {resendVisible ? "Resend" : `Your OTP expires in ${expiryTime}s`}
+            Resend OTP {expiryTime > 0 && `in ${expiryTime}s`}
           </button>
-
-        </div>
-        <p>Already have an account? <Link to="/">Sign In</Link></p>
-
-        </div>):(<div> </div>)}
-
-      
-        <Snackbar
-          open={snackbarOpen}
-          autoHideDuration={6000}
-          onClose={handleSnackbarClose}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <MuiAlert
-            elevation={6}
-            variant="filled"
-            severity={snackbarSeverity as AlertColor}
-            onClose={handleSnackbarClose}
-          >
-            {snackbarMessage}
-          </MuiAlert>
-        </Snackbar>
+        </p>
       </div>
-      {spinner ? (<div className="spinner"> </div>): <div></div> }
+      <p>Already have an account? <Link to="/">Sign In</Link></p>
 
-      </form>
-      
+  
+          </div>):(<div> </div>)}
+  
+        
+          <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={6000}
+            onClose={handleSnackbarClose}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <MuiAlert
+              elevation={6}
+              variant="filled"
+              severity={snackbarSeverity as AlertColor}
+              onClose={handleSnackbarClose}
+            >
+              {snackbarMessage}
+            </MuiAlert>
+          </Snackbar>
+  
+        </form>
+  
+  
+        </div>
+      ): (<div className="spinner"> </div>) }
+
       </div>
     );
   }

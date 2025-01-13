@@ -77,9 +77,10 @@ const Header: React.FC = () => {
         display:"flex",
         flexDirection:"column",
         justifyContent:"space-around",
-        background: '#ff99ff',
-        height: '100%', // Ensure it takes full viewport height
-        width: '100%',  // Ensure it takes full viewport width
+        background: 'white',
+        // height: '100%', // Ensure it takes full viewport height
+        // width: '100%',  // Ensure it takes full viewport width
+        // marginLeft:"10px",
       }}>
         <div style={{
           display:"flex",
@@ -90,7 +91,7 @@ const Header: React.FC = () => {
             display:"flex",
             flexDirection:"column",
             justifyContent:"center",
-            color:"white",
+            // color:"white",
             padding:"10px",
           }}>
           <FaEarlybirds size={50} />
@@ -116,7 +117,7 @@ const Header: React.FC = () => {
 
         <div style={{
           height:"2px",
-          backgroundColor:"white",
+          backgroundColor:"#F0F2F5",
         }}>
             </div>
 
@@ -126,12 +127,17 @@ const Header: React.FC = () => {
         <button className="close-btn" onClick={toggleDrawer}>
           ×
         </button>
-        <ul >
-            <li> <FaHome className="menu-item-icon" /><button onClick={() => landPage("button1", '/home')} className="link-button">Home</button></li>
-            <li> <FaUser className="menu-item-icon"  /> <button onClick={() => landPage("button4", '/profile')} className="link-button">Profile</button></li>
-            <li> <FaBlog className="menu-item-icon"  /> <button onClick={() => landPage("button2", '/blog')} className="link-button">Blog</button></li>
-            <li> <FaServicestack className="menu-item-icon" /> <button onClick={() => landPage("button3", '/service')} className="link-button">Services</button></li>
-          <li>  <FaSignOutAlt className="menu-item-icon" /><button onClick={handleLogout} className="link-button">  Logout</button></li>
+        <ul style={{
+          display:"flex",
+          flexDirection:"column",
+          gap:"25px",
+          marginLeft:"0px",
+        }}>
+            <li> <button onClick={() => landPage("button1", '/home')} className="link-button"><FaHome className="menu-item-icon" />Home</button></li>
+            <li>  <button onClick={() => landPage("button4", '/profile')} className="link-button"><FaUser className="menu-item-icon"  /> Profile</button></li>
+            <li>  <button onClick={() => landPage("button2", '/blog')} className="link-button"><FaBlog className="menu-item-icon"  /> Blog</button></li>
+            <li>  <button onClick={() => landPage("button3", '/service')} className="link-button"> <FaServicestack className="menu-item-icon" /> Services</button></li>
+          <li> <button onClick={handleLogout} className="link-button">  <FaSignOutAlt className="menu-item-icon" /> Logout</button></li>
 
         </ul>
       </div>

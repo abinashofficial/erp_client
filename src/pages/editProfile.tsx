@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
+import { RxAvatar } from "react-icons/rx";
 
 
 
@@ -147,7 +148,7 @@ const EditProfile: React.FC = () => {
     return (
       <div style={{
         // backgroundColor: "lightblue", // Dynamically change background color
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
 
         height: '100vh', // Ensure it takes full viewport height
         width: '100vw',  // Ensure it takes full viewport width
@@ -158,7 +159,18 @@ const EditProfile: React.FC = () => {
               {visible ? (
 
         <div className="form-container">
-            <h2>Edit Profile</h2>
+                        <div>
+                        <div style={{
+                          display:"flex",
+            fontSize:"100px",
+            justifyContent:"center",
+            
+                        }}>
+                          
+                        < RxAvatar />
+            
+                        </div>
+                        </div>
             <form onSubmit={handleSignUp}>
 
                 <div                 style={{
@@ -196,7 +208,22 @@ const EditProfile: React.FC = () => {
           onChange={handleChange}
         />
                     </div>
-
+                    <div                 style={{
+                    display:"flex",
+                    alignItems:"center",
+                    justifyContent:"space-between",
+                }}>
+                    <h3>
+                        Mobile :
+                    </h3>
+                    <input
+          type="text"
+          name="mobile_number"
+          placeholder="Mobile Number"
+          value={formData.mobile_number}
+          onChange={handleChange}
+        />
+                    </div>
 
 
 

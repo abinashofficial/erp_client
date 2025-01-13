@@ -329,24 +329,13 @@ setIsHeart(true)
 
 
     return (
-      <div style={{
-        background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw',  // Ensure it takes full viewport width
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
 
-        <div style={{
-        borderRadius: "5px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-        }}>
 
-      {visible ? (
-        <div className="form-container">
+        <div className='main-content'>
+              {visible ? (
 
-    <div style={{
+<div className="form-container">
+<div style={{
       display:"flex",
       justifyContent:"center",
     }}>
@@ -393,91 +382,80 @@ setIsHeart(true)
     </div>
 
     </div>
-
-
-
-            <div>
-
-            <form onSubmit={handleSignin}>
-                <input
-                    type="email"
-                    name='email'
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
-                <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      position: "relative",
-                }}>
-
-                  
-                <input
-                style={{
-                  flex: 1,
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ccc",
-                }}
-                    type={showPassword ? "text" : "password"}
-                    name='password'
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              style={{    position: "absolute",
-                right: "10px",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                fontSize: "18px",
-                color: "black",}}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
-              
+        <form onSubmit={handleSignin}>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div className="input-group password-group">
+            <label htmlFor="password">Password</label>
+            <div className="password-wrapper">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                className="toggle-password-btn"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
-                <button type="submit">Sign In</button>
-            </form>
-            </div>
+          </div>
+          <button type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+
+        <div className="additional-options">
+          <button className="google-signin-button" onClick={handleGoogleSignIn}>
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                gap:"20px"
+            }}>
+            <FcGoogle style={{
+  height:"25px",
+  width:"25px",
+}} />
 <div style={{
-  marginTop:"20px"
+    display:"flex",
+    alignItems:"center",
 }}>
-<nav>
-            <Link to="/recoverypassword">Forget Password</Link>
-
-            <Link to="/otpverify">Sign Up</Link>
-
-        </nav>
+Sign in with Google
 
 </div>
+            </div>
 
-<div style={{
-  display:"flex",
-  gap:"10px"
-  
-}}>
-<FcGoogle style={{
-  height:"40px",
-  width:"40px",
-}} />
-
-<button onClick={handleGoogleSignIn}>
-  Sign in with Google
-  </button>
-  </div>
-
-  
-
+          </button>
+          <div className="links">
+            <a href="/recoverypassword" className="link">
+              Forgot Password?
+            </a>
+            <span> | </span>
+            <a href="/otpverify" className="link">
+              Sign Up
+            </a>
+          </div>
         </div>
-        ):(<div className="spinner"> </div>)} </div>
+      </div>
+              ):(<div className="spinner"> </div>)}
+
         </div>
     );
 };
