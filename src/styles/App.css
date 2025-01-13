@@ -39,6 +39,7 @@ button {
 
 button:hover {
   background-color: #0056b3;
+  color: white;
 }
 
 nav {
@@ -218,7 +219,7 @@ button.close-btn:hover {
   border: none;
   color: black;
   text-decoration: underline;
-  /* cursor: pointer; */
+  cursor: pointer;
   /* padding: 0; */
   font-size: 1rem; /* Increase font size */
   display: flex;
@@ -259,13 +260,13 @@ button.menu-btn{
 }
 
 .header-btn.clicked{
-  color: black !important ;
+  color: black  ;
 
 }
 
-button.header-btn:hover {
-  color: black !important; /* Change color on hover */
-  background-color: white !important;
+.header-btn:hover {
+  color: black ; /* Change color on hover */
+  background-color: white ;
 }
 
 /* li{
@@ -387,26 +388,35 @@ button.header-btn:hover {
 
 
 .service_box{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  height:250px;
-  width:265px;
-  background:white;
-  gap:20px;
-  padding:10px;
-  border-radius:10px;
-  box-shadow :1px 1px 5px rgba(0, 0, 0, 0.5);
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
 }
 
-.course_box{
-  background:#04AA6D;
-  border-radius:5px;
-  width:265px;
-  display:flex;
-  justify-content:center;
+
+
+.course_box {
+  width: 100%;
+  padding: 12px;
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
+
+
 
 
 .form-container, .home-container {
@@ -418,6 +428,8 @@ button.header-btn:hover {
   max-width: 400px;
   text-align: center;
 }
+
+
 
 /* Full-page container */
 .page-container {
@@ -493,12 +505,11 @@ button.header-btn:hover {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  color: #555;
   outline: none;
 }
 
-.toggle-password-btn:hover {
-  color: #000;
+.toggle-password-btn :hover {
+  background: none;
 }
 
 
@@ -593,15 +604,22 @@ button.header-btn:hover {
     transition: background-color 0.3s ease, color 0.3s ease;
     color: black;
   }
+
+  .method-button:hover {
+    background: #f1f1f1;
+    color: black;
+  }
   
   .method-button.active {
     background: #6a11cb;
     color: white;
   }
-  
-  .method-button:hover {
-    background: #ddd;
+
+
+  .course_box:hover {
+    background: green;
   }
+ 
 
       /* Verify button */
       .verify-button {

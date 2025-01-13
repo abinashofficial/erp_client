@@ -23,6 +23,11 @@ interface SignInFormData {
     password: string;
   }
 
+  function isAllInteger(input: string): boolean {
+    const regex = /^\d+$/; // Matches strings with only digits (0-9)
+    return regex.test(input);
+  }
+
   interface SignupFormData {
     employee_id:any;
     first_name: any;
@@ -43,6 +48,8 @@ const SignIn: React.FC = () => {
         email: '',
         password: '',
       });
+      const [emailmob, setEmailMob] = useState<Boolean>(false);
+
       const [visible, setVisible] = useState<Boolean>(true);
       const [isPeek, setIsPeek] = useState(false);
       const [isThink, setIsThink] = useState(false);

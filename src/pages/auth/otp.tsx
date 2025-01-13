@@ -355,7 +355,12 @@ console.error("Error verifying OTP:", error);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      if (name === 'mobile_number' && !/^\d*$/.test(value)) {
+        return; // Prevent updating state if the value is not a valid integer
+      }
       if (verificationMethod === "email id") setEmail(e.target.value);
+
       if (verificationMethod === "mobile no") setMobileNumber(e.target.value);
     };
   
@@ -428,13 +433,12 @@ console.error("Error verifying OTP:", error);
 </div>
                   
                   <input
-                    id="mobile-number"
-                    type="tel"
-                    value={mobileNumber}
-                    onChange={handleInputChange}
-                    placeholder="Enter your mobile number"
-                    required
-                    className="mobile-input"
+                            type="text"
+                            name="mobile_number"
+                            placeholder="Mobile Number"
+                            value={mobileNumber}
+                            onChange={handleInputChange}
+                            required
                   />
                   </div>
   

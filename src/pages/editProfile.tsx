@@ -146,16 +146,7 @@ const EditProfile: React.FC = () => {
 
 
     return (
-      <div style={{
-        // backgroundColor: "lightblue", // Dynamically change background color
-        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw',  // Ensure it takes full viewport width
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <div className='main-content'>
               {visible ? (
 
         <div className="form-container">

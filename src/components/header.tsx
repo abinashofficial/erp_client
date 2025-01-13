@@ -102,9 +102,7 @@ const Header: React.FC = () => {
 
 
 
-        <div style={{
-
-        }}>
+        <div >
         <button className="menu-btn" onClick={toggleDrawer}>
         ☰
       </button>
