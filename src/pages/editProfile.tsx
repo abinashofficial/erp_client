@@ -178,9 +178,9 @@ const EditProfile: React.FC = () => {
                     alignItems:"center",
                     justifyContent:"space-between",
                 }}>
-                    <h3>
+                    <h4>
                         First Name :
-                    </h3>
+                    </h4>
         <input
           type="text"
           placeholder="Name"
@@ -197,9 +197,9 @@ const EditProfile: React.FC = () => {
                     alignItems:"center",
                     justifyContent:"space-between",
                 }}>
-                    <h3>
+                    <h4>
                         Last Name :
-                    </h3>
+                    </h4>
                     <input
           type="text"
           name="last_name"
@@ -213,9 +213,9 @@ const EditProfile: React.FC = () => {
                     alignItems:"center",
                     justifyContent:"space-between",
                 }}>
-                    <h3>
+                    <h4>
                         Mobile :
-                    </h3>
+                    </h4>
                     <input
           type="text"
           name="mobile_number"
@@ -233,9 +233,9 @@ const EditProfile: React.FC = () => {
         justifyContent:"space-between",
       }}>
         <label>
-            <h3>
+            <h4>
             Date of Birth :
-                </h3></label>
+                </h4></label>
         <input
           type="date"
           name="date_of_birth"
@@ -253,9 +253,11 @@ const EditProfile: React.FC = () => {
               alignItems:"center",
               justifyContent:"space-between",
             }}>
-        <label><h3>
+        <label>
+          <h4>
         Gender :
-            </h3></label>
+            </h4>
+            </label>
         <select
                   style={{
                     height:"40px",

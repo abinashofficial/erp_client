@@ -7,6 +7,8 @@ import ReactPlayer from 'react-player/youtube';
 const Home: React.FC = () => {
     const {empDetail} = useAuth();
     return (
+      <div className='main-content'>
+
 
 <div  style={{
         display:"flex",
@@ -111,6 +113,7 @@ margin:"50px",
 
       </div>
 
+      </div>
 
       
 

@@ -94,9 +94,9 @@ const Profile: React.FC = () => {
                     alignItems:"center",
                     justifyContent:"space-between",
                 }}>
-                    <h3>
+                    <h4>
                     Full Name : 
-                    </h3>
+                    </h4>
                 <input
           type="text"
           placeholder="Name"
@@ -114,9 +114,9 @@ const Profile: React.FC = () => {
             alignItems:"center",
             justifyContent:"space-between",
           }}>
-            <h3>
+            <h4>
             Mobile :
-            </h3>
+            </h4>
 
 
             <input 
@@ -137,10 +137,10 @@ style={{
     justifyContent:"space-between",
   }}
   >
-    <h3>
+    <h4>
     Email :
 
-    </h3>
+    </h4>
         <input
           type="email"
           name="email"
@@ -159,9 +159,9 @@ style={{
       }}
       >
         <label>
-            <h3>
+            <h4>
             Date of Birth :
-                </h3></label>
+                </h4></label>
         <input
           type="date"
           name="date_of_birth"
@@ -180,8 +180,8 @@ style={{
       }}
       >
         <label>
-            <h3>
-            Gender :</h3></label>
+            Gender :
+            </label>
         <select
                   style={{
                     height:"40px",

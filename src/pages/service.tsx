@@ -5,15 +5,7 @@ const Service: React.FC = () => {
 
 
       
-<div style={{
-        display:"flex",
-        flexDirection:"column",
-        // justifyContent:"space-around",
-        gap:"10px",
-        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw', 
-      }}>
+<div className='main-content'>
 
 
 <div style={{
@@ -41,7 +33,7 @@ margin:"50px",
 <div style={{
   background:"#04AA6D",
   borderRadius:"5px",
-  width:"290px",
+  width:"265px",
   display:"flex",
   justifyContent:"center",
 }}>
@@ -76,7 +68,7 @@ marginTop:"15px"
       <div style={{
   background:"#04AA6D",
   borderRadius:"5px",
-  width:"290px",
+  width:"265px",
   display:"flex",
   justifyContent:"center",
 }}>
