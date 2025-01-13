@@ -179,9 +179,10 @@ style={{
         justifyContent:"space-between",
       }}
       >
-        <label>
-            Gender :
-            </label>
+        <h4>
+        Gender :
+
+        </h4>
         <select
                   style={{
                     height:"40px",

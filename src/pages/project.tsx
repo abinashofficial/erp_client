@@ -200,15 +200,7 @@ const Project: React.FC = () => {
 
 
       
-<div style={{
-        display:"flex",
-        flexDirection:"column",
-        // justifyContent:"space-around",
-        gap:"10px",
-        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw', 
-      }}>
+<div className='main-content'>
 
 
 <div style={{
@@ -223,18 +215,7 @@ margin:"50px",
 
 
 
-<div style={{
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center",
-        height:"300px",
-        width:"300px",
-        background:"white",
-        gap:"20px",
-        padding:"10px",
-        borderRadius:"10px"
-      }}>
+<div className='service_box'>
         <div style={{
         display:"flex",
         justifyContent:"center",
@@ -243,13 +224,7 @@ margin:"50px",
 
         </div>
 
-<div style={{
-  background:"#04AA6D",
-  borderRadius:"5px",
-  width:"290px",
-  display:"flex",
-  justifyContent:"center",
-}}>
+<div className='course_box'>
 
 <nav style={{
 marginTop:"15px"
