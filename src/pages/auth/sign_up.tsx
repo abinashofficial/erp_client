@@ -329,7 +329,10 @@ justifyContent:"center",
         />
                 <button type="submit">Sign Up</button>
             </form>
-            <p>Already have an account? <Link to="/">Sign In</Link></p>
+            {/* <p>Already have an account? <Link to="/">Sign In</Link></p> */}
+            <p className="signin-link">
+          Already have an account? <a href="/">Sign In</a>
+        </p>
         </div>):(<div className="spinner"> </div>)}
         <ToastContainer/>
 

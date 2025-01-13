@@ -389,7 +389,7 @@ button.menu-btn{
 
 .service_box{
   background: white;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -404,7 +404,7 @@ button.menu-btn{
 
 .course_box {
   width: 100%;
-  padding: 12px;
+  /* padding: 12px; */
   background-color: #04AA6D;
   color: white;
   border: none;
@@ -641,10 +641,64 @@ button.menu-btn{
 
       
 
+      .signin-link {
+        margin-top: 1rem;
+        font-size: 14px;
+    }
 
 
 
 
+    .resend-button {
+      background: none;
+      border: none;
+      color: #6a11cb;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .resend-button:disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .resend-instructions {
+      font-size: 14px;
+      margin-top: 1rem;
+    }
+    
+    /* OTP form container */
+    .otp-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      color: #333;
+    }
+    
+    /* Heading */
+    .otp-heading {
+      font-size: 24px;
+      margin-bottom: 1rem;
+    }
+    
+    /* Instructions */
+    .otp-instructions {
+      font-size: 14px;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    /* styles.css */
+.shrink-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Maintains aspect ratio while fitting the size */
+}
 
 
 

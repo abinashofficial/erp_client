@@ -143,10 +143,23 @@ const EditProfile: React.FC = () => {
         }
 
     };
-
+  //   element.style {
+  //     height: 100vh;
+  //     width: 100vw;
+  //     display: flex
+  // ;
+  //     justify-content: center;
+  //     align-items: center;
+  // }
 
     return (
-      <div className='main-content'>
+      <div style={{
+        height:"100vh",
+        width:"100vw",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+      }}>
               {visible ? (
 
         <div className="form-container">

@@ -448,15 +448,15 @@ console.error("Error verifying OTP:", error);
             <button type="submit" className="verify-button">
               Send Verification Code
             </button>
-          <p>Already have an account? <Link to="/">Sign In</Link></p>
-  
+            <p className="signin-link">
+          Already have an account? <a href="/">Sign In</a>
+        </p>  
   
   </div>):
   (<div > </div>)}
   {verify ? 
   (<div>
   
-          <div className="otp-form">
         <h2 className="otp-heading">OTP Verification</h2>
         <p className="otp-instructions">
           Please enter the 6-digit OTP sent to your registered email or mobile
@@ -542,9 +542,9 @@ console.error("Error verifying OTP:", error);
             Resend OTP {expiryTime > 0 && `in ${expiryTime}s`}
           </button>
         </p>
-      </div>
-      <p>Already have an account? <Link to="/">Sign In</Link></p>
-
+      <p className="signin-link">
+          Already have an account? <a href="/">Sign In</a>
+        </p>
   
           </div>):(<div> </div>)}
   
