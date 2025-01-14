@@ -17,6 +17,10 @@ import Course from '../pages/course';
 import Project from '../pages/project';
 import Profile from '../pages/profile';
 import EditProfile from '../pages/editProfile';
+import Qrscan from '../pages/qrscan';
+import Qrgenerate from '../pages/qrgenerate';
+
+
 import '../styles/App.css';
 
 
@@ -36,6 +40,9 @@ const Main: React.FC = () => {
 
 
         <Route path="/" element={<SignIn />} />
+        <Route path="/qrscan" element={<Qrscan />} />
+        <Route path="/qrgenerate" element={<Qrgenerate />} />
+
 
         <Route path="/dashboard" element={<Dashboard />} />
 

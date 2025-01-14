@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import { RxAvatar } from "react-icons/rx";
 import { MdOutlineEdit } from "react-icons/md";
+import { BsQrCode } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
+
 
 
 interface SignupFormData {
@@ -188,10 +191,37 @@ const Profile: React.FC = () => {
                 <div style={{
                     display:"flex",
                     justifyContent:"center",
+                    gap:"10px",
+                    flexDirection:"column"
                 }}>
             <button onClick={()=> navigate("/editprofile")}>Edit Profile</button>
 
-                </div>        
+          
+                      <button className="google-signin-button" onClick={()=> navigate("/qrgenerate")}>
+                        <div style={{
+                            display:"flex",
+                            flexDirection:"row",
+                            gap:"20px"
+                        }}>
+                                      <div style={{
+                display:"flex",
+                alignItems:"center",
+            }}>
+            Generate 
+            
+            </div>
+  <BsQrCode style={{
+    height:"25px",
+    width:"25px",
+  }} />
+
+                        </div>
+            
+                      </button>
+
+
+                </div>    
+                    
         )}
 
 

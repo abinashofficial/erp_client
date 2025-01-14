@@ -16,6 +16,10 @@ import sleepEmoji from "../../assets/animations/sleep_emoji.json";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
+import { RiQrScan2Line } from "react-icons/ri";
+import { BsQrCodeScan } from "react-icons/bs";
+
+
 
 
 interface SignInFormData {
@@ -457,6 +461,40 @@ Sign in with Google
               Sign Up
             </a>
           </div>
+
+
+          <div className="links">
+            <a className="link">
+              -----------------
+            </a>
+            <span> OR </span>
+            <a  className="link">
+              -----------------
+            </a>
+          </div>
+
+
+<button className="google-signin-button" onClick={()=>navigate('/qrscan')}>
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                gap:"20px"
+            }}>
+            <BsQrCodeScan style={{
+  height:"25px",
+  width:"25px",
+}} />
+<div style={{
+    display:"flex",
+    alignItems:"center",
+}}>
+Scan QR Code
+
+</div>
+            </div>
+
+          </button>
+
         </div>
       </div>
               ):(<div className="spinner"> </div>)}
