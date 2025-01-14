@@ -392,7 +392,6 @@ button.menu-btn{
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
   max-width: 300px;
   text-align: center;
   display: flex;
@@ -477,6 +476,36 @@ button.menu-btn{
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+/* Dropdown styling */
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+}
+
+.input-group select:focus {
+  border-color: #6a11cb;
+  outline: none;
+}
+
+
+/* Date input styling */
+.input-group input[type="date"] {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.input-group input[type="date"]:focus {
+  border-color: #6a11cb;
+  outline: none;
 }
 
 /* Password group wrapper */

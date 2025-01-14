@@ -81,6 +81,7 @@ const Header: React.FC = () => {
         // height: '100%', // Ensure it takes full viewport height
         // width: '100%',  // Ensure it takes full viewport width
         // marginLeft:"10px",
+        boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
       }}>
         <div style={{
           display:"flex",

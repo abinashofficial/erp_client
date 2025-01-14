@@ -50,7 +50,7 @@ interface SignInFormData {
       const [spinner, setSpinner] = useState(true);
     const navigate = useNavigate();
     const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
-    const [expiryTime, setExpiryTime] = useState(60);
+    const [expiryTime, setExpiryTime] = useState(300);
     const [resendVisible, setResendVisible] = useState(false);
     const [resendClicked, setResendClicked] = useState(false);
   
@@ -363,6 +363,12 @@ console.error("Error verifying OTP:", error);
 
       if (verificationMethod === "mobile no") setMobileNumber(e.target.value);
     };
+
+    const formatTime = (seconds: number) => {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    };
   
     return (
       <div className="main-content">
@@ -539,7 +545,7 @@ console.error("Error verifying OTP:", error);
             onClick={handleResend}
             disabled={expiryTime > 0}
           >
-            Resend OTP {expiryTime > 0 && `in ${expiryTime}s`}
+            Resend OTP {expiryTime > 0 && `in ${formatTime(expiryTime)}`}
           </button>
         </p>
       <p className="signin-link">

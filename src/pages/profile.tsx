@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import { RxAvatar } from "react-icons/rx";
+import { MdOutlineEdit } from "react-icons/md";
 
 
 interface SignupFormData {
@@ -43,7 +44,7 @@ const Profile: React.FC = () => {
 
       const formatDate = (timestamp: string) => {
         if (timestamp !==""){
-            const date = new Date(timestamp);
+        const date = new Date(timestamp);
             return date.toISOString().split('T')[0]; // Get only the date part (YYYY-MM-DD)
         }
 
@@ -60,18 +61,9 @@ const Profile: React.FC = () => {
       };
 
     return (
-      <div style={{
-        // backgroundColor: "lightblue", // Dynamically change background color
-        // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
+      <div className='main-content'>
 
-        height: '100vh', // Ensure it takes full viewport height
-        width: '100vw',  // Ensure it takes full viewport width
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-
-        <div className="form-container">
+<div className="form-container">
                         <div>
                         <div style={{
                           display:"flex",
@@ -83,107 +75,82 @@ const Profile: React.FC = () => {
                         < RxAvatar />
             
                         </div>
-                        </div>  
+</div>
                                   <form >
 
-
-
-                <div
-                style={{
-                    display:"flex",
-                    alignItems:"center",
-                    justifyContent:"space-between",
-                }}>
-                    <h4>
-                    Full Name : 
-                    </h4>
-                <input
-          type="text"
-          placeholder="Name"
-          name="first_name"
-          value={empDetail.full_name}
-          onChange={handleChange}
-          disabled
-        />
-                </div>
-
-
-
-          <div style={{
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"space-between",
-          }}>
-            <h4>
-            Mobile :
-            </h4>
-
-
-            <input 
-          type="text"
-          name="mobile_number"
-          placeholder="Mobile Number"
-          value={empDetail.mobile_number}
-          onChange={handleChange}
-          disabled
-        />
+                                  <div className="input-group">
+            <label htmlFor="first-name">First Name</label>
+            <input
+              id="first-name"
+              type="text"
+              value={empDetail.first_name}
+              onChange={handleChange}
+              placeholder="Enter your first name"
+              required
+              disabled
+            />
           </div>
-       
 
-<div
-style={{
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"space-between",
-  }}
-  >
-    <h4>
-    Email :
-
-    </h4>
-        <input
-          type="email"
-          name="email"
-          placeholder = "Email"
-          value={empDetail.email}
-          onChange={handleChange}
-          disabled
-        />
-</div>
-
-      <div
-      style={{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"space-between",
-      }}
-      >
-        <label>
-            <h4>
-            Date of Birth :
-                </h4></label>
-        <input
-          type="date"
-          name="date_of_birth"
-          value={formatDate(empDetail.date_of_birth)}
-          onChange={handleChange}
-          disabled
-        />
-      </div>
+          <div className="input-group">
+            <label htmlFor="first-name">Last Name</label>
+            <input
+              id="last-name"
+              type="text"
+              value={empDetail.last_name}
+              onChange={handleChange}
+              placeholder="Enter your last name"
+              required
+              disabled
+            />
+          </div>
 
 
-      <div
-      style={{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"space-between",
-      }}
-      >
-        <h4>
-        Gender :
+          <div className="input-group">
+            <label htmlFor="date-of-birth">Date of Birth</label>
+            <input
+              id="date-of-birth"
+              type="date"
+              value={formatDate(empDetail.date_of_birth)}
+              onChange={handleChange}
+              required
+              disabled
 
-        </h4>
-        <select
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={empDetail.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+              name="email"
+              disabled
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="mobile-number">Mobile Number</label>
+
+            <input
+              id="mobile-number"
+              type="text"
+              value={empDetail.mobile_number}
+              onChange={handleChange}
+              placeholder="Enter your mobile number"
+              required
+              disabled
+
+            />
+
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="gender">Gender</label>
+            <select
                   style={{
                     height:"40px",
                     borderRadius:"10px",
@@ -198,7 +165,17 @@ style={{
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </select>
-      </div>
+          </div>
+       
+
+
+
+
+
+
+
+
+
 
 
             </form>

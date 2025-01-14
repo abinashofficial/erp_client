@@ -41,7 +41,7 @@ const SignUp: React.FC = () => {
         first_name: '',
         last_name: '',
         full_name: '',
-        mobile_number: '',
+        mobile_number: empDetail.mobile_number,
         email: empDetail.email,
         date_of_birth: '',
         gender: '',
@@ -237,7 +237,7 @@ justifyContent:"center",
           value={formData.last_name}
           onChange={handleChange}
         />
-        {/* <div style={{
+        <div style={{
           display:"flex",
           justifyContent:"space-between",
         }}>
@@ -265,15 +265,15 @@ justifyContent:"center",
           onChange={handleChange}
           required
         />
-        </div> */}
-        {/* <input
+        </div>
+        <input
           type="email"
           name="email"
           placeholder = "Email"
           value={formData.email}
           onChange={handleChange}
           required
-        /> */}
+        />
       <div       style={{
         display:"flex",
         alignItems:"center",

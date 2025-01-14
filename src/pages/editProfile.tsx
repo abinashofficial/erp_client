@@ -120,7 +120,6 @@ const EditProfile: React.FC = () => {
    }else if (response.status===500){
     alert(result.message);
     setVisible(true)
-    logout()
 
   } else {
     console.error('update failed:', response);
@@ -143,23 +142,9 @@ const EditProfile: React.FC = () => {
         }
 
     };
-  //   element.style {
-  //     height: 100vh;
-  //     width: 100vw;
-  //     display: flex
-  // ;
-  //     justify-content: center;
-  //     align-items: center;
-  // }
 
     return (
-      <div style={{
-        height:"100vh",
-        width:"100vw",
-        display:"flex",
-        justifyContent:"center",
-        alignItems:"center",
-      }}>
+      <div className='main-content'>
               {visible ? (
 
         <div className="form-container">
@@ -177,107 +162,96 @@ const EditProfile: React.FC = () => {
                         </div>
             <form onSubmit={handleSignUp}>
 
-                <div                 style={{
-                    display:"flex",
-                    alignItems:"center",
-                    justifyContent:"space-between",
-                }}>
-                    <h4>
-                        First Name :
-                    </h4>
-        <input
-          type="text"
-          placeholder="Name"
-          name="first_name"
-          value={formData.first_name}
-          onChange={handleChange}
-          required
-        />
-                </div>
+                
+            <div className="input-group">
+            <label htmlFor="first-name">First Name</label>
+            <input
+              type="text"
+              placeholder="Enter your first name"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+            />
 
 
-                <div                 style={{
-                    display:"flex",
-                    alignItems:"center",
-                    justifyContent:"space-between",
-                }}>
-                    <h4>
-                        Last Name :
-                    </h4>
-                    <input
-          type="text"
-          name="last_name"
-          placeholder="Sure Name"
-          value={formData.last_name}
-          onChange={handleChange}
-        />
-                    </div>
-                    <div                 style={{
-                    display:"flex",
-                    alignItems:"center",
-                    justifyContent:"space-between",
-                }}>
-                    <h4>
-                        Mobile :
-                    </h4>
-                    <input
-          type="text"
-          name="mobile_number"
-          placeholder="Mobile Number"
-          value={formData.mobile_number}
-          onChange={handleChange}
-        />
-                    </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="first-name">Last Name</label>
+            <input
+              id="last-name"
+              type="text"
+              name = "last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+              placeholder="Enter your last name"
+              required
+            />
+          </div>
 
 
+          <div className="input-group">
+            <label htmlFor="date-of-birth">Date of Birth</label>
+            <input
+              id="date-of-birth"
+              type="date"
+              name = "date_of_birth"
+              value={formatDate(formData.date_of_birth)}
+              onChange={handleChange}
+              required
 
-      <div       style={{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"space-between",
-      }}>
-        <label>
-            <h4>
-            Date of Birth :
-                </h4></label>
-        <input
-          type="date"
-          name="date_of_birth"
-          value={formatDate(formData.date_of_birth)}
+            />
+          </div>
 
-          onChange={handleChange}
-          required
-        />
-      </div>
+          <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+              name="email"
+            />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="mobile-number">Mobile Number</label>
+
+            <input
+              id="mobile-number"
+              type="text"
+              value={formData.mobile_number}
+              name = "mobile_number"
+              onChange={handleChange}
+              placeholder="Enter your mobile number"
+              required
+
+            />
+
+          </div>
 
 
-      <div
-            style={{
-              display:"flex",
-              alignItems:"center",
-              justifyContent:"space-between",
-            }}>
-        <label>
-          <h4>
-        Gender :
-            </h4>
-            </label>
-        <select
-                  style={{
-                    height:"40px",
-                    borderRadius:"10px",
-                  }}
+          
+          <div className="input-group">
+            <label htmlFor="gender">Gender</label>
+            <select
           name="gender"
           value={formData.gender}
           onChange={handleChange}
           required
         >
-          <option value="">Select Gender</option>
+          <option value="">Gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </select>
-      </div>
+          </div>
+
+
+
 
       <div style={{
                 display:"flex",
