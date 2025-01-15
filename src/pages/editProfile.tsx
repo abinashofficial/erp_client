@@ -335,6 +335,7 @@ const EditProfile: React.FC = () => {
           <div style={{
           display:"flex",
           justifyContent:"space-between",
+          flexWrap:"wrap",
         }}>
 
 <div style={{

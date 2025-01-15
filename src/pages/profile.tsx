@@ -1,5 +1,5 @@
 // src/pages/SignUp.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
@@ -27,9 +27,16 @@ interface SignupFormData {
   countryCode:any;
 }
 
+interface CountryOption {
+  value: string;
+  label: JSX.Element;
+}
+
+
 const Profile: React.FC = () => {
 
     const { empDetail} = useAuth();
+    const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
 
       const [formData, setFormData] = useState<SignupFormData>({
@@ -139,22 +146,34 @@ const Profile: React.FC = () => {
           flag: "https://flagcdn.com/au.svg",
         },
       };
+
+
       
 
-let temp = countryMap[empDetail.country_code]
-      const selected = ({
-        value: temp.dialCode,
-        label: (
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <img
-              src={temp.flag}
-              alt={`${temp.name} flag`}
-              style={{ width: "20px", height: "15px" }}
-            />
-            {temp.name} ({temp.dialCode})
-          </div>
-        ),
-      });
+                        useEffect(() => {
+
+                          if (empDetail.country_code){
+                            let temp = countryMap[empDetail.country_code]
+                            const selected = ({
+                              value: temp.dialCode,
+                              label: (
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                  <img
+                                    src={temp.flag}
+                                    alt={`${temp.name} flag`}
+                                    style={{ width: "20px", height: "15px" }}
+                                  />
+                                  {temp.name} ({temp.dialCode})
+                                </div>
+                              ),
+                            });
+                            setSelectedCountry(selected);
+                          }  
+                                
+                        }, [empDetail.country_code]);
+     
+
+
       
     
 
@@ -233,12 +252,12 @@ let temp = countryMap[empDetail.country_code]
           <div className="input-group">
             <label htmlFor="mobile-number">Mobile Number</label>
 
-          </div>
 
 
           <div style={{
           display:"flex",
           justifyContent:"space-between",
+          flexWrap:"wrap",
         }}>
 
 <div style={{
@@ -246,7 +265,7 @@ let temp = countryMap[empDetail.country_code]
   alignItems:"center",
 }}>
 <Select
-                  value={selected}
+                  value={selectedCountry}
                   placeholder="Select Country"
                   name = "selected_country"
                   options={countryOptions}
@@ -268,6 +287,7 @@ let temp = countryMap[empDetail.country_code]
           disabled
 
         />
+        </div>
         </div>
 
           <div className="input-group">

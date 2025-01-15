@@ -244,6 +244,8 @@ justifyContent:"center",
         <div style={{
           display:"flex",
           justifyContent:"space-between",
+          flexWrap:"wrap",
+
         }}>
 
 <div style={{

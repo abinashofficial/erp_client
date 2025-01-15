@@ -168,7 +168,6 @@ console.log(empDetail)
         console.log("catch not send otp", spinner)
       }
     };
-    console.log("spiinner", spinner);
 
   
     useEffect(() => {
@@ -216,7 +215,6 @@ console.log(empDetail)
       }
     };
 
-console.log(selectedCountry?.value+ mobileNumber, email, otp)
     const verifyOtp = async () => {
       const controller = new AbortController();
       setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
@@ -423,6 +421,8 @@ console.error("Error verifying OTP:", error);
                   <div style={{
                     display:"flex",
                     flexDirection:"row",
+                    flexWrap:"wrap",
+
                   }}>
                   
                   <div style={{
