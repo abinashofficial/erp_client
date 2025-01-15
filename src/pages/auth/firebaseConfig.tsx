@@ -26,7 +26,7 @@ export const initGoogleDrive = () => {
   gapi.load("client:auth2", () => {
     gapi.client.init({
       apiKey: firebaseConfig.apiKey, // Replace with your API key
-      clientId: "252613924014-vav5ql9rbhp45sou45pgal3na4m1ihb9.apps.googleusercontent.com", // Replace with your Client ID
+      clientId: "252613924014-o7gvk632to0mgl5u6pkhvo70b7ft0i3s.apps.googleusercontent.com", // Replace with your Client ID
       discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
       scope: "https://www.googleapis.com/auth/drive.readonly",
     });
