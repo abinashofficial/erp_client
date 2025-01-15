@@ -26,7 +26,7 @@ const GoogleDriveUpload: React.FC = () => {
     const view = new window.google.picker.DocsView();
     const picker = new window.google.picker.PickerBuilder()
       .setOAuthToken(accessToken)
-      .setDeveloperKey("YOUR_API_KEY")
+      .setDeveloperKey("AIzaSyD1Iwm0p_L4vYpCzS90zzzQyMxqQd-jB4w")
       .addView(view)
       .setCallback((data: any) => {
         if (data.action === window.google.picker.Action.PICKED) {
