@@ -49,7 +49,7 @@ const Main: React.FC = () => {
 
         
         <Route path="/" element={<SignIn />} />
-        {/* <Route path="/qrscan" element={<Qrscan />} /> */}
+        <Route path="/qrscan" element={<Qrscan />} />
         <Route path="/qrgenerate" element={<Qrgenerate />} />
 
 
