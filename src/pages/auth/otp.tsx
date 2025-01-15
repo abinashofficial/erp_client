@@ -311,27 +311,27 @@ console.error("Error verifying OTP:", error);
     const countryData = [
       {
         name: "United States",
-        dialCode: "1",
+        dialCode: "+1",
         flag: "https://flagcdn.com/us.svg",
       },
       {
         name: "India",
-        dialCode: "91",
+        dialCode: "+91",
         flag: "https://flagcdn.com/in.svg",
       },
       {
         name: "United Kingdom",
-        dialCode: "44",
+        dialCode: "+44",
         flag: "https://flagcdn.com/gb.svg",
       },
       {
         name: "Canada",
-        dialCode: "1",
+        dialCode: "+1",
         flag: "https://flagcdn.com/ca.svg",
       },
       {
         name: "Australia",
-        dialCode: "61",
+        dialCode: "+61",
         flag: "https://flagcdn.com/au.svg",
       },
     ];

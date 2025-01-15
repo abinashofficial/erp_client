@@ -7,6 +7,8 @@ import { RxAvatar } from "react-icons/rx";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsQrCode } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import Select from "react-select";
+
 
 
 
@@ -62,6 +64,99 @@ const Profile: React.FC = () => {
       }
         setFormData({ ...formData, [name]: value });
       };
+
+
+
+      
+      const countryData = [
+        {
+          name: "United States",
+          dialCode: "+1",
+          flag: "https://flagcdn.com/us.svg",
+        },
+        {
+          name: "India",
+          dialCode: "+91",
+          flag: "https://flagcdn.com/in.svg",
+        },
+        {
+          name: "United Kingdom",
+          dialCode: "+44",
+          flag: "https://flagcdn.com/gb.svg",
+        },
+        {
+          name: "Canada",
+          dialCode: "+1",
+          flag: "https://flagcdn.com/ca.svg",
+        },
+        {
+          name: "Australia",
+          dialCode: "+61",
+          flag: "https://flagcdn.com/au.svg",
+        },
+      ];
+      
+      
+    
+      const countryOptions = countryData.map((country) => ({
+        value: country.dialCode,
+        label: (
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <img
+              src={country.flag}
+              alt={`${country.name} flag`}
+              style={{ width: "20px", height: "15px" }}
+            />
+            {country.name} ({country.dialCode})
+          </div>
+        ),
+      }));
+
+
+
+
+
+
+      const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
+        "+1": {
+          name: "United States",
+          dialCode: "+1",
+          flag: "https://flagcdn.com/us.svg",
+        },
+        "+91": {
+          name: "India",
+          dialCode: "+91",
+          flag: "https://flagcdn.com/in.svg",
+        },
+        "+44": {
+          name: "United Kingdom",
+          dialCode: "+44",
+          flag: "https://flagcdn.com/gb.svg",
+        },
+        "+61": {
+          name: "Australia",
+          dialCode: "+61",
+          flag: "https://flagcdn.com/au.svg",
+        },
+      };
+      
+
+let temp = countryMap[empDetail.country_code]
+      const selected = ({
+        value: temp.dialCode,
+        label: (
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <img
+              src={temp.flag}
+              alt={`${temp.name} flag`}
+              style={{ width: "20px", height: "15px" }}
+            />
+            {temp.name} ({temp.dialCode})
+          </div>
+        ),
+      });
+      
+    
 
     return (
       <div className='main-content'>
@@ -138,18 +233,42 @@ const Profile: React.FC = () => {
           <div className="input-group">
             <label htmlFor="mobile-number">Mobile Number</label>
 
-            <input
-              id="mobile-number"
-              type="text"
-              value={empDetail.mobile_number}
-              onChange={handleChange}
-              placeholder="Enter your mobile number"
-              required
-              disabled
-
-            />
-
           </div>
+
+
+          <div style={{
+          display:"flex",
+          justifyContent:"space-between",
+        }}>
+
+<div style={{
+  display:"flex",
+  alignItems:"center",
+}}>
+<Select
+                  value={selected}
+                  placeholder="Select Country"
+                  name = "selected_country"
+                  options={countryOptions}
+                  isDisabled={true} // Use isDisabled for disabled state
+
+                  // className="country-select"
+                />
+</div>
+
+          
+       
+            <input
+          type="text"
+          name="mobile_number"
+          placeholder="Mobile Number"
+          value={empDetail.mobile_number}
+          onChange={handleChange}
+          required
+          disabled
+
+        />
+        </div>
 
           <div className="input-group">
             <label htmlFor="gender">Gender</label>

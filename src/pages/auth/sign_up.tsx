@@ -21,7 +21,7 @@ interface SignupFormData {
   password: any;
   confirmPassword:any;
   photo_url:any;
-  countryCode:any;
+  country_code:any;
   access_token:any;
 }
 
@@ -41,14 +41,14 @@ const SignUp: React.FC = () => {
         first_name: '',
         last_name: '',
         full_name: '',
-        mobile_number: empDetail.mobile_number,
+        mobile_number: empDetail.mobile_number  || "",
         email: empDetail.email,
         date_of_birth: '',
         gender: '',
         password: '',
         confirmPassword:'',
         photo_url:"",
-        countryCode:"",
+        country_code:empDetail.country_code,
         access_token:"",
       });
 
@@ -82,9 +82,9 @@ const SignUp: React.FC = () => {
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
         // Add your API endpoint here
-        //  const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
+         const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
 
-    const apiUrl = '';
+    // const apiUrl = '';
 
     try {
       const response = await fetch(apiUrl, {
@@ -116,6 +116,7 @@ const SignUp: React.FC = () => {
           password: result.password,
           photo_url:result.photo_url,
           access_token:result.access_token,
+          country_code:result.country_code,
       })
 
 
@@ -132,10 +133,11 @@ const SignUp: React.FC = () => {
         photo_url:"",
         confirmPassword:result.confirmPassword,
         access_token:result.access_token,
+        country_code:result.country_code,
       });
-        login(empDetail);
         toast.success('Signed up successful');
         setTimeout(() => {
+          login(empDetail);
          navigate('/home'); // Redirect to dashboard after login
        }, 5000);
 
@@ -237,6 +239,8 @@ justifyContent:"center",
           value={formData.last_name}
           onChange={handleChange}
         />
+
+
         <div style={{
           display:"flex",
           justifyContent:"space-between",
@@ -266,6 +270,8 @@ justifyContent:"center",
           required
         />
         </div>
+
+
         <input
           type="email"
           name="email"

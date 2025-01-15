@@ -1,9 +1,10 @@
 // src/pages/SignUp.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
+import Select from "react-select";
 
 
 
@@ -19,12 +20,18 @@ interface SignupFormData {
   password: any;
   confirmPassword:any;
   photo_url:any;
-  countryCode:any;
+  country_code:any;
   access_token:any;
+}
+
+interface CountryOption {
+  value: string;
+  label: JSX.Element;
 }
 
 const EditProfile: React.FC = () => {
   const [visible, setVisible] = useState<Boolean>(true);
+    const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
     const {login, empDetail, logout} = useAuth();
 
@@ -42,7 +49,7 @@ const EditProfile: React.FC = () => {
         password: "",
         confirmPassword: "",
         photo_url: empDetail.photo_url,
-        countryCode:empDetail.countryCode,
+        country_code:empDetail.countryCode,
         access_token: empDetail.access_token,
       });
 
@@ -108,6 +115,8 @@ const EditProfile: React.FC = () => {
         photo_url:"",
         confirmPassword:result.confirmPassword,
         access_token:result.access_token,
+        country_code:result.country_code,
+
       });
         login(empDetail);
         toast.success('Updated successfull');
@@ -141,6 +150,105 @@ const EditProfile: React.FC = () => {
             return date.toISOString().split('T')[0]; // Get only the date part (YYYY-MM-DD)
         }
 
+    };
+
+    const countryData = [
+      {
+        name: "United States",
+        dialCode: "+1",
+        flag: "https://flagcdn.com/us.svg",
+      },
+      {
+        name: "India",
+        dialCode: "+91",
+        flag: "https://flagcdn.com/in.svg",
+      },
+      {
+        name: "United Kingdom",
+        dialCode: "+44",
+        flag: "https://flagcdn.com/gb.svg",
+      },
+      {
+        name: "Canada",
+        dialCode: "+1",
+        flag: "https://flagcdn.com/ca.svg",
+      },
+      {
+        name: "Australia",
+        dialCode: "+61",
+        flag: "https://flagcdn.com/au.svg",
+      },
+    ];
+    
+    
+  
+    const countryOptions = countryData.map((country) => ({
+      value: country.dialCode,
+      label: (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src={country.flag}
+            alt={`${country.name} flag`}
+            style={{ width: "20px", height: "15px" }}
+          />
+          {country.name} ({country.dialCode})
+        </div>
+      ),
+    }));
+
+
+
+
+
+
+    const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
+      "+1": {
+        name: "United States",
+        dialCode: "+1",
+        flag: "https://flagcdn.com/us.svg",
+      },
+      "+91": {
+        name: "India",
+        dialCode: "+91",
+        flag: "https://flagcdn.com/in.svg",
+      },
+      "+44": {
+        name: "United Kingdom",
+        dialCode: "+44",
+        flag: "https://flagcdn.com/gb.svg",
+      },
+      "+61": {
+        name: "Australia",
+        dialCode: "+61",
+        flag: "https://flagcdn.com/au.svg",
+      },
+    };
+    
+
+
+
+
+        useEffect(() => {
+          let temp = countryMap[empDetail.country_code]
+          setSelectedCountry ({
+                value: temp.dialCode,
+                label: (
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <img
+                      src={temp.flag}
+                      alt={`${temp.name} flag`}
+                      style={{ width: "20px", height: "15px" }}
+                    />
+                    {temp.name} ({temp.dialCode})
+                  </div>
+                ),
+              });    
+                
+        }, [empDetail.country_code]);
+
+    const handleCountryChange = (input: CountryOption | null) => {
+      formData.country_code = input?.value
+      setSelectedCountry(input)
     };
 
     return (
@@ -220,18 +328,41 @@ const EditProfile: React.FC = () => {
           <div className="input-group">
             <label htmlFor="mobile-number">Mobile Number</label>
 
-            <input
-              id="mobile-number"
-              type="text"
-              value={formData.mobile_number}
-              name = "mobile_number"
-              onChange={handleChange}
-              placeholder="Enter your mobile number"
-              required
-
-            />
 
           </div>
+
+
+          <div style={{
+          display:"flex",
+          justifyContent:"space-between",
+        }}>
+
+<div style={{
+  display:"flex",
+  alignItems:"center",
+}}>
+<Select
+                  options={countryOptions}
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                  placeholder="Select Country"
+                  name = "selected_country"
+                  // className="country-select"
+                />
+
+</div>
+
+          
+       
+            <input
+          type="text"
+          name="mobile_number"
+          placeholder="Mobile Number"
+          value={formData.mobile_number}
+          onChange={handleChange}
+          required
+        />
+        </div>
 
 
           

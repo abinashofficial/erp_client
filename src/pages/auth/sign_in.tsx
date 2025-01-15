@@ -45,6 +45,7 @@ interface SignInFormData {
     confirmPassword:any;
     photo_url:any;
     access_token:any;
+    country_code:any;
   }
 
 const SignIn: React.FC = () => {
@@ -140,6 +141,7 @@ const SignIn: React.FC = () => {
     photo_url:result.photo_url,
     confirmPassword:result.confirmPassword,
     access_token: result.access_token,
+    country_code:result.country_code,
   });
   
     login(empDetail);
@@ -168,14 +170,15 @@ const SignIn: React.FC = () => {
     };
 
 
-
-    const handleGoogleSignIn = async () => {
-
+    const handleGoogleSignIn = async(e: React.FormEvent) => {
+      setVisible(false)
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+      e.preventDefault();
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user; // The signed-in user info
         console.log('User Info:', user);
-        setVisible(false)
 
   
         const empDetail= ({
@@ -191,6 +194,7 @@ const SignIn: React.FC = () => {
           email: user.email,
           photo_url:user.photoURL,
           access_token:"",
+          country_code:"",
         });
 
 
@@ -219,6 +223,7 @@ const SignIn: React.FC = () => {
           photo_url:user.photoURL,
           confirmPassword:result.confirmPassword,
           access_token: result.access_token,
+          country_code:result.country_code,
         });
         login(empDetail)
         navigate('/home'); // Redirect to dashboard after login
@@ -229,9 +234,19 @@ const SignIn: React.FC = () => {
   
         // Handle user info and proceed with your signup logic
       } 
-    }catch (error) {
-          console.log('result :', error);
+    }catch (error: any) {
+      if (error.name === "AbortError") {
+        setVisible(true)
+        alert("Request timed out");
+        // setError("Request timed out");
+      } else {
+        setVisible(true)
+        alert("Internal server Error");
+        // setError("Failed to fetch data: " + err.message);
       }
+    }
+
+
     };
 
 

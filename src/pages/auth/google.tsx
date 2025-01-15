@@ -29,6 +29,7 @@ const GoogleSignIn: React.FC = () => {
         email: user.email,
         photo_url:user.photoURL,
         access_token:"",
+        country_code:"",
       });
 
       login(empDetail)

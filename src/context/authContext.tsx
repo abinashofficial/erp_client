@@ -14,9 +14,13 @@ interface SignupFormData {
     confirmPassword:any;
     photo_url:any;
     access_token:any;
+    country_code:any,
   }
   
-  
+  interface CountryOption {
+    value: string;
+    label: JSX.Element;
+  }
 
 
 
@@ -32,6 +36,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
+    const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
     const [empDetail, setEmpDetail] = useState<SignupFormData>({
         employee_id:'',
@@ -46,6 +51,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         confirmPassword:'',
         photo_url:"",
         access_token:"",
+        country_code:"",
       });
 
     const login = (result: SignupFormData) => {
@@ -62,6 +68,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             password: "",
             photo_url:result.photo_url,
             access_token:result.access_token,
+            country_code:result.country_code,
         })
 
         console.log("empDetail:-", empDetail)

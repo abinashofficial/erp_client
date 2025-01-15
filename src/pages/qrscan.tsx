@@ -19,6 +19,7 @@ interface SignupFormData {
     confirmPassword:any;
     photo_url:any;
     access_token:any;
+    country_code:any;
   }
 const QRCodeScanner: React.FC = () => {
   const [scanResult, setScanResult] = useState<string | null>(null);
@@ -74,6 +75,7 @@ const QRCodeScanner: React.FC = () => {
                   photo_url:"",
                   confirmPassword:result.confirmPassword,
                   access_token: result.access_token,
+                  country_code:result.country_code,
                 });
                 login(empDetail)
                 navigate('/home'); // Redirect to dashboard after login
