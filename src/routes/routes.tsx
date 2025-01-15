@@ -21,6 +21,8 @@ import Qrscan from '../pages/qrscan';
 import Qrgenerate from '../pages/qrgenerate';
 import Gdrive from "../pages/uploaddrive"
 import PrivacyPolicy from "../pages/privacypolicy"
+import Terms from "../pages/terms"
+
 
 
 
@@ -43,6 +45,7 @@ const Main: React.FC = () => {
 
         {/* <Route path="/" element={<Gdrive />} /> */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<Terms />} />
 
         
         <Route path="/" element={<SignIn />} />
