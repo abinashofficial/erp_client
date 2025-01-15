@@ -19,6 +19,7 @@ import Profile from '../pages/profile';
 import EditProfile from '../pages/editProfile';
 import Qrscan from '../pages/qrscan';
 import Qrgenerate from '../pages/qrgenerate';
+import Gdrive from "../pages/uploaddrive"
 
 
 import '../styles/App.css';
@@ -38,8 +39,9 @@ const Main: React.FC = () => {
 
         <Routes>
 
+        <Route path="/" element={<Gdrive />} />
 
-        <Route path="/" element={<SignIn />} />
+        {/* <Route path="/" element={<SignIn />} /> */}
         <Route path="/qrscan" element={<Qrscan />} />
         <Route path="/qrgenerate" element={<Qrgenerate />} />
 
