@@ -52,7 +52,7 @@ interface SignInFormData {
     const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
     const [expiryTime, setExpiryTime] = useState(300);
     const [resendVisible, setResendVisible] = useState(false);
-    const [resendClicked, setResendClicked] = useState(false);
+    const [emailormobile, setEmailorMaobile] = useState(false);
   
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -77,12 +77,13 @@ interface SignInFormData {
 
     const emailVerify = async () => {
       empDetail.email = email
-      empDetail.mobile_number = selectedCountry?.value+mobileNumber
+      empDetail.mobile_number = mobileNumber
 console.log(empDetail)
       const controller = new AbortController();
       setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
-    
+      setSpinner(false)
+
              // Add your API endpoint here
      const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
     // const apiUrl = 'http://localhost:8080/public/get-user';
@@ -100,6 +101,8 @@ console.log(empDetail)
     console.log(response)
        if (response.ok) {
          showSnackbar(verificationMethod + " Already exists", "error");
+         setSpinner(true)
+
          return
     
          // Handle successful sign-in (e.g., redirect or store token)
@@ -137,8 +140,9 @@ console.log(empDetail)
 
             //  apiUrl = "http://localhost:8080/public/send-otp-mobile-no";
           }
-  empDetail.mobile_number = selectedCountry?.value+ mobileNumber
+  empDetail.mobile_number =  mobileNumber
   empDetail.email = email
+  empDetail.country_code = selectedCountry?.value
   
         const response = await fetch(apiUrl, {
           method: "POST",
@@ -226,7 +230,7 @@ console.log(empDetail)
           const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
           // const apiUrl = 'http://localhost:8080/public/verify-otp';
           const temp = {
-            mobile_number : selectedCountry?.value+ mobileNumber,
+            mobile_number :  mobileNumber,
             email: email,
             otp:otp,
           }
@@ -240,7 +244,9 @@ const data = await response.json();
 if (data.valid) {
   setSpinner(true)
   showSnackbar("OTP verified", data.message);
+  empDetail.mobile_number =  mobileNumber
   empDetail.email = email
+  empDetail.country_code = selectedCountry?.value
   navigate('/signup'); // Redirect to dashboard after login
 
 } else {
@@ -265,7 +271,6 @@ console.error("Error verifying OTP:", error);
     const handleResend = () => {
       setExpiryTime(60);
       setResendVisible(false);
-      setResendClicked(true);
       setOtpValues(["", "", "", "", "", ""])
       setOtp("")
       // sendOtp()
@@ -434,6 +439,7 @@ console.error("Error verifying OTP:", error);
                   value={selectedCountry}
                   onChange={handleCountryChange}
                   placeholder="Select Country"
+                  required
                   // className="country-select"
                 />
 </div>

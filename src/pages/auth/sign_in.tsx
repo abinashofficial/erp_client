@@ -126,7 +126,7 @@ const SignIn: React.FC = () => {
 
   if (response.ok) {
     const result:SignupFormData = await response.json();
-    console.log('Signup successful:', result);
+    console.log('Signed in successful:', result);
 
   const empDetail = ({
     employee_id: result.employee_id,
@@ -161,20 +161,21 @@ const SignIn: React.FC = () => {
     setVisible(true)
     alert("Request timed out");
     // setError("Request timed out");
-  } else {
+    return
+  } 
     setVisible(true)
-    alert("Internal server Error");
+    alert("Internal server Error " + error);
     // setError("Failed to fetch data: " + err.message);
-  }
+  return
  }
     };
 
 
     const handleGoogleSignIn = async(e: React.FormEvent) => {
       setVisible(false)
+      e.preventDefault();
       const controller = new AbortController();
       setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
-      e.preventDefault();
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user; // The signed-in user info
@@ -199,6 +200,8 @@ const SignIn: React.FC = () => {
 
 
         const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+        // const apiUrl = 'http://localhost:8080/public/get-user';
+
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -238,15 +241,15 @@ const SignIn: React.FC = () => {
       if (error.name === "AbortError") {
         setVisible(true)
         alert("Request timed out");
+        return
         // setError("Request timed out");
-      } else {
+      } 
         setVisible(true)
-        alert("Internal server Error");
+        alert("Internal server Error " + error);
         console.log(error, "Internal server Error")
         // setError("Failed to fetch data: " + err.message);
-      }
+      return
     }
-
 
     };
 

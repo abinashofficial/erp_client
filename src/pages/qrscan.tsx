@@ -44,6 +44,7 @@ const QRCodeScanner: React.FC = () => {
        const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data.text);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
+        console.log(empDetail, "emp")
           try {
             const controller = new AbortController();
             setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
@@ -51,6 +52,8 @@ const QRCodeScanner: React.FC = () => {
         
         
                 const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+                // const apiUrl = 'http://localhost:8080/public/get-user';
+
                 const response = await fetch(apiUrl, {
                   method: 'POST',
                   headers: {

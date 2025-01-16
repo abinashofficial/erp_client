@@ -1,11 +1,13 @@
 // src/pages/SignUp.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
 import Select from "react-select";
+import Upload from "../uploaddrive"
+import { dividerClasses } from '@mui/material';
 
 
 
@@ -33,6 +35,7 @@ interface CountryOption {
 const SignUp: React.FC = () => {
   const [visible, setVisible] = useState<Boolean>(true);
 
+
     const { login, empDetail } = useAuth();
     const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
@@ -54,6 +57,11 @@ const SignUp: React.FC = () => {
 
  const navigate = useNavigate()
 
+
+//  setFormData({ ...formData, ["photo_url"]: empDetail.photo_url });
+
+
+
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
             // Allow only numbers in mobile_number field
@@ -63,8 +71,15 @@ const SignUp: React.FC = () => {
         setFormData({ ...formData, [name]: value });
       };
 
+
+
     const handleSignUp = async(e: React.FormEvent) => {
-        e.preventDefault();
+      e.preventDefault();
+      if (empDetail.photo_url && empDetail.photo_url.length > 0) {
+        formData.photo_url = empDetail.photo_url
+      }
+      const controller = new AbortController();
+      setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
         setVisible(false)
 
         if (formData.password !== formData.confirmPassword) {
@@ -72,19 +87,16 @@ const SignUp: React.FC = () => {
             setVisible(true)
             return;
         }
-        // In a real app, add sign-up logic here
-        if (selectedCountry?.value ==="" || selectedCountry?.value ===null){
 
-        }else{
-          formData.mobile_number = selectedCountry?.value + formData.mobile_number
-        }
         console.log('Signing up with', formData);
-        const controller = new AbortController();
-        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+
+
         // Add your API endpoint here
          const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
+        // const apiUrl = 'http://localhost:8080/public/signup';
 
-    // const apiUrl = '';
+
+
 
     try {
       const response = await fetch(apiUrl, {
@@ -130,7 +142,7 @@ const SignUp: React.FC = () => {
         date_of_birth: result.date_of_birth,
         gender: result.gender,
         password: result.password,
-        photo_url:"",
+        photo_url:result.photo_url,
         confirmPassword:result.confirmPassword,
         access_token:result.access_token,
         country_code:result.country_code,
@@ -149,38 +161,45 @@ const SignUp: React.FC = () => {
         alert("This Email is already registered.");
       }else{
         console.error('Signup failed:', response);
-      }
-    } catch (error) {
-      setVisible(true)
         alert("Internal server Error");
-      console.error('Error:', error);
+        setVisible(true)
+
+      }
+    } catch (error:any) {
+      if (error.name === "AbortError") {
+        setVisible(true)
+        alert("Request timed out");
+        return
+        // setError("Request timed out");
+      } else {
+        setVisible(true)
+        alert("Internal server Error");
+        console.log(error, "Internal server Error")
+        return
+        // setError("Failed to fetch data: " + err.message);
+      }
     }
     };
 
     const countryData = [
       {
         name: "United States",
-        dialCode: "1",
+        dialCode: "+1",
         flag: "https://flagcdn.com/us.svg",
       },
       {
         name: "India",
-        dialCode: "91",
+        dialCode: "+91",
         flag: "https://flagcdn.com/in.svg",
       },
       {
         name: "United Kingdom",
-        dialCode: "44",
+        dialCode: "+44",
         flag: "https://flagcdn.com/gb.svg",
       },
       {
-        name: "Canada",
-        dialCode: "1",
-        flag: "https://flagcdn.com/ca.svg",
-      },
-      {
         name: "Australia",
-        dialCode: "61",
+        dialCode: "+61",
         flag: "https://flagcdn.com/au.svg",
       },
     ];
@@ -201,26 +220,118 @@ const SignUp: React.FC = () => {
       ),
     }));
 
+    const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
+      "+1": {
+        name: "United States",
+        dialCode: "+1",
+        flag: "https://flagcdn.com/us.svg",
+      },
+      "+91": {
+        name: "India",
+        dialCode: "+91",
+        flag: "https://flagcdn.com/in.svg",
+      },
+      "+44": {
+        name: "United Kingdom",
+        dialCode: "+44",
+        flag: "https://flagcdn.com/gb.svg",
+      },
+      "+61": {
+        name: "Australia",
+        dialCode: "+61",
+        flag: "https://flagcdn.com/au.svg",
+      },
+    };
+
+    
+useEffect(() => {
+
+                          if (empDetail.country_code){
+                            let temp = countryMap[empDetail.country_code]
+                            const selected = ({
+                              value: temp.dialCode,
+                              label: (
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                  <img
+                                    src={temp.flag}
+                                    alt={`${temp.name} flag`}
+                                    style={{ width: "20px", height: "15px" }}
+                                  />
+                                  {temp.name} ({temp.dialCode})
+                                </div>
+                              ),
+                            });
+                            setSelectedCountry(selected);
+                          }  
+                                
+                        }, [empDetail.country_code]);
     const handleCountryChange = (selected: CountryOption | null) => {
       setSelectedCountry(selected);
+      formData.country_code = selected?.value
     };
     return (
       <div className='main-content'>
               {visible ? (
 
         <div className="form-container">
-            <div>
-            <div style={{
-              display:"flex",
-fontSize:"100px",
-justifyContent:"center",
 
-            }}>
+
+{/* <div style={{
+                display:"flex",
+  fontSize:"100px",
+  justifyContent:"center",
+  
+              }}>
+                
+              < RxAvatar />
+  
+              </div> */}
+
+                                {empDetail.photo_url ? (
+                                  <div>
               
-            < RxAvatar />
+              <div 
+                      style={{
+                        display: 'flex',
+                        justifyContent: "space-around",
+                        alignItems: 'center',
+                        padding:"10px",
+                      }}
+                      >
+                      {empDetail.photo_url && (
+                        <img
+                          src={empDetail.photo_url}
+                          alt="Profile Preview"
+                          style={{
+                            width: '100px',
+                            height: '100px',
+                            objectFit: 'cover',
+                            borderRadius: '50px',
+                          //   marginTop: '10px',
+                          }}
+                        />
+                      )}
+                    </div>
+                                  </div>
+                                ):(
+                                  <div>
+                                      <div style={{
+                                        display:"flex",
+                          fontSize:"100px",
+                          justifyContent:"center",
+                          
+                                      }}>
+                                        
+                                      < RxAvatar />
+                          
+                                      </div>
+                                  </div>
+                                )}
 
-            </div>
-            </div>
+
+
+    
+      <Upload/>
 
 
             <form onSubmit={handleSignUp}>
@@ -257,6 +368,7 @@ justifyContent:"center",
                   value={selectedCountry}
                   onChange={handleCountryChange}
                   placeholder="Select Country"
+                  isDisabled ={!!formData.mobile_number}
                   // className="country-select"
                 />
 </div>
@@ -270,6 +382,7 @@ justifyContent:"center",
           value={formData.mobile_number}
           onChange={handleChange}
           required
+          disabled={!!formData.mobile_number}
         />
         </div>
 
@@ -280,6 +393,7 @@ justifyContent:"center",
           placeholder = "Email"
           value={formData.email}
           onChange={handleChange}
+          disabled={!!formData.email}
           required
         />
       <div       style={{

@@ -1,103 +1,49 @@
-// // src/components/GoogleDriveUpload.tsx
-// import React, { useEffect, useState } from "react";
-// import { gapi } from "gapi-script";
-// import { initGoogleDrive } from "./auth/firebaseConfig";
-
-// const GoogleDriveUpload: React.FC = () => {
-//   const [fileData, setFileData] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     // Initialize the Google API client and Picker after component mount
-//     initGoogleDrive();
-//   }, []);
-
-//   const handleAuth = () => {
-//     const auth2 = gapi.auth2.getAuthInstance();
-//     auth2.signIn().then(() => {
-//       console.log("User signed in");
-//     });
-//   };
-
-//   const handleFilePicker = () => {
-//     const auth2 = gapi.auth2.getAuthInstance();
-//     const accessToken = auth2.currentUser.get().getAuthResponse().access_token;
-
-//     // Initialize the Picker
-//     const view = new window.google.picker.DocsView();
-//     const picker = new window.google.picker.PickerBuilder()
-//       .setOAuthToken(accessToken)
-//       .setDeveloperKey("AIzaSyD1Iwm0p_L4vYpCzS90zzzQyMxqQd-jB4w")
-//       .addView(view)
-//       .setCallback((data: any) => {
-//         if (data.action === window.google.picker.Action.PICKED) {
-//           const file = data.docs[0];
-//           console.log("Selected file:", file);
-//           downloadFile(file.id, accessToken);
-//         }
-//       })
-//       .build();
-//     picker.setVisible(true);
-//   };
-
-//   const downloadFile = async (fileId: string, accessToken: string) => {
-//     const url = `https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`;
-//     const response = await fetch(url, {
-//       headers: {
-//         Authorization: `Bearer ${accessToken}`,
-//       },
-//     });
-//     const blob = await response.blob();
-//     const objectURL = URL.createObjectURL(blob);
-//     setFileData(objectURL); // Display image or file content
-//   };
-
-//   return (
-//     <div>
-//       <button onClick={handleAuth}>Login to Google</button>
-//       <button onClick={handleFilePicker}>Select File (Resume)</button>
-//       {fileData && <img src={fileData} alt="Resume" style={{ width: "300px" }} />}
-//     </div>
-//   );
-// };
-
-// export default GoogleDriveUpload;
-
-
 import React, { useState } from "react";
+import { useAuth } from '../context/authContext';
 
-const ImgurUploader: React.FC = () => {
+
+const CloudinaryUploader: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
-  const [imageUrl, setImageUrl] = useState<string>("https://drive.google.com/uc?export=view&id=11hBYGyUJgVAxoscK1A5-gH2QEpnkkp8F"
-);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [edit, setEdit] = useState<boolean>();
+
+
+  const cloudName = "dababspdo"; // Replace with your Cloudinary Cloud Name
+  const uploadPreset = "ml_default"; // Replace with your unsigned upload preset
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setFile(event.target.files[0]);
     }
   };
+    const {empDetail, setEmpDetail} = useAuth();
 
   const handleUpload = async () => {
+
     if (!file) {
       alert("Please select a file first.");
       return;
     }
 
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("file", file);
+    formData.append("upload_preset", uploadPreset);
 
     try {
-      const response = await fetch("https://api.imgur.com/3/image", {
-        method: "POST",
-        headers: {
-          Authorization: "0cbefdeb97998c2", // Replace with your Client ID
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
-      if (data.success) {
-        setImageUrl(data.data.link); // Imgur's link to the uploaded image
-        console.log("Uploaded Image URL:", data.data.link);
+      if (data.secure_url) {
+        setImageUrl(data.secure_url); // URL of the uploaded image
+        console.log("Uploaded Image URL:", data.secure_url);
+        setEmpDetail({ ...empDetail, ["photo_url"]: data.secure_url });
+        setEdit(!edit)
       } else {
         console.error("Upload failed:", data);
       }
@@ -107,27 +53,53 @@ const ImgurUploader: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Imgur Photo Uploader</h1>
+    <div style={{
+        marginBottom:"30px"
+    }}>
+                  <h2>Profile Picture</h2>
 
+              {imageUrl && (
+
+        // <div style={{
+        //     display: 'flex',
+        //     justifyContent: "space-around",
+        //     alignItems: 'center',
+        //     padding:"10px",
+        //   }}> 
+        //   <img src={imageUrl} alt="Uploaded"  style={{
+        //       width: '100px',
+        //       height: '100px',
+        //       objectFit: 'cover',
+        //       borderRadius: '50px',
+        //     //   marginTop: '10px',
+        //     }} />
+        // </div>
         <div>
-          <h2>Uploaded Image</h2>
-          <img
-            src={imageUrl}
-            alt="Profile Preview"
-            style={{
-              width: '100px',
-              height: '100px',
-              objectFit: 'cover',
-              borderRadius: '50px',
-            //   marginTop: '10px',
-            }}
-          />
+
         </div>
+
+      )}
+      {edit ? (
+        <div>
+      <button onClick={()=>setEdit(!edit)}>Re - Upload</button>
+
+        </div>):
+        (<div style={{
+            display:"flex",
+            flexDirection:"column",
+            flexWrap:"wrap",
+        }}>
+                  <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload}>Upload</button>
+        </div>
+      )}
+
     </div>
   );
 };
 
-export default ImgurUploader;
+export default CloudinaryUploader;
+
+
 
 

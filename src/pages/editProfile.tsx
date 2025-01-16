@@ -5,6 +5,7 @@ import { useAuth } from '../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
 import Select from "react-select";
+import UploadDrive from "../pages/uploaddrive"
 
 
 
@@ -65,6 +66,9 @@ const EditProfile: React.FC = () => {
       };
 
     const handleSignUp = async(e: React.FormEvent) => {
+      if (empDetail.photo_url && empDetail.photo_url.length > 0) {
+        formData.photo_url = empDetail.photo_url
+      }
         e.preventDefault();
         setVisible(false)
 
@@ -112,7 +116,7 @@ const EditProfile: React.FC = () => {
         date_of_birth: result.date_of_birth,
         gender: result.gender,
         password: result.password,
-        photo_url:"",
+        photo_url:result.photo_url,
         confirmPassword:result.confirmPassword,
         access_token:result.access_token,
         country_code:result.country_code,
@@ -226,25 +230,45 @@ const EditProfile: React.FC = () => {
     
 
 
+                        useEffect(() => {
 
+                          if (empDetail.country_code){
+                            let temp = countryMap[empDetail.country_code]
+                            const selected = ({
+                              value: temp.dialCode,
+                              label: (
+                                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                  <img
+                                    src={temp.flag}
+                                    alt={`${temp.name} flag`}
+                                    style={{ width: "20px", height: "15px" }}
+                                  />
+                                  {temp.name} ({temp.dialCode})
+                                </div>
+                              ),
+                            });
+                            setSelectedCountry(selected);
+                          }  
+                                
+                        }, [empDetail.country_code]);
 
-        useEffect(() => {
-          let temp = countryMap[empDetail.country_code]
-          setSelectedCountry ({
-                value: temp.dialCode,
-                label: (
-                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <img
-                      src={temp.flag}
-                      alt={`${temp.name} flag`}
-                      style={{ width: "20px", height: "15px" }}
-                    />
-                    {temp.name} ({temp.dialCode})
-                  </div>
-                ),
-              });    
+        // useEffect(() => {
+        //   let temp = countryMap[empDetail.country_code]
+        //   setSelectedCountry ({
+        //         value: temp.dialCode,
+        //         label: (
+        //           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        //             <img
+        //               src={temp.flag}
+        //               alt={`${temp.name} flag`}
+        //               style={{ width: "20px", height: "15px" }}
+        //             />
+        //             {temp.name} ({temp.dialCode})
+        //           </div>
+        //         ),
+        //       });    
                 
-        }, [empDetail.country_code]);
+        // }, [empDetail.country_code]);
 
     const handleCountryChange = (input: CountryOption | null) => {
       formData.country_code = input?.value
@@ -256,7 +280,34 @@ const EditProfile: React.FC = () => {
               {visible ? (
 
         <div className="form-container">
-                        <div>
+                  {empDetail.photo_url ? (
+                    <div>
+
+<div 
+        style={{
+          display: 'flex',
+          justifyContent: "space-around",
+          alignItems: 'center',
+          padding:"10px",
+        }}
+        >
+        {empDetail.photo_url && (
+          <img
+            src={empDetail.photo_url}
+            alt="Profile Preview"
+            style={{
+              width: '100px',
+              height: '100px',
+              objectFit: 'cover',
+              borderRadius: '50px',
+            //   marginTop: '10px',
+            }}
+          />
+        )}
+      </div>
+                    </div>
+                  ):(
+                    <div>
                         <div style={{
                           display:"flex",
             fontSize:"100px",
@@ -267,7 +318,35 @@ const EditProfile: React.FC = () => {
                         < RxAvatar />
             
                         </div>
-                        </div>
+                    </div>
+                  )}
+
+
+{/* 
+                        <div 
+        style={{
+          display: 'flex',
+          justifyContent: "space-around",
+          alignItems: 'center',
+          padding:"10px",
+        }}
+        >
+        {empDetail.photo_url && (
+          <img
+            src={empDetail.photo_url}
+            alt="Profile Preview"
+            style={{
+              width: '100px',
+              height: '100px',
+              objectFit: 'cover',
+              borderRadius: '50px',
+            //   marginTop: '10px',
+            }}
+          />
+        )}
+      </div> */}
+
+                        <UploadDrive/>
             <form onSubmit={handleSignUp}>
 
                 

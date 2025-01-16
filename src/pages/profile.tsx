@@ -181,7 +181,7 @@ const Profile: React.FC = () => {
       <div className='main-content'>
 
 <div className="form-container">
-                        <div>
+                        {/* <div>
                         <div style={{
                           display:"flex",
             fontSize:"100px",
@@ -192,7 +192,73 @@ const Profile: React.FC = () => {
                         < RxAvatar />
             
                         </div>
-</div>
+</div> */}
+
+
+{/* <div 
+        style={{
+          display: 'flex',
+          justifyContent: "space-around",
+          alignItems: 'center',
+          padding:"10px",
+        }}
+        >
+        {empDetail.photo_url && (
+          <img
+            src={empDetail.photo_url}
+            alt="Profile Preview"
+            style={{
+              width: '100px',
+              height: '100px',
+              objectFit: 'cover',
+              borderRadius: '50px',
+            //   marginTop: '10px',
+            }}
+          />
+        )}
+      </div> */}
+
+
+                        {empDetail.photo_url ? (
+                          <div>
+      
+      <div 
+              style={{
+                display: 'flex',
+                justifyContent: "space-around",
+                alignItems: 'center',
+                padding:"10px",
+              }}
+              >
+              {empDetail.photo_url && (
+                <img
+                  src={empDetail.photo_url}
+                  alt="Profile Preview"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    objectFit: 'cover',
+                    borderRadius: '50px',
+                  //   marginTop: '10px',
+                  }}
+                />
+              )}
+            </div>
+                          </div>
+                        ):(
+                          <div>
+                              <div style={{
+                                display:"flex",
+                  fontSize:"100px",
+                  justifyContent:"center",
+                  
+                              }}>
+                                
+                              < RxAvatar />
+                  
+                              </div>
+                          </div>
+                        )}
                                   <form >
 
                                   <div className="input-group">

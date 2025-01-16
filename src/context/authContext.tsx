@@ -29,6 +29,7 @@ interface AuthContextType {
     empDetail:any;
     login: (result: SignupFormData) => void;
     logout: () => void;
+    setEmpDetail: (result: SignupFormData) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -36,7 +37,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
-    const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
     const [empDetail, setEmpDetail] = useState<SignupFormData>({
         employee_id:'',
@@ -110,7 +110,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [timeoutId]);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout, setEmpDetail }}>
             {children}
         </AuthContext.Provider>
     );
