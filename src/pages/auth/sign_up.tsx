@@ -33,10 +33,10 @@ interface CountryOption {
 }
 
 const SignUp: React.FC = () => {
-  const [visible, setVisible] = useState<Boolean>(true);
+  // const [visible, setVisible] = useState<Boolean>(true);
 
 
-    const { login, empDetail } = useAuth();
+    const { login, empDetail, visible, setVisible } = useAuth();
     const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
       const [formData, setFormData] = useState<SignupFormData>({

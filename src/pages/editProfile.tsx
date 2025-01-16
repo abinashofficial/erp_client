@@ -31,10 +31,9 @@ interface CountryOption {
 }
 
 const EditProfile: React.FC = () => {
-  const [visible, setVisible] = useState<Boolean>(true);
     const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
-    const {login, empDetail, logout} = useAuth();
+    const {login, empDetail, visible, setVisible} = useAuth();
 
 
 

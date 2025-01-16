@@ -26,6 +26,8 @@ interface SignupFormData {
 
 interface AuthContextType {
     isAuthenticated: boolean;
+    visible: boolean;
+setVisible:(result: boolean) => void
     empDetail:any;
     login: (result: SignupFormData) => void;
     logout: () => void;
@@ -37,7 +39,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
-
+    const [visible, setVisible] = useState(true);
     const [empDetail, setEmpDetail] = useState<SignupFormData>({
         employee_id:'',
         first_name: '',
@@ -110,7 +112,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [timeoutId]);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout, setEmpDetail }}>
+        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout, setEmpDetail, setVisible, visible }}>
             {children}
         </AuthContext.Provider>
     );

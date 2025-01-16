@@ -5,6 +5,7 @@ import { useAuth } from '../context/authContext';
 const CloudinaryUploader: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
+  
   const [edit, setEdit] = useState<boolean>();
 
 
@@ -16,12 +17,15 @@ const CloudinaryUploader: React.FC = () => {
       setFile(event.target.files[0]);
     }
   };
-    const {empDetail, setEmpDetail} = useAuth();
+    const {empDetail, setEmpDetail, visible, setVisible} = useAuth();
 
   const handleUpload = async () => {
+    setVisible(false)
 
     if (!file) {
       alert("Please select a file first.");
+      setVisible(true)
+
       return;
     }
 
@@ -44,42 +48,28 @@ const CloudinaryUploader: React.FC = () => {
         console.log("Uploaded Image URL:", data.secure_url);
         setEmpDetail({ ...empDetail, ["photo_url"]: data.secure_url });
         setEdit(!edit)
+        setVisible(true)
       } else {
         console.error("Upload failed:", data);
+        setVisible(false)
+
       }
     } catch (error) {
       console.error("Error uploading file:", error);
+      setVisible(false)
+
     }
   };
 
   return (
     <div style={{
-        marginBottom:"30px"
+        marginBottom:"30px",
     }}>
                   <h2>Profile Picture</h2>
 
-              {imageUrl && (
 
-        // <div style={{
-        //     display: 'flex',
-        //     justifyContent: "space-around",
-        //     alignItems: 'center',
-        //     padding:"10px",
-        //   }}> 
-        //   <img src={imageUrl} alt="Uploaded"  style={{
-        //       width: '100px',
-        //       height: '100px',
-        //       objectFit: 'cover',
-        //       borderRadius: '50px',
-        //     //   marginTop: '10px',
-        //     }} />
-        // </div>
-        <div>
 
-        </div>
-
-      )}
-      {edit ? (
+{edit ? (
         <div>
       <button onClick={()=>setEdit(!edit)}>Re - Upload</button>
 
@@ -93,6 +83,8 @@ const CloudinaryUploader: React.FC = () => {
       <button onClick={handleUpload}>Upload</button>
         </div>
       )}
+
+
 
     </div>
   );
