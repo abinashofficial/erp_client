@@ -25,6 +25,7 @@ import { BsQrCodeScan } from "react-icons/bs";
 interface SignInFormData {
     email: string;
     password: string;
+    mobile_number:string;
   }
 
   function isAllInteger(input: string): boolean {
@@ -52,6 +53,12 @@ const SignIn: React.FC = () => {
     const [formData, setFormData] = useState<SignInFormData>({
         email: '',
         password: '',
+        mobile_number:"",
+      });
+      const [sendData, setSendData] = useState<SignInFormData>({
+        email: '',
+        password: '',
+        mobile_number:"",
       });
       const [emailmob, setEmailMob] = useState<Boolean>(false);
 
@@ -107,19 +114,31 @@ const SignIn: React.FC = () => {
     const handleSignin = async(e: React.FormEvent) => {
         e.preventDefault();
         setVisible(false);
+        const isIntegerString = formData.email.split("").every((char) => /\d/.test(char));
+        let message = "Invalid Email"
+        sendData.email = formData.email
+        sendData.password = formData.password
+
+
+
+      if (isIntegerString){
+        sendData.mobile_number = formData.email
+        sendData.email = ""
+        message = "Invalid Mobile Number"
+      }
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
  // Add your API endpoint here
- const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
-// const apiUrl = 'http://localhost:8080/public/signin';
+//  const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
+const apiUrl = 'http://localhost:8080/public/signin';
  try {
    const response = await fetch(apiUrl, {
      method: 'POST',
      headers: {
        'Content-Type': 'application/json',
      },
-     body: JSON.stringify(formData),
+     body: JSON.stringify(sendData),
      signal: controller.signal, // Attach the abort signal to the fetch request
    });
     console.log("response: ", response)
@@ -152,7 +171,7 @@ const SignIn: React.FC = () => {
     alert("Invalid Password");
   }else if (response.status===400){
     setVisible(true)
-    alert("Invalid Email");
+    alert(message);
   }else{
     console.error('Signup failed:', response);
   }
@@ -417,10 +436,10 @@ setIsHeart(true)
             <input
               id="email"
               name="email"
-              type="email"
+              type="text"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Email"
+              placeholder="Email or Phone number"
               required
             />
           </div>
