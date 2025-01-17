@@ -32,7 +32,7 @@ const QRCodeScanner: React.FC = () => {
   // Extract Employee ID and Name from the scan result
   const extractEmployeeInfo = (scanResult: string | null) => {
     if (!scanResult) return { id: "", name: "" };
-    const parts = scanResult.split(",");
+    const parts = scanResult.split("/");
     const id = parts[0] || "";
     const name = parts[1] || "";
     return { id, name };
@@ -40,17 +40,13 @@ const QRCodeScanner: React.FC = () => {
  
   const handleScan = async (data: any) =>{
     if (data) {
-        
-       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data.text);
+       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
-        console.log(empDetail, "emp")
           try {
             const controller = new AbortController();
             setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
                 setVisible(false)
-        
-        
                 const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
                 // const apiUrl = 'http://localhost:8080/public/get-user';
 
