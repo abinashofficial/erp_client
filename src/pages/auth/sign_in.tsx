@@ -490,18 +490,27 @@ Sign in with Google
             </div>
 
           </button>
-          <div className="links">
+
+
+          <div style={{
+            display:"flex",
+            flexDirection:"row",
+            justifyContent:"space-around",
+marginTop:"25px",
+          }}>
             <a href="/recoverypassword" className="link">
               Forgot Password?
             </a>
-            <span> | </span>
             <a href="/otpverify" className="link">
               Sign Up
             </a>
           </div>
 
 
-          <div className="links">
+          <div style={{
+            marginBottom:"20px",
+            marginTop:"20px",
+          }}>
             <a className="link">
               -----------------
             </a>
