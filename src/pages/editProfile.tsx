@@ -126,6 +126,8 @@ const EditProfile: React.FC = () => {
 
      setTimeout(() => {
       navigate('/profile'); // Redirect to dashboard after login
+      setVisible(true)
+
     }, 5000);
 
      // Handle successful sign-in (e.g., redirect or store token)

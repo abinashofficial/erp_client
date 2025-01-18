@@ -242,11 +242,13 @@ const SignIn: React.FC = () => {
           date_of_birth: result.date_of_birth,
           gender: result.gender,
           password: result.password,
-          photo_url:user.photoURL,
+          photo_url:  result.photo_url,
           confirmPassword:result.confirmPassword,
           access_token: result.access_token,
           country_code:result.country_code,
         });
+
+        
         login(empDetail)
         navigate('/home'); // Redirect to dashboard after login
         // Handle successful sign-in (e.g., redirect or store token)

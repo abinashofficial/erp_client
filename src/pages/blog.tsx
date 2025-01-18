@@ -50,6 +50,7 @@ const Blog: React.FC = () => {
   <div style={{
   display:"flex",
   justifyContent:"center",
+  marginTop:'20px',
 }}>
   
   <a href="https://drive.google.com/file/d/18VIkikA2fXG81pU9Qbwr9a2SJYKpm8Qh/view?usp=sharing" target="_blank" rel="noopener noreferrer">

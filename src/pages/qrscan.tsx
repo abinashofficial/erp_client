@@ -71,7 +71,7 @@ const QRCodeScanner: React.FC = () => {
                   date_of_birth: result.date_of_birth,
                   gender: result.gender,
                   password: result.password,
-                  photo_url:"",
+                  photo_url:result.photo_url,
                   confirmPassword:result.confirmPassword,
                   access_token: result.access_token,
                   country_code:result.country_code,
