@@ -18,6 +18,7 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { RiQrScan2Line } from "react-icons/ri";
 import { BsQrCodeScan } from "react-icons/bs";
+import { justify } from '@cloudinary/url-gen/qualifiers/textAlignment';
 
 
 
@@ -60,7 +61,7 @@ const SignIn: React.FC = () => {
         password: '',
         mobile_number:"",
       });
-      const [emailmob, setEmailMob] = useState<Boolean>(false);
+      const [terms, setTerms] = useState<Boolean>(true);
 
       const [visible, setVisible] = useState<Boolean>(true);
       const [isPeek, setIsPeek] = useState(false);
@@ -377,7 +378,13 @@ setIsHeart(true)
           
           }, [isPeek, isThink, singleTouchEmoji, unTouchEmoji, touchEmoji, isHeart]);
 
-
+          useEffect(() => {
+            // Set a timer to hide the message after 15 seconds
+            const timer = setTimeout(() => setTerms(false), 15000);
+        
+            // Cleanup the timer when the component unmounts
+            return () => clearTimeout(timer);
+          }, []);
 
     return (
 
@@ -547,6 +554,39 @@ Scan QR Code
         </div>
       </div>
               ):(<div className="spinner"> </div>)}
+
+<div className="popdown-message">
+  {terms?(
+    <div>
+
+
+<p >
+<button onClick={() => setTerms(false)} style={{
+  marginRight:"10px",
+  color:"black",
+  background:"white",
+  fontSize:"20px"
+}}>×</button>
+By continuing, you agree to Instagram's{" "}
+  <a href="https://erp-client-pink.vercel.app/terms" target="_blank" rel="noopener noreferrer">
+    Terms of Use
+  </a>{" "}
+  and{" "}
+  <a href="https://erp-client-pink.vercel.app/privacypolicy" target="_blank" rel="noopener noreferrer">
+    Privacy Policy
+  </a>.
+ 
+</p>
+</div>
+    ):(
+      <div>
+
+      </div>
+
+    )
+  }
+
+</div>
 
         </div>
     );

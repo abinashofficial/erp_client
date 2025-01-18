@@ -731,6 +731,31 @@ button.menu-btn{
 
 
 
+.popdown-message {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  background: white;
+  color: #333;
+  text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  z-index: 1000;
+
+}
+
+.popdown-message a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.popdown-message a:hover {
+  text-decoration: underline;
+}
+
+
 
 
 

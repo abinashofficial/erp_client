@@ -3,14 +3,14 @@ import React from 'react';
 const PrivacyPolicy: React.FC = () => {
   return (
     <div className="privacy-policy">
-      <h1>Privacy Policy for ERP Module</h1>
+      <h1>Privacy Policy</h1>
 
       <p>Last updated: January 15, 2025</p>
 
       <section>
         <h2>Introduction</h2>
         <p>
-          At [Company Name], we value the privacy of our users and are committed to protecting your personal information.
+          At prison birds tech, we value the privacy of our users and are committed to protecting your personal information.
           This Privacy Policy outlines how we collect, use, and protect your data when you use our ERP module.
         </p>
       </section>
@@ -100,8 +100,8 @@ const PrivacyPolicy: React.FC = () => {
           If you have any questions or concerns about this Privacy Policy, please contact us at:
         </p>
         <ul>
-          <li>Email: <a href="mailto:support@company.com">support@company.com</a></li>
-          <li>Address: 123 Business St., City, Country</li>
+        <li>Email: <a href="prisonbirdstech@gmail.com">prisonbirdstech@gmail.com</a></li>
+        <li>Address: No.12, Business St., Chennai, India</li>
         </ul>
       </section>
     </div>

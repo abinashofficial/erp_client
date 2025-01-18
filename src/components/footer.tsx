@@ -19,7 +19,6 @@ const Footer: React.FC = () => {
 
     return (
 <footer>
-        <p>&copy; 2024 Abinas Chinnasamy</p>
         <div className="social-media-icons">
         <a href="https://www.linkedin.com/in/abinash-chinnasamy-1330741a0" target="_blank" rel="noopener noreferrer">
             <FaLinkedin size={30} />
@@ -39,6 +38,33 @@ const Footer: React.FC = () => {
         </a>
         
     </div>
+
+    <p style={{
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-evenly",
+        alignItems:"center",
+    }}>
+        <div>
+        <a href="https://erp-client-pink.vercel.app/terms" target="_blank" rel="noopener noreferrer">
+    Terms 
+  </a>
+        </div>
+        <div>
+        <p>&copy; 2024 Prison Birds</p>
+
+        </div>
+
+        <div>
+        <a href="https://erp-client-pink.vercel.app/privacypolicy" target="_blank" rel="noopener noreferrer">
+    Privacy
+  </a>.
+        </div>
+
+
+ 
+</p>
+
     </footer>
 
 

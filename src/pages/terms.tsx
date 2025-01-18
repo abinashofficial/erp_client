@@ -3,17 +3,17 @@ import React from 'react';
 const TermsOfService: React.FC = () => {
   return (
     <div className="terms-of-service">
-      <h1>Terms of Service for ERP Module</h1>
+      <h1>Terms of Service</h1>
 
       <p>Last updated: January 15, 2025</p>
 
       <section>
         <h2>1. Introduction</h2>
         <p>
-          Welcome to [Company Name]'s ERP module. By accessing or using our ERP system, you agree to comply with and be bound by the terms and conditions outlined in this Terms of Service ("ToS"). If you do not agree to these terms, please refrain from using our ERP services.
+          Welcome to prison birds tech's ERP module. By accessing or using our ERP system, you agree to comply with and be bound by the terms and conditions outlined in this Terms of Service ("ToS"). If you do not agree to these terms, please refrain from using our ERP services.
         </p>
         <p>
-          [Company Name] reserves the right to update, modify, or revise these Terms of Service at any time. Changes will take effect immediately upon posting on this page, and we recommend you review these terms periodically.
+        Prison birds tech reserves the right to update, modify, or revise these Terms of Service at any time. Changes will take effect immediately upon posting on this page, and we recommend you review these terms periodically.
         </p>
       </section>
 
@@ -61,7 +61,7 @@ const TermsOfService: React.FC = () => {
       <section>
         <h2>6. Data Privacy and Security</h2>
         <p>
-          Your use of the ERP module may involve the collection, storage, and processing of personal data. Please refer to our <a href="/privacy-policy">Privacy Policy</a> for detailed information on how we handle your data.
+          Your use of the ERP module may involve the collection, storage, and processing of personal data. Please refer to our <a href="/privacypolicy">Privacy Policy</a> for detailed information on how we handle your data.
         </p>
         <p>
           We take reasonable security measures to protect your data, but cannot guarantee the complete security of your information. By using the ERP system, you acknowledge that data transmission over the internet is never completely secure.
@@ -81,7 +81,7 @@ const TermsOfService: React.FC = () => {
       <section>
         <h2>8. Limitation of Liability</h2>
         <p>
-          [Company Name] will not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of the ERP system, even if we have been advised of the possibility of such damages.
+        Prison birds tech will not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of the ERP system, even if we have been advised of the possibility of such damages.
         </p>
         <p>
           Our total liability to you for any claims related to the ERP system shall not exceed the amount you paid for the service in the past 12 months.
@@ -91,7 +91,7 @@ const TermsOfService: React.FC = () => {
       <section>
         <h2>9. Indemnification</h2>
         <p>
-          You agree to indemnify and hold harmless [Company Name], its affiliates, employees, and contractors from any claims, damages, losses, and expenses (including legal fees) arising from your use of the ERP system or your violation of these Terms of Service.
+          You agree to indemnify and hold harmless prison birds tech, its affiliates, employees, and contractors from any claims, damages, losses, and expenses (including legal fees) arising from your use of the ERP system or your violation of these Terms of Service.
         </p>
       </section>
 
@@ -115,8 +115,8 @@ const TermsOfService: React.FC = () => {
           If you have any questions or concerns about these Terms of Service, please contact us at:
         </p>
         <ul>
-          <li>Email: <a href="mailto:support@company.com">support@company.com</a></li>
-          <li>Address: 123 Business St., City, Country</li>
+          <li>Email: <a href="prisonbirdstech@gmail.com">prisonbirdstech@gmail.com</a></li>
+          <li>Address: No.12, Business St., Chennai, India</li>
         </ul>
       </section>
     </div>
