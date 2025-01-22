@@ -2,6 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { gapi } from "gapi-script";
+import { getMessaging } from 'firebase/messaging';
+
 
 
 const firebaseConfig = {
@@ -18,6 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+export const messaging = getMessaging(app);
 
 
 // src/utils/googleDrive.ts

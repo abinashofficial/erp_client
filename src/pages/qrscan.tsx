@@ -40,7 +40,7 @@ const QRCodeScanner: React.FC = () => {
  
   const handleScan = async (data: any) =>{
     if (data) {
-       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data);
+       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data.text);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
           try {

@@ -22,6 +22,7 @@ import Qrgenerate from '../pages/qrgenerate';
 import Gdrive from "../pages/uploaddrive"
 import PrivacyPolicy from "../pages/privacypolicy"
 import Terms from "../pages/terms"
+import Whatsapp from "../pages/whatsapp"
 
 
 
@@ -42,6 +43,7 @@ const Main: React.FC = () => {
             }
 
         <Routes>
+        {/* <Route path="/" element={<Whatsapp />} /> */}
 
         {/* <Route path="/" element={<Gdrive />} /> */}
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
@@ -49,6 +51,7 @@ const Main: React.FC = () => {
 
         
         <Route path="/" element={<SignIn />} />
+
         <Route path="/qrscan" element={<Qrscan />} />
         <Route path="/qrgenerate" element={<Qrgenerate />} />
 
