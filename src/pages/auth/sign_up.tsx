@@ -346,7 +346,7 @@ useEffect(() => {
         <input
           type="text"
           name="last_name"
-          placeholder="Sure Name"
+          placeholder="Sur Name"
           value={formData.last_name}
           onChange={handleChange}
         />

@@ -12,7 +12,8 @@ import { useAuth } from '../../context/authContext';
 interface SignInFormData {
     email: string;
     password: string;
-    confirmPassword:string
+    confirmPassword:string;
+    mobile_number:string;
   }
 
 const ForgetPassword: React.FC = () => {
@@ -21,8 +22,15 @@ const ForgetPassword: React.FC = () => {
     const [formData, setFormData] = useState<SignInFormData>({
         email: '',
         password: '',
-        confirmPassword:""
+        confirmPassword:"",
+        mobile_number:"",
       });
+            const [sendData, setSendData] = useState<SignInFormData>({
+              email: '',
+              password: '',
+              confirmPassword:"",
+              mobile_number:"",
+            });
 
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -40,6 +48,20 @@ const ForgetPassword: React.FC = () => {
             alert("Passwords doesn't match");
             return;
         }
+        const isIntegerString = formData.email.split("").every((char) => /\d/.test(char));
+        let message = "Invalid Email"
+        sendData.email = formData.email
+        sendData.password = formData.password
+
+
+
+      if (isIntegerString){
+        sendData.mobile_number = formData.email
+        sendData.email = ""
+        message = "Invalid Mobile Number"
+      }
+        const controller = new AbortController();
+        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
         setVisible(false)
 
 
@@ -54,7 +76,7 @@ const ForgetPassword: React.FC = () => {
      headers: {
        'Content-Type': 'application/json',
      },
-     body: JSON.stringify(formData),
+     body: JSON.stringify(sendData),
    });
 
    if (response.ok) {
@@ -66,7 +88,7 @@ const ForgetPassword: React.FC = () => {
 
      // Handle successful sign-in (e.g., redirect or store token)
    }else if (response.status===400){
-    alert("Invalid Email");
+    alert(message);
     setVisible(true)
 
   } else {
@@ -98,7 +120,7 @@ const ForgetPassword: React.FC = () => {
         <div className="form-container" >
             <h2>Change Password</h2>
             <form onSubmit={handlePassword}>
-                <input type="email" name='email' placeholder="Email" value={formData.email} onChange={handleChange} required />
+                <input type="text" name='email' placeholder="Email or Phone Number" value={formData.email} onChange={handleChange} required />
                 <input type="password" name="password" placeholder="New Password" value={formData.password} onChange={handleChange} required />
                 <input type="password" name='confirmPassword' placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
                 <button type="submit">Continue</button>

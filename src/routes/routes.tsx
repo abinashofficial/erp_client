@@ -23,10 +23,6 @@ import Gdrive from "../pages/uploaddrive"
 import PrivacyPolicy from "../pages/privacypolicy"
 import Terms from "../pages/terms"
 import Whatsapp from "../pages/whatsapp"
-
-
-
-
 import '../styles/App.css';
 
 
