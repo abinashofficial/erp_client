@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/home';
 import Dashboard from '../pages/dashboard';
-
 import SignIn from '../pages/auth/sign_in';
 import SignUp from '../pages/auth/sign_up';
 import Otp from '../pages/auth/otp';
@@ -24,6 +23,7 @@ import PrivacyPolicy from "../pages/privacypolicy"
 import Terms from "../pages/terms"
 import Whatsapp from "../pages/whatsapp"
 import '../styles/App.css';
+import Chat from "../pages/chat"
 
 
 const Main: React.FC = () => {
@@ -42,6 +42,7 @@ const Main: React.FC = () => {
         {/* <Route path="/" element={<Whatsapp />} /> */}
 
         {/* <Route path="/" element={<Gdrive />} /> */}
+
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
 
@@ -124,6 +125,8 @@ const Main: React.FC = () => {
 
     </Routes>
     <Footer/>
+    <Chat />
+
 
     </div>
 
