@@ -184,7 +184,7 @@ const SignIn: React.FC = () => {
     return
   } 
     setVisible(true)
-    alert("Internal server Error " + error);
+    alert("Internal server Error ");
     // setError("Failed to fetch data: " + err.message);
   return
  }

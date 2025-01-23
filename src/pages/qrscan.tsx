@@ -39,13 +39,15 @@ const QRCodeScanner: React.FC = () => {
   };
  
   const handleScan = async (data: any) =>{
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
     if (data) {
        const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data.text);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
+
           try {
-            const controller = new AbortController();
-            setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+
                 setVisible(false)
                 const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
                 // const apiUrl = 'http://localhost:8080/public/get-user';
@@ -80,11 +82,7 @@ const QRCodeScanner: React.FC = () => {
                 navigate('/home'); // Redirect to dashboard after login
                 setVisible(true)
                 // Handle successful sign-in (e.g., redirect or store token)
-              }else{  
-                setVisible(true)
-                alert("Internal server Error");
-                // Handle user info and proceed with your signup logic
-              } 
+              }
             }catch (error :any) {
                 if (error.name === "AbortError") {
                     setVisible(true)
