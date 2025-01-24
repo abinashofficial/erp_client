@@ -96,10 +96,25 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const logout = () => {
         setIsAuthenticated(false);
         if (timeoutId) {
-            clearTimeout(timeoutId);
             setTimeoutId(null);
+            clearTimeout(timeoutId);
         }
-    };
+        setEmpDetail({...empDetail,
+            employee_id:'',
+            first_name: '',
+            last_name: '',
+            full_name: '',
+            mobile_number: '',
+            email: '',
+            date_of_birth: '',
+            gender: '',
+            password: '',
+            confirmPassword:'',
+            photo_url:"",
+            access_token:"",
+            country_code:"",
+        })
+        };
 
 
     useEffect(() => {

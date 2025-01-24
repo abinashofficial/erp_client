@@ -24,6 +24,8 @@ import Terms from "../pages/terms"
 import Whatsapp from "../pages/whatsapp"
 import '../styles/App.css';
 import Chat from "../pages/chat"
+import Notification from "../pages/notification"
+
 
 
 const Main: React.FC = () => {
@@ -42,6 +44,9 @@ const Main: React.FC = () => {
         {/* <Route path="/" element={<Whatsapp />} /> */}
 
         {/* <Route path="/" element={<Gdrive />} /> */}
+                {/* <Route path="/" element={<OpenAI />} /> */}
+
+
 
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
@@ -125,7 +130,13 @@ const Main: React.FC = () => {
 
     </Routes>
     <Footer/>
+    <div style={{
+        background:"lightgray",
+        backgroundColor:"lightgray"
+    }}>
     <Chat />
+
+    </div>
 
 
     </div>

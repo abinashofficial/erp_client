@@ -1,5 +1,5 @@
 import { useAuth } from '../context/authContext';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,40 @@ type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4';
 
 
 const Header: React.FC = () => {
-    const { logout } = useAuth();
+    const { logout, empDetail } = useAuth();
+      const [notifications, setNotifications] = useState<string[]>([]);
+      
+    //   const userId = "user123"; // Replace with the logged-in user's ID
+    
+      useEffect(() => {
+        const ws = new WebSocket(`ws://localhost:8080/ws?userId=${empDetail.email}`);
+    
+        ws.onopen = () => {
+          console.log("WebSocket connection established");
+        };
+    
+        ws.onmessage = (event) => {
+          setNotifications((prev) => [...prev, event.data]);    
+    
+          console.log(event.data)
+          alert(event.data)
+        };
+    
+        ws.onclose = () => {
+          console.log("WebSocket connection closed");
+        };
+    
+        ws.onerror = (error) => {
+          console.error("WebSocket error:", error);
+        };
+    
+        // Cleanup on unmount
+        return () => {
+          ws.close();
+        };
+      }, [empDetail.email]);
+
+      
     
     const navigate = useNavigate()
     const [clickedButtons, setClickedButtons] = useState({
