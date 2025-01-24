@@ -14,8 +14,9 @@ const Header: React.FC = () => {
     //   const userId = "user123"; // Replace with the logged-in user's ID
     
       useEffect(() => {
-        const ws = new WebSocket(`ws://localhost:8080/ws?userId=${empDetail.email}`);
-    
+        // const ws = new WebSocket(`ws://localhost:8080/ws?userId=${empDetail.email}`);
+        const ws = new WebSocket(`wss://erp-client-pink.vercel.app/ws?userId=${empDetail.email}`);
+
         ws.onopen = () => {
           console.log("WebSocket connection established");
         };
