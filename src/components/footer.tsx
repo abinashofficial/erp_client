@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
     return (
 <footer>
         <div className="social-media-icons">
-        <a href="https://www.linkedin.com/in/abinash-chinnasamy-1330741a0" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/abinas-chinnasamy-1330741a0" target="_blank" rel="noopener noreferrer">
             <FaLinkedin size={30} />
         </a>
         <a href="https://wa.me/+919940463927" target="_blank" rel="noopener noreferrer">

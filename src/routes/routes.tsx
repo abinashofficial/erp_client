@@ -55,7 +55,11 @@ const Main: React.FC = () => {
         <Route path="/" element={<SignIn />} />
 
         <Route path="/qrscan" element={<Qrscan />} />
-        <Route path="/qrgenerate" element={<Qrgenerate />} />
+        <Route path="/qrgenerate" element={
+                            <ProtectedRoute>
+                            <Qrgenerate />
+                        </ProtectedRoute>
+                        } />
 
 
         <Route path="/dashboard" element={<Dashboard />} />

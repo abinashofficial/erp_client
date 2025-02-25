@@ -53,7 +53,7 @@ const Blog: React.FC = () => {
   marginTop:'20px',
 }}>
   
-  <a href="https://drive.google.com/file/d/18VIkikA2fXG81pU9Qbwr9a2SJYKpm8Qh/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+  <a href="https://drive.google.com/file/d/1KqijlvzdLRoqn3bV4_uHO22R-3L1CijX/view?usp=sharing" target="_blank" rel="noopener noreferrer">
   Get CV        </a>
 
 </div>
