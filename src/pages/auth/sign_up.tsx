@@ -25,6 +25,7 @@ interface SignupFormData {
   photo_url:any;
   country_code:any;
   access_token:any;
+  coins:any,
 }
 
 interface CountryOption {
@@ -53,6 +54,7 @@ const SignUp: React.FC = () => {
         photo_url:"",
         country_code:empDetail.country_code,
         access_token:"",
+        coins:0,
       });
 
  const navigate = useNavigate()
@@ -129,6 +131,7 @@ const SignUp: React.FC = () => {
           photo_url:result.photo_url,
           access_token:result.access_token,
           country_code:result.country_code,
+          coins:result.coins,
       })
 
 
@@ -146,6 +149,7 @@ const SignUp: React.FC = () => {
         confirmPassword:result.confirmPassword,
         access_token:result.access_token,
         country_code:result.country_code,
+        coins:result.coins,
       });
         toast.success('Signed up successful');
         setTimeout(() => {

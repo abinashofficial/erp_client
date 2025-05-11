@@ -64,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/firebase": "^3.2.1",
     "@types/react-qr-reader": "^2.1.7",
     "eslint": "^8.57.1",

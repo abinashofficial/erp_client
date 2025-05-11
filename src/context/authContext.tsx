@@ -15,6 +15,7 @@ interface SignupFormData {
     photo_url:any;
     access_token:any;
     country_code:any,
+    coins:any,
   }
   
   interface CountryOption {
@@ -54,6 +55,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         photo_url:"",
         access_token:"",
         country_code:"",
+        coins:0,
       });
 
     const login = (result: SignupFormData) => {
@@ -71,6 +73,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             photo_url:result.photo_url,
             access_token:result.access_token,
             country_code:result.country_code,
+            coins:result.coins,
         })
 
         console.log("empDetail:-", empDetail)
@@ -113,6 +116,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             photo_url:"",
             access_token:"",
             country_code:"",
+            coins:0,
         })
         };
 

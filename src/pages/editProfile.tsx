@@ -23,6 +23,7 @@ interface SignupFormData {
   photo_url:any;
   country_code:any;
   access_token:any;
+  coins:any;
 }
 
 interface CountryOption {
@@ -51,7 +52,8 @@ const EditProfile: React.FC = () => {
         photo_url: empDetail.photo_url,
         country_code:empDetail.countryCode,
         access_token: empDetail.access_token,
-      });
+        coins:empDetail.coins, 
+           });
 
  const navigate = useNavigate()
 
@@ -119,6 +121,7 @@ const EditProfile: React.FC = () => {
         confirmPassword:result.confirmPassword,
         access_token:result.access_token,
         country_code:result.country_code,
+        coins:result.coins,
 
       });
         login(empDetail);

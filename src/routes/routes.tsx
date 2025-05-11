@@ -8,6 +8,7 @@ import Otp from '../pages/auth/otp';
 import ProtectedRoute from './protectedRoute';
 import ForgetPassword from '.././pages/auth/forget_password';
 import Blog from '../pages/blog';
+import Game from '../pages/game';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Service from '../pages/service';
@@ -83,6 +84,14 @@ const Main: React.FC = () => {
                 <ProtectedRoute>
                     <Blog />
                 </ProtectedRoute>
+            } 
+        />
+        <Route 
+            path="/game" 
+            element={
+                <ProtectedRoute>
+                    <Game />
+                 </ProtectedRoute>
             } 
         />
 

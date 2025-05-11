@@ -48,6 +48,7 @@ interface SignInFormData {
     photo_url:any;
     access_token:any;
     country_code:any;
+    coins:any;
   }
 
 const SignIn: React.FC = () => {
@@ -162,6 +163,7 @@ const SignIn: React.FC = () => {
     confirmPassword:result.confirmPassword,
     access_token: result.access_token,
     country_code:result.country_code,
+    coins:result.coins,
   });
   
     login(empDetail);
@@ -216,6 +218,7 @@ const SignIn: React.FC = () => {
           photo_url:user.photoURL,
           access_token:"",
           country_code:"",
+          coins:0,
         });
 
 
@@ -247,6 +250,7 @@ const SignIn: React.FC = () => {
           confirmPassword:result.confirmPassword,
           access_token: result.access_token,
           country_code:result.country_code,
+          coins:result.coins,
         });
 
         

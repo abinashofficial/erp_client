@@ -2,9 +2,10 @@ import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
 import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { IoGameControllerSharp } from "react-icons/io5";
 
 
-type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4';
+type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4' | 'button5';
 
 
 const Header: React.FC = () => {
@@ -50,7 +51,7 @@ const Header: React.FC = () => {
       "button2": false,
       "button3": false,
       "button4": false,
-
+      "button5": false,
     });
 
   
@@ -67,7 +68,7 @@ const Header: React.FC = () => {
           "button2": false,
           "button3": false,
           "button4": false,
-
+          "button5": false,
         }));
         setClickedButtons((prevState) => ({
           ...prevState,
@@ -97,6 +98,8 @@ const Header: React.FC = () => {
         "button2": false,
         "button3": false,
         "button4": false,
+        "button5": false,
+
       }));
       setClickedButtons((prevState) => ({
         ...prevState,
@@ -132,7 +135,7 @@ const Header: React.FC = () => {
           <FaEarlybirds size={50} />
           </div>
 <button onClick={() => headerButtonHandle("button1", '/home')} className={`header-btn ${clickedButtons.button1 ? 'clicked' : ''}`}>Home</button>
-<button onClick={() => headerButtonHandle("button2", '/blog')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Blog</button>
+<button onClick={() => headerButtonHandle("button5", '/game')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Game</button>
 <button onClick={() => headerButtonHandle("button3",  '/service')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Service</button>
 
 
@@ -169,6 +172,8 @@ const Header: React.FC = () => {
             <li> <button onClick={() => landPage("button1", '/home')} className="link-button"><FaHome className="menu-item-icon" />Home</button></li>
             <li>  <button onClick={() => landPage("button4", '/profile')} className="link-button"><FaUser className="menu-item-icon"  /> Profile</button></li>
             <li>  <button onClick={() => landPage("button2", '/blog')} className="link-button"><FaBlog className="menu-item-icon"  /> Blog</button></li>
+            <li>  <button onClick={() => landPage("button5", '/game')} className="link-button"><IoGameControllerSharp className="menu-item-icon"  /> Game</button></li>
+
             <li>  <button onClick={() => landPage("button3", '/service')} className="link-button"> <FaServicestack className="menu-item-icon" /> Services</button></li>
           <li> <button onClick={handleLogout} className="link-button">  <FaSignOutAlt className="menu-item-icon" /> Logout</button></li>
 
