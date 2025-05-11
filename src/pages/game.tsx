@@ -24,9 +24,34 @@ interface SignupFormData {
 }
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
+  useEffect(() => {
+    const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
+
+    source.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("Coins updated:", data.coins);
+      updateCoins(data.coins);
+    };
+
+    return () => {
+      source.close();
+    };
+  }, [userId]);
+};
 
 const Game: React.FC = () => {
     const { empDetail, login} = useAuth();
+
+    const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
+
+    useEffect(() => {
+  setLiveUpdate(empDetail.coins);
+}, []);
+
+useSSE(empDetail.email, (coins) => {
+setLiveUpdate(coins);
+});
 
 
                       const [formData, setFormData] = useState<SignupFormData>({
@@ -46,9 +71,11 @@ const Game: React.FC = () => {
             coins:empDetail.coins, 
                });
 
-      const AddCoins = async (add :any) => {
 
-        await sleep(15000); // 3 seconds
+
+
+
+      const AddCoins = async (add :any) => {
 
   const updatedFormData = {
     ...formData,
@@ -114,28 +141,20 @@ const handleDownload = (url: string, free :boolean): void => {
     }
 };
 
-//   const delayedAddCoins = async () => {
-//   console.log("Waiting for 15 seconds...");
-//   await sleep(15000); // wait for 15 seconds
-//     AddCoins(formData.coins + 50); // Call your actual function here
-//   console.log("Coins added after delay!");
-// };
 
-  const handleUPIPayment = () => {
+  const handleUPIPayment = async () => {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    // if (!isMobile) {
-    //   alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
-    //   return;
-    // }
+    if (!isMobile) {
+      alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
+      return;
+    }
 
     const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=50&cu=INR&tn=${encodeURIComponent(
       'for game purchase'
     )}`;
-sleep(10000); // wait for 10 seconds
+    await sleep(10000); // wait for 10 seconds
     AddCoins(formData.coins + 50); // Call your actual function here
-
-
   };
 
 
@@ -155,7 +174,7 @@ sleep(10000); // wait for 10 seconds
                 <h3 style={{
                         marginLeft:"50px",
                 }}>
-                Total coins: {empDetail.coins}
+                Total coins: {liveUpdate}
 
                 </h3>
 
