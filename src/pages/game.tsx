@@ -130,6 +130,12 @@ setLiveUpdate(coins);
 
 
 const handleDownload = (url: string, free :boolean): void => {
+        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if (isMobile) {
+            alert('Download links only work on PC or Laptop devices.');
+            return;
+        }
+
     if(empDetail.coins && empDetail.coins >= 50 || free){
             AddCoins(formData.coins - 50);
 
@@ -1056,6 +1062,8 @@ Free
 
     </div>
 </div>
+        <ToastContainer/>
+
     </div>
 
 
