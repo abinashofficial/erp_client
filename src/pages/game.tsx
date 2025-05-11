@@ -22,6 +22,7 @@ interface SignupFormData {
   access_token:any;
   coins:any;
 }
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 
 const Game: React.FC = () => {
@@ -47,6 +48,7 @@ const Game: React.FC = () => {
 
       const AddCoins = async (add :any) => {
 
+        await sleep(15000); // 3 seconds
 
   const updatedFormData = {
     ...formData,
@@ -112,20 +114,28 @@ const handleDownload = (url: string, free :boolean): void => {
     }
 };
 
+//   const delayedAddCoins = async () => {
+//   console.log("Waiting for 15 seconds...");
+//   await sleep(15000); // wait for 15 seconds
+//     AddCoins(formData.coins + 50); // Call your actual function here
+//   console.log("Coins added after delay!");
+// };
+
   const handleUPIPayment = () => {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if (!isMobile) {
-      alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
-      return;
-    }
+    // if (!isMobile) {
+    //   alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
+    //   return;
+    // }
 
     const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=50&cu=INR&tn=${encodeURIComponent(
       'for game purchase'
     )}`;
+sleep(10000); // wait for 10 seconds
+    AddCoins(formData.coins + 50); // Call your actual function here
 
-    window.location.href = upiLink;
-    AddCoins(formData.coins + 50);
+
   };
 
 
