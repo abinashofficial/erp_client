@@ -756,6 +756,16 @@ button.menu-btn{
 }
 
 
+.game-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+}
+
+
 
 
 

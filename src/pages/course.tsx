@@ -2,7 +2,8 @@ import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
 import { FaLinkedin, FaWhatsapp, FaInstagram, FaEarlybirds } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import Lottie from "lottie-react";
+import coinEmoji from "../assets/animations/coin.json";
 import ReactPlayer from 'react-player/youtube';
 
 import { SiGmail } from 'react-icons/si';
@@ -60,7 +61,29 @@ margin:"50px",
       )
     }
   >
-    View Course
+  
+<div className='game-button'>
+    <h3>View Course</h3>
+
+<div style={{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+    textAlign:"center",
+    // marginTop:"10px"
+}}>
+   
+
+<Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay />
+Free
+</div>
+
+</div>
 
   </button>
  
@@ -89,8 +112,29 @@ margin:"50px",
       )
     }
   >
-    View Course
 
+<div className='game-button'>
+    <h3>View Course</h3>
+
+<div style={{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+    textAlign:"center",
+    // marginTop:"10px"
+}}>
+   
+
+<Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay />
+Free
+</div>
+
+</div>
   </button>
       </div>
 
@@ -117,8 +161,29 @@ margin:"50px",
       )
     }
   >
-    View Course
 
+<div className='game-button'>
+    <h3>View Course</h3>
+
+<div style={{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+    textAlign:"center",
+    // marginTop:"10px"
+}}>
+   
+
+<Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay />
+Free
+</div>
+
+</div>
   </button>
 
       </div>
@@ -148,8 +213,29 @@ margin:"50px",
       )
     }
   >
-    View Course
 
+<div className='game-button'>
+    <h3>View Course</h3>
+
+<div style={{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+    textAlign:"center",
+    // marginTop:"10px"
+}}>
+   
+
+<Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay />
+Free
+</div>
+
+</div>
   </button>
 
       </div>
@@ -178,8 +264,29 @@ margin:"50px",
       )
     }
   >
-    View Course
 
+<div className='game-button'>
+    <h3>View Course</h3>
+
+<div style={{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+    textAlign:"center",
+    // marginTop:"10px"
+}}>
+   
+
+<Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay />
+Free
+</div>
+
+</div>
   </button>
 
       </div>
@@ -206,8 +313,29 @@ margin:"50px",
       )
     }
   >
-    View Course
 
+<div className='game-button'>
+    <h3>View Course</h3>
+
+<div style={{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+    textAlign:"center",
+    // marginTop:"10px"
+}}>
+   
+
+<Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay />
+Free
+</div>
+
+</div>
   </button>
  
       </div>

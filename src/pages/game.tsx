@@ -168,14 +168,15 @@ const handleDownload = (url: string, free :boolean): void => {
     return (
         <div>
 
-
 <div style={{
     display:"flex",
     justifyContent:"center",
     alignItems:"center",
     flexDirection:"row",
+    flexWrap:"wrap",
 
 }}>
+    
                 <h2>Hi... {empDetail.full_name}</h2>
 
                 <h3 style={{
@@ -200,20 +201,17 @@ const handleDownload = (url: string, free :boolean): void => {
     cursor:"pointer",
 }}>
     <div style={{
-        fontSize:"10px",
+        fontSize:"12px",
+        fontWeight:"bolder",
     }}>
-        Add coins
+        Add Coins
 
     </div>
-
-
 </button>
 
 </div>
       
 <div className='main-content'>
-
-
 
 
 
@@ -223,7 +221,7 @@ const handleDownload = (url: string, free :boolean): void => {
         flexWrap:"wrap",
 justifyContent:"space-around",
 gap:"50px",
-margin:"50px",
+// margin:"50px",
       }}>
 
 
@@ -262,14 +260,7 @@ margin:"50px",
 
   >
     
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -278,7 +269,6 @@ margin:"50px",
     justifyContent:"space-around",
     alignItems:"center",
     textAlign:"center",
-    // marginTop:"10px"
 }}>
    
 
@@ -333,14 +323,7 @@ margin:"50px",
 
   >
     
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Download</h3>
 
 <div style={{
@@ -406,14 +389,7 @@ Free
 
   >
     
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Download</h3>
 
 <div style={{
@@ -479,14 +455,7 @@ Free
 
   >
     
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Download</h3>
 
 <div style={{
@@ -548,14 +517,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -615,14 +577,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -685,14 +640,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -750,14 +698,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -817,14 +758,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -883,14 +817,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -948,14 +875,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
@@ -1017,14 +937,7 @@ Free
 
   >
   
-<div style={{
-        display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-around",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
+<div className='game-button'>
     <h3>Price</h3>
 
 <div style={{
