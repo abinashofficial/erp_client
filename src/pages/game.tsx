@@ -159,6 +159,7 @@ const handleDownload = (url: string, free :boolean): void => {
     const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=50&cu=INR&tn=${encodeURIComponent(
       'for game purchase'
     )}`;
+    window.location.href = upiLink;
     await sleep(10000); // wait for 10 seconds
     AddCoins(formData.coins + 50); // Call your actual function here
   };
