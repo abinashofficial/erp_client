@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
 import ReactPlayer from 'react-player/youtube';
-
+import Coins from "../pages/coins"
 import { SiGmail } from 'react-icons/si';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '@mui/material';
@@ -25,7 +25,8 @@ const Course: React.FC = () => {
     return (
 
 
-      
+      <div>
+<Coins/>
 <div className='main-content'>
 
 
@@ -349,6 +350,7 @@ Free
 
 
 
+      </div>
 
 </div>
 

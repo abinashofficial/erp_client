@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Coins from "../pages/coins"
 
 const Service: React.FC = () => {
   const navigate = useNavigate();
@@ -8,7 +9,9 @@ const Service: React.FC = () => {
     return (
 
 
-      
+      <div>
+  <Coins/>
+
 <div className='main-content'>
 
 
@@ -86,6 +89,7 @@ margin:"50px",
     </div>
 </div>
 
+      </div>
 
 
 

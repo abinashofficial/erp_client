@@ -3,6 +3,7 @@ import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
     import { toast, ToastContainer } from 'react-toastify';
+    import Coins from "../pages/coins"
     
 
  
@@ -22,38 +23,11 @@ interface SignupFormData {
   access_token:any;
   coins:any;
 }
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
-  useEffect(() => {
-    const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
 
-    source.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("Coins updated:", data.coins);
-      updateCoins(data.coins);
-    };
-
-    return () => {
-      source.close();
-    };
-  }, [userId]);
-};
 
 const Game: React.FC = () => {
     const { empDetail, login} = useAuth();
-
-    const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
-
-    useEffect(() => {
-  setLiveUpdate(empDetail.coins);
-}, []);
-
-useSSE(empDetail.email, (coins) => {
-setLiveUpdate(coins);
-});
-
-
                       const [formData, setFormData] = useState<SignupFormData>({
             employee_id:empDetail.employee_id,
             first_name: empDetail.first_name,
@@ -76,7 +50,6 @@ setLiveUpdate(coins);
 
 
       const AddCoins = async (add :any) => {
-    await sleep(10000); // wait for 10 seconds
 
   const updatedFormData = {
     ...formData,
@@ -149,68 +122,11 @@ const handleDownload = (url: string, free :boolean): void => {
 };
 
 
-  const handleUPIPayment = async () => {
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    if (!isMobile) {
-      alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
-      return;
-    }
-
-    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=50&cu=INR&tn=${encodeURIComponent(
-      'for game purchase'
-    )}`;
-    window.location.href = upiLink;
-    AddCoins(formData.coins + 50); // Call your actual function here
-  };
 
 
     return (
         <div>
-
-<div style={{
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    flexDirection:"row",
-    flexWrap:"wrap",
-
-}}>
-    
-                <h2>Hi... {empDetail.full_name}</h2>
-
-                <h3 style={{
-                        marginLeft:"50px",
-                }}>
-                Total coins: {liveUpdate}
-
-                </h3>
-
-                            <div style={{
-            height:"50px",
-            width:"50px",
-        }}>
-<Lottie animationData={coinEmoji} loop autoplay />
-
-        </div>
-<button onClick={handleUPIPayment} style={{
-    backgroundColor:"gold",
-    color:"black",
-    borderRadius:"10px",
-
-    cursor:"pointer",
-}}>
-    <div style={{
-        fontSize:"12px",
-        fontWeight:"bolder",
-    }}>
-        Add Coins
-
-    </div>
-</button>
-
-</div>
-      
+      <Coins/>
 <div className='main-content'>
 
 

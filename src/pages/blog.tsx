@@ -1,5 +1,6 @@
 import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
+import Coins from "../pages/coins"
 
 
 
@@ -35,7 +36,9 @@ const Blog: React.FC = () => {
 
     
     return (
+      <div>
 
+{/* <Coins/> */}
       <div className='main-content'>
 <div>
 
@@ -59,6 +62,7 @@ const Blog: React.FC = () => {
 </div>
 </div>
 </div>
+      </div>
 
 
     );

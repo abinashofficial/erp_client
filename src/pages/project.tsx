@@ -1,17 +1,10 @@
-
-
-
-
-
-
-
 import { useAuth } from '../context/authContext';
 import React, { useState, useEffect } from 'react';
 import { FaLinkedin, FaWhatsapp, FaInstagram, FaEarlybirds } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Checkin from "../assets/animations/entryillustrator.png"
 import ReactPlayer from 'react-player/youtube';
-
+import Coins from "../pages/coins"
 import { SiGmail } from 'react-icons/si';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '@mui/material';
@@ -25,18 +18,11 @@ import { colors } from '@mui/material';
 const Project: React.FC = () => {
 
     
-
-
-
-
-
-
-
-    
     return (
 
 
-      
+      <div>
+<Coins/>
 <div className='main-content'>
 
 
@@ -131,6 +117,7 @@ href="https://www.youtube.com/watch?v=lCqEhvqefqs&list=PLL7RrfYQRQay94iEBIUWYfGy
     </div>
 </div>
 
+      </div>
 
 
 

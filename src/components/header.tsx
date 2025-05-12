@@ -151,11 +151,11 @@ const Header: React.FC = () => {
 
 
 
-        <div style={{
+        {/* <div style={{
           height:"2px",
           backgroundColor:"#F0F2F5",
         }}>
-            </div>
+            </div> */}
 
 
             <div className="drawer-container">
