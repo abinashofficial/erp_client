@@ -76,6 +76,7 @@ setLiveUpdate(coins);
 
 
       const AddCoins = async (add :any) => {
+    await sleep(10000); // wait for 10 seconds
 
   const updatedFormData = {
     ...formData,
@@ -160,7 +161,6 @@ const handleDownload = (url: string, free :boolean): void => {
       'for game purchase'
     )}`;
     window.location.href = upiLink;
-    await sleep(10000); // wait for 10 seconds
     AddCoins(formData.coins + 50); // Call your actual function here
   };
 
