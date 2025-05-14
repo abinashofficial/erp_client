@@ -123,6 +123,7 @@ const Header: React.FC = () => {
         <div style={{
           display:"flex",
           justifyContent:"space-between",
+          alignItems:"center",
         }}>
 
           <div style={{
@@ -138,6 +139,32 @@ const Header: React.FC = () => {
 <button onClick={() => headerButtonHandle("button5", '/game')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Game</button>
 <button onClick={() => headerButtonHandle("button3",  '/service')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Service</button>
 
+
+
+{!empDetail.employee_id?(<button onClick={()=>navigate('/signup')} style={{
+    // backgroundColor:"blue",
+    color:"black",
+    borderRadius:"10px",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    flexDirection:"column",
+    height:"30px",
+
+    cursor:"pointer",
+}}>
+    <div style={{
+        fontSize:"12px",
+        fontWeight:"bolder",
+    }}>
+        Sign Up
+
+    </div>
+</button>):(
+  <div>
+
+  </div>
+  )  }
 
 
         <div >

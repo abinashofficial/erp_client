@@ -25,6 +25,7 @@ import Terms from "../pages/terms"
 import Whatsapp from "../pages/whatsapp"
 import '../styles/App.css';
 import Chat from "../pages/chat"
+import PaymentMethodSelector from "../pages/earnCoins"
 import Notification from "../pages/notification"
 
 
@@ -92,6 +93,14 @@ const Main: React.FC = () => {
                 <ProtectedRoute>
                     <Game />
                  </ProtectedRoute>
+            } 
+        />
+
+                <Route 
+            path="/coins" 
+            element={
+                    <PaymentMethodSelector />
+
             } 
         />
 

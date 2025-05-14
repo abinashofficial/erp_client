@@ -4,6 +4,7 @@ import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
     import { toast, ToastContainer } from 'react-toastify';
 import { FaCoins } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
     
 
  
@@ -31,7 +32,7 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
 
     source.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log("Coins updated:", data.coins);
+      console.log("Coins updated:", data);
       updateCoins(data.coins);
     };
 
@@ -42,17 +43,20 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
 };
 
 const Coins: React.FC = () => {
-    const { empDetail, login} = useAuth();
+    const { empDetail} = useAuth();
+    const [visible, setVisible] = useState(false);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
+    
 
     useEffect(() => {
   setLiveUpdate(empDetail.coins);
-}, []);
+}, [empDetail.coins]);
 
 useSSE(empDetail.email, (coins) => {
 setLiveUpdate(coins);
 });
+
 
 
                       const [formData, setFormData] = useState<SignupFormData>({
@@ -99,58 +103,30 @@ setLiveUpdate(coins);
     const result = await response.json();
 
     if (response.ok) {
-      const updatedEmp = {
-        employee_id: result.employee_id,
-        first_name: result.first_name,
-        last_name: result.last_name,
-        full_name: `${result.first_name} ${result.last_name}`,
-        mobile_number: result.mobile_number,
-        email: result.email,
-        date_of_birth: result.date_of_birth,
-        gender: result.gender,
-        password: result.password,
-        confirmPassword: result.confirmPassword,
-        photo_url: result.photo_url,
-        access_token: result.access_token,
-        country_code: result.country_code,
-        coins: result.coins,
-      };
 
-      setFormData(updatedEmp);
-      login(updatedEmp);
+      console.log('Updated employee data:', updatedFormData);
       toast.success('Coins added successfully');
+      return
     } else if (response.status === 500) {
       alert(result.message);
+      return
     } else {
       console.error('Update failed:', result);
+      return
     }
   } catch (error) {
     alert('Internal server error');
     console.error('Error:', error);
+    return
   }
 };
 
 
-const handleDownload = (url: string, free :boolean): void => {
-        const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if (isMobile) {
-            alert('Download links only work on PC or Laptop devices.');
-            return;
-        }
-
-    if(empDetail.coins && empDetail.coins >= 50 || free){
-            AddCoins(formData.coins - 50);
-
-        console.log("You have enough coins to download this game.");
-
-  window.open(url, "_blank", "noopener,noreferrer");
-    }else{
-        alert("You don't have enough coins to download this game. Please add coins.")
+  const handleUPIPayment = async (coin :any) => {
+    if (!empDetail.employee_id){
+      alert('Please signup to add coins.');
+      return
     }
-};
-
-
-  const handleUPIPayment = async () => {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if (!isMobile) {
@@ -158,11 +134,11 @@ const handleDownload = (url: string, free :boolean): void => {
       return;
     }
 
-    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=50&cu=INR&tn=${encodeURIComponent(
+    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent(
       'for game purchase'
     )}`;
     window.location.href = upiLink;
-    AddCoins(formData.coins + 50); // Call your actual function here
+    AddCoins(coin); // Call your actual function here
   };
 
 
@@ -191,10 +167,15 @@ const handleDownload = (url: string, free :boolean): void => {
             height:"50px",
             width:"50px",
         }}>
-<Lottie animationData={coinEmoji} loop autoplay />
+<Lottie style={{
+  transform: "scale(0.5)",
+}} animationData={coinEmoji} loop autoplay />
 
         </div>
-<button onClick={handleUPIPayment} style={{
+
+        {!visible?(
+          <div>
+<button onClick={()=>setVisible(!visible)} style={{
     backgroundColor:"gold",
     color:"black",
     borderRadius:"10px",
@@ -209,17 +190,200 @@ const handleDownload = (url: string, free :boolean): void => {
 
     </div>
 </button>
+          </div>
+        ):(
+          <div>
+
+          </div>
+        )}
+
 
 </div>
- 
 
-        <ToastContainer/>
 
+{visible ? (
+    <div style={{
+      display:"flex",
+      justifyContent:"space-around",
+      flexWrap:"wrap",
+      gap:"50px",
+      marginTop:"20px",
+    }}>
+
+    <div className="form-container">
+<form onSubmit={(e) => {
+  e.preventDefault();
+  handleUPIPayment(liveUpdate + 50);
+}}>
+
+
+    <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
+      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Limited Time Offer!</h2>
+      
+      <div className="common-div">
+        <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
+        </div>
+
+              <div className="common-div">
+        <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">50 Coin = ₹2500</span>
+        </div>
+
+
+
+      
+      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
+        <strong>Now Get 50 Coins = ₹50</strong>
+      </div>
+                    <div className="common-div">
+<div>
+      <p  style={{
+        backgroundColor:"#CC0C39",
+        color:"white",
+        width:"150px",
+
+      }}>Offer ends soon!</p>
+
+</div>
+        </div>
+
+
+
+    </div>
+          <button className="grab-offer-btn">
+        Grab Offer
+      </button>
+
+</form>
     </div>
 
 
 
+        <div className="form-container">
+<form onSubmit={(e) => {
+  e.preventDefault();
+  handleUPIPayment(liveUpdate + 250);
+}}>
 
+
+    <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
+      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Ultimate Offer!</h2>
+      
+      <div className="common-div">
+        <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
+        </div>
+
+              <div className="common-div">
+        <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">300 Coin = ₹15000</span>
+        </div>
+
+
+
+      
+      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
+        <strong>Now Get 300 Coins = ₹250</strong>
+      </div>
+                    <div className="common-div">
+<div>
+      <p  style={{
+        backgroundColor:"#CC0C39",
+        color:"white",
+        width:"150px",
+
+      }}>Offer ends soon!</p>
+
+</div>
+        </div>
+
+
+
+    </div>
+          <button className="grab-offer-btn">
+        Grab Offer
+      </button>
+
+</form>
+    </div>
+
+
+
+          <div className="form-container">
+<form onSubmit={(e) => {
+  e.preventDefault();
+  handleUPIPayment(liveUpdate + 450);
+}}>
+
+
+    <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
+      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Mega Offer!</h2>
+      
+      <div className="common-div">
+        <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
+        </div>
+
+              <div className="common-div">
+        <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">500 Coin = ₹25000</span>
+        </div>
+
+
+
+      
+      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
+        <strong>Now Get 500 Coins = ₹450</strong>
+      </div>
+                    <div className="common-div">
+<div>
+      <p  style={{
+        backgroundColor:"#CC0C39",
+        color:"white",
+        width:"150px",
+
+      }}>Offer ends soon!</p>
+
+</div>
+        </div>
+
+
+
+    </div>
+          <button className="grab-offer-btn">
+        Grab Offer
+      </button>
+
+</form>
+    </div>
+        </div>
+ 
+):(
+  <div>
+  </div>
+)}
+
+        <ToastContainer/>
+    </div>
 
     );
 };
