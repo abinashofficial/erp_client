@@ -801,3 +801,13 @@ display: flex;
 .grab-offer-btn:hover {
   background-color: #d97706;  /* hover:bg-yellow-600 */
 }
+
+
+
+.coins{
+      display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}

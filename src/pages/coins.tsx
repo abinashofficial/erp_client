@@ -156,19 +156,21 @@ setLiveUpdate(coins);
     
                 <h2>Hi... {empDetail.full_name}</h2>
 
-                <h3 style={{
+                <h2 style={{
                         marginLeft:"50px",
                 }}>
-                Total coins: {liveUpdate}
+                Total coins  : {liveUpdate}
 
-                </h3>
+                </h2>
 
                             <div style={{
-            height:"50px",
-            width:"50px",
+            height:"100px",
+            width:"100px",
         }}>
 <Lottie style={{
   transform: "scale(0.5)",
+  height:"100%",
+  width:"100%",
 }} animationData={coinEmoji} loop autoplay />
 
         </div>
