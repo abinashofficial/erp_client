@@ -46,7 +46,7 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
   }, [userId]);
 };
 const Game: React.FC = () => {
-    const { empDetail, visible} = useAuth();
+    const { empDetail, visible, setEmpDetail} = useAuth();
     const [apear, setApear] = useState(false);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
@@ -94,6 +94,21 @@ setLiveUpdate(coins);
   const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 
   try {
+                        setEmpDetail({...empDetail,
+            employee_id: updatedFormData.employee_id,
+            first_name: updatedFormData.first_name,
+            last_name: updatedFormData.last_name,
+            full_name:updatedFormData.full_name,
+            mobile_number: updatedFormData.mobile_number,
+            email: updatedFormData.email,
+            date_of_birth: updatedFormData.date_of_birth,
+            gender: updatedFormData.gender,
+            password: "",
+            photo_url:updatedFormData.photo_url,
+            access_token:updatedFormData.access_token,
+            country_code:updatedFormData.country_code,
+            coins:updatedFormData.coins,
+        })
     const response = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
@@ -108,6 +123,9 @@ setLiveUpdate(coins);
     if (response.ok) {
 
       console.log('Updated employee data:', updatedFormData);
+      // setEmpDetail(updatedFormData);
+
+
       toast.success(msg);
       return
     } else if (response.status === 500) {
@@ -330,7 +348,7 @@ const handleDownload = (url: string, free :boolean): void => {
         <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 250);
+  handleUPIPayment(liveUpdate + 275);
 }}>
 
 

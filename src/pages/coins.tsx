@@ -46,7 +46,7 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
 };
 
 const Coins: React.FC = () => {
-    const { empDetail} = useAuth();
+    const { empDetail, setEmpDetail} = useAuth();
     const [visible, setVisible] = useState(false);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
@@ -94,6 +94,21 @@ setLiveUpdate(coins);
   const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 
   try {
+                            setEmpDetail({...empDetail,
+            employee_id: updatedFormData.employee_id,
+            first_name: updatedFormData.first_name,
+            last_name: updatedFormData.last_name,
+            full_name:updatedFormData.full_name,
+            mobile_number: updatedFormData.mobile_number,
+            email: updatedFormData.email,
+            date_of_birth: updatedFormData.date_of_birth,
+            gender: updatedFormData.gender,
+            password: "",
+            photo_url:updatedFormData.photo_url,
+            access_token:updatedFormData.access_token,
+            country_code:updatedFormData.country_code,
+            coins:updatedFormData.coins,
+        })
     const response = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
@@ -293,7 +308,7 @@ setLiveUpdate(coins);
         <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 250);
+  handleUPIPayment(liveUpdate + 275);
 }}>
 
 
@@ -320,7 +335,7 @@ setLiveUpdate(coins);
 
       
       <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
-        <strong>Now Get 300 Coins = ₹250</strong>
+        <strong>Now Get 300 Coins = ₹275</strong>
       </div>
                     <div className="common-div">
 <div>

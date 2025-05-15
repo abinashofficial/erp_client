@@ -86,9 +86,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const alertId = window.setTimeout(() => {
             alert("Your session will expire in 2 minute. Please save your work.");
         }, 13 * 60 * 1000); // 14 minutes
-    
         setTimeoutId(id);
-    
+            setVisible(true);
         // Clean up the alert timeout when logging out
         return () => {
             clearTimeout(alertId);
