@@ -5,6 +5,9 @@ import coinEmoji from "../assets/animations/coin.json";
     import { toast, ToastContainer } from 'react-toastify';
 import { FaCoins } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+    import phonepayIcon from "../assets/animations/phonepe.svg";
+    import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
+    import upiIcon from "../assets/animations/upi.svg";
     
 
  
@@ -262,6 +265,25 @@ setLiveUpdate(coins);
           <button className="grab-offer-btn">
         Grab Offer
       </button>
+      <div>
+                                        <img
+              src={upiIcon}
+              alt="upiicon"
+              style={{ width: "50px", height: "50px" }}
+            />  
+      
+                      <img
+              src={phonepayIcon}
+              alt="PhonePe"
+              style={{ width: "100px", height: "50px" }}
+            />  
+      
+                            <img
+              src={gpayIcon}
+              alt="gpay"
+              style={{ width: "50px", height: "50px" }}
+            />  
+                </div>
 
 </form>
     </div>
@@ -318,7 +340,25 @@ setLiveUpdate(coins);
           <button className="grab-offer-btn">
         Grab Offer
       </button>
-
+<div>
+                                        <img
+              src={upiIcon}
+              alt="upiicon"
+              style={{ width: "50px", height: "50px" }}
+            />  
+      
+                      <img
+              src={phonepayIcon}
+              alt="PhonePe"
+              style={{ width: "100px", height: "50px" }}
+            />  
+      
+                            <img
+              src={gpayIcon}
+              alt="gpay"
+              style={{ width: "50px", height: "50px" }}
+            />  
+                </div>
 </form>
     </div>
 
@@ -374,7 +414,25 @@ setLiveUpdate(coins);
           <button className="grab-offer-btn">
         Grab Offer
       </button>
-
+<div>
+                                        <img
+              src={upiIcon}
+              alt="upiicon"
+              style={{ width: "50px", height: "50px" }}
+            />  
+      
+                      <img
+              src={phonepayIcon}
+              alt="PhonePe"
+              style={{ width: "100px", height: "50px" }}
+            />  
+      
+                            <img
+              src={gpayIcon}
+              alt="gpay"
+              style={{ width: "50px", height: "50px" }}
+            />  
+                </div>
 </form>
     </div>
         </div>

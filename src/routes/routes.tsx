@@ -27,6 +27,9 @@ import '../styles/App.css';
 import Chat from "../pages/chat"
 import PaymentMethodSelector from "../pages/earnCoins"
 import Notification from "../pages/notification"
+import ErrorBoundary from '../utils/errorHandle'
+import NoReturnPolicy from '../pages/returnPolicy';
+import NoRefundPolicy from '../pages/refundpolicy';
 
 
 
@@ -34,6 +37,8 @@ const Main: React.FC = () => {
     const { isAuthenticated } = useAuth();
 
     return (
+        <ErrorBoundary fallback={<p>Something went wrong</p>}>
+
         <div className="page-container">
 
 
@@ -52,6 +57,9 @@ const Main: React.FC = () => {
 
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
+                <Route path="/returnpolicy" element={<NoReturnPolicy />} />
+                <Route path="/refundpolicy" element={<NoRefundPolicy />} />
+
 
         
         <Route path="/" element={<SignIn />} />
@@ -162,6 +170,7 @@ const Main: React.FC = () => {
 
 
     </div>
+        </ErrorBoundary>
 
 
     );

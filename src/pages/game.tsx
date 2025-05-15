@@ -3,8 +3,12 @@ import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
     import { toast, ToastContainer } from 'react-toastify';
-    import Coins from "../pages/coins"
-    
+    import PresenceTracker from "../utils/presenceTracker";
+import { FaGooglePay } from "react-icons/fa";
+
+    import phonepayIcon from "../assets/animations/phonepe.svg";
+    import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
+    import upiIcon from "../assets/animations/upi.svg";
 
  
 interface SignupFormData {
@@ -42,8 +46,8 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
   }, [userId]);
 };
 const Game: React.FC = () => {
-    const { empDetail} = useAuth();
-    const [visible, setVisible] = useState(false);
+    const { empDetail, visible} = useAuth();
+    const [apear, setApear] = useState(false);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
         const [error, setError] = useState<string >("");
@@ -172,6 +176,11 @@ const handleDownload = (url: string, free :boolean): void => {
 
     return (
         <div>
+          <PresenceTracker />
+          {visible ? (
+            <div>
+              
+
 <div>
 
 <div style={{
@@ -202,9 +211,9 @@ const handleDownload = (url: string, free :boolean): void => {
 
         </div>
 
-        {!visible?(
+        {!apear?(
           <div>
-<button onClick={()=>setVisible(!visible)} style={{
+<button onClick={()=>setApear(!apear)} style={{
     backgroundColor:"gold",
     color:"black",
     borderRadius:"10px",
@@ -230,7 +239,7 @@ const handleDownload = (url: string, free :boolean): void => {
 </div>
 
 
-{visible ? (
+{apear ? (
     <div style={{
       display:"flex",
       justifyContent:"space-around",
@@ -289,6 +298,25 @@ const handleDownload = (url: string, free :boolean): void => {
           <button className="grab-offer-btn">
         Grab Offer
       </button>
+      <div>
+                                  <img
+        src={upiIcon}
+        alt="upiicon"
+        style={{ width: "50px", height: "50px" }}
+      />  
+
+                <img
+        src={phonepayIcon}
+        alt="PhonePe"
+        style={{ width: "100px", height: "50px" }}
+      />  
+
+                      <img
+        src={gpayIcon}
+        alt="gpay"
+        style={{ width: "50px", height: "50px" }}
+      />  
+          </div>
 
 </form>
     </div>
@@ -348,7 +376,29 @@ const handleDownload = (url: string, free :boolean): void => {
     </div>
           <button className="grab-offer-btn">
         Grab Offer
-      </button>
+
+          </button>
+
+          <div>
+                                  <img
+        src={upiIcon}
+        alt="upiicon"
+        style={{ width: "50px", height: "50px" }}
+      />  
+
+                <img
+        src={phonepayIcon}
+        alt="PhonePe"
+        style={{ width: "100px", height: "50px" }}
+      />  
+
+                      <img
+        src={gpayIcon}
+        alt="gpay"
+        style={{ width: "50px", height: "50px" }}
+      />  
+          </div>
+
 
 </form>
     </div>
@@ -406,6 +456,25 @@ const handleDownload = (url: string, free :boolean): void => {
           <button className="grab-offer-btn">
         Grab Offer
       </button>
+      <div>
+                                  <img
+        src={upiIcon}
+        alt="upiicon"
+        style={{ width: "50px", height: "50px" }}
+      />  
+
+                <img
+        src={phonepayIcon}
+        alt="PhonePe"
+        style={{ width: "100px", height: "50px" }}
+      />  
+
+                      <img
+        src={gpayIcon}
+        alt="gpay"
+        style={{ width: "50px", height: "50px" }}
+      />  
+          </div>
 
 </form>
     </div>
@@ -1188,7 +1257,20 @@ Free
     </div>
 </div>
         <ToastContainer/>
+            </div>
+          ):(
+            <div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              height:"100vh"
+            }}>
+            <div className="spinner">
 
+            </div>
+            </div>
+
+          )}
     </div>
 
 
