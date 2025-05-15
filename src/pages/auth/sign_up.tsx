@@ -372,8 +372,8 @@ useEffect(() => {
                   value={selectedCountry}
                   onChange={handleCountryChange}
                   placeholder="Select Country"
-                  isDisabled ={!!formData.mobile_number}
-                  // className="country-select"
+                  isDisabled ={empDetail.mobile_number}
+                  className="country-select"
                 />
 </div>
 
@@ -386,7 +386,7 @@ useEffect(() => {
           value={formData.mobile_number}
           onChange={handleChange}
           required
-          disabled={!!formData.mobile_number}
+           disabled={empDetail.mobile_number}
         />
         </div>
 
@@ -397,7 +397,7 @@ useEffect(() => {
           placeholder = "Email"
           value={formData.email}
           onChange={handleChange}
-          disabled={!!formData.email}
+          disabled={!!empDetail.email}
           required
         />
       <div       style={{
