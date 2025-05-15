@@ -163,7 +163,7 @@ setLiveUpdate(coins);
     )}`;
     window.location.href = upiLink;
         await sleep(10000); // wait for 10 seconds
-    AddCoins(coin, "Coins added successfully"); // Call your actual function here
+    AddCoins(liveUpdate +coin, "Coins added successfully"); // Call your actual function here
   };
 
 
@@ -269,7 +269,7 @@ const handleDownload = (url: string, free :boolean): void => {
     <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 50);
+  handleUPIPayment(50);
 }}>
 
 
@@ -348,7 +348,7 @@ const handleDownload = (url: string, free :boolean): void => {
         <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 275);
+  handleUPIPayment(275);
 }}>
 
 
@@ -427,7 +427,7 @@ const handleDownload = (url: string, free :boolean): void => {
       <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 450);
+  handleUPIPayment(450);
 }}>
 
 

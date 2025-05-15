@@ -156,7 +156,7 @@ setLiveUpdate(coins);
       'for game purchase'
     )}`;
     window.location.href = upiLink;
-    AddCoins(coin); // Call your actual function here
+    AddCoins(liveUpdate + coin); // Call your actual function here
   };
 
 
@@ -233,7 +233,7 @@ setLiveUpdate(coins);
     <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 50);
+  handleUPIPayment(50);
 }}>
 
 
@@ -308,7 +308,7 @@ setLiveUpdate(coins);
         <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 275);
+  handleUPIPayment(275);
 }}>
 
 
@@ -382,7 +382,7 @@ setLiveUpdate(coins);
           <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(liveUpdate + 450);
+  handleUPIPayment(450);
 }}>
 
 
