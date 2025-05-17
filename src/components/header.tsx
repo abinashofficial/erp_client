@@ -90,6 +90,15 @@ const Header: React.FC = () => {
         navigate('/'); // Redirect to dashboard after login
     };
 
+        const handleSignup = () => {
+if (empDetail.email==="") {
+  navigate('/otpverify')
+
+}else{
+    navigate('/signup')
+}
+        }
+
     const headerButtonHandle = (buttonKey: ButtonKey, result:string) => {
       navigate(result)
       setClickedButtons((prevState) => ({
@@ -141,7 +150,7 @@ const Header: React.FC = () => {
 
 
 
-{!empDetail.employee_id?(<button onClick={()=>navigate('/signup')} style={{
+{!empDetail.employee_id?(<button onClick={()=>handleSignup()} style={{
     // backgroundColor:"blue",
     color:"black",
     borderRadius:"10px",
