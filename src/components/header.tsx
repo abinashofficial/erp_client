@@ -150,18 +150,7 @@ if (empDetail.email==="") {
 
 
 
-{!empDetail.employee_id?(<button onClick={()=>handleSignup()} style={{
-    // backgroundColor:"blue",
-    color:"black",
-    borderRadius:"10px",
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    flexDirection:"column",
-    height:"30px",
-
-    cursor:"pointer",
-}}>
+{!empDetail.employee_id?(<button onClick={()=>handleSignup()} className='signup-button'>
     <div style={{
         fontSize:"12px",
         fontWeight:"bolder",

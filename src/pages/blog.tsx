@@ -1,71 +1,62 @@
-import { useAuth } from '../context/authContext';
-import React, { useState, useEffect } from 'react';
-import Coins from "../pages/coins"
+import React from 'react';
+import { motion } from 'framer-motion';
 
+const services = [
+  {
+    title: 'Digital Marketing',
+    description: 'Boost your brand visibility and reach through SEO, SEM, social media, and content marketing strategies tailored to your business.',
+    icon: '📈',
+  },
+  {
+    title: 'Web Design & Development',
+    description: 'Design and develop modern, responsive, and fast web applications tailored to your needs using the latest technologies.',
+    icon: '💻',
+  },
+  {
+    title: 'E-Commerce Development',
+    description: 'Build scalable and secure e-commerce platforms that offer seamless shopping experiences and efficient management tools.',
+    icon: '🛒',
+  },
+  {
+    title: 'Technical Support',
+    description: 'Get reliable technical support to resolve IT issues and maintain smooth operations for your digital infrastructure.',
+    icon: '🛠️',
+  },
+  {
+    title: 'IT Services',
+    description: 'Comprehensive IT services including infrastructure management, cloud solutions, and network setup for enterprises.',
+    icon: '🌐',
+  },
+];
 
+export default function Blog() {
+  return (
+    <div className="p-6 max-w-5xl mx-auto">
+      <motion.h1 
+        initial={{ opacity: 0, y: -50 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 1 }}
+        className="text-4xl font-bold mb-8 text-center"
+      >
+        Our IT Services
+      </motion.h1>
 
-const Blog: React.FC = () => {
-    const { empDetail} = useAuth();
-    // const [paragraph, setFormData] = useState("   I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch.")
-    const paragraph = "   I am an adept software engineer with over 3+ years of experience in Agile methodologies, backend development, and a versatile range of programming languages including Python, Go Lang, and Core Java. Skilled in utilizing ReactJS for web application development and proficient in managing relational databases like PostgreSQL, alongside familiarity with MongoDB, Redis, and Elasticsearch."
-    
-    const [displayedText, setDisplayedText] = useState('');
-  
-    useEffect(() => {
-        // if (empDetail.mobile_number === "8925184971"){
-        //     setFormData("  Hi, da gundu paiya.., Inta application panratuku tan rendu nala seria pesa mudiala. actually neraya pesanum nu nenakiren.. epdina na unkita pesuven and ne enkita pesuva namba matum pesuvom la just like that.. I hope u stay with me forever..")
-        // }
-      let index = 0;
-  
-      const interval = setInterval(() => {
-        if (index < paragraph.length) {
-          setDisplayedText((prev) => prev + paragraph[index]);
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 100);
-  
-      return () => clearInterval(interval);
-    }, [paragraph, empDetail]);
-
-
-
-
-
-
-    
-    return (
-      <div>
-
-{/* <Coins/> */}
-      <div className='main-content'>
-<div>
-
-
-
-            <h2>Hi... {empDetail.full_name}</h2>
-            <div>{displayedText}</div>
-
-
-
-
-  <div style={{
-  display:"flex",
-  justifyContent:"center",
-  marginTop:'20px',
-}}>
-  
-  <a href="https://drive.google.com/file/d/1KqijlvzdLRoqn3bV4_uHO22R-3L1CijX/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-  Get CV        </a>
-
-</div>
-</div>
-</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map((service, index) => (
+          <motion.div
+            key={index}
+            className="rounded-2xl shadow-lg p-6 bg-white hover:shadow-xl transition duration-300"
+            initial={{ rotateY: 90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: index * 0.2 }}
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            <div className="text-5xl mb-4">{service.icon}</div>
+            <h2 className="text-xl font-semibold mb-2">{service.title}</h2>
+            <p className="text-gray-600">{service.description}</p>
+          </motion.div>
+        ))}
       </div>
-
-
-    );
-};
-
-export default Blog;
+    </div>
+  );
+}
