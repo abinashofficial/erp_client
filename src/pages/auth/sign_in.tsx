@@ -279,7 +279,27 @@ const SignIn: React.FC = () => {
 
     };
 
+    const visitGuest = async () => {
+              const empDetail= ({
+          employee_id:'',
+          first_name: '',
+          last_name: '',
+          mobile_number: '',
+          date_of_birth: '',
+          gender: '',
+          password: '',
+          confirmPassword:'',
+          full_name: "", 
+          email: "",
+          photo_url:"",
+          access_token:"",
+          country_code:"",
+          coins:0,
+        });
 
+                login(empDetail)
+        navigate('/home'); // Redirect to dashboard after login
+    }
     
 
 
@@ -533,7 +553,26 @@ marginTop:"25px",
             </a>
           </div>
 
+                    <button className="guest-signin-button" onClick={visitGuest}>
+            <div style={{
+                display:"flex",
+                flexDirection:"row",
+                gap:"20px"
+            }}>
+            {/* <FcGoogle style={{
+  height:"25px",
+  width:"25px",
+}} /> */}
+<div style={{
+    display:"flex",
+    alignItems:"center",
+}}>
+Sign in as a Guest
 
+</div>
+            </div>
+
+          </button>
 <button className="google-signin-button" onClick={()=>navigate('/qrscan')}>
             <div style={{
                 display:"flex",
@@ -554,6 +593,8 @@ Scan QR Code
             </div>
 
           </button>
+
+
 
         </div>
       </div>
