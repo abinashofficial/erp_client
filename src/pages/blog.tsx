@@ -1,62 +1,100 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Lottie from "lottie-react";
+
+import DigitalMarketingIcon from "../assets/animations/digital-marketing-anime.json";
+import WebDesignAnime from "../assets/animations/webdesignanime.json"
+import ECommerceAnime from "../assets/animations/ecommerceanime.json"
+import ItSupportAnime from "../assets/animations/Itsupportanime.json"
+import ItServiceAnime from "../assets/animations/serviceanime.json"
 
 const services = [
   {
     title: 'Digital Marketing',
-    description: 'Boost your brand visibility and reach through SEO, SEM, social media, and content marketing strategies tailored to your business.',
-    icon: '📈',
+    description: 'Boost your brand visibility and reach through comprehensive digital marketing strategies. Our services include SEO to enhance search engine rankings, SEM for targeted ads, engaging content marketing, and strategic social media campaigns that captivate your audience and convert leads into loyal customers.',
+    icon: DigitalMarketingIcon, // Anime-style fairy
   },
   {
     title: 'Web Design & Development',
-    description: 'Design and develop modern, responsive, and fast web applications tailored to your needs using the latest technologies.',
-    icon: '💻',
+    description: 'Craft visually stunning and user-friendly websites with our modern web design and development solutions. We build responsive, accessible, and lightning-fast web applications using cutting-edge technologies, ensuring your online presence is both functional and captivating across all devices.',
+    icon: WebDesignAnime, // Anime wizard
   },
   {
     title: 'E-Commerce Development',
-    description: 'Build scalable and secure e-commerce platforms that offer seamless shopping experiences and efficient management tools.',
-    icon: '🛒',
+    description: 'Launch a powerful online store with our e-commerce development services. We create secure, scalable, and high-performing e-commerce platforms tailored to your business needs, equipped with features like payment integration, inventory management, and customer-centric UX for a seamless shopping experience.',
+    icon: ECommerceAnime, // Anime elf
   },
   {
     title: 'Technical Support',
-    description: 'Get reliable technical support to resolve IT issues and maintain smooth operations for your digital infrastructure.',
-    icon: '🛠️',
+    description: 'Stay worry-free with our round-the-clock technical support. Whether it’s software troubleshooting, system maintenance, or hardware configuration, our expert team ensures your IT infrastructure runs smoothly, minimizing downtime and maximizing productivity.',
+    icon: ItSupportAnime, // Anime superhero
   },
   {
     title: 'IT Services',
-    description: 'Comprehensive IT services including infrastructure management, cloud solutions, and network setup for enterprises.',
-    icon: '🌐',
+    description: 'Empower your business with our full spectrum of IT services. From network setup and infrastructure management to cloud solutions and cybersecurity, we provide enterprise-grade IT support that scales with your growth and adapts to evolving technological needs.',
+    icon: ItServiceAnime, // Anime genie
   },
 ];
 
 export default function Blog() {
   return (
-    <div className="p-6 max-w-5xl mx-auto">
-      <motion.h1 
-        initial={{ opacity: 0, y: -50 }} 
-        animate={{ opacity: 1, y: 0 }} 
-        transition={{ duration: 1 }}
-        className="text-4xl font-bold mb-8 text-center"
-      >
-        Our IT Services
-      </motion.h1>
+    <div className='main-content'>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="min-h-screen p-6 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 text-white">
+
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service, index) => (
+          <div>
+
           <motion.div
             key={index}
-            className="rounded-2xl shadow-lg p-6 bg-white hover:shadow-xl transition duration-300"
+            className="rounded-2xl p-6 bg-white text-gray-900 shadow-2xl transform hover:scale-105 hover:rotate-1 transition-all duration-500 border border-purple-200"
             initial={{ rotateY: 90, opacity: 0 }}
             animate={{ rotateY: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: index * 0.2 }}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <div className="text-5xl mb-4">{service.icon}</div>
-            <h2 className="text-xl font-semibold mb-2">{service.title}</h2>
-            <p className="text-gray-600">{service.description}</p>
+            <div style={{
+              marginTop:"20px",
+            }}>
+
+            </div>
+            <div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+            }}>
+              
+            <h2 >{service.title}</h2>
+
+            </div>
+            <div style={{
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+            }}>
+            <Lottie  className="lottie-animation" 
+ animationData={service.icon} loop autoplay />
+            </div>
+
+            <div style={{
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    gap:"100px",
+            }}>
+            <p className="text-gray-700 text-center">{service.description}</p>
+
+            </div>
+
           </motion.div>
+                    </div>
+
         ))}
       </div>
     </div>
+        </div>
+
   );
 }

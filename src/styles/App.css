@@ -855,3 +855,51 @@ display: flex;
     align-items: center;
     text-align: center;
 }
+
+
+.lottie-animation {
+  width: 300px;
+  height: 300px;
+}
+
+@media (min-width: 640px) {
+  .lottie-animation {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+@media (min-width: 768px) {
+  .lottie-animation {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+
+
+.mobile-only-header-button{
+  color: black ;
+  background-color: white;
+  font-size: 1rem;
+}
+
+.desktop-only {
+  }
+
+@media (max-width: 768px) {
+  .mobile-only-header-button {
+    display: none;  /* hide on mobile */
+  }
+  .desktop-only {
+    display: none;   /* hide on mobile */
+  }
+}
+@media (min-width: 769px) {
+  .mobile-only-header-button {
+    display: block;  /* show on desktop */
+  }
+  .desktop-only {
+    display: block; /* show on desktop */
+  }
+}

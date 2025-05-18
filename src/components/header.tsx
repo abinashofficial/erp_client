@@ -145,7 +145,9 @@ if (empDetail.email==="") {
           <FaEarlybirds size={50} />
           </div>
 <button onClick={() => headerButtonHandle("button1", '/home')} className={`header-btn ${clickedButtons.button1 ? 'clicked' : ''}`}>Home</button>
-<button onClick={() => headerButtonHandle("button5", '/game')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Game</button>
+  {/* <button onClick={() => headerButtonHandle("button2",  '/blog')} className={`mobile-only-header-button ${clickedButtons.button3 ? 'clicked' : ''}`}>Blog</button> */}
+{/* <button onClick={() => headerButtonHandle("button5", '/game')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Game</button> */}
+  <button onClick={() => headerButtonHandle("button2",  '/blog')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Blog</button>
 <button onClick={() => headerButtonHandle("button3",  '/service')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Service</button>
 
 
@@ -163,6 +165,8 @@ if (empDetail.email==="") {
 
   </div>
   )  }
+
+
 
 
         <div >
