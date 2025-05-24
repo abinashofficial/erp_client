@@ -19,6 +19,7 @@ import { FcGoogle } from "react-icons/fc";
 import { RiQrScan2Line } from "react-icons/ri";
 import { BsQrCodeScan } from "react-icons/bs";
 import { justify } from '@cloudinary/url-gen/qualifiers/textAlignment';
+import Ads from "../../components/ads"
 
 
 
@@ -596,6 +597,12 @@ Scan QR Code
 
 
 
+        </div>
+        <div style={{
+          display:"flex",
+          justifyContent:"center",
+        }}>
+          <Ads />
         </div>
       </div>
               ):(<div className="spinner"> </div>)}
