@@ -35,7 +35,6 @@ const Android: React.FC = () => {
   const navigate = useNavigate();
       const { empDetail, visible, setEmpDetail} = useAuth();
           const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
-              const [verificationMethod, setVerificationMethod] = useState<"windows" | "android">("windows");
           
       
               const [error, setError] = useState<string >("");

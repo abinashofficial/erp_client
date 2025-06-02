@@ -4,7 +4,6 @@ import coinEmoji from "../assets/animations/coin.json";
 import windowsicon from "../assets/animations/windows.json"
     import { useAuth } from "../context/authContext"
     import { toast, ToastContainer } from 'react-toastify';
-    import PresenceTracker from "../utils/presenceTracker";
 import { FaGooglePay, FaWindows } from "react-icons/fa";
 
     import phonepayIcon from "../assets/animations/phonepe.svg";
@@ -14,6 +13,7 @@ import { ImAndroid } from "react-icons/im";
 import { FcAndroidOs } from "react-icons/fc";
 import androidAnime from "../assets/animations/android-anime.json"
 import { useNavigate } from 'react-router-dom';
+import Coins from './coins';
 
 
 
@@ -36,7 +36,7 @@ interface SignupFormData {
   coins:any;
 }
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 
 const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
   useEffect(() => {
@@ -53,6 +53,8 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
     };
   }, [userId]);
 };
+
+
 const Game: React.FC = () => {
     const { empDetail, visible, setEmpDetail} = useAuth();
     const [apear, setApear] = useState(false);
@@ -61,17 +63,13 @@ const Game: React.FC = () => {
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
         const [error, setError] = useState<string >("");
 
+        useEffect(() => {
+      setLiveUpdate(empDetail.coins);
+    }, [empDetail.coins]);
     
-
-    useEffect(() => {
-  setLiveUpdate(empDetail.coins);
-}, [empDetail.coins]);
-
-useSSE(empDetail.email, (coins) => {
-setLiveUpdate(coins);
-});
-
-
+    useSSE(empDetail.email, (coins) => {
+    setLiveUpdate(coins);
+    });
 
                       const [formData, setFormData] = useState<SignupFormData>({
             employee_id:empDetail.employee_id,
@@ -89,9 +87,6 @@ setLiveUpdate(coins);
             access_token: empDetail.access_token,
             coins:empDetail.coins, 
                });
-
-
-
 
 
       const AddCoins = async (add :any, msg :string) => {
@@ -155,26 +150,6 @@ setLiveUpdate(coins);
 };
 
 
-  const handleUPIPayment = async (coin :any) => {
-    if (!empDetail.employee_id){
-      alert('Please signup to add coins.');
-      return
-    }
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    if (!isMobile) {
-      alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
-      return;
-    }
-
-    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent(
-      'for game purchase'
-    )}`;
-    window.location.href = upiLink;
-        await sleep(10000); // wait for 10 seconds
-    AddCoins(liveUpdate +coin, "Coins added successfully"); // Call your actual function here
-  };
-
 
 const handleDownload = (url: string, free :boolean): void => {
         // const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -202,13 +177,7 @@ const handleDownload = (url: string, free :boolean): void => {
 
 
     return (
-        <div>
-          <PresenceTracker />
-          {visible ? (
             <div>
-              
-
-<div>
 
 <div style={{
     display:"flex",
@@ -224,7 +193,7 @@ const handleDownload = (url: string, free :boolean): void => {
                 <h2 style={{
                         marginLeft:"50px",
                 }}>
-                Total coins : {liveUpdate}
+                Total coins  : {liveUpdate}
 
                 </h2>
 
@@ -234,13 +203,14 @@ const handleDownload = (url: string, free :boolean): void => {
         }}>
 <Lottie style={{
   transform: "scale(0.5)",
+  height:"100%",
+  width:"100%",
 }} animationData={coinEmoji} loop autoplay />
 
         </div>
 
-        {!apear?(
           <div>
-<button onClick={()=>setApear(!apear)} style={{
+<button onClick={()=>navigate("/coins")} style={{
     backgroundColor:"gold",
     color:"black",
     borderRadius:"10px",
@@ -256,269 +226,8 @@ const handleDownload = (url: string, free :boolean): void => {
     </div>
 </button>
           </div>
-        ):(
-          <div>
 
-          </div>
-        )}
-
-
-</div>
-
-
-{apear ? (
-    <div style={{
-      display:"flex",
-      justifyContent:"space-around",
-      flexWrap:"wrap",
-      gap:"50px",
-      marginTop:"20px",
-    }}>
-
-    <div className="form-container">
-<form onSubmit={(e) => {
-  e.preventDefault();
-  handleUPIPayment(50);
-}}>
-
-
-    <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
-      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Limited Time Offer!</h2>
-      
-      <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
-        </div>
-
-              <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">50 Coin = ₹2500</span>
-        </div>
-
-
-
-      
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
-        <strong>Now Get 50 Coins = ₹50</strong>
-      </div>
-                    <div className="common-div">
-<div>
-      <p  style={{
-        backgroundColor:"#CC0C39",
-        color:"white",
-        width:"150px",
-
-      }}>Offer ends soon!</p>
-
-</div>
-        </div>
-
-
-
-    </div>
-          <button className="grab-offer-btn">
-        Grab Offer
-      </button>
-      <div>
-                                  <img
-        src={upiIcon}
-        alt="upiicon"
-        style={{ width: "50px", height: "50px" }}
-      />  
-
-                <img
-        src={phonepayIcon}
-        alt="PhonePe"
-        style={{ width: "100px", height: "50px" }}
-      />  
-
-                      <img
-        src={gpayIcon}
-        alt="gpay"
-        style={{ width: "50px", height: "50px" }}
-      />  
-          </div>
-
-</form>
-    </div>
-
-
-
-    
-
-
-
-        <div className="form-container">
-<form onSubmit={(e) => {
-  e.preventDefault();
-  handleUPIPayment(275);
-}}>
-
-
-    <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
-      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Ultimate Offer!</h2>
-      
-      <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
-        </div>
-
-              <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">300 Coin = ₹15000</span>
-        </div>
-
-
-
-      
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
-        <strong>Now Get 300 Coins = ₹275</strong>
-      </div>
-                    <div className="common-div">
-<div>
-      <p  style={{
-        backgroundColor:"#CC0C39",
-        color:"white",
-        width:"150px",
-
-      }}>Offer ends soon!</p>
-
-</div>
-        </div>
-
-
-
-    </div>
-          <button className="grab-offer-btn">
-        Grab Offer
-
-          </button>
-
-          <div>
-                                  <img
-        src={upiIcon}
-        alt="upiicon"
-        style={{ width: "50px", height: "50px" }}
-      />  
-
-                <img
-        src={phonepayIcon}
-        alt="PhonePe"
-        style={{ width: "100px", height: "50px" }}
-      />  
-
-                      <img
-        src={gpayIcon}
-        alt="gpay"
-        style={{ width: "50px", height: "50px" }}
-      />  
-          </div>
-
-
-</form>
-    </div>
-
-
-
-
-      <div className="form-container">
-<form onSubmit={(e) => {
-  e.preventDefault();
-  handleUPIPayment(450);
-}}>
-
-
-    <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
-      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Mega Offer!</h2>
-      
-      <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
-        </div>
-
-              <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">500 Coin = ₹25000</span>
-        </div>
-
-
-
-      
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
-        <strong>Now Get 500 Coins = ₹450</strong>
-      </div>
-                    <div className="common-div">
-<div>
-      <p  style={{
-        backgroundColor:"#CC0C39",
-        color:"white",
-        width:"150px",
-
-      }}>Offer ends soon!</p>
-
-</div>
-        </div>
-
-
-
-    </div>
-          <button className="grab-offer-btn">
-        Grab Offer
-      </button>
-      <div>
-                                  <img
-        src={upiIcon}
-        alt="upiicon"
-        style={{ width: "50px", height: "50px" }}
-      />  
-
-                <img
-        src={phonepayIcon}
-        alt="PhonePe"
-        style={{ width: "100px", height: "50px" }}
-      />  
-
-                      <img
-        src={gpayIcon}
-        alt="gpay"
-        style={{ width: "50px", height: "50px" }}
-      />  
-          </div>
-
-</form>
-    </div>
-
-
-
-
-        </div>
- 
-):(
-  <div>
-  </div>
-)}
-
-        <ToastContainer/>
-    </div>
-
+</div>              
 
       <div style={{
         display: "flex",
@@ -2113,20 +1822,7 @@ Free
 </div>
         <ToastContainer/>
             </div>
-          ):(
-            <div style={{
-              display:"flex",
-              justifyContent:"center",
-              alignItems:"center",
-              height:"100vh"
-            }}>
-            <div className="spinner">
 
-            </div>
-            </div>
-
-          )}
-    </div>
 
 
 
