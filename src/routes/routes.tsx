@@ -30,6 +30,7 @@ import Notification from "../pages/notification"
 import ErrorBoundary from '../utils/errorHandle'
 import NoReturnPolicy from '../pages/returnPolicy';
 import NoRefundPolicy from '../pages/refundpolicy';
+import Android from '../pages/android';
 
 
 
@@ -100,6 +101,14 @@ const Main: React.FC = () => {
             element={
                 <ProtectedRoute>
                     <Game />
+                 </ProtectedRoute>
+            } 
+        />
+                <Route 
+            path="/android" 
+            element={
+                <ProtectedRoute>
+                    <Android />
                  </ProtectedRoute>
             } 
         />
