@@ -4,8 +4,6 @@ import coinEmoji from "../assets/animations/coin.json";
 import windowsicon from "../assets/animations/windows.json"
     import { useAuth } from "../context/authContext"
     import { toast, ToastContainer } from 'react-toastify';
-import { FaGooglePay, FaWindows } from "react-icons/fa";
-
     import phonepayIcon from "../assets/animations/phonepe.svg";
     import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
     import upiIcon from "../assets/animations/upi.svg";
@@ -422,13 +420,14 @@ gap:"50px",
     // marginTop:"10px"
 }}>
     <h3>NFS Most Wanted</h3>
-    <div style={{
-      fontSize:"50px"
-    }}>
-    {/* < FcAndroidOs/> */}
-        <Lottie style={{
-    height:"50px",
-    width:"50px",
+    <div style={
+      {
+        fontSize:"30px"
+      }
+    }>
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
     marginLeft:"10px"
 }} animationData={windowsicon} loop autoplay />
 
@@ -502,8 +501,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 37gb</p>
 </div>
@@ -571,7 +573,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
 
     </div>
     <p>size 12gb</p>
@@ -640,12 +646,16 @@ Free
     // marginTop:"10px"
 }}>
     <h3>God Of War Ragnarok</h3>
-        <div style={
+    <div style={
       {
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
 
     </div>
     <p>size 120gb</p>
@@ -710,12 +720,16 @@ Free
     // marginTop:"10px"
 }}>
     <h3>COD Black Ops 2</h3>
-        <div style={
+    <div style={
       {
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
 
     </div>
     <p>size 21gb</p>
@@ -792,8 +806,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 44gb</p>
 </div>
@@ -858,8 +875,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 50gb</p>
 </div>
@@ -926,8 +946,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 60gb</p>
 </div>
@@ -993,8 +1016,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 120gb</p>
 </div>
@@ -1059,8 +1085,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 115gb</p>
 </div>
@@ -1131,8 +1160,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 65gb</p>
 </div>
@@ -1203,8 +1235,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 50gb</p>
 </div>
@@ -1275,8 +1310,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 55gb</p>
 </div>
@@ -1347,8 +1385,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 50gb</p>
 </div>
@@ -1419,8 +1460,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 25gb</p>
 </div>
@@ -1489,8 +1533,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 60gb</p>
 </div>
@@ -1559,8 +1606,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 55gb</p>
 </div>
@@ -1630,8 +1680,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 7gb</p>
 </div>
@@ -1702,8 +1755,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 16gb</p>
 </div>
@@ -1772,8 +1828,11 @@ Free
         fontSize:"30px"
       }
     }>
-    <FaWindows/>
-
+    <Lottie style={{
+    height:"30px",
+    width:"30px",
+    marginLeft:"10px"
+}} animationData={windowsicon} loop autoplay />
     </div>
     <p>size 80gb</p>
 </div>
