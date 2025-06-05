@@ -92,13 +92,7 @@ setLiveUpdate(coins);
         </div>
 
           <div>
-<button onClick={()=>navigate("/coins")} style={{
-    backgroundColor:"gold",
-    color:"black",
-    borderRadius:"10px",
-
-    cursor:"pointer",
-}}>
+<button onClick={()=>navigate("/coins")} className='coin-button'>
     <div style={{
         fontSize:"12px",
         fontWeight:"bolder",

@@ -8,6 +8,10 @@ import androidAnime from "../assets/animations/android-anime.json"
 import windowsAnime from "../assets/animations/windows.json"
     import { useAuth } from "../context/authContext"
         import { toast, ToastContainer } from 'react-toastify';
+        import playstationAnime from "../assets/animations/playstation.json"
+                import { SiPlaystation2, SiPlaystation3  } from "react-icons/si";
+                import Playstation2Icon from "../assets/animations/playstation-icon.svg"
+
 
 
 
@@ -145,22 +149,14 @@ const Android: React.FC = () => {
 
   <div style={{
     display: "flex",
-    flexDirection: "row",
     justifyContent: "center",
+    flexWrap: "wrap",
     gap: "20px",
     marginTop: "30px",  
   }}>
 
     
-               <div style={{
-                display:"flex",
-                flexDirection:"row",
-                              justifyContent:"center",
-                              width:"160px",
-                              borderRadius:"10px",
-                              cursor:"pointer",
-
-              }}
+               <div className='platform-button'
 
                onClick={() => navigate("/game")}>
 
@@ -180,8 +176,8 @@ const Android: React.FC = () => {
 
             <div>
   <Lottie style={{
-    height:"50px",
-    width:"50px",
+    height:"45px",
+    width:"45px",
     marginLeft:"10px"
 }} animationData={windowsAnime} loop autoplay />
             </div>
@@ -224,6 +220,68 @@ const Android: React.FC = () => {
 }} animationData={androidAnime} loop autoplay />
             </div>
             
+              </div>
+
+
+                             <div className='platform-button'
+
+               onClick={() => navigate("/ps2")}>
+
+              
+
+<div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignContent:"center",
+              alignItems:"center",
+            }}>
+                            <SiPlaystation2 style={{
+                                fontSize:"50px",
+                            }}/>
+                            
+
+            </div>
+            <div>
+                                      <img
+              src={Playstation2Icon}
+              alt="ps2"
+              style={{ width: "50px", height: "45px" }}
+                            className="icon-bounce"
+            />  
+            </div>
+
+
+            
+              </div>
+
+
+
+
+                  <div className='platform-button'
+
+               onClick={() => navigate("/ps3")}>
+
+              
+
+<div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignContent:"center",
+              alignItems:"center",
+fontSize:"50px"
+            }}>
+                            <SiPlaystation3/>
+                            
+
+            </div>
+                            <div>
+      <Lottie style={{
+        height:"45px",
+        width:"45px",
+        marginLeft:"10px"
+    }} animationData={playstationAnime} loop autoplay />
+                </div>
+                
               </div>
 
                             </div>

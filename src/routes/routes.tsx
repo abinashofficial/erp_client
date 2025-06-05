@@ -32,7 +32,8 @@ import NoReturnPolicy from '../pages/returnPolicy';
 import NoRefundPolicy from '../pages/refundpolicy';
 import Android from '../pages/android';
 import Coins from '../pages/coins';
-
+import PS2 from '../pages/ps2';
+import PS3 from '../pages/ps3';
 
 
 const Main: React.FC = () => {
@@ -110,6 +111,24 @@ const Main: React.FC = () => {
             element={
                 <ProtectedRoute>
                     <Android />
+                 </ProtectedRoute>
+            } 
+        />
+
+                        <Route 
+            path="/ps2" 
+            element={
+                <ProtectedRoute>
+                    <PS2 />
+                 </ProtectedRoute>
+            } 
+        />
+
+         <Route 
+            path="/ps3" 
+            element={
+                <ProtectedRoute>
+                    <PS3 />
                  </ProtectedRoute>
             } 
         />

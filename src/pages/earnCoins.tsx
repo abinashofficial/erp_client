@@ -84,8 +84,6 @@ setLiveUpdate(coins);
 
 
       const AddCoins = async (add :any) => {
-    await sleep(10000); // wait for 10 seconds
-
   const updatedFormData = {
     ...formData,
     coins: add,
@@ -94,21 +92,6 @@ setLiveUpdate(coins);
   const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 
   try {
-                            setEmpDetail({...empDetail,
-            employee_id: updatedFormData.employee_id,
-            first_name: updatedFormData.first_name,
-            last_name: updatedFormData.last_name,
-            full_name:updatedFormData.full_name,
-            mobile_number: updatedFormData.mobile_number,
-            email: updatedFormData.email,
-            date_of_birth: updatedFormData.date_of_birth,
-            gender: updatedFormData.gender,
-            password: "",
-            photo_url:updatedFormData.photo_url,
-            access_token:updatedFormData.access_token,
-            country_code:updatedFormData.country_code,
-            coins:updatedFormData.coins,
-        })
     const response = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
@@ -124,6 +107,21 @@ setLiveUpdate(coins);
 
       console.log('Updated employee data:', updatedFormData);
       toast.success('Coins added successfully');
+                                  setEmpDetail({...empDetail,
+            employee_id: updatedFormData.employee_id,
+            first_name: updatedFormData.first_name,
+            last_name: updatedFormData.last_name,
+            full_name:updatedFormData.full_name,
+            mobile_number: updatedFormData.mobile_number,
+            email: updatedFormData.email,
+            date_of_birth: updatedFormData.date_of_birth,
+            gender: updatedFormData.gender,
+            password: "",
+            photo_url:updatedFormData.photo_url,
+            access_token:updatedFormData.access_token,
+            country_code:updatedFormData.country_code,
+            coins:updatedFormData.coins,
+        })
       return
     } else if (response.status === 500) {
       alert(result.message);
@@ -157,6 +155,8 @@ setLiveUpdate(coins);
     )}`;
     window.location.href = upiLink;
     AddCoins(liveUpdate + coin); // Call your actual function here
+        await sleep(10000); // wait for 10 seconds
+        return
   };
 
 

@@ -267,7 +267,7 @@ button.menu-btn{
 
 .header-btn:hover {
   color: black ; /* Change color on hover */
-  background-color: white ;
+  background-color: rgb(241, 241, 241);
 }
 
 @media (min-width: 400px) {
@@ -901,5 +901,45 @@ display: flex;
   }
   .desktop-only {
     display: block; /* show on desktop */
+  }
+}
+
+
+.platform-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 160px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.platform-button:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.coin-button{
+      background-color: gold;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.coin-button:hover {
+  background-color: #B8860B;
+}
+
+
+.icon-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }

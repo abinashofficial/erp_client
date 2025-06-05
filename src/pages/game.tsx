@@ -12,6 +12,9 @@ import { FcAndroidOs } from "react-icons/fc";
 import androidAnime from "../assets/animations/android-anime.json"
 import { useNavigate } from 'react-router-dom';
 import Coins from './coins';
+import playstationAnime from "../assets/animations/playstation.json"
+import { SiPlaystation2, SiPlaystation3 } from "react-icons/si";
+import Playstation2Icon from "../assets/animations/playstation-icon.svg";
 
 
 
@@ -208,13 +211,7 @@ const handleDownload = (url: string, free :boolean): void => {
         </div>
 
           <div>
-<button onClick={()=>navigate("/coins")} style={{
-    backgroundColor:"gold",
-    color:"black",
-    borderRadius:"10px",
-
-    cursor:"pointer",
-}}>
+<button onClick={()=>navigate("/coins")} className='coin-button'>
     <div style={{
         fontSize:"12px",
         fontWeight:"bolder",
@@ -229,8 +226,9 @@ const handleDownload = (url: string, free :boolean): void => {
 
       <div style={{
         display: "flex",
-        flexDirection: "row",
         justifyContent: "center",
+        alignItems: "center",
+        flexWrap: "wrap",
         gap: "20px",
         marginTop: "30px",
       }}>
@@ -276,15 +274,7 @@ const handleDownload = (url: string, free :boolean): void => {
     
     
     
-                    <div style={{
-                    display:"flex",
-                    flexDirection:"row",
-                                  justifyContent:"center",
-                                  width:"160px",
-                                  borderRadius:"10px",
-                                  cursor:"pointer",
-    
-                  }}
+                    <div className='platform-button'
     
                    onClick={() => navigate("/android")}
     >
@@ -310,6 +300,69 @@ const handleDownload = (url: string, free :boolean): void => {
                 </div>
                 
                   </div>
+
+
+<div className='platform-button'
+
+               onClick={() => navigate("/ps2")}>
+
+              
+
+<div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignContent:"center",
+              alignItems:"center",
+            }}>
+                            <SiPlaystation2 style={{
+                                fontSize:"50px",
+                            }}/>
+                            
+
+            </div>
+            <div>
+                                      <img
+              src={Playstation2Icon}
+              alt="ps2"
+              style={{ width: "50px", height: "45px" }}
+                            className="icon-bounce"
+            />  
+            </div>
+
+
+            
+              </div>
+
+
+
+
+                  <div className='platform-button'
+
+               onClick={() => navigate("/ps3")}>
+
+              
+
+<div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignContent:"center",
+              alignItems:"center",
+fontSize:"50px"
+            }}>
+                            <SiPlaystation3/>
+                            
+
+            </div>
+                            <div>
+      <Lottie style={{
+        height:"45px",
+        width:"45px",
+        marginLeft:"10px"
+    }} animationData={playstationAnime} loop autoplay />
+                </div>
+                
+              </div>
+
     
                                 </div>
 <div className='main-content'>
