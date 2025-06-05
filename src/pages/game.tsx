@@ -265,7 +265,7 @@ const handleDownload = (url: string, free :boolean): void => {
                 <div>
       <Lottie style={{
         height:"50px",
-        width:"50px",
+        width:"30px",
         marginLeft:"10px"
     }} animationData={windowsicon} loop autoplay />
                 </div>

@@ -176,8 +176,8 @@ const Android: React.FC = () => {
 
             <div>
   <Lottie style={{
-    height:"45px",
-    width:"45px",
+    height:"50px",
+    width:"30px",
     marginLeft:"10px"
 }} animationData={windowsAnime} loop autoplay />
             </div>
