@@ -12,6 +12,7 @@ import windowsAnime from "../assets/animations/windows.json"
 
         import { SiPlaystation2, SiPlaystation3 } from "react-icons/si";
         import Playstation2Icon from "../assets/animations/playstation-icon.svg"
+        import PrizeModal from "../pages/prizemodal";
 
 
 
@@ -92,6 +93,10 @@ const PS2: React.FC = () => {
                   access_token: empDetail.access_token,
                   coins:empDetail.coins, 
                      });
+                       const [isModalOpen, setIsModalOpen] = useState(false);
+                                              const [gameData, setGameData] = useState<GameSpecs>({} as GameSpecs);
+
+
 
 const [gameSpecs, setGameSpecs] = useState<GameSpecs[]>([
   {
@@ -229,25 +234,12 @@ const [gameSpecs, setGameSpecs] = useState<GameSpecs[]>([
   };
 
   const handleDownload = (data : GameSpecs): void => {
-        // const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        // if (isMobile) {
-        //     alert('Download links only work on PC or Laptop devices.');
-        //     return;
-        // }
         if (data.price === "Free") {
   window.open(data.download_link, "_blank", "noopener,noreferrer");
             return;
         }
-
-    if(empDetail.coins && empDetail.coins >= data.coins && data.price==="Price"  && error === "") {
-            AddCoins(liveUpdate-data.coins, "you have downloaded the game");
-
-        console.log("You have enough coins to download this game.");
-
-  window.open(data.download_link, "_blank", "noopener,noreferrer");
-    }else{
-        alert("You don't have enough coins to download this game. Please add coins.")
-    }
+        setIsModalOpen(true);
+        setGameData(data);
 };
     return (
 
@@ -471,13 +463,25 @@ gap:"50px",
         </div>
       </div>
     </button>
+                      <PrizeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+data={gameData}
+      >
+        <p>Coins required for one-time download</p>
+      </PrizeModal>
   </div>
 ))}
 
 
+
     </div>
+
 </div>
+
         <ToastContainer/>
+
+
 
 
       </div>

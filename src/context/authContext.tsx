@@ -35,6 +35,16 @@ setVisible:(result: boolean) => void
     setEmpDetail: (result: SignupFormData) => void;
 }
 
+interface GameSpecs {
+  title:any;
+  size: any;
+  price: any;
+  coins: any;
+  download_link: any;
+  image_link: any;
+  platform: any;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -57,6 +67,82 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         country_code:"",
         coins:0,
       });
+
+      const [gameSpecs, setGameSpecs] = useState<GameSpecs[]>([
+ {
+    title: "SmackDown Pain",
+    size: "3 GB",
+    price: "Free",
+    coins: 0,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/WWE%20SmackDown!%20Here%20Comes%20the%20Pain%20(USA).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/09/2139896-box_wwesdhctp-300x381.png",
+    platform: "PS2",
+  },
+  {
+    title: "God Of War II",
+    size: "7 GB",
+    price: "Price",
+    coins: 50,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20of%20War%20II%20(USA).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-II-ps2-300x411.jpg",
+    platform: "PS2",
+  },
+      {
+    title: "God Of War I",
+    size: "7 GB",
+    price: "Free",
+    coins: 0,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20of%20War%20(USA).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2020/05/cover-God-Of-War-2-Ps2-Pal-Iso-300x416.jpeg",
+    platform: "PS2",
+  },
+    {
+    title: "MKSM",
+    size: "3 GB",
+    price: "Price",
+    coins: 50,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/Mortal%20Kombat%20-%20Shaolin%20Monks%20(USA).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2023/05/Mortal-Kombat-Shaolin-Monks-300x423.jpg",
+    platform: "PS2",
+  },
+    {
+    title: "Downhill Domination",
+    size: "7 GB",
+    price: "Free",
+    coins: 0,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2Europe/isos/Downhill%20Domination%20(Europe)%20(En,Fr,De,Es,It).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/09/downhill-domination-box-art-300x426.jpg",
+    platform: "PS2",
+  },
+    {
+    title: "God Hand",
+    size: "2 GB",
+    price: "Free",
+    coins: 0,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20Hand%20(USA).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/09/153422-God_Hand_Europe_EnFrDeEsIt-1482315106-300x424.jpg",
+    platform: "PS2",
+  },
+    {
+    title: "Urban Reign",
+    size: "2 GB",
+    price: "Free",
+    coins: 0,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2Europe/isos/Urban%20Reign%20(Europe)%20(En,Fr,De,Es,It).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2020/05/51E7QES99ML._SY445_-300x425.jpg",
+    platform: "PS2",
+  },
+    {
+    title: "Dragon Ball Z Budokai Tenkaichi 3",
+    size: "2 GB",
+    price: "Free",
+    coins: 0,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/DragonBall%20Z%20-%20Budokai%20Tenkaichi%203%20(USA)%20(En,Ja).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/08/Dragon-Ball-Z-Budokai-Tenkaichi-3-300x424.jpg",
+    platform: "PS2",
+  },
+
+      ]);
 
     const login = (result: SignupFormData) => {
         setIsAuthenticated(true);

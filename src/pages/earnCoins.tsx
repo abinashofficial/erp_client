@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
     import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
     import upiIcon from "../assets/animations/upi.svg";
     import PresenceTracker from '../utils/presenceTracker';
+    import PayCoin from "../assets/animations/paycoins.json"
+
     
 
  
@@ -48,6 +50,7 @@ const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
 
 const AddCoins: React.FC = () => {
     const { empDetail, setEmpDetail, visible} = useAuth();
+        const [payCoinvisible, setPayCoinVisible] = useState(false);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
     
@@ -107,6 +110,8 @@ setLiveUpdate(coins);
 
       console.log('Updated employee data:', updatedFormData);
       toast.success('Coins added successfully');
+          setPayCoinVisible(true);
+
                                   setEmpDetail({...empDetail,
             employee_id: updatedFormData.employee_id,
             first_name: updatedFormData.first_name,
@@ -145,17 +150,17 @@ setLiveUpdate(coins);
     }
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if (!isMobile) {
-      alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
-      return;
-    }
+    // if (!isMobile) {
+    //   alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
+    //   return;
+    // }
 
     const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent(
       'for game purchase'
     )}`;
     window.location.href = upiLink;
     AddCoins(liveUpdate + coin); // Call your actual function here
-        await sleep(10000); // wait for 10 seconds
+        // await sleep(10000); // wait for 10 seconds
         return
   };
 
@@ -167,6 +172,33 @@ setLiveUpdate(coins);
                 {visible ? (
 
         <div>
+          {payCoinvisible && (
+        <div className="modal-backdrop">
+          <Lottie
+            style={{
+              transform: "scale(0.5)",
+              height: "100%",
+              width: "100%",
+            }}
+            animationData={PayCoin}
+            loop={false}
+            autoplay={true}
+            onComplete={() => setPayCoinVisible(false)} // ✅ hide div after 1 cycle
+          />
+        </div>)}
+               {/* <div className="modal-backdrop">
+          <Lottie
+            style={{
+              transform: "scale(0.5)",
+              height: "100%",
+              width: "100%",
+            }}
+            animationData={PayCoin}
+            loop={true}
+            autoplay={true}
+            // onComplete={() => setPayCoinVisible(false)} // ✅ hide div after 1 cycle
+          />
+        </div> */}
 
 <div style={{
     display:"flex",
