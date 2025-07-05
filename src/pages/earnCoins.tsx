@@ -30,41 +30,16 @@ interface SignupFormData {
   coins:any;
 }
 
-// const useSSE = (userId: string | null, updateCoins: (coins: number) => void) => {
-//   useEffect(() => {
-//     if (!userId) return; // handle null here
-
-//     const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
-
-//     source.onmessage = (event) => {
-//       const data = JSON.parse(event.data);
-//       // console.log("Coins updated:", data);
-//       updateCoins(data.coins);
-//     };
-
-//     return () => {
-//       source.close();
-//     };
-//   }, [userId, updateCoins]);
-// };
-
 const AddCoins: React.FC = () => {
     const { empDetail} = useAuth();
         const [payCoinvisible, setPayCoinVisible] = useState(false);
                 const [visible, setVisible] = useState<Boolean>(true);
-
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
     
 
     useEffect(() => {
   setLiveUpdate(empDetail.coins);
 }, [empDetail.coins]);
-
-// useSSE(empDetail.email, (coins) => { 
-// setLiveUpdate(coins);
-// });
-
-
 
                       const [formData] = useState<SignupFormData>({
             employee_id:empDetail.employee_id,
@@ -87,13 +62,14 @@ const AddCoins: React.FC = () => {
 
 
 
-      const AddCoins = async (add :any) => {
+      const AddCoin = async (add :any) => {
         setVisible(false);
   const updatedFormData = {
     ...formData,
     coins: add,
   };
-
+                   const controller = new AbortController();
+        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
   const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 
   try {
@@ -104,32 +80,21 @@ const AddCoins: React.FC = () => {
         Authorization: `Bearer ${empDetail.access_token}`,
       },
       body: JSON.stringify(updatedFormData),
+                     signal: controller.signal, // Attach the abort signal to the fetch request
+
     });
 
     const result = await response.json();
 
     if (response.ok) {
+
+                    setTimeout(() => {
       setVisible(true)
 
       console.log('Updated employee data:', updatedFormData);
       toast.success('Coins added successfully');
           setPayCoinVisible(true);
-
-        //                           setEmpDetail({...empDetail,
-        //     employee_id: updatedFormData.employee_id,
-        //     first_name: updatedFormData.first_name,
-        //     last_name: updatedFormData.last_name,
-        //     full_name:updatedFormData.full_name,
-        //     mobile_number: updatedFormData.mobile_number,
-        //     email: updatedFormData.email,
-        //     date_of_birth: updatedFormData.date_of_birth,
-        //     gender: updatedFormData.gender,
-        //     password: "",
-        //     photo_url:updatedFormData.photo_url,
-        //     access_token:updatedFormData.access_token,
-        //     country_code:updatedFormData.country_code,
-        //     coins:updatedFormData.coins,
-        // })
+        }, 3000); // 3000 milliseconds = 3 seconds
       
     } else if (response.status === 500) {
       alert(result.message);
@@ -162,9 +127,7 @@ const AddCoins: React.FC = () => {
       'for game purchase'
     )}`;
     window.location.href = upiLink;
-    AddCoins(liveUpdate + coin); // Call your actual function here
-        // await sleep(10000); // wait for 10 seconds
-        return
+    AddCoin(liveUpdate + coin); // Call your actual function here
   };
 
 
