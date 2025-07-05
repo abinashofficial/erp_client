@@ -119,7 +119,7 @@ const Android: React.FC = () => {
         size: "3 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://download851.mediafire.com/z2plezkyzufgZ-dInywDleKmQgFruP7j4FPgdsvqm6VKwmGco66lq5Jmdnc4IVNpGBDboKo_pUklHeo8Qh8I6Scr1OLn8Zwz1PJ9SApm-h1wKaIWAWX2pyJkEL9mxQea0qXFZDL8hzptLunBZRI4ltCB1ophDUq3nFrqtmcBdfgYgg/xm1v86q9q6ssj4j/Aethersx2.zip",
+        download_link: "https://www.mediafire.com/file/xm1v86q9q6ssj4j/Aethersx2.zip",
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670553/aether_lwvnec.png",
         platform: "Android",
       }, 
