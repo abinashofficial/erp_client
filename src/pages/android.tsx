@@ -145,7 +145,7 @@ const Android: React.FC = () => {
 
 
       <div>
-  <Coins/>
+<Coins isVisible={true} />
 
   <div style={{
     display: "flex",

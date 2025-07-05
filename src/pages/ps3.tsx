@@ -65,7 +65,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
 
 
       <div>
-  <Coins/>
+<Coins isVisible={true} />
 
   <div style={{
     display: "flex",

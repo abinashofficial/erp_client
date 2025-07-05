@@ -227,7 +227,7 @@ const Game: React.FC = () => {
     return (
             <div>
 
-  <Coins/>
+<Coins isVisible={true} />
              
 
       <div style={{

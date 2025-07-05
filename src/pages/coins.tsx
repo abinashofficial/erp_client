@@ -27,8 +27,11 @@ const useSSE = (userId: string | null, updateCoins: (coins: number) => void) => 
   }, [userId, updateCoins]);
 };
 
+interface CoinsProps {
+  isVisible: boolean;
+}
 
-const Coins: React.FC = () => {
+const Coins: React.FC<CoinsProps> = ({ isVisible }) => {
     const { empDetail} = useAuth();
       const navigate = useNavigate();
 
@@ -74,7 +77,7 @@ setLiveUpdate(coins);
 }} animationData={coinEmoji} loop autoplay />
 
         </div>
-
+{isVisible?(
           <div>
 <button onClick={()=>navigate("/coins")} className='coin-button'>
     <div style={{
@@ -86,6 +89,12 @@ setLiveUpdate(coins);
     </div>
 </button>
           </div>
+):(
+  <div>
+
+  </div>
+)}
+
 
 </div>
 

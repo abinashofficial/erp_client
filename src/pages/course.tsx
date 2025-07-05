@@ -26,7 +26,7 @@ const Course: React.FC = () => {
 
 
       <div>
-<Coins/>
+<Coins isVisible={true} />
 <div className='main-content'>
 
 

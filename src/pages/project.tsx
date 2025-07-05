@@ -22,7 +22,7 @@ const Project: React.FC = () => {
 
 
       <div>
-<Coins/>
+<Coins isVisible={true} />
 <div className='main-content'>
 
 

@@ -8,6 +8,7 @@ import coinEmoji from "../assets/animations/coin.json";
     import upiIcon from "../assets/animations/upi.svg";
     import PresenceTracker from '../utils/presenceTracker';
     import PayCoin from "../assets/animations/paycoins.json"
+import Coins from "../pages/coins"
 
     
 
@@ -29,27 +30,28 @@ interface SignupFormData {
   coins:any;
 }
 
-const useSSE = (userId: string | null, updateCoins: (coins: number) => void) => {
-  useEffect(() => {
-    if (!userId) return; // handle null here
+// const useSSE = (userId: string | null, updateCoins: (coins: number) => void) => {
+//   useEffect(() => {
+//     if (!userId) return; // handle null here
 
-    const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
+//     const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
 
-    source.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      // console.log("Coins updated:", data);
-      updateCoins(data.coins);
-    };
+//     source.onmessage = (event) => {
+//       const data = JSON.parse(event.data);
+//       // console.log("Coins updated:", data);
+//       updateCoins(data.coins);
+//     };
 
-    return () => {
-      source.close();
-    };
-  }, [userId, updateCoins]);
-};
+//     return () => {
+//       source.close();
+//     };
+//   }, [userId, updateCoins]);
+// };
 
 const AddCoins: React.FC = () => {
-    const { empDetail,setEmpDetail, visible} = useAuth();
+    const { empDetail} = useAuth();
         const [payCoinvisible, setPayCoinVisible] = useState(false);
+                const [visible, setVisible] = useState<Boolean>(true);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
     
@@ -58,9 +60,9 @@ const AddCoins: React.FC = () => {
   setLiveUpdate(empDetail.coins);
 }, [empDetail.coins]);
 
-useSSE(empDetail.email, (coins) => { 
-setLiveUpdate(coins);
-});
+// useSSE(empDetail.email, (coins) => { 
+// setLiveUpdate(coins);
+// });
 
 
 
@@ -86,6 +88,7 @@ setLiveUpdate(coins);
 
 
       const AddCoins = async (add :any) => {
+        setVisible(false);
   const updatedFormData = {
     ...formData,
     coins: add,
@@ -106,35 +109,42 @@ setLiveUpdate(coins);
     const result = await response.json();
 
     if (response.ok) {
+      setVisible(true)
 
       console.log('Updated employee data:', updatedFormData);
       toast.success('Coins added successfully');
           setPayCoinVisible(true);
 
-                                  setEmpDetail({...empDetail,
-            employee_id: updatedFormData.employee_id,
-            first_name: updatedFormData.first_name,
-            last_name: updatedFormData.last_name,
-            full_name:updatedFormData.full_name,
-            mobile_number: updatedFormData.mobile_number,
-            email: updatedFormData.email,
-            date_of_birth: updatedFormData.date_of_birth,
-            gender: updatedFormData.gender,
-            password: "",
-            photo_url:updatedFormData.photo_url,
-            access_token:updatedFormData.access_token,
-            country_code:updatedFormData.country_code,
-            coins:updatedFormData.coins,
-        })
-      return
+        //                           setEmpDetail({...empDetail,
+        //     employee_id: updatedFormData.employee_id,
+        //     first_name: updatedFormData.first_name,
+        //     last_name: updatedFormData.last_name,
+        //     full_name:updatedFormData.full_name,
+        //     mobile_number: updatedFormData.mobile_number,
+        //     email: updatedFormData.email,
+        //     date_of_birth: updatedFormData.date_of_birth,
+        //     gender: updatedFormData.gender,
+        //     password: "",
+        //     photo_url:updatedFormData.photo_url,
+        //     access_token:updatedFormData.access_token,
+        //     country_code:updatedFormData.country_code,
+        //     coins:updatedFormData.coins,
+        // })
+      
     } else if (response.status === 500) {
       alert(result.message);
+            setVisible(true)
+
       return
     } else {
       console.error('Update failed:', result);
+            setVisible(true)
+
       return
     }
   } catch (error) {
+          setVisible(true)
+
     alert('Internal server error');
     console.error('Error:', error);
     return
@@ -142,13 +152,13 @@ setLiveUpdate(coins);
 };
 
 
-  const handleUPIPayment = async (coin :any) => {
+  const handleUPIPayment = async (coin :any, pay: any) => {
     if (!empDetail.employee_id){
       alert('Please signup to add coins.');
       return
     }
 
-    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent(
+    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${pay}&cu=INR&tn=${encodeURIComponent(
       'for game purchase'
     )}`;
     window.location.href = upiLink;
@@ -193,36 +203,8 @@ setLiveUpdate(coins);
           />
         </div> */}
 
-<div style={{
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    flexDirection:"row",
-    flexWrap:"wrap",
+<Coins isVisible={false} />
 
-}}>
-    
-                <h2>Hi... {empDetail.full_name}</h2>
-
-                <h2 style={{
-                        marginLeft:"50px",
-                }}>
-                Total coins  : {liveUpdate}
-
-                </h2>
-
-                            <div style={{
-            height:"100px",
-            width:"100px",
-        }}>
-<Lottie style={{
-  transform: "scale(0.5)",
-  height:"100%",
-  width:"100%",
-}} animationData={coinEmoji} loop autoplay />
-
-        </div>
-</div>
 
 
     <div style={{
@@ -236,7 +218,7 @@ setLiveUpdate(coins);
     <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(50);
+  handleUPIPayment(50, 50);
 }}>
 
 
@@ -311,7 +293,7 @@ setLiveUpdate(coins);
         <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(275);
+  handleUPIPayment(275, 300);
 }}>
 
 
@@ -385,7 +367,7 @@ setLiveUpdate(coins);
           <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(450);
+  handleUPIPayment(450, 500);
 }}>
 
 
