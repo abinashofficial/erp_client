@@ -3,8 +3,6 @@ import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
     import { toast, ToastContainer } from 'react-toastify';
-import { FaCoins } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
     import phonepayIcon from "../assets/animations/phonepe.svg";
     import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
     import upiIcon from "../assets/animations/upi.svg";
@@ -30,26 +28,27 @@ interface SignupFormData {
   access_token:any;
   coins:any;
 }
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
+const useSSE = (userId: string | null, updateCoins: (coins: number) => void) => {
   useEffect(() => {
+    if (!userId) return; // handle null here
+
     const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
 
     source.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log("Coins updated:", data);
+      // console.log("Coins updated:", data);
       updateCoins(data.coins);
     };
 
     return () => {
       source.close();
     };
-  }, [userId]);
+  }, [userId, updateCoins]);
 };
 
 const AddCoins: React.FC = () => {
-    const { empDetail, setEmpDetail, visible} = useAuth();
+    const { empDetail,setEmpDetail, visible} = useAuth();
         const [payCoinvisible, setPayCoinVisible] = useState(false);
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
@@ -59,13 +58,13 @@ const AddCoins: React.FC = () => {
   setLiveUpdate(empDetail.coins);
 }, [empDetail.coins]);
 
-useSSE(empDetail.email, (coins) => {
+useSSE(empDetail.email, (coins) => { 
 setLiveUpdate(coins);
 });
 
 
 
-                      const [formData, setFormData] = useState<SignupFormData>({
+                      const [formData] = useState<SignupFormData>({
             employee_id:empDetail.employee_id,
             first_name: empDetail.first_name,
             last_name: empDetail.last_name,
@@ -148,12 +147,6 @@ setLiveUpdate(coins);
       alert('Please signup to add coins.');
       return
     }
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    // if (!isMobile) {
-    //   alert('UPI payment links only work on mobile devices with UPI apps like GPay or PhonePe.');
-    //   return;
-    // }
 
     const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent(
       'for game purchase'

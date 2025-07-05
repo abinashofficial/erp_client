@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
 import PayCoin from "../assets/animations/paycoins.json"
 import coinEmoji from "../assets/animations/coin.json";
-import { useNavigate } from 'react-router-dom';
     import { useAuth } from "../context/authContext"
             import { toast, ToastContainer } from 'react-toastify';
 
@@ -43,52 +42,36 @@ type ModalProps = {
  data :GameSpecs;
   children: React.ReactNode;
 };
-const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
-  useEffect(() => {
-    const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
 
-    source.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("Coins updated:", data);
-      updateCoins(data.coins);
-    };
 
-    return () => {
-      source.close();
-    };
-  }, [userId]);
-};
 
 const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) => {
-      const navigate = useNavigate();
-          const { empDetail, visible, setEmpDetail} = useAuth();
+          const { empDetail, setEmpDetail} = useAuth();
               const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
               
-                            useEffect(() => {
-                          setLiveUpdate(empDetail.coins);
-                        }, [empDetail.coins]);
-                        
-                        useSSE(empDetail.email, (coins) => {
-                        setLiveUpdate(coins);
-                        });
-                  const [error, setError] = useState<string >("");
           
-                                const [formData, setFormData] = useState<SignupFormData>({
-                      employee_id:empDetail.employee_id,
-                      first_name: empDetail.first_name,
-                      last_name: empDetail.last_name,
-                      full_name: empDetail.full_name,
-                      mobile_number: empDetail.mobile_number,
-                      email: empDetail.email,
-                      date_of_birth: empDetail.date_of_birth,
-                      gender: empDetail.gender,
-                      password: "",
-                      confirmPassword: "",
-                      photo_url: empDetail.photo_url,
-                      country_code:empDetail.countryCode,
-                      access_token: empDetail.access_token,
-                      coins:empDetail.coins, 
-                         });
+              useEffect(() => {
+            setLiveUpdate(empDetail.coins);
+          }, [empDetail.coins]);
+                const [visible, setVisible] = useState<Boolean>(true);
+          
+                               const formData: SignupFormData = {
+  employee_id: empDetail.employee_id,
+  first_name: empDetail.first_name,
+  last_name: empDetail.last_name,
+  full_name: empDetail.full_name,
+  mobile_number: empDetail.mobile_number,
+  email: empDetail.email,
+  date_of_birth: empDetail.date_of_birth,
+  gender: empDetail.gender,
+  password: "",
+  confirmPassword: "",
+  photo_url: empDetail.photo_url,
+  country_code: empDetail.countryCode,
+  access_token: empDetail.access_token,
+  coins: empDetail.coins,
+};
+
         const [payCoinvisible, setPayCoinVisible] = useState(false);
                 const [redownload, setRedownload] = useState(false);
 
@@ -97,6 +80,10 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
 
 
           const AddCoins = async (add :any, msg :string) => {
+                    const controller = new AbortController();
+        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+
+            setVisible(false);
       const updatedFormData = {
         ...formData,
         coins: add,
@@ -112,47 +99,55 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
             Authorization: `Bearer ${empDetail.access_token}`,
           },
           body: JSON.stringify(updatedFormData),
+               signal: controller.signal, // Attach the abort signal to the fetch request
         });
     
         const result = await response.json();
     
         if (response.ok) {
+            setVisible(true);
     
           console.log('Updated employee data:', updatedFormData);
                   setPayCoinVisible(true);
         setRedownload(true);
                 console.log("You have enough coins to download this game.");
-setTimeout(() => {
-  window.open(data.download_link, "_blank", "noopener,noreferrer");
-}, 3000); // 3000 milliseconds = 3 seconds
-          // setEmpDetail(updatedFormData);
-    
     
           toast.success(msg);
-                                      setEmpDetail({...empDetail,
-              employee_id: updatedFormData.employee_id,
-              first_name: updatedFormData.first_name,
-              last_name: updatedFormData.last_name,
-              full_name:updatedFormData.full_name,
-              mobile_number: updatedFormData.mobile_number,
-              email: updatedFormData.email,
-              date_of_birth: updatedFormData.date_of_birth,
-              gender: updatedFormData.gender,
-              password: "",
-              photo_url:updatedFormData.photo_url,
-              access_token:updatedFormData.access_token,
-              country_code:updatedFormData.country_code,
-              coins:updatedFormData.coins,
-          })
-          return
+                                  setEmpDetail({...empDetail,
+            employee_id: updatedFormData.employee_id,
+            first_name: updatedFormData.first_name,
+            last_name: updatedFormData.last_name,
+            full_name:updatedFormData.full_name,
+            mobile_number: updatedFormData.mobile_number,
+            email: updatedFormData.email,
+            date_of_birth: updatedFormData.date_of_birth,
+            gender: updatedFormData.gender,
+            password: "",
+            photo_url:updatedFormData.photo_url,
+            access_token:updatedFormData.access_token,
+            country_code:updatedFormData.country_code,
+            coins:updatedFormData.coins,
+        })
+          setTimeout(() => {
+  window.open(data.download_link, "_blank", "noopener,noreferrer");
+}, 3000); // 3000 milliseconds = 3 seconds
         } else if (response.status === 500) {
+            setVisible(true);
           alert(result.message);
           return
         } else {
+            setVisible(true);
           console.error('Update failed:', result);
           return
         }
-      } catch (error) {
+      } catch (error: any) {
+          if (error.name === "AbortError") {
+    setVisible(true)
+    alert("Request timed out");
+    // setError("Request timed out");
+    return
+  } 
+            setVisible(true);
         alert('Internal server error');
         console.error('Error:', error);
         return
@@ -160,31 +155,30 @@ setTimeout(() => {
     };
 
     const handleDownload = (data : GameSpecs): void => {
-        // const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        // if (isMobile) {
-        //     alert('Download links only work on PC or Laptop devices.');
-        //     return;
-        // }
+
         if (redownload) {
   window.open(data.download_link, "_blank", "noopener,noreferrer");
             return;
         }
 
-    if(empDetail.coins && empDetail.coins >= data.coins && data.price==="Price") {
-            AddCoins(liveUpdate-data.coins, "you have downloaded the game");
-
-
+    if(empDetail.coins && empDetail.coins >= data.coins && data.price.toLowerCase() === "price") {
+            AddCoins(liveUpdate - data.coins, "you have downloaded the game");
+return
     }else{
         alert("You don't have enough coins to download this game. Please add coins.")
     }
+};
+
+const handleClose = () => {
+  setRedownload(false);
+  onClose();
 };
 
 
   return (
             <div className="modal-backdrop">
   <div className="modal-content">
-    {/* Modal Content */}
-
+    {visible?(
 
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
@@ -246,14 +240,10 @@ setTimeout(() => {
 
     </button>
         <div style={{
-            marginTop: "10px",
+            marginTop: "15px",
         }}>
           <button
-  onClick={() => {
-      setRedownload(false);
-
-  onClose();
-}}
+onClick={handleClose}
             className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
           >
             Close
@@ -262,6 +252,10 @@ setTimeout(() => {
         </div>
       </div>
     </div>
+
+    ) :(<div className="spinner"> </div>)}
+
+
       </div>
               <ToastContainer/>
 </div>

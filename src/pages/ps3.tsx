@@ -1,40 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Coins from "./coins"
 import coinEmoji from "../assets/animations/coin.json";
 import Lottie from "lottie-react";
 import androidAnime from "../assets/animations/android-anime.json"
 import windowsAnime from "../assets/animations/windows.json"
-    import { useAuth } from "../context/authContext"
-        import { toast, ToastContainer } from 'react-toastify';
         import playstationAnime from "../assets/animations/playstation.json"
 
         import { SiPlaystation2, SiPlaystation3 } from "react-icons/si";
         import Playstation2Icon from "../assets/animations/playstation-icon.svg"
+        import PrizeModal from "../pages/prizemodal";
 
 
-
-
-
-
-
-interface SignupFormData {
-  employee_id:any;
-  first_name: any;
-  last_name: any;
-  full_name: any;
-  mobile_number: any;
-  email: any;
-  date_of_birth: any;
-  gender: any;
-  password: any;
-  confirmPassword:any;
-  photo_url:any;
-  country_code:any;
-  access_token:any;
-  coins:any;
-}
 
 interface GameSpecs {
   title:any;
@@ -46,54 +23,14 @@ interface GameSpecs {
   platform: any;
 }
 
-const useSSE = (userId: string, updateCoins: (coins: number) => void) => {
-  useEffect(() => {
-    const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
-
-    source.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("Coins updated:", data);
-      updateCoins(data.coins);
-    };
-
-    return () => {
-      source.close();
-    };
-  }, [userId]);
-};
 
 const PS3: React.FC = () => {
   const navigate = useNavigate();
-      const { empDetail, visible, setEmpDetail} = useAuth();
-          const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
-                  useEffect(() => {
-                setLiveUpdate(empDetail.coins);
-              }, [empDetail.coins]);
-              
-              useSSE(empDetail.email, (coins) => {
-              setLiveUpdate(coins);
-              });
+                            const [isModalOpen, setIsModalOpen] = useState(false);
+                                                    const [gameData, setGameData] = useState<GameSpecs>({} as GameSpecs);
       
-              const [error, setError] = useState<string >("");
-      
-                            const [formData, setFormData] = useState<SignupFormData>({
-                  employee_id:empDetail.employee_id,
-                  first_name: empDetail.first_name,
-                  last_name: empDetail.last_name,
-                  full_name: empDetail.full_name,
-                  mobile_number: empDetail.mobile_number,
-                  email: empDetail.email,
-                  date_of_birth: empDetail.date_of_birth,
-                  gender: empDetail.gender,
-                  password: "",
-                  confirmPassword: "",
-                  photo_url: empDetail.photo_url,
-                  country_code:empDetail.countryCode,
-                  access_token: empDetail.access_token,
-                  coins:empDetail.coins, 
-                     });
 
-const [gameSpecs, setGameSpecs] = useState<GameSpecs[]>([
+const [gameSpecs] = useState<GameSpecs[]>([
   {
     title: "God Of War III",
     size: "30 GB",
@@ -114,87 +51,15 @@ const [gameSpecs, setGameSpecs] = useState<GameSpecs[]>([
   },
 ]);
   
-        const AddCoins = async (add :any, msg :string) => {
-    const updatedFormData = {
-      ...formData,
-      coins: add,
-    };
-  
-    const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
-  
-    try {
 
-      const response = await fetch(apiUrl, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${empDetail.access_token}`,
-        },
-        body: JSON.stringify(updatedFormData),
-      });
-  
-      const result = await response.json();
-  
-      if (response.ok) {
-  
-        console.log('Updated employee data:', updatedFormData);
-                                  setEmpDetail({...empDetail,
-              employee_id: updatedFormData.employee_id,
-              first_name: updatedFormData.first_name,
-              last_name: updatedFormData.last_name,
-              full_name:updatedFormData.full_name,
-              mobile_number: updatedFormData.mobile_number,
-              email: updatedFormData.email,
-              date_of_birth: updatedFormData.date_of_birth,
-              gender: updatedFormData.gender,
-              password: "",
-              photo_url:updatedFormData.photo_url,
-              access_token:updatedFormData.access_token,
-              country_code:updatedFormData.country_code,
-              coins:updatedFormData.coins,
-          })
-        // setEmpDetail(updatedFormData);
-  
-  
-        toast.success(msg);
-        return
-      } else if (response.status === 500) {
-          setError('Internal server error');
-        alert(result.message);
-        return
-      } else {
-          setError('Update failed');
-        console.error('Update failed:', result);
-        return
-      }
-    } catch (error) {
-      setError('Internal server error');
-      alert('Internal server error');
-      console.error('Error:', error);
-      return
-    }
-  };
 
   const handleDownload = (data : GameSpecs): void => {
-        // const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        // if (isMobile) {
-        //     alert('Download links only work on PC or Laptop devices.');
-        //     return;
-        // }
         if (data.price === "Free") {
   window.open(data.download_link, "_blank", "noopener,noreferrer");
             return;
         }
-
-    if(liveUpdate >= data.coins && data.price==="Price"  && error === "") {
-            AddCoins(liveUpdate-data.coins, "you have downloaded the game");
-
-        console.log("You have enough coins to download this game.");
-
-  window.open(data.download_link, "_blank", "noopener,noreferrer");
-    }else{
-        alert("You don't have enough coins to download this game. Please add coins.")
-    }
+        setIsModalOpen(true);
+        setGameData(data);
 };
     return (
 
@@ -428,7 +293,15 @@ gap:"50px",
         </div>
       </div>
     </button>
+                          <PrizeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+data={gameData}
+      >
+        <p>Coins required for one-time download</p>
+      </PrizeModal>
   </div>
+
 ))}
 
 
@@ -439,7 +312,7 @@ gap:"50px",
 
     </div>
 </div>
-        <ToastContainer/>
+        {/* <ToastContainer/> */}
 
       </div>
 

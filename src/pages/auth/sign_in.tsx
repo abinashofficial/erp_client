@@ -1,7 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebaseConfig'; // Adjust the path as necessary
@@ -16,9 +15,8 @@ import sleepEmoji from "../../assets/animations/sleep_emoji.json";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { RiQrScan2Line } from "react-icons/ri";
 import { BsQrCodeScan } from "react-icons/bs";
-import { justify } from '@cloudinary/url-gen/qualifiers/textAlignment';
+
 import Ads from "../../components/ads"
 
 
@@ -119,14 +117,20 @@ const SignIn: React.FC = () => {
         setVisible(false);
         const isIntegerString = formData.email.split("").every((char) => /\d/.test(char));
         let message = "Invalid Email"
-        sendData.email = formData.email
-        sendData.password = formData.password
+setSendData({
+  ...sendData,
+  email: formData.email,
+  password: formData.password,
+});
 
 
 
       if (isIntegerString){
-        sendData.mobile_number = formData.email
-        sendData.email = ""
+        setSendData({
+  ...sendData,
+    mobile_number: formData.email,
+  email: "",
+});
         message = "Invalid Mobile Number"
       }
         const controller = new AbortController();
@@ -232,6 +236,7 @@ const SignIn: React.FC = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(empDetail),
+               signal: controller.signal, // Attach the abort signal to the fetch request
         });
 
             
