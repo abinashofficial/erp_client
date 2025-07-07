@@ -35,6 +35,24 @@ const Android: React.FC = () => {
         platform: "Android",
       },
             {
+      title: "God Of War 1",
+      size: "500 MB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://www.mediafire.com/file/fn9y0459efhrdl5/gow1.zip/file",
+         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687548/gow1_n2m3qx.jpg",
+      platform: "Android",
+    },
+    {
+      title: "God Of War 2",
+      size: "500 MB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://www.mediafire.com/file/87ahhnk8oqiuimq/gow2.zip/file",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687715/gow2_s4q05w.jpg",
+      platform: "Android",
+    },
+            {
         title: "NFS Most Wanted",
         size: "3 GB",
         price: "Free",
@@ -223,54 +241,22 @@ const Android: React.FC = () => {
               </div>
 
 
-                             <div className='platform-button'
+
+
+                  <div className='platform-button'
 
                onClick={() => navigate("/ps2")}>
 
               
 
-<div style={{
+            <div style={{
               display:"flex",
               justifyContent:"center",
               alignContent:"center",
               alignItems:"center",
+
             }}>
-                            <SiPlaystation2 style={{
-                                fontSize:"50px",
-                            }}/>
-                            
-
-            </div>
-            <div>
-                                      <img
-              src={Playstation2Icon}
-              alt="ps2"
-              style={{ width: "50px", height: "45px" }}
-                            className="icon-bounce"
-            />  
-            </div>
-
-
-            
-              </div>
-
-
-
-
-                  <div className='platform-button'
-
-               onClick={() => navigate("/ps3")}>
-
-              
-
-<div style={{
-              display:"flex",
-              justifyContent:"center",
-              alignContent:"center",
-              alignItems:"center",
-fontSize:"50px"
-            }}>
-                            <SiPlaystation3/>
+                            PlayStation
                             
 
             </div>
@@ -368,8 +354,9 @@ gap:"50px",
         onClose={() => setIsModalOpen(false)}
 data={gameData}
       >
-        <p>Coins required for one-time download</p>
-      </PrizeModal>
+        <p>Coins required for one-time download.</p>
+        <p>Reach out to customer support for assistance.</p>
+              </PrizeModal>
   </div>
 ))}
 

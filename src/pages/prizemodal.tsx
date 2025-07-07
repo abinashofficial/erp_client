@@ -133,7 +133,7 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
 }, 3000); // 3000 milliseconds = 3 seconds
         } else if (response.status === 500) {
             setVisible(true);
-          alert(result.message);
+          alert(result.message + " Sign in again");
           return
         } else {
             setVisible(true);

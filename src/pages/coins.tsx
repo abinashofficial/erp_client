@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
 import { useNavigate } from 'react-router-dom';
-
+import AnimatedNumber from "../utils/AnimeNumber";
     
 
  
@@ -33,12 +33,9 @@ interface CoinsProps {
 
 const Coins: React.FC<CoinsProps> = ({ isVisible }) => {
     const { empDetail} = useAuth();
-      const navigate = useNavigate();
-
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
     
-
     useEffect(() => {
   setLiveUpdate(empDetail.coins);
 }, [empDetail.coins]);
@@ -62,7 +59,7 @@ setLiveUpdate(coins);
                 <h2 style={{
                         marginLeft:"50px",
                 }}>
-                Total coins  : {liveUpdate}
+                <AnimatedNumber value={liveUpdate} />
 
                 </h2>
 
@@ -77,23 +74,6 @@ setLiveUpdate(coins);
 }} animationData={coinEmoji} loop autoplay />
 
         </div>
-{isVisible?(
-          <div>
-<button onClick={()=>navigate("/coins")} className='coin-button'>
-    <div style={{
-        fontSize:"12px",
-        fontWeight:"bolder",
-    }}>
-        Add Coins
-
-    </div>
-</button>
-          </div>
-):(
-  <div>
-
-  </div>
-)}
 
 
 </div>

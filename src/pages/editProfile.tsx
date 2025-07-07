@@ -135,7 +135,7 @@ const EditProfile: React.FC = () => {
 
      // Handle successful sign-in (e.g., redirect or store token)
    }else if (response.status===500){
-    alert(result.message);
+          alert(result.message + " Sign in again");
     setVisible(true)
 
   } else {

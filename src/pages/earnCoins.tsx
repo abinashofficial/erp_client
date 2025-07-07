@@ -31,7 +31,7 @@ interface SignupFormData {
 }
 
 const AddCoins: React.FC = () => {
-    const { empDetail} = useAuth();
+    const { empDetail, setEmpDetail} = useAuth();
         const [payCoinvisible, setPayCoinVisible] = useState(false);
                 const [visible, setVisible] = useState<Boolean>(true);
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
@@ -90,6 +90,21 @@ const AddCoins: React.FC = () => {
 
                     setTimeout(() => {
       setVisible(true)
+                                        setEmpDetail({...empDetail,
+            employee_id: updatedFormData.employee_id,
+            first_name: updatedFormData.first_name,
+            last_name: updatedFormData.last_name,
+            full_name:updatedFormData.full_name,
+            mobile_number: updatedFormData.mobile_number,
+            email: updatedFormData.email,
+            date_of_birth: updatedFormData.date_of_birth,
+            gender: updatedFormData.gender,
+            password: "",
+            photo_url:updatedFormData.photo_url,
+            access_token:updatedFormData.access_token,
+            country_code:updatedFormData.country_code,
+            coins:updatedFormData.coins,
+        })
 
       console.log('Updated employee data:', updatedFormData);
       toast.success('Coins added successfully');
@@ -97,7 +112,7 @@ const AddCoins: React.FC = () => {
         }, 3000); // 3000 milliseconds = 3 seconds
       
     } else if (response.status === 500) {
-      alert(result.message);
+          alert(result.message + " Sign in again");
             setVisible(true)
 
       return

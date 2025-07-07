@@ -251,7 +251,7 @@ const Game: React.FC = () => {
       price: "Free",
       coins: 0,
       download_link: "https://www.mediafire.com/file/rntigjvd2u67lm3/GTA_VC.zip/file",
-        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687410/gtavc_tte6ra.jpg",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751839528/gta_vc_p3mhje.jpg",
       platform: "PC",
     },
     {
@@ -387,54 +387,20 @@ const Game: React.FC = () => {
                   </div>
 
 
-<div className='platform-button'
+                  <div className='platform-button'
 
                onClick={() => navigate("/ps2")}>
 
               
 
-<div style={{
+            <div style={{
               display:"flex",
               justifyContent:"center",
               alignContent:"center",
               alignItems:"center",
+
             }}>
-                            <SiPlaystation2 style={{
-                                fontSize:"50px",
-                            }}/>
-                            
-
-            </div>
-            <div>
-                                      <img
-              src={Playstation2Icon}
-              alt="ps2"
-              style={{ width: "50px", height: "45px" }}
-                            className="icon-bounce"
-            />  
-            </div>
-
-
-            
-              </div>
-
-
-
-
-                  <div className='platform-button'
-
-               onClick={() => navigate("/ps3")}>
-
-              
-
-<div style={{
-              display:"flex",
-              justifyContent:"center",
-              alignContent:"center",
-              alignItems:"center",
-fontSize:"50px"
-            }}>
-                            <SiPlaystation3/>
+                            PlayStation
                             
 
             </div>
@@ -533,7 +499,8 @@ gap:"50px",
         onClose={() => setIsModalOpen(false)}
 data={gameData}
       >
-        <p>Coins required for one-time download</p>
+        <p>Coins required for one-time download.</p>
+        <p>Reach out to customer support for assistance.</p>
       </PrizeModal>
   </div>
 ))}

@@ -133,6 +133,7 @@ if (empDetail.email==="") {
           display:"flex",
           justifyContent:"space-between",
           alignItems:"center",
+          gap:"5px",
         }}>
 
           <div style={{
@@ -161,9 +162,15 @@ if (empDetail.email==="") {
 
     </div>
 </button>):(
-  <div>
+<button onClick={()=>navigate("/coins")} className='coin-button'>
+    <div style={{
+        fontSize:"12px",
+        fontWeight:"bolder",
+    }}>
+        Add Coins
 
-  </div>
+    </div>
+</button>
   )  }
 
 

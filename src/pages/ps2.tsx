@@ -33,47 +33,69 @@ const PS2: React.FC = () => {
 
 
 const [gameSpecs] = useState<GameSpecs[]>([
+        
+    {
+    title: "God Of War III",
+    size: "30 GB",
+    price: "Price",
+    coins: 50,
+    download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20III%20%28USA%29%20%28v02.00%29.7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/10/March-16-2010-300x345.jpg",
+    platform: "PS3",
+  },
+
   {
     title: "SmackDown Pain",
     size: "3 GB",
-    price: "Free",
-    coins: 0,
+    price: "Price",
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/WWE%20SmackDown!%20Here%20Comes%20the%20Pain%20(USA).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2019/09/2139896-box_wwesdhctp-300x381.png",
     platform: "PS2",
+  },
+
+    {
+    title: "God Of War Ascension",
+    size: "35 GB",
+    price: "Price",
+    coins: 50,
+    download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20-%20Ascension%20%28UK%29.7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/11/Ascension-ps3-300x345.jpg",
+    platform: "PS3",
   },
   {
     title: "God Of War II",
     size: "7 GB",
     price: "Price",
-    coins: 50,
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20of%20War%20II%20(USA).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-II-ps2-300x411.jpg",
     platform: "PS2",
   },
-      {
+
+    {
+    title: "MKSM",
+    size: "3 GB",
+    price: "Price",
+    coins: 20,
+    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/Mortal%20Kombat%20-%20Shaolin%20Monks%20(USA).7z",
+    image_link: "https://romsfun.com/wp-content/uploads/2023/05/Mortal-Kombat-Shaolin-Monks-300x423.jpg",
+    platform: "PS2",
+  },
+        {
     title: "God Of War I",
     size: "7 GB",
-    price: "Free",
-    coins: 0,
+    price: "Price",
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20of%20War%20(USA).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2020/05/cover-God-Of-War-2-Ps2-Pal-Iso-300x416.jpeg",
     platform: "PS2",
   },
     {
-    title: "MKSM",
-    size: "3 GB",
-    price: "Price",
-    coins: 50,
-    download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/Mortal%20Kombat%20-%20Shaolin%20Monks%20(USA).7z",
-    image_link: "https://romsfun.com/wp-content/uploads/2023/05/Mortal-Kombat-Shaolin-Monks-300x423.jpg",
-    platform: "PS2",
-  },
-    {
     title: "Downhill Domination",
     size: "7 GB",
-    price: "Free",
-    coins: 0,
+    price: "Price",
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2Europe/isos/Downhill%20Domination%20(Europe)%20(En,Fr,De,Es,It).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2019/09/downhill-domination-box-art-300x426.jpg",
     platform: "PS2",
@@ -81,8 +103,8 @@ const [gameSpecs] = useState<GameSpecs[]>([
     {
     title: "God Hand",
     size: "2 GB",
-    price: "Free",
-    coins: 0,
+    price: "Price",
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20Hand%20(USA).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2019/09/153422-God_Hand_Europe_EnFrDeEsIt-1482315106-300x424.jpg",
     platform: "PS2",
@@ -90,8 +112,8 @@ const [gameSpecs] = useState<GameSpecs[]>([
     {
     title: "Urban Reign",
     size: "2 GB",
-    price: "Free",
-    coins: 0,
+    price: "Price",
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2Europe/isos/Urban%20Reign%20(Europe)%20(En,Fr,De,Es,It).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2020/05/51E7QES99ML._SY445_-300x425.jpg",
     platform: "PS2",
@@ -99,11 +121,38 @@ const [gameSpecs] = useState<GameSpecs[]>([
     {
     title: "Dragon Ball Z Budokai Tenkaichi 3",
     size: "2 GB",
-    price: "Free",
-    coins: 0,
+    price: "Price",
+    coins: 20,
     download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/DragonBall%20Z%20-%20Budokai%20Tenkaichi%203%20(USA)%20(En,Ja).7z",
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/Dragon-Ball-Z-Budokai-Tenkaichi-3-300x424.jpg",
     platform: "PS2",
+  },
+      {
+    title: "Dragon Ball Z Shin Budokai",
+    size: "2 GB",
+    price: "Price",
+    coins: 10,
+    download_link: "https://downloads.romspedia.com/roms/Dragon%20Ball%20Z%20-%20Shin%20Budokai%20%28USA%29.zip",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/08/Dragon-Ball-Z-Shin-Budokai-300x523.jpg",
+    platform: "PSP",
+  },
+  {
+    title: "God of War Ghost of Sparta",
+    size: "1 GB",
+    price: "Price",
+    coins: 10,
+    download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20-%20Ghost%20of%20Sparta%20%28USA%29%20%28En%2CFr%2CEs%29%20%28v2.00%29.zip",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-Ghost-of-Sparta-300x514.jpg",
+    platform: "PSP",
+  },
+      {
+    title: "God of War Chains of Olympus",
+    size: "1 GB",
+    price: "Price",
+    coins: 10,
+    download_link: "https://s3.us-east-2.amazonaws.com/sorrywlcriteria/vbfb200hgf/God-Of-War-Chains-Of-Olympus-PPSSPP-Highly-Com-876284.zip?",
+    image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-Chains-of-Olympus-1-300x485.jpg",
+    platform: "PSP",
   },
 ]);
   
@@ -188,7 +237,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
               </div>
 
 
-<div style={{
+{/* <div style={{
                 display:"flex",
                 flexDirection:"row",
                 background:"#f1f1f1",
@@ -227,25 +276,34 @@ const [gameSpecs] = useState<GameSpecs[]>([
 
 
             
-              </div>
+              </div> */}
 
 
 
 
-                  <div className='platform-button'
+                  <div style={{
+                display:"flex",
+                flexDirection:"row",
+                background:"#f1f1f1",
+                              justifyContent:"center",
+                              width:"160px",
+                              borderRadius:"10px",
+                              cursor:"pointer",
 
-               onClick={() => navigate("/ps3")}>
+              }}
+
+               >
 
               
 
-<div style={{
+            <div style={{
               display:"flex",
               justifyContent:"center",
               alignContent:"center",
               alignItems:"center",
-fontSize:"50px"
+
             }}>
-                            <SiPlaystation3/>
+                            PlayStation
                             
 
             </div>
@@ -342,8 +400,8 @@ gap:"50px",
         onClose={() => setIsModalOpen(false)}
 data={gameData}
       >
-        <p>Coins required for one-time download</p>
-      </PrizeModal>
+        <p>Coins required for one-time download.</p>
+        <p>Reach out to customer support for assistance.</p>      </PrizeModal>
   </div>
 ))}
 
