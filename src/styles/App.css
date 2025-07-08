@@ -257,7 +257,6 @@ button.menu-btn{
 .header-btn{
   color: black ;
   background-color: white;
-  font-size: 1rem;
 }
 
 .header-btn.clicked{
@@ -919,7 +918,27 @@ display: flex;
   background-color: rgb(241, 241, 241);
 }
 
-.coin-button{
+
+.coin-button {
+
+  padding: 10px;
+  margin: 10px 0;
+      background-color: gold;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.coin-button:hover {
+  background-color: #B8860B;
+}
+
+/* .coin-button{
       background-color: gold;
     color: black;
     border-radius: 10px;
@@ -928,7 +947,7 @@ display: flex;
 
 .coin-button:hover {
   background-color: #B8860B;
-}
+} */
 
 
 .icon-bounce {

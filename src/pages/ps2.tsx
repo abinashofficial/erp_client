@@ -175,7 +175,6 @@ const [gameSpecs] = useState<GameSpecs[]>([
     justifyContent: "center",
     flexWrap: "wrap",
     gap: "20px",
-    marginTop: "30px",  
   }}>
 
     

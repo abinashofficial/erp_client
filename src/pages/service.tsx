@@ -21,7 +21,6 @@ const Service: React.FC = () => {
         flexWrap:"wrap",
 justifyContent:"space-around",
 gap:"50px",
-margin:"50px",
       }}>
 
 

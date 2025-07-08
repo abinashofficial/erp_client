@@ -155,6 +155,10 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
     };
 
     const handleDownload = (data : GameSpecs): void => {
+      if (!empDetail.employee_id) {
+        alert("Please sign in to download the game.");
+        return;
+      }
 
         if (redownload) {
   window.open(data.download_link, "_blank", "noopener,noreferrer");

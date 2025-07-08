@@ -133,7 +133,15 @@ if (empDetail.email==="") {
           display:"flex",
           justifyContent:"space-between",
           alignItems:"center",
-          gap:"5px",
+          flexFlow: "wrap",
+          position:"fixed", 
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1,
+          backgroundColor: 'white',
+                  boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
+
         }}>
 
           <div style={{
@@ -145,27 +153,29 @@ if (empDetail.email==="") {
           }}>
           <FaEarlybirds size={50} />
           </div>
-<button onClick={() => headerButtonHandle("button1", '/home')} className={`header-btn ${clickedButtons.button1 ? 'clicked' : ''}`}>Home</button>
+<button onClick={() => headerButtonHandle("button1", '/home')} className={`header-btn ${clickedButtons.button1 ? 'clicked' : ''}`}> <h4>Home</h4></button>
   {/* <button onClick={() => headerButtonHandle("button2",  '/blog')} className={`mobile-only-header-button ${clickedButtons.button3 ? 'clicked' : ''}`}>Blog</button> */}
 {/* <button onClick={() => headerButtonHandle("button5", '/game')} className={`header-btn ${clickedButtons.button2 ? 'clicked' : ''}`}>Game</button> */}
-  <button onClick={() => headerButtonHandle("button2",  '/blog')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Blog</button>
-<button onClick={() => headerButtonHandle("button3",  '/service')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}>Service</button>
+  <button onClick={() => headerButtonHandle("button2",  '/blog')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}> <h4>Blog</h4> </button>
+<button onClick={() => headerButtonHandle("button3",  '/service')} className={`header-btn ${clickedButtons.button3 ? 'clicked' : ''}`}> <h4>Service</h4> </button>
 
 
 
-{!empDetail.employee_id?(<button onClick={()=>handleSignup()} className='signup-button'>
+{!empDetail.employee_id?(<button onClick={()=>navigate('/')} className='signup-button'>
     <div style={{
-        fontSize:"12px",
+        fontSize:"10px",
         fontWeight:"bolder",
+        width:"25px"
     }}>
-        Sign Up
+        Sign In
 
     </div>
 </button>):(
 <button onClick={()=>navigate("/coins")} className='coin-button'>
     <div style={{
-        fontSize:"12px",
+        fontSize:"10px",
         fontWeight:"bolder",
+            width:"29px"
     }}>
         Add Coins
 
@@ -208,7 +218,7 @@ if (empDetail.email==="") {
             <li> <button onClick={() => landPage("button1", '/home')} className="link-button"><FaHome className="menu-item-icon" />Home</button></li>
             <li>  <button onClick={() => landPage("button4", '/profile')} className="link-button"><FaUser className="menu-item-icon"  /> Profile</button></li>
             <li>  <button onClick={() => landPage("button2", '/blog')} className="link-button"><FaBlog className="menu-item-icon"  /> Blog</button></li>
-            <li>  <button onClick={() => landPage("button5", '/game')} className="link-button"><IoGameControllerSharp className="menu-item-icon"  /> Game</button></li>
+            <li>  <button onClick={() => landPage("button5", '/game')} className="link-button"><IoGameControllerSharp className="menu-item-icon"  /> Games</button></li>
 
             <li>  <button onClick={() => landPage("button3", '/service')} className="link-button"> <FaServicestack className="menu-item-icon" /> Services</button></li>
           <li> <button onClick={handleLogout} className="link-button">  <FaSignOutAlt className="menu-item-icon" /> Logout</button></li>

@@ -170,7 +170,6 @@ const Android: React.FC = () => {
     justifyContent: "center",
     flexWrap: "wrap",
     gap: "20px",
-    marginTop: "30px",  
   }}>
 
     

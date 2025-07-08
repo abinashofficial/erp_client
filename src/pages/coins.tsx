@@ -51,12 +51,17 @@ setLiveUpdate(coins);
     alignItems:"center",
     flexDirection:"row",
     flexWrap:"wrap",
-
+    marginTop:"90px"
 }}>
     
                 <h2>Hi... {empDetail.full_name}</h2>
-
-                <h2 style={{
+                <div style={{
+                  display:"flex",
+                  flexDirection:"row",
+                      justifyContent:"center",
+    alignItems:"center",
+                }}>
+                                  <h2 style={{
                         marginLeft:"50px",
                 }}>
                 <AnimatedNumber value={liveUpdate} />
@@ -74,6 +79,9 @@ setLiveUpdate(coins);
 }} animationData={coinEmoji} loop autoplay />
 
         </div>
+                </div>
+
+
 
 
 </div>
