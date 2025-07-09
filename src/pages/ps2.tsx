@@ -9,6 +9,7 @@ import windowsAnime from "../assets/animations/windows.json"
         import { SiPlaystation2, SiPlaystation3 } from "react-icons/si";
         import Playstation2Icon from "../assets/animations/playstation-icon.svg"
         import PrizeModal from "../pages/prizemodal";
+import Header from '../components/header';
 
 
 
@@ -168,6 +169,8 @@ const [gameSpecs] = useState<GameSpecs[]>([
 
 
       <div>
+        <Header/>
+
 <Coins isVisible={true} />
 
   <div style={{
@@ -338,13 +341,14 @@ gap:"50px",
       display: "flex",
       justifyContent: "center",
       borderRadius: "10px",
-      height: "400px",
     }}>
       <img
-        style={{ borderRadius: "10px" }}
+        style={{ borderRadius: "10px",
+          height:"350px",
+          width:"250px",
+         }}
         src={data.image_link}
         alt=""
-        sizes="10px"
       />
     </div>
 

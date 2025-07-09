@@ -8,6 +8,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { BsQrCode } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import Select from "react-select";
+import Header from '../components/header';
 
 
 
@@ -179,6 +180,7 @@ const Profile: React.FC = () => {
 
     return (
       <div className='main-content'>
+<Header/>
 
 <div className="form-container">
                         {/* <div>

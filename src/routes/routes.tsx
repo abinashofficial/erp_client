@@ -45,9 +45,9 @@ const Main: React.FC = () => {
 
 
 
-{
+{/* {
                 isAuthenticated ?         <Header/>:""
-            }
+            } */}
 
         <Routes>
         {/* <Route path="/" element={<Whatsapp />} /> */}
@@ -68,9 +68,9 @@ const Main: React.FC = () => {
 
         <Route path="/qrscan" element={<Qrscan />} />
         <Route path="/qrgenerate" element={
-                            <ProtectedRoute>
+                           // <ProtectedRoute>
                             <Qrgenerate />
-                        </ProtectedRoute>
+                      //  </ProtectedRoute>
                         } />
 
 
@@ -83,43 +83,43 @@ const Main: React.FC = () => {
         <Route 
             path="/home" 
             element={
-                <ProtectedRoute>
+              //  <ProtectedRoute>
                     <Home />
-                </ProtectedRoute>
+              //  </ProtectedRoute>
             } 
         />
 
 <Route 
             path="/blog" 
             element={
-                <ProtectedRoute>
+              //  <ProtectedRoute>
                     <Blog />
-                </ProtectedRoute>
+              //  </ProtectedRoute>
             } 
         />
         <Route 
             path="/game" 
             element={
-                <ProtectedRoute>
+               // <ProtectedRoute>
                     <Game />
-                 </ProtectedRoute>
+               //  </ProtectedRoute>
             } 
         />
                 <Route 
             path="/android" 
             element={
-                <ProtectedRoute>
+               // <ProtectedRoute>
                     <Android />
-                 </ProtectedRoute>
+               //  </ProtectedRoute>
             } 
         />
 
                         <Route 
             path="/ps2" 
             element={
-                <ProtectedRoute>
+               // <ProtectedRoute>
                     <PS2 />
-                 </ProtectedRoute>
+                // </ProtectedRoute>
             } 
         />
 
@@ -136,27 +136,21 @@ const Main: React.FC = () => {
 <Route 
             path="/service" 
             element={
-                <ProtectedRoute>
                     <Service />
-                </ProtectedRoute>
             } 
         />
 
 <Route 
             path="/course" 
             element={
-                <ProtectedRoute>
                     <Course />
-                </ProtectedRoute>
             } 
         />
 
 <Route 
             path="/project" 
             element={
-                <ProtectedRoute>
                     <Project />
-                </ProtectedRoute>
             } 
         />
 

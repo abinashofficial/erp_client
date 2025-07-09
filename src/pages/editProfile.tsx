@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
 import Select from "react-select";
 import UploadDrive from "../pages/uploaddrive"
+import Header from '../components/header';
 
 
 
@@ -281,6 +282,8 @@ const EditProfile: React.FC = () => {
 
     return (
       <div className='main-content'>
+        <Header/>
+
               {visible ? (
 
         <div className="form-container">

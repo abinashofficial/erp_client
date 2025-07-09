@@ -8,6 +8,7 @@ import Coins from "../pages/coins"
 import { SiGmail } from 'react-icons/si';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '@mui/material';
+import Header from '../components/header';
 
 
 
@@ -22,6 +23,8 @@ const Project: React.FC = () => {
 
 
       <div>
+        <Header/>
+
 <Coins isVisible={true} />
 <div className='main-content'>
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Coins from "../pages/coins"
+import Header from '../components/header';
 
 const Service: React.FC = () => {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ const Service: React.FC = () => {
 
 
       <div>
+        <Header/>
+
 <Coins isVisible={true} />
 
 <div className='main-content'>

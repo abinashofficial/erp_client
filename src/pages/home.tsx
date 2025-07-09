@@ -1,6 +1,7 @@
 import { useAuth } from '../context/authContext';
 import React from 'react';
 import ReactPlayer from 'react-player/youtube';
+import Header from '../components/header';
 
 
 
@@ -8,7 +9,7 @@ const Home: React.FC = () => {
     const {empDetail} = useAuth();
     return (
       <div className='main-content'>
-
+<Header/>
 
 <div  style={{
         display:"flex",

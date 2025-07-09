@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface SignupFormData {
@@ -36,6 +37,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
     const [visible, setVisible] = useState(true);
+        const navigate = useNavigate()
+    
     const [empDetail, setEmpDetail] = useState<SignupFormData>({
         employee_id:'',
         first_name: '',
@@ -112,6 +115,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             country_code:"",
             coins:0,
         })
+        navigate('/'); // Redirect to login page after logout
         };
 
 

@@ -10,6 +10,7 @@ import coinEmoji from "../assets/animations/coin.json";
     import PayCoin from "../assets/animations/paycoins.json"
 import Coins from "../pages/coins"
 import PayModule from '../pages/paymodule';
+import Header from '../components/header';
 
     
 
@@ -172,6 +173,8 @@ const AddCoins: React.FC = () => {
 
     return (
       <div>
+        <Header/>
+
           <PresenceTracker />
 
                 {visible ? (

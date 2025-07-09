@@ -6,6 +6,7 @@ import coinEmoji from "../assets/animations/coin.json";
             import { toast, ToastContainer } from 'react-toastify';
             import { FaLinkedin, FaWhatsapp, FaInstagram  } from 'react-icons/fa';
     import upiIcon from "../assets/animations/upi.svg";
+import { QRCodeCanvas } from 'qrcode.react';
 
 
 
@@ -50,7 +51,8 @@ type ModalProps = {
 const PayModule: React.FC<ModalProps> = ({ isOpen, onClose, coin, children }) => {
           const { empDetail, setEmpDetail} = useAuth();
               const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
-              
+                const [showQR, setShowQR] = useState(false);
+
           
               useEffect(() => {
             setLiveUpdate(empDetail.coins);
@@ -82,24 +84,25 @@ const PayModule: React.FC<ModalProps> = ({ isOpen, onClose, coin, children }) =>
 
 
     const handleUPIPayment = async (pay: any) => {
+            if (!empDetail.employee_id){
+      alert('Please signup to add coins.');
+      return
+    }
           // Mobile detection using user agent
   const isMobile = /android|iphone|ipad|mobile/i.test(
     navigator.userAgent || navigator.vendor || (window as any).opera
   );
 
-  if (!isMobile) {
-    alert('Please use a mobile device to make the payment.');
-        return; // Do nothing on laptop/desktop
-  }
-    if (!empDetail.employee_id){
-      alert('Please signup to add coins.');
-      return
-    }
+
 
     const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${pay}&cu=INR&tn=${encodeURIComponent(
-      'for game purchase'
+      'for buy coins'
     )}`;
-    window.location.href = upiLink;
+       if (isMobile) {
+      window.location.href = upiLink;
+    } else {
+      setShowQR(true); // Show QR on desktop
+    }
   };
 
       const handleWatsapp = async () => {
@@ -202,6 +205,21 @@ const handleClose = () => {
 <div>
     {children}
 </div>
+
+{showQR && (
+        <div style={{ marginTop: 20,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+            borderRadius: "20px",
+         }}>
+          <h2>Scan to Pay</h2>
+          <QRCodeCanvas value={`upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent('for buy coins')}`} size={200} />
+          <p>Amount: ₹{coin}</p>
+        </div>
+      )}
         
         <div style={{
             display: "flex",

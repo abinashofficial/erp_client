@@ -7,6 +7,7 @@ import WebDesignAnime from "../assets/animations/webdesignanime.json"
 import ECommerceAnime from "../assets/animations/ecommerceanime.json"
 import ItSupportAnime from "../assets/animations/Itsupportanime.json"
 import ItServiceAnime from "../assets/animations/serviceanime.json"
+import Header from '../components/header';
 
 const services = [
   {
@@ -42,6 +43,8 @@ export default function Blog() {
               marginTop:"40px",
 
     }}>
+      <Header/>
+      
 
     <div className="min-h-screen p-6 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 text-white">
 

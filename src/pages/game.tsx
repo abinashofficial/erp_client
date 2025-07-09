@@ -9,6 +9,7 @@ import { SiPlaystation2, SiPlaystation3 } from "react-icons/si";
 import Playstation2Icon from "../assets/animations/playstation-icon.svg";
         import PrizeModal from "../pages/prizemodal";
         import Coins from "./coins"
+import Header from '../components/header';
 
 
 
@@ -305,6 +306,7 @@ const Game: React.FC = () => {
 
     return (
             <div>
+<Header/>
 
 <Coins isVisible={true} />
              

@@ -9,6 +9,7 @@ import windowsAnime from "../assets/animations/windows.json"
                 import { SiPlaystation2, SiPlaystation3  } from "react-icons/si";
                 import Playstation2Icon from "../assets/animations/playstation-icon.svg"
                         import PrizeModal from "../pages/prizemodal";
+import Header from '../components/header';
 
 
 interface GameSpecs {
@@ -163,6 +164,8 @@ const Android: React.FC = () => {
 
 
       <div>
+        <Header/>
+
 <Coins isVisible={true} />
 
   <div style={{
