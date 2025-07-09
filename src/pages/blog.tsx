@@ -38,7 +38,10 @@ const services = [
 
 export default function Blog() {
   return (
-    <div className='main-content'>
+    <div className='main-content' style={{
+              marginTop:"40px",
+
+    }}>
 
     <div className="min-h-screen p-6 bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 text-white">
 

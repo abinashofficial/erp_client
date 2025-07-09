@@ -19,6 +19,7 @@ const Home: React.FC = () => {
         height: '100%', // Ensure it takes full viewport height
         width: '100%', 
         background:"white",
+        marginTop:"180px",
       }}>
 
 

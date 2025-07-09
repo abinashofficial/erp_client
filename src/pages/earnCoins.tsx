@@ -9,6 +9,7 @@ import coinEmoji from "../assets/animations/coin.json";
     import PresenceTracker from '../utils/presenceTracker';
     import PayCoin from "../assets/animations/paycoins.json"
 import Coins from "../pages/coins"
+import PayModule from '../pages/paymodule';
 
     
 
@@ -35,11 +36,16 @@ const AddCoins: React.FC = () => {
         const [payCoinvisible, setPayCoinVisible] = useState(false);
                 const [visible, setVisible] = useState<Boolean>(true);
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
+        const [money, setMoney] = useState<any | null>(null);
+
+            const [coupon, setCoupon] = useState("");
+
     
 
     useEffect(() => {
   setLiveUpdate(empDetail.coins);
 }, [empDetail.coins]);
+                         const [isModalOpen, setIsModalOpen] = useState(false);
 
                       const [formData] = useState<SignupFormData>({
             employee_id:empDetail.employee_id,
@@ -138,12 +144,30 @@ const AddCoins: React.FC = () => {
       return
     }
 
-    const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${pay}&cu=INR&tn=${encodeURIComponent(
-      'for game purchase'
-    )}`;
-    window.location.href = upiLink;
-    AddCoin(liveUpdate + coin); // Call your actual function here
+    // const upiLink = `upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${pay}&cu=INR&tn=${encodeURIComponent(
+    //   'for game purchase'
+    // )}`;
+    // window.location.href = upiLink;
+    // AddCoin(liveUpdate + coin); // Call your actual function here
+    setMoney(coin);
+    setIsModalOpen(true);
   };
+
+    const handleCoupon = async () => {
+
+  if (!empDetail.employee_id) {
+    alert('Please signup to add coins.');
+    return;
+  }
+
+  };
+
+
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          const { name, value } = e.target;
+          console.log("Coupon value:", value);  
+          setCoupon(value);
+      };
 
 
     return (
@@ -182,6 +206,32 @@ const AddCoins: React.FC = () => {
         </div> */}
 
 <Coins isVisible={false} />
+<div style={{
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+}}>
+          <div className="input-group">
+            <input
+              id="coupon"
+              name="coupon"
+              type="text"
+              value={coupon}
+              onChange={handleChange}
+              placeholder="Coupon Code"
+              required
+            />
+          </div>
+          <div>
+            <button
+              className="apply-coupon-btn"
+              onClick={() => handleCoupon()}
+            >
+              Apply Coupon
+            </button>
+          </div>
+</div>
 
 
 
@@ -414,7 +464,14 @@ const AddCoins: React.FC = () => {
 </form>
     </div>
         </div>
- 
+                       <PayModule
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+coin={money}
+      >
+        <p>Make the payment via UPI IDs.</p>
+        <p>Send the payment screenshot via WhatsApp to get your coupon code.</p>
+      </PayModule>
 
 
         <ToastContainer/>

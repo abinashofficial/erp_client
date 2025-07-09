@@ -425,11 +425,20 @@ button.menu-btn{
   transition: background-color 0.3s ease;
 }
 
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  margin-top: 40px;
+}
 
 
 
-
-.form-container, .home-container {
+ .home-container {
   background: white;
   padding: 2rem;
   border-radius: 10px;
@@ -546,11 +555,13 @@ button.menu-btn{
   cursor: pointer;
   font-size: 16px;
   outline: none;
+  color: black;
 }
 
-.toggle-password-btn :hover {
-  background: none;
-}
+/* .toggle-password-btn :hover {
+  background: grey;
+  color: white;
+} */
 
 
 /* Login button styles */

@@ -127,9 +127,7 @@ const Main: React.FC = () => {
                 <Route 
             path="/coins" 
             element={
-                                <ProtectedRoute>
                     <AddCoins />
-                 </ProtectedRoute>
 
             } 
         />
