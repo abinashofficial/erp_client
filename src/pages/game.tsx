@@ -204,6 +204,67 @@ const Game: React.FC = () => {
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751658642/cyberpunk_abatbz.jpg",
       platform: "PC",
     },
+
+           {
+      title: "Split Fiction",
+      size: "80 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://node14.datanodes.to:8443/d/tkmkcpnbkae5w4x3x7zgkiwq6otqyzulemm2db5vtgrvmfund7qz55jhznasztzzh4yffwsx/Split-Fiction.rar",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129080/split_fiction_u8qo8c.jpg",
+      platform: "PC",
+    },
+
+               {
+      title: "Forza Horizon Motorsport 7",
+      size: "103 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://1fichier.com/?zgpm6k2ky5wh2vlkjpvq",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129327/forza_motorsport_7_ureejg.jpg",
+      platform: "PC",
+    },
+
+                   {
+      title: "COD 4",
+      size: "6 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://1fichier.com/?psvzyyub7af450ec5y02",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129427/cod4_dpninl.jpg",
+      platform: "PC",
+    },
+
+                   {
+      title: "Mortal Kombat 11",
+      size: "140 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://datavaults.co/2eljqhdi0r5m/Mortal_Kombat_11_%5BCONOR%5D.rar",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129767/mortalkobat11_iupbby.jpg",
+      platform: "PC",
+    },
+
+                       {
+      title: "WWE 2K25",
+      size: "95 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://1fichier.com/?su6nq5uwa0ubqpx0sx6s",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752132027/wwe2k25_xa2hmq.jpg",
+      platform: "PC",
+    },
+
+                   {
+      title: "FIFA 23",
+      size: "50 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://cdn2.koyso.to/FIFA23v1.0.82.43747.rar?verify=1752131430-60pf3mkcYqbff5CO6mjbNNLjWVoDl4VjXlzy3ln6Y6U%3D",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752131096/fifa_23_f8kj6t.jpg",
+      platform: "PC",
+    },
+
            {
       title: "X-Men",
       size: "3 GB",
