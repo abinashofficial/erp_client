@@ -43,7 +43,7 @@ const QRCodeScanner: React.FC = () => {
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
     if (data) {
-       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data.text);
+       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
 

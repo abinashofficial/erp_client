@@ -117,22 +117,40 @@ const SignIn: React.FC = () => {
         setVisible(false);
         const isIntegerString = formData.email.split("").every((char) => /\d/.test(char));
         let message = "Invalid Email"
-setSendData({
-  ...sendData,
-  email: formData.email,
-  password: formData.password,
-});
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const mobileRegex = /^[6-9]\d{9}$/;
+sendData.password = formData.password
 
+              if (isIntegerString){
+                        message = "Invalid Mobile Number"
 
+                if (mobileRegex.test(formData.email)){
 
-      if (isIntegerString){
-        setSendData({
-  ...sendData,
-    mobile_number: formData.email,
-  email: "",
-});
-        message = "Invalid Mobile Number"
+sendData.mobile_number = formData.email
+sendData.email = ""
+                }else{
+          setVisible(true)
+          alert(message);
+          return
+                }
+        
+      }else{
+        if (regex.test(formData.email)){
+sendData.email = formData.email
+sendData.mobile_number = ""
+        }else{
+          setVisible(true)
+          alert(message);
+          return
+        }
+
       }
+
+
+
+
+
+      console.log("sendData: ", message)
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
