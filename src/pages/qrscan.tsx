@@ -46,6 +46,7 @@ const QRCodeScanner: React.FC = () => {
        const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
+        console.log("Extracted Employee ID:", extractedId);
 
           try {
 
@@ -84,7 +85,10 @@ const QRCodeScanner: React.FC = () => {
                 navigate('/home'); // Redirect to dashboard after login
                 setVisible(true)
                 // Handle successful sign-in (e.g., redirect or store token)
-              }
+  }else if (response.status===400){
+    setVisible(true)
+    alert("Invalid QR Code");
+  }
             }catch (error :any) {
                 if (error.name === "AbortError") {
                     setVisible(true)
