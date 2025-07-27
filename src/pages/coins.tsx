@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
-import { useNavigate } from 'react-router-dom';
 import AnimatedNumber from "../utils/AnimeNumber";
     
 

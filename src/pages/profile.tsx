@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
 import { RxAvatar } from "react-icons/rx";
-import { MdOutlineEdit } from "react-icons/md";
 import { BsQrCode } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
 import Select from "react-select";
 import Header from '../components/header';
 

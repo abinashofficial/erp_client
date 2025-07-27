@@ -6,8 +6,6 @@ import Lottie from "lottie-react";
 import androidAnime from "../assets/animations/android-anime.json"
 import windowsAnime from "../assets/animations/windows.json"
         import playstationAnime from "../assets/animations/playstation.json"
-                import { SiPlaystation2, SiPlaystation3  } from "react-icons/si";
-                import Playstation2Icon from "../assets/animations/playstation-icon.svg"
                         import PrizeModal from "../pages/prizemodal";
 import Header from '../components/header';
 

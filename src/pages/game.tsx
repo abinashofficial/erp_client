@@ -5,8 +5,6 @@ import windowsicon from "../assets/animations/windows.json"
 import androidAnime from "../assets/animations/android-anime.json"
 import { useNavigate } from 'react-router-dom';
 import playstationAnime from "../assets/animations/playstation.json"
-import { SiPlaystation2, SiPlaystation3 } from "react-icons/si";
-import Playstation2Icon from "../assets/animations/playstation-icon.svg";
         import PrizeModal from "../pages/prizemodal";
         import Coins from "./coins"
 import Header from '../components/header';
