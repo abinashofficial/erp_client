@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import QRCode from 'react-qr-code';
 import html2canvas from 'html2canvas';
 import { useAuth } from '../context/authContext';
+import Header from '../components/header';
 
 
 const UserQRCode = () => {
@@ -28,7 +29,9 @@ const UserQRCode = () => {
   };
 
   return (
-
+<div>
+    <Header/>
+<div className='main-content'>
 
     <div
       style={{
@@ -38,7 +41,7 @@ const UserQRCode = () => {
         justifyContent: 'center',
         padding: '20px',
         textAlign: 'center',
-        marginBottom:"100px"
+        marginTop: '50px',
       }}
     >
       <h2 style={{ fontSize: '1.5rem' }}>Generate QR Code</h2>
@@ -95,7 +98,7 @@ const UserQRCode = () => {
       </button>
 
       {/* Additional Styling for Mobile */}
-      <style>
+      {/* <style>
         {`
           @media (max-width: 600px) {
             h2 {
@@ -110,8 +113,10 @@ const UserQRCode = () => {
             }
           }
         `}
-      </style>
+      </style> */}
     </div>
+</div>
+</div>
 
   );
 };

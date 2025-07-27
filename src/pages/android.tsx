@@ -127,7 +127,7 @@ const Android: React.FC = () => {
         platform: "Android",
       },      {
         title: "Zarchiever",
-        size: "3 GB",
+        size: "50 MB",
         price: "Free",
         coins: 0,
         download_link: "https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver&pcampaignid=web_share",
@@ -135,7 +135,7 @@ const Android: React.FC = () => {
         platform: "Android",
       },      {
         title: "Ps2 Emulator",
-        size: "3 GB",
+        size: "50 MB",
         price: "Free",
         coins: 0,
         download_link: "https://www.mediafire.com/file/xm1v86q9q6ssj4j/Aethersx2.zip",
