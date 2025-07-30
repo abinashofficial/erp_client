@@ -9,6 +9,8 @@ import windowsAnime from "../assets/animations/windows.json"
         import Playstation2Icon from "../assets/animations/playstation-icon.svg"
         import PrizeModal from "../pages/prizemodal";
 import Header from '../components/header';
+import { IoSearch } from "react-icons/io5";
+
 
 
 
@@ -155,7 +157,11 @@ const [gameSpecs] = useState<GameSpecs[]>([
     platform: "PSP",
   },
 ]);
+    const [searchTerm, setSearchTerm] = useState<string>("");
   
+    const filteredGames = gameSpecs.filter((game) =>
+      game.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   const handleDownload = (data : GameSpecs): void => {
         if (data.price === "Free") {
   window.open(data.download_link, "_blank", "noopener,noreferrer");
@@ -171,6 +177,44 @@ const [gameSpecs] = useState<GameSpecs[]>([
         <Header/>
 
 <Coins isVisible={true} />
+           <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",  
+        marginBottom:"20px",            
+             }}>
+              {/* <IoSearch />
+                      <input
+          type="text"
+          placeholder="Search by title"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        /> */}
+         <div style={{ position: "relative" }}>
+    <IoSearch
+      style={{
+        position: "absolute",
+        left: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        color: "#999",
+      }}
+    />
+    <input
+      type="text"
+      placeholder="Search by title"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "10px 10px 10px 35px", // extra left padding for icon
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        outline: "none",
+      }}
+    />
+  </div>
+             </div>
 
   <div style={{
     display: "flex",
@@ -334,7 +378,7 @@ gap:"50px",
       }}>
 
 
-{gameSpecs.map((data, index) => (
+{filteredGames.map((data, index) => (
   <div key={index} className='service_box'>
     <div style={{
       display: "flex",

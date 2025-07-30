@@ -8,6 +8,8 @@ import playstationAnime from "../assets/animations/playstation.json"
         import PrizeModal from "../pages/prizemodal";
         import Coins from "./coins"
 import Header from '../components/header';
+import { IoSearch } from "react-icons/io5";
+
 
 
 
@@ -32,10 +34,10 @@ const Game: React.FC = () => {
   const [gameSpecs] = useState<GameSpecs[]>([
     {
       title: "GTA V",
-      size: "115 GB",
+      size: "120 GB",
       price: "Price",
-      coins: 100,
-      download_link: "https://1fichier.com/?xgo0gvbkihr5un58ho3t",
+      coins: 50,
+      download_link: "https://gofile.io/d/TBwbhe",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657170/gtav_fnwq4x.jpg",
       platform: "PC",
     },
@@ -56,7 +58,17 @@ const Game: React.FC = () => {
       download_link: "https://1fichier.com/?y5wqst42q5y2b46zt0t4",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657562/gow_lkvqp6.jpg",
       platform: "PC",
-    },    {
+    },
+        {
+      title: "GTA V Enhanced",
+      size: "100 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://datanodes.to/v9r49fdj6d79/GTA-V-Enhanced-SteamRIP.com.rar",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753906463/gtavenha_cavp1k.jpg",
+      platform: "PC",
+    },
+    {
       title: "Far cry 3",
       size: "12 GB",
       price: "Price",
@@ -112,7 +124,17 @@ const Game: React.FC = () => {
       download_link: "https://store3.gofile.io/download/web/efa3741f-19d1-4b3f-bddd-08f3aab045a9/Marvels-Spider-Man-2-SteamRIP.com.rar",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751658033/spidy2_llaayr.jpg",
       platform: "PC",
-    },    {
+    },  
+    {
+      title: "Spiderman Remastered",
+      size: "60 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://gofile.io/d/78ooEM",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753907509/spidermanrema_anj7pd.jpg",
+      platform: "PC",
+    },
+      {
       title: "Red Dead Redemption 2",
       size: "115 GB",
       price: "Price",
@@ -122,13 +144,51 @@ const Game: React.FC = () => {
       platform: "PC",
     },    {
       title: "Elden Ring",
+      size: "75 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://gofile.io/d/vCgwhJ",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657256/eldenring_z6exsg.jpg",
+      platform: "PC",
+    },  
+    {
+      title: "Elden Ring Nightreign",
+      size: "22 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://gofile.io/d/gs0qzV",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753907019/eldenringnight_m0eq5y.jpg",
+      platform: "PC",
+    },
+    {
+      title: "Dragon Ball Sparking Zero",
+      size: "30 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://gofile.io/d/ADfTAO",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753907963/dbzsz_oudmkd.jpg",
+      platform: "PC",
+    },
+
+        {
+      title: "COD MW 2 Remastered",
+      size: "35  GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://gofile.io/d/T6753p",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753908146/codmw2re_ozyxfi.jpg",
+      platform: "PC",
+    },
+        {
+      title: "Resident Evil 4 Remastered",
       size: "65 GB",
       price: "Price",
       coins: 100,
-      download_link: "https://1fichier.com/?fadbewy093pis0xhe5nj",
-      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657256/eldenring_z6exsg.jpg",
+      download_link: "https://gofile.io/d/vLe5ze",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753908278/residentevl4_jpvmrs.jpg",
       platform: "PC",
-    },    {
+    },
+      {
       title: "Ratchet and Clank",
       size: "50 GB",
       price: "Price",
@@ -280,6 +340,36 @@ const Game: React.FC = () => {
       platform: "PC",
     },
 
+                       {
+      title: "GTA IV",
+      size: "22 GB",
+      price: "Price",
+      coins: 100, 
+      download_link: "https://gofile.io/d/28H7Ic",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753903846/gta_4_olzsv3.jpg",
+      platform: "PC",
+    },
+
+                           {
+      title: "GTA The Trilogy",
+      size: "34 GB",
+      price: "Price",
+      coins: 100, 
+      download_link: "https://gofile.io/d/e68EJi",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753904097/gtatrilogy_iopakk.jpg",
+      platform: "PC",
+    },
+
+                               {
+      title: "Red Dead Redemption",
+      size: "10 GB",
+      price: "Price",
+      coins: 50, 
+      download_link: "https://datanodes.to/1lpw0ts8uk3x/RDR1-SteamRIP.com.rar",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753905989/readdead_ulja0s.jpg",
+      platform: "PC",
+    },
+
            {
       title: "X-Men",
       size: "3 GB",
@@ -339,23 +429,82 @@ const Game: React.FC = () => {
       download_link: "https://www.mediafire.com/file/g7ucp1wm15oax2o/GTA3_Setup.zip/file",
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751688127/gta3_hltstf.jpg",
       platform: "PC",
-    },                {
-      title: "God Of War 1",
-      size: "200 MB",
+    },
+        {
+      title: "Prototype",
+      size: "8 GB",
       price: "Price",
       coins: 10,
-      download_link: "https://www.mediafire.com/file/0tkp75zba783nd1/God_Of_War_1.zip/file",
-         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687548/gow1_n2m3qx.jpg",
+      download_link: "https://gofile.io/d/qtnLC8",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753906753/prototype_vitkjv.jpg",
       platform: "PC",
+    },     
+            {
+      title: "Prototype 2",
+      size: "10 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://gofile.io/d/bvHmHB",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753906780/prototype2_i444yq.jpg",
+      platform: "PC",
+    },  
+                {
+      title: "God Of War 1",
+      size: "7 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20of%20War%20(USA).7z",
+         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687548/gow1_n2m3qx.jpg",
+      platform: "PS2",
     },
     {
-      title: "God Of War 2",
-      size: "200 MB",
+      title: "God Of War II",
+      size: "7 GB",
       price: "Price",
-      coins: 10,
-      download_link: "https://www.mediafire.com/file/n1ltnkna70h70d6/God_of_War_2.zip/file",
+      coins: 50,
+      download_link: "https://dl.mprd.se/happyXXtd72mal901realEP/Playstation2/God%20of%20War%20II%20(USA).7z",
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687715/gow2_s4q05w.jpg",
-      platform: "PC",
+      platform: "PS2",
+    },
+
+        {
+      title: "God Of War III",
+      size: "30 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20III%20%28USA%29%20%28v02.00%29.7z",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753904572/gow3_oep5he.jpg",
+      platform: "PS3",
+    },
+
+            {
+      title: "God Of War Ascension",
+      size: "35 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20-%20Ascension%20%28UK%29.7z",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753904832/gowasc_gnfwgl.jpg",
+      platform: "PS3",
+    },
+
+                {
+      title: "God Of War Ghost of Sparta",
+      size: "2 GB",
+      price: "Price",
+      coins: 20,
+      download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20-%20Ghost%20of%20Sparta%20%28USA%29%20%28En%2CFr%2CEs%29%20%28v2.00%29.zip",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753905221/gowghost_wpg4nq.jpg",
+      platform: "PSP",
+    },
+
+                    {
+      title: "God Of War Chains of Olympus",
+      size: "2 GB",
+      price: "Price",
+      coins: 20,
+      download_link: "https://downloads.romspedia.com/roms/God%20of%20War%20-%20Chains%20of%20Olympus%20%28USA%29.zip",
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753905497/gowchain_efc6oc.jpg",
+      platform: "PSP",
     },
             {
       title: "Ps3 Emulator",
@@ -395,7 +544,11 @@ const Game: React.FC = () => {
             const [isModalOpen, setIsModalOpen] = useState(false);
             const [gameData, setGameData] = useState<GameSpecs>({} as GameSpecs);
 
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
+  const filteredGames = gameSpecs.filter((game) =>
+    game.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleDownload = (data : GameSpecs): void => {
         if (data.price === "Free") {
@@ -412,6 +565,45 @@ const Game: React.FC = () => {
 <Header/>
 
 <Coins isVisible={true} />
+             <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",  
+        marginBottom:"20px",            
+             }}>
+              {/* <IoSearch />
+                      <input
+          type="text"
+          placeholder="Search by title"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        /> */}
+         <div style={{ position: "relative" }}>
+    <IoSearch
+      style={{
+        position: "absolute",
+        left: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        color: "#999",
+      }}
+    />
+    <input
+      type="text"
+      placeholder="Search by title"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "10px 10px 10px 35px", // extra left padding for icon
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        outline: "none",
+      }}
+    />
+  </div>
+             </div>
+
              
 
       <div style={{
@@ -532,7 +724,7 @@ justifyContent:"space-around",
 gap:"50px",
 // margin:"50px",
       }}>
-        {gameSpecs.map((data, index) => (
+        {filteredGames.map((data, index) => (
   <div key={index} className='service_box'>
     
     <div style={{
