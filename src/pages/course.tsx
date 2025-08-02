@@ -140,7 +140,11 @@ gap:"50px",
         display:"flex",
         justifyContent:"center",
         }}>
-        <img src={data.image_link}  alt="" sizes='10px' />
+        <img 
+        style={{
+          width:"250px",
+        }}  
+        src={data.image_link}  alt="" sizes='10px' />
 
         </div>
 
@@ -158,7 +162,7 @@ gap:"50px",
   >
   
 <div className='game-button'>
-    <h3>View Course</h3>
+    <h4>View Course</h4>
 
 <div style={{
     display:"flex",
@@ -170,11 +174,7 @@ gap:"50px",
 }}>
    
 
-<Lottie style={{
-    height:"50px",
-    width:"50px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay />
+<Lottie className='button-coin' animationData={coinEmoji} loop autoplay />
 {data.price}
 </div>
 

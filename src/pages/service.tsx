@@ -33,8 +33,14 @@ gap:"50px",
         justifyContent:"center",
         borderRadius:"10px",
 
+
         }}>
-        <img src="https://res.cloudinary.com/dababspdo/image/upload/v1753636436/course_nkny1h.jpg" alt="" sizes='10px' />
+        <img 
+        style={{
+        borderRadius:"10px",
+        width:"250px",
+        }}
+        src="https://res.cloudinary.com/dababspdo/image/upload/v1753636436/course_nkny1h.jpg" alt="" sizes='10px' />
 
         </div>
 
@@ -62,7 +68,12 @@ gap:"50px",
         borderRadius:"10px",
 
         }}>
-        <img src="https://res.cloudinary.com/dababspdo/image/upload/v1753636468/projects_ufutjn.jpg" alt="" />
+        <img 
+                style={{
+        borderRadius:"10px",
+        width:"250px",
+        }}
+        src="https://res.cloudinary.com/dababspdo/image/upload/v1753636468/projects_ufutjn.jpg" alt="" />
 
       </div>
   

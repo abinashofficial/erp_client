@@ -326,18 +326,22 @@ const Android: React.FC = () => {
         // flexDirection:"column",
         flexWrap:"wrap",
 justifyContent:"space-around",
-gap:"50px",
+gap:"20px",
       }}>
         {filteredGames.map((data, index) => (
-  <div key={index} className='service_box'>
+  <div key={index} className='android_box'>
     <div style={{
         display:"flex",
         justifyContent:"center",
         borderRadius:"10px",
     }}>
       <img
-        style={{ borderRadius: "10px" }}
+        style={{ borderRadius: "10px" ,
+          width: "220px",
+
+        }}
         src={data.image_link}
+        
         alt=""
         sizes="10px"
       />
@@ -350,7 +354,7 @@ gap:"50px",
       alignItems: "center",
       textAlign: "center",
     }}>
-      <h3>{data.title}</h3>
+      <h4>{data.title}</h4>
     <div style={{
       fontSize:"50px"
     }}>
@@ -358,7 +362,8 @@ gap:"50px",
         <Lottie style={{
     height:"50px",
     width:"50px",
-    marginLeft:"10px"
+    marginLeft:"10px",
+    marginRight:"10px",
 }} animationData={androidAnime} loop autoplay />
 
     </div>
@@ -379,11 +384,7 @@ gap:"50px",
           textAlign: "center",
         }}>
           <Lottie
-            style={{
-              height: "50px",
-              width: "50px",
-              marginLeft: "10px",
-            }}
+className='button-coin'
             animationData={coinEmoji}
             loop
             autoplay

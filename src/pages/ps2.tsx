@@ -374,12 +374,12 @@ const [gameSpecs] = useState<GameSpecs[]>([
         // flexDirection:"column",
         flexWrap:"wrap",
 justifyContent:"space-around",
-gap:"50px",
+gap:"20px",
       }}>
 
 
 {filteredGames.map((data, index) => (
-  <div key={index} className='service_box'>
+  <div key={index} className='ps2_box'>
     <div style={{
       display: "flex",
       justifyContent: "center",
@@ -387,8 +387,8 @@ gap:"50px",
     }}>
       <img
         style={{ borderRadius: "10px",
-          height:"350px",
-          width:"250px",
+          height:"280px",
+          width:"220px",
          }}
         src={data.image_link}
         alt=""
@@ -402,7 +402,7 @@ gap:"50px",
       alignItems: "center",
       textAlign: "center",
     }}>
-      <h3>{data.title}</h3>
+      <h4>{data.title}</h4>
             <div>
                                       <img
               src={Playstation2Icon}
@@ -419,7 +419,7 @@ gap:"50px",
       onClick={() => handleDownload(data)}
     >
       <div className='game-button'>
-        <h3>{data.price}</h3>
+        <h4>{data.price}</h4>
         <div style={{
           display: "flex",
           flexDirection: "row",
@@ -428,11 +428,7 @@ gap:"50px",
           textAlign: "center",
         }}>
           <Lottie
-            style={{
-              height: "40px",
-              width: "40px",
-              marginLeft: "10px",
-            }}
+className='button-coin'
             animationData={coinEmoji}
             loop
             autoplay

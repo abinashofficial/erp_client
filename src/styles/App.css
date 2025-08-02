@@ -410,6 +410,42 @@ button.menu-btn{
   gap:10px;
 }
 
+.ps2_box{
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 220px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+
+.pc_box{
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+
+.android_box{
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 220px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+
 
 
 .course_box {
@@ -419,7 +455,6 @@ button.menu-btn{
   color: white;
   border: none;
   border-radius: 20px;
-  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -827,7 +862,7 @@ button.menu-btn{
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    height: 30px;
+    height: 25px;
 }
 
 
@@ -991,4 +1026,11 @@ display: flex;
   border-radius: 8px;
   max-width: 400px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.button-coin{
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 35px;
+  width: 35px;
 }

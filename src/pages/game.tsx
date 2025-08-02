@@ -36,7 +36,7 @@ const Game: React.FC = () => {
       title: "GTA V",
       size: "120 GB",
       price: "Price",
-      coins: 50,
+      coins: 100,
       download_link: "https://gofile.io/d/TBwbhe",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657170/gtav_fnwq4x.jpg",
       platform: "PC",
@@ -45,7 +45,7 @@ const Game: React.FC = () => {
       title: "NFS Most Wanted",
       size: "7 GB",
       price: "Price",
-      coins: 10,
+      coins: 50,
       download_link: "https://1fichier.com/?jqcarswzwebdl2m53vo6",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657434/nfsmw_snouw0.jpg",
       platform: "PC",
@@ -72,7 +72,7 @@ const Game: React.FC = () => {
       title: "Far cry 3",
       size: "12 GB",
       price: "Price",
-      coins: 20,
+      coins: 50,
       download_link: "https://1fichier.com/?tm29i5u619vnqsj4s2cq",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657619/farcry3_hshcr5.jpg",
       platform: "PC",
@@ -84,7 +84,17 @@ const Game: React.FC = () => {
       download_link: "https://gofile.io/d/o1o1m0",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657691/gowra_abt9a5.jpg",
       platform: "PC",
-    },    {
+    },   
+              {
+      title: "COD Black Ops",
+      size: "12 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://1fichier.com/?a92d4nyg5ee2myeslux2",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754137340/blackops_jcai0r.jpg",
+      platform: "PC",
+    }, 
+      {
       title: "COD Black Ops 2",
       size: "21 GB",
       price: "Price",
@@ -92,7 +102,17 @@ const Game: React.FC = () => {
       download_link: "https://1fichier.com/?r7zq0shu9f301ylvj50w",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657781/codbo2_u6u97a.jpg",
       platform: "PC",
-    },    {
+    },   
+                  {
+      title: "COD Black Ops 3",
+      size: "130 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://1fichier.com/?prosbg2gmsu74xmjt1vi",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754137562/blackops3_licvre.jpg",
+      platform: "PC",
+    }, 
+      {
       title: "It Takes Two",
       size: "44 GB",
       price: "Price",
@@ -169,14 +189,49 @@ const Game: React.FC = () => {
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753907963/dbzsz_oudmkd.jpg",
       platform: "PC",
     },
-
+                   {
+      title: "COD 4",
+      size: "6 GB",
+      price: "Price",
+      coins: 50,
+      download_link: "https://1fichier.com/?psvzyyub7af450ec5y02",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129427/cod4_dpninl.jpg",
+      platform: "PC",
+    },
         {
+      title: "COD MW 2",
+      size: "14  GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://1fichier.com/?lwjwzfcwoazn9l9rpp3k",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754138868/mw2_itepsa.jpg",
+      platform: "PC",
+    },
+            {
+      title: "COD MW 3",
+      size: "20  GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://1fichier.com/?3lkvjnpga0rd7nw1ux6o",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754138518/mwIII_naqsla.jpg",
+      platform: "PC",
+    },
+            {
       title: "COD MW 2 Remastered",
       size: "35  GB",
       price: "Price",
       coins: 100,
       download_link: "https://gofile.io/d/T6753p",
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753908146/codmw2re_ozyxfi.jpg",
+      platform: "PC",
+    },
+                {
+      title: "Assassin's Creed IV",
+      size: "14  GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://1fichier.com/?z9sp78vcxpgbbheeoztj",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754137984/blackflag_gnpypm.jpg",
       platform: "PC",
     },
         {
@@ -210,7 +265,7 @@ const Game: React.FC = () => {
       price: "Price",
       coins: 100,
       download_link: "https://1fichier.com/?0iy561ulmhs2a1dd9c2e",
-      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751658323/daysgone_xkeetf.jpg",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754140916/daysgone_eqjkez.jpg",
       platform: "PC",
     },    {
       title: "A Way Out",
@@ -234,7 +289,7 @@ const Game: React.FC = () => {
       price: "Price",
       coins: 50,
       download_link: "https://1fichier.com/?axbt4kd0kcfu2wxx2v3s",
-      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751658572/witcher3_bf9piu.jpg",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754140907/witcher_3_jjhnvh.jpg",
       platform: "PC",
     },    {
       title: "Stray",
@@ -259,7 +314,7 @@ const Game: React.FC = () => {
       price: "Price",
       coins: 100,
       download_link: "https://1fichier.com/?3yuf4bdne7kvm6ojbxth",
-      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751658642/cyberpunk_abatbz.jpg",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1754141159/download_tzb1ma.jpg",
       platform: "PC",
     },
 
@@ -282,17 +337,6 @@ const Game: React.FC = () => {
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129327/forza_motorsport_7_ureejg.jpg",
       platform: "PC",
     },
-
-                   {
-      title: "COD 4",
-      size: "6 GB",
-      price: "Price",
-      coins: 50,
-      download_link: "https://1fichier.com/?psvzyyub7af450ec5y02",
-      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752129427/cod4_dpninl.jpg",
-      platform: "PC",
-    },
-
                    {
       title: "Mortal Kombat 11",
       size: "140 GB",
@@ -721,11 +765,11 @@ const Game: React.FC = () => {
         // flexDirection:"column",
         flexWrap:"wrap",
 justifyContent:"space-around",
-gap:"50px",
+gap:"20px",
 // margin:"50px",
       }}>
         {filteredGames.map((data, index) => (
-  <div key={index} className='service_box'>
+  <div key={index} className='pc_box'>
     
     <div style={{
         display:"flex",
@@ -733,10 +777,12 @@ gap:"50px",
         borderRadius:"10px",
     }}>
       <img
-        style={{ borderRadius: "10px" }}
+        style={{ borderRadius: "10px",
+          width: "260px",
+         }}
         src={data.image_link}
         alt=""
-        sizes="10px"
+        sizes="5px"
       />
     </div>
 
@@ -747,16 +793,17 @@ gap:"50px",
       alignItems: "center",
       textAlign: "center",
     }}>
-      <h3>{data.title}</h3>
+      <h4>{data.title}</h4>
     <div style={
       {
         fontSize:"30px"
       }
     }>
     <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
+    height:"25px",
+    width:"25px",
+    marginLeft:"10px",
+    marginRight: "10px",
 }} animationData={windowsicon} loop autoplay />
 
     </div>
@@ -777,11 +824,7 @@ gap:"50px",
           textAlign: "center",
         }}>
           <Lottie
-            style={{
-              height: "50px",
-              width: "50px",
-              marginLeft: "10px",
-            }}
+  className='button-coin'
             animationData={coinEmoji}
             loop
             autoplay
