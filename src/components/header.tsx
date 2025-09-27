@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { IoGameControllerSharp } from "react-icons/io5";
+import Lottie from "lottie-react";
+import LogoAnime from './logoanime';
+
 
 
 type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4' | 'button5';
@@ -11,8 +14,24 @@ type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4' | 'button5';
 const Header: React.FC = () => {
     const { logout, empDetail } = useAuth();
       const [notifications, setNotifications] = useState<string[]>([]);
-      
+               const [isHovered, setIsHovered] = useState(false);
+           const [animations, setAnimations] = useState<any>(null);
+               const [clickedButtons, setClickedButtons] = useState({
+      "button1": true,
+      "button2": false,
+      "button3": false,
+      "button4": false,
+      "button5": false,
+    });
+          const [isOpen, setIsOpen] = useState(false);
+
     //   const userId = "user123"; // Replace with the logged-in user's ID
+      useEffect(() => {
+    fetch("https://res.cloudinary.com/dababspdo/raw/upload/v1759006201/Untitled_video_Made_with_Clipchamp_4_a4epeb.json")
+      .then((res) => res.json())
+      .then((data) => setAnimations(data))
+      .catch((err) => console.error("Failed to load animation:", err));
+  }, []); // ✅ Empty dependency array → runs only once
     
       useEffect(() => {
         // const ws = new WebSocket(`ws://localhost:8080/ws?userId=${empDetail.email}`);
@@ -46,19 +65,12 @@ const Header: React.FC = () => {
       
     
     const navigate = useNavigate()
-    const [clickedButtons, setClickedButtons] = useState({
-      "button1": true,
-      "button2": false,
-      "button3": false,
-      "button4": false,
-      "button5": false,
-    });
+
 
   
 
 
 
-    const [isOpen, setIsOpen] = useState(false);
 
     const landPage = (buttonKey: ButtonKey, result: string) => {
         navigate(result)
@@ -115,6 +127,11 @@ if (empDetail.email==="") {
         [buttonKey]: !prevState[buttonKey],
       }));
          };
+
+
+           
+
+         
     return (
 
 
@@ -141,17 +158,32 @@ if (empDetail.email==="") {
           zIndex: 1,
           backgroundColor: 'white',
                   boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
+                  height:"90px",
 
         }}>
+                     
+    
 
           <div style={{
             display:"flex",
             flexDirection:"column",
             justifyContent:"center",
-            // color:"white",
-            padding:"10px",
-          }}>
-          <FaEarlybirds size={50} />
+            height:"90px",
+            marginLeft:"10px",
+            cursor:"pointer",
+          }}
+              onClick={() => setIsHovered(!isHovered)}
+          
+  
+          >
+            <FaEarlybirds size={50} />
+
+
+                 
+
+
+
+          {/* <FaEarlybirds size={50} /> */}
           </div>
 <button onClick={() => headerButtonHandle("button1", '/home')} className={`header-btn ${clickedButtons.button1 ? 'clicked' : ''}`}> <h4>Home</h4></button>
   {/* <button onClick={() => headerButtonHandle("button2",  '/blog')} className={`mobile-only-header-button ${clickedButtons.button3 ? 'clicked' : ''}`}>Blog</button> */}
@@ -228,6 +260,14 @@ if (empDetail.email==="") {
 
       <div className={`overlay ${isOpen ? 'show' : ''}`} onClick={toggleDrawer}></div>
     </div>
+
+                            <LogoAnime
+        isOpen={isHovered}
+        onClose={() => setIsHovered(false)}
+        data = {animations}
+      >
+      </LogoAnime>
+
 
                </div>
 

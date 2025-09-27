@@ -242,7 +242,6 @@ const AddCoins: React.FC = () => {
       display:"flex",
       justifyContent:"space-around",
       flexWrap:"wrap",
-      gap:"50px",
       marginTop:"20px",
     }}>
 
@@ -262,14 +261,6 @@ const AddCoins: React.FC = () => {
     width:"30px",
     marginLeft:"10px"
 }} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
-        </div>
-
-              <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">50 Coin = ₹2500</span>
         </div>
 
 
@@ -329,7 +320,7 @@ const AddCoins: React.FC = () => {
 
 
     <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
-      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Ultimate Offer!</h2>
+      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Standard </h2>
       
       <div className="common-div">
         <Lottie style={{
@@ -339,13 +330,6 @@ const AddCoins: React.FC = () => {
 }} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
         </div>
 
-              <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">300 Coin = ₹15000</span>
-        </div>
 
 
 
@@ -403,7 +387,7 @@ const AddCoins: React.FC = () => {
 
 
     <div className="max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white border border-gray-200 text-center">
-      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Mega Offer!</h2>
+      <h2 className="text-2xl font-bold mb-4 text-yellow-600">🔥 Premium</h2>
       
       <div className="common-div">
         <Lottie style={{
@@ -413,13 +397,7 @@ const AddCoins: React.FC = () => {
 }} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
         </div>
 
-              <div className="common-div">
-        <Lottie style={{
-    height:"30px",
-    width:"30px",
-    marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">500 Coin = ₹25000</span>
-        </div>
+
 
 
 

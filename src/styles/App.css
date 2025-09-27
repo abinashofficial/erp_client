@@ -434,6 +434,11 @@ button.menu-btn{
   gap:5px;
 }
 
+.rect_img{
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+}
+
 .android_box{
   background: white;
   padding: 1rem;
@@ -466,9 +471,9 @@ button.menu-btn{
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 
@@ -490,6 +495,7 @@ button.menu-btn{
   display: flex;
   flex-direction: column;
   height: 100vh;
+  justify-content: space-around;
 }
 
 /* Heading styles */
@@ -1013,11 +1019,13 @@ display: flex;
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
+      flex-direction: column;
+
 }
 
 .modal-content {

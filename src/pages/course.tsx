@@ -3,14 +3,19 @@ import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
 import Coins from "../pages/coins"
 import Header from '../components/header';
+import { IoSearch } from "react-icons/io5";
 
 
 
 
-interface Project {
-  title: string;
-  description: string;
+
+
+
+
+interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
 }
+
 
 
 interface CourseSpecs {
@@ -23,13 +28,13 @@ interface CourseSpecs {
   pdf_link: any;
   video_link:any
     language:any
-
-
+    json_link?: any
 }
 const Course: React.FC = () => {
+  const [animations, setAnimations] = useState<Animations>({});
     const [courseSpec] = useState<CourseSpecs[]>([
       {
-        title: "Glang",
+        title: "Golang",
         description: "Developed by Google, known for its efficiency and concurrency, gaining popularity in cloud infrastructure and backend development.",
         price: "Free",
         coins: 0,
@@ -38,6 +43,7 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/playlist?list=PLJ7-HiqskdZKn03J2X0y37agMrYCnhvEU",
         language: "Tamil",
+        json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758973649/Gopher_b9ao3c.json",
       },
             {
         title: "React",
@@ -49,6 +55,8 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/watch?v=CgkZ7MvWUAA&list=LL&index=47&t=4279s",
         language: "English",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758975314/React_icon_circling_czl5iy.json",
+
       },
                   {
         title: "Python",
@@ -60,6 +68,8 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/playlist?list=PLvepBxfiuao1hO1vPOskQ1X4dbjGXF9bm",
         language: "Tamil",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758975359/Python_logo_wrevwv.json",
+
       },            {
         title: "Java",
         description: "A robust language used for enterprise-level applications, Android mobile development, and big data processing.",
@@ -70,6 +80,8 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/watch?v=Gex-j7GlCHc",
         language: "Tamil",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758975404/Java_logo_hxrtjf.json",
+
       },     
        {
         title: "Postgre SQL",
@@ -81,6 +93,8 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/watch?v=qw--VYLpxG4&t=681s",
         language: "English",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758976666/SQL_ur03jh.json",
+
       },  {
         title: "MongoDB",
         description: "MongoDB is a popular, open-source, NoSQL database that stores data in flexible, JSON-like documents. It's known for its scalability, flexibility, and ease of use, making it a popular choice for modern web and mobile applications. Unlike traditional relational databases, MongoDB uses a document-oriented data model, where data is stored in documents (similar to JSON) rather than tables and rows.",
@@ -91,6 +105,8 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/watch?v=0zwYbudzaJc",
         language: "tamil",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758977382/mongodb_database_logo_animation_gif_download_9717087_sybcku.json",
+
       },  {
         title: "NodeJS",
         description: "Node.js is an open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser. It is built on Google Chrome's V8 JavaScript engine, which compiles JavaScript into machine code for efficient execution.",
@@ -101,6 +117,8 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/watch?v=AZzV3wZCvI4&list=PL78RhpUUKSwfeSOOwfE9x6l5jTjn5LbY3",
         language: "English",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758976395/Nodejs_uouygr.json",
+
       },  {
         title: "C and C++",
         description: "C and C++ are both programming languages, but C++ is an extension of C with object-oriented programming (OOP) features added. C is a procedural language, while C++ supports both procedural and object-oriented programming. C++ was developed to add OOP capabilities to the already existing C language.",
@@ -111,8 +129,38 @@ const Course: React.FC = () => {
         pdf_link:"",
         video_link:"https://www.youtube.com/watch?v=ZzaPdXTrSb8",
         language: "English",
+                json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1758976442/c_programming_animation_jfbcyg.json",
+
       },      
     ]);
+
+      useEffect(() => {
+    // Fetch all JSONs in parallel
+    const fetchAnimations = async () => {
+      const anims  :any ={};
+      await Promise.all(
+        courseSpec.map(async (course) => {
+          try {
+            const res = await fetch(course.json_link); // each course has its JSON URL
+            const data = await res.json();
+            anims[course.title] = data; // store by course id
+          } catch (err) {
+            console.error("Failed to load animation:", err);
+          }
+        })
+      );
+      setAnimations(anims);
+    };
+
+    fetchAnimations();
+  }, [courseSpec]);
+    const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const filteredGames = courseSpec.filter((game) =>
+    game.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
     
     return (
 
@@ -121,7 +169,48 @@ const Course: React.FC = () => {
         <Header/>
 
 <Coins isVisible={true} />
-<div className='main-content'>
+             <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",  
+        marginBottom:"20px",            
+             }}>
+              {/* <IoSearch />
+                      <input
+          type="text"
+          placeholder="Search by title"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        /> */}
+         <div style={{ position: "relative" }}>
+    <IoSearch
+      style={{
+        position: "absolute",
+        left: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        color: "#999",
+      }}
+    />
+    <input
+      type="text"
+      placeholder="Search by title"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      style={{
+        width: "100%",
+        padding: "10px 10px 10px 35px", // extra left padding for icon
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        outline: "none",
+      }}
+    />
+  </div>
+             </div>
+
+
+      <div className='main-content'>
+
 
 
 <div style={{
@@ -129,72 +218,102 @@ const Course: React.FC = () => {
         // flexDirection:"column",
         flexWrap:"wrap",
 justifyContent:"space-around",
-gap:"50px",
+gap:"20px",
+// margin:"50px",
       }}>
-
-
-        {courseSpec.map((data, index) => (
-
-      <div className='service_box'>
-        <div style={{
+        {filteredGames.map((data, index) => (
+  <div key={index} className='pc_box'>
+    
+    <div style={{
         display:"flex",
         justifyContent:"center",
-        }}>
-        <img 
-        style={{
-          width:"250px",
-        }}  
-        src={data.image_link}  alt="" sizes='10px' />
+        borderRadius:"10px",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+         cursor:"pointer",
+    }}
+    onMouseEnter={() => setActiveCardId(data.title)}
+          onMouseLeave={() => setActiveCardId(null)}
+          onTouchStart={() => setActiveCardId(data.title)}
+          onTouchEnd={() => setActiveCardId(null)}
+      >
+               {animations[data.title] && activeCardId === data.title ? (
+            <Lottie
+              style={{ height: "150px", width: "260px" }}
+              animationData={animations[data.title]}
+              loop
+              autoplay
+            />
+          ) : (
+            
+      <img
+        style={{ borderRadius: "10px",
+          width: "260px",
+          height: "150px",
+         }}
+        src={data.image_link}
+        alt=""
+        sizes="5px"
+      />
+                 )}
 
-        </div>
+    </div>
 
+    <div style={{
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
+      alignItems: "center",
+      textAlign: "center",
+    }}>
+      <h4>{data.title}</h4>
 
+      {/* <p>size {data.size}</p> */}
+    </div>
 
-<button
- className='course_box'
-    onClick={() =>
+    <button
+      className='course_box'
+          onClick={() =>
       window.open(
-        "https://youtube.com/playlist?list=PLJ7-HiqskdZKn03J2X0y37agMrYCnhvEU&si=SehUd4Ev-QOKgGWp",
+        data.video_link,
         "_blank",
         "noopener,noreferrer"
       )
     }
-  >
-  
-<div className='game-button'>
-    <h4>View Course</h4>
-
-<div style={{
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"center",
-    alignItems:"center",
-    textAlign:"center",
-    // marginTop:"10px"
-}}>
-   
-
-<Lottie className='button-coin' animationData={coinEmoji} loop autoplay />
-{data.price}
-</div>
-
-</div>
-
-  </button>
- 
+    >
+      <div className='game-button'>
+        <h3>{data.price}</h3>
+        <div style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+          textAlign: "center",
+        }}>
+          <Lottie
+  className='button-coin'
+            animationData={coinEmoji}
+            loop
+            autoplay
+          />
+          {data.coins}
+        </div>
       </div>
-      ))}
-
+    </button>
+                      {/* <PrizeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+data={gameData}
+      >
+        <p>Coins required for one-time download.</p>
+        <p>Reach out to customer support for assistance.</p>
+      </PrizeModal> */}
+  </div>
+))}
 
 
 
     </div>
-
-
-
-
-
-      </div>
+</div>
 
 </div>
 

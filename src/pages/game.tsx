@@ -852,6 +852,8 @@ gap:"20px",
       <img
         style={{ borderRadius: "10px",
           width: "260px",
+                    height: "150px",
+
          }}
         src={data.image_link}
         alt=""
