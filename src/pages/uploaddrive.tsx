@@ -17,7 +17,7 @@ const CloudinaryUploader: React.FC = () => {
       setFile(event.target.files[0]);
     }
   };
-    const {empDetail, setEmpDetail, visible, setVisible} = useAuth();
+    const {empDetail, setEmpDetail, setVisible} = useAuth();
 
   const handleUpload = async () => {
     setVisible(false)

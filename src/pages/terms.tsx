@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const TermsOfService: React.FC = () => {
+  const navigate = useNavigate()
   return (
     <div className="terms-of-service">
       <h1>Terms of Service</h1>
@@ -61,7 +64,9 @@ const TermsOfService: React.FC = () => {
       <section>
         <h2>6. Data Privacy and Security</h2>
         <p>
-          Your use of the ERP module may involve the collection, storage, and processing of personal data. Please refer to our <a href="/privacypolicy">Privacy Policy</a> for detailed information on how we handle your data.
+          Your use of the ERP module may involve the collection, storage, and processing of personal data. Please refer to our <div className='link' onClick={()=>navigate('/privacypolicy')}>
+Privacy Policy
+    </div> for detailed information on how we handle your data.
         </p>
         <p>
           We take reasonable security measures to protect your data, but cannot guarantee the complete security of your information. By using the ERP system, you acknowledge that data transmission over the internet is never completely secure.

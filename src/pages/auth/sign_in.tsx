@@ -553,26 +553,28 @@ Sign in with Google
             display:"flex",
             flexDirection:"row",
             justifyContent:"space-around",
-marginTop:"25px",
+marginTop:"20px",
           }}>
-            <a href="/recoverypassword" className="link">
-              Forgot Password?
-            </a>
-            <a href="/otpverify" className="link">
-              Sign Up
-            </a>
+    <div className='link' onClick={()=>navigate('/recoverypassword')}>
+Forgot Password?
+    </div>
+    <div className='link' onClick={()=>navigate('/otpverify')}>
+Sign Up
+    </div>
+
           </div>
+
 
 
           <div style={{
             marginBottom:"20px",
             marginTop:"20px",
           }}>
-            <a className="link">
+            <a >
               -----------------
             </a>
             <span> OR </span>
-            <a  className="link">
+            <a  >
               -----------------
             </a>
           </div>

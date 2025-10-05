@@ -126,7 +126,11 @@ const ForgetPassword: React.FC = () => {
                 <button type="submit">Continue</button>
 
             </form>
-            <p>Already have an account? <Link to="/">Sign In</Link></p>
+            <p>Already have an account? 
+    <div className='link' onClick={()=>navigate('/')}>
+Sign In
+    </div>
+  </p>
             </div>
           ):(<div className="spinner"> </div>
           )}

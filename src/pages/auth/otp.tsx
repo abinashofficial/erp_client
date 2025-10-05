@@ -461,7 +461,10 @@ console.error("Error verifying OTP:", error);
               Send Verification Code
             </button>
             <p className="signin-link">
-          Already have an account? <a href="/">Sign In</a>
+          Already have an account? 
+    <div className='link' onClick={()=>navigate('/')}>
+Sign In
+    </div>
         </p>  
   
   </div>):
@@ -555,7 +558,10 @@ console.error("Error verifying OTP:", error);
           </button>
         </p>
       <p className="signin-link">
-          Already have an account? <a href="/">Sign In</a>
+          Already have an account? 
+    <div className='link' onClick={()=>navigate('/')}>
+Sign In
+    </div>
         </p>
   
           </div>):(<div> </div>)}

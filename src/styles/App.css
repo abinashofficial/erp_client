@@ -255,8 +255,12 @@ button.menu-btn{
 
 
 .header-btn{
-  color: black ;
-  background-color: white;
+  background-color: inherit !important;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
 }
 
 .header-btn.clicked{
@@ -266,20 +270,9 @@ button.menu-btn{
 
 .header-btn:hover {
   color: black ; /* Change color on hover */
-  background-color: rgb(241, 241, 241);
+  background-color: inherit !important;
 }
 
-@media (min-width: 400px) {
-  .header-btn {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .header-btn {
-    font-size: 1rem;
-  }
-}
 /* li{
   cursor: pointer;
 } */
@@ -624,6 +617,27 @@ button.menu-btn{
 }
 
 
+/* Blog button styles */
+.blog-button {
+  width: 132px;
+  padding: 12px;
+  background-color: #4F9CF9;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.blog-button:hover {
+  background-color: #2575fc;
+}
+
 /* Additional options section */
 .additional-options {
   margin-top: 1.5rem;
@@ -711,12 +725,39 @@ button.menu-btn{
 
 .link {
   color: #6a11cb;
-  text-decoration: none;
+  text-decoration: underline;
   transition: color 0.3s ease;
+    font-size: 16px;
+    cursor: pointer;
+
 }
 
 .link:hover {
   color: #2575fc;
+}
+
+
+.header-txt{
+    color: black;
+  text-decoration: none;  
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header-txt:hover {
+  color: #757575;
+}
+
+@media (min-width: 400px) {
+  .header-txt {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-txt {
+    font-size: 1rem;
+  }
 }
 
   /* Method selection buttons */

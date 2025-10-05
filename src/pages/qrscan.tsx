@@ -199,7 +199,9 @@ const QRCodeScanner: React.FC = () => {
 
     </div>
     <p className="signin-link">
-          Already have an account? <a href="/">Sign In</a>
+          Already have an account?     <div className='link' onClick={()=>navigate('/')}>
+Sign In
+    </div>
         </p>
 
         </div>

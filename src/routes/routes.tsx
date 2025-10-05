@@ -9,34 +9,34 @@ import ProtectedRoute from './protectedRoute';
 import ForgetPassword from '.././pages/auth/forget_password';
 import Blog from '../pages/blog';
 import Game from '../pages/game';
-import Header from '../components/header';
+// import Header from '../components/header';
 import Footer from '../components/footer';
 import Service from '../pages/service';
-import { useAuth } from '../context/authContext';
+// import { useAuth } from '../context/authContext';
 import Course from '../pages/course';
 import Project from '../pages/project';
 import Profile from '../pages/profile';
 import EditProfile from '../pages/editProfile';
 import Qrscan from '../pages/qrscan';
 import Qrgenerate from '../pages/qrgenerate';
-import Gdrive from "../pages/uploaddrive"
+// import Gdrive from "../pages/uploaddrive"
 import PrivacyPolicy from "../pages/privacypolicy"
 import Terms from "../pages/terms"
-import Whatsapp from "../pages/whatsapp"
+// import Whatsapp from "../pages/whatsapp"
 import '../styles/App.css';
 import Chat from "../pages/chat"
 import AddCoins from "../pages/earnCoins"
-import Notification from "../pages/notification"
+// import Notification from "../pages/notification"
 import ErrorBoundary from '../utils/errorHandle'
 import NoReturnPolicy from '../pages/returnPolicy';
 import NoRefundPolicy from '../pages/refundpolicy';
 import Android from '../pages/android';
-import Coins from '../pages/coins';
+// import Coins from '../pages/coins';
 import PS2 from '../pages/ps2';
 
 
 const Main: React.FC = () => {
-    const { isAuthenticated } = useAuth();
+    // const { isAuthenticated } = useAuth();
 
     return (
         <ErrorBoundary fallback={<p>Something went wrong</p>}>

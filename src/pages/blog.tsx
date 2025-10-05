@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import Lottie from "lottie-react";
 
@@ -8,6 +8,8 @@ import ECommerceAnime from "../assets/animations/ecommerceanime.json"
 import ItSupportAnime from "../assets/animations/Itsupportanime.json"
 import ItServiceAnime from "../assets/animations/serviceanime.json"
 import Header from '../components/header';
+import { GoArrowRight } from "react-icons/go";
+
 
 const services = [
   {
@@ -16,7 +18,7 @@ const services = [
     icon: DigitalMarketingIcon, // Anime-style fairy
   },
   {
-    title: 'Web Design & Development',
+    title: 'Web Development',
     description: 'Craft visually stunning and user-friendly websites with our modern web design and development solutions. We build responsive, accessible, and lightning-fast web applications using cutting-edge technologies, ensuring your online presence is both functional and captivating across all devices.',
     icon: WebDesignAnime, // Anime wizard
   },
@@ -38,9 +40,24 @@ const services = [
 ];
 
 export default function Blog() {
+   const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(orientation: portrait)");
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsPortrait(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
   return (
     <div className='main-content' style={{
-              marginTop:"40px",
+              marginTop:"70px",
 
     }}>
       <Header/>
@@ -51,9 +68,13 @@ export default function Blog() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service, index) => (
-          <div>
 
-          <motion.div
+
+
+          <div>
+                                  {index%2==0 ? (
+            
+ <motion.div
             key={index}
             className="rounded-2xl p-6 bg-white text-gray-900 shadow-2xl transform hover:scale-105 hover:rotate-1 transition-all duration-500 border border-purple-200"
             initial={{ rotateY: 90, opacity: 0 }}
@@ -61,41 +82,280 @@ export default function Blog() {
             transition={{ duration: 0.8, delay: index * 0.2 }}
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <div style={{
-              marginTop:"20px",
-            }}>
 
-            </div>
-            <div style={{
+                          <div 
+                          style={{
+    // boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
+    // gap:"1rem",
+        borderBottom: "2px solid rgba(0, 0, 0, 1.0)",
+        marginBottom:"30px",
+
+
+                          }}
+                      >
+
+
+                      <div style={{
               display:"flex",
               justifyContent:"center",
               alignItems:"center",
             }}>
               
-            <h2 >{service.title}</h2>
+              {isPortrait ? (
+                <h2 >{service.title}</h2>
+              ):(
+            <h1 >{service.title}</h1>
 
+              )}
             </div>
-            <div style={{
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
+
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: isPortrait ? "column" : "row",
+    width: "100%",
+    height: "100%", // optional, for vertical centering in column mode
+    // gap: "1rem", // space between icon & text
+    // margin:"20px",
+    // borderBottom: "2px solid rgba(0, 0, 0, 1.0)",
+     marginBottom:"30px",
+  }}
+>
+
+
+
+    {/* Lottie Section */}
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flex: 1, // equal width in row mode, equal height in column mode
+      width: "100%",
+      flexDirection: "column",
+    }}
+  >
+
+    <Lottie
+      className="lottie-animation"
+      animationData={service.icon}  
+      loop
+      autoplay
+      style={{
+        width:  isPortrait ?"100%":"50%",
+        height:  isPortrait ?"100%":"50%",
+      }}
+    />
+  </div>
+
+  
+  {/* Description Section */}
+  <div
+    style={{
+      flex: 1, // equal share
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      // textAlign: "center",
+      padding: "1rem",
+      width: "100%",
+      flexDirection: "column",
+    }}
+  >
+              <div style={{
+                display:"flex",
+                justifyContent:"center",
+                alignItems:"center",
+                flexDirection:"row",
+                cursor:"pointer",
+              }}>
+              
+            Get Started <div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              marginLeft:"5px",
             }}>
-            <Lottie  className="lottie-animation" 
- animationData={service.icon} loop autoplay />
+              <GoArrowRight/>
+              </div>
+              </div>
+
+    <p style={{ fontSize:isPortrait ? "" :  "1.2rem", lineHeight: isPortrait ? "" :"1.5rem" }}>
+      {service.description}
+    </p>
+              {/* <button type="submit" className="blog-button"> */}
+
+          {/* </button> */}
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+
             </div>
 
-            <div style={{
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    gap:"100px",
-            }}>
-            <p className="text-gray-700 text-center">{service.description}</p>
 
-            </div>
+
+
 
           </motion.div>
+
+          ):(
+ <motion.div
+            key={index}
+            className="rounded-2xl p-6 bg-white text-gray-900 shadow-2xl transform hover:scale-105 hover:rotate-1 transition-all duration-500 border border-purple-200"
+            initial={{ rotateY: 90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: index * 0.2 }}
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+
+                          <div 
+                          style={{
+    // boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
+    // gap:"1rem",
+        borderBottom: "2px solid rgba(0, 0, 0, 1.0)",
+        marginBottom:"30px",
+
+
+                          }}
+                      >
+
+
+                      <div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+            }}>
+              {isPortrait ? (
+                <h2 >{service.title}</h2>
+              ):(
+            <h1 >{service.title}</h1>
+
+              )}
+              
+
+            </div>
+
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: isPortrait ? "column" : "row",
+    width: "100%",
+    height: "100%", // optional, for vertical centering in column mode
+    // gap: "1rem", // space between icon & text
+    // margin:"20px",
+    // borderBottom: "2px solid rgba(0, 0, 0, 1.0)",
+     marginBottom:"30px",
+  }}
+>
+
+
+  {/* Description Section */}
+  <div
+    style={{
+      flex: 1, // equal share
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      // textAlign: "center",
+      padding: "1rem",
+      width: "100%",
+      flexDirection: "column",
+    }}
+  >
+
+
+    <p style={{ fontSize:isPortrait ? "" :  "1.2rem", lineHeight: isPortrait ? "" :"1.5rem" }}>
+      {service.description}
+    </p>
+                  <div style={{
+                display:"flex",
+                justifyContent:"center",
+                alignItems:"center",
+                flexDirection:"row",
+                cursor:"pointer",
+              }}>
+              
+            Get Started <div style={{
+              display:"flex",
+              justifyContent:"center",
+              alignItems:"center",
+              marginLeft:"5px",
+            }}>
+              <GoArrowRight/>
+              </div>
+              </div>
+              {/* <button type="submit" className="blog-button"> */}
+
+          {/* </button> */}
+  </div>
+
+    {/* Lottie Section */}
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flex: 1, // equal width in row mode, equal height in column mode
+      width: "100%",
+      flexDirection: "column",
+    }}
+  >
+
+    <Lottie
+      className="lottie-animation"
+      animationData={service.icon}  
+      loop
+      autoplay
+      style={{
+        width:  isPortrait ?"100%":"50%",
+        height:  isPortrait ?"100%":"50%",
+      }}
+    />
+  </div>
+
+  
+
+
+
+
+
+
+
+</div>
+
+
+
+
+            </div>
+
+
+
+
+
+          </motion.div>
+          )
+
+          }
+
+         
                     </div>
+
+
+
 
         ))}
       </div>
