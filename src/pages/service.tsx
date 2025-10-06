@@ -88,6 +88,7 @@ gap:"20px",
         borderRadius:"10px",
         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
          cursor:"pointer",
+         background:"white",
     }}
     onMouseEnter={() => setActiveCardId(data.title)}
           onMouseLeave={() => setActiveCardId(null)}

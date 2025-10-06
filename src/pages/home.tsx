@@ -19,7 +19,7 @@ const Home: React.FC = () => {
         // background: 'linear-gradient(to bottom, #ff99ff 0%, #66ccff 100%)',
         height: '100%', // Ensure it takes full viewport height
         width: '100%', 
-        background:"white",
+        // background:"white",
         marginTop:"180px",
       }}>
 

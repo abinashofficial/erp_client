@@ -13,6 +13,8 @@ body, html, #root {
   justify-content: center;
   align-items: center;
   padding: 2rem;
+    background: rgb(239, 250, 239);
+
 }
 
 
@@ -90,9 +92,11 @@ section {
 footer {
   text-align: center;
   /* padding: 10px; */
-  /* background: black; */
+  /* background: black; */  
   color: black;
   width: 100%;
+    background: rgb(239, 250, 239);
+
   /* bottom: 0; */
   /* margin-bottom: 0px; */
   /* margin-top: 10px; */
@@ -247,7 +251,7 @@ button.menu-btn:hover {
 }
 
 button.menu-btn{
-  background: white !important;
+  background: #f2f4f7  !important;
   color: black !important;
 }
 
@@ -392,7 +396,6 @@ button.menu-btn{
 
 
 .service_box{
-  background: white;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -404,7 +407,6 @@ button.menu-btn{
 }
 
 .ps2_box{
-  background: white;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -416,7 +418,6 @@ button.menu-btn{
 }
 
 .pc_box{
-  background: white;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -433,7 +434,6 @@ button.menu-btn{
 }
 
 .android_box{
-  background: white;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -489,6 +489,7 @@ button.menu-btn{
   flex-direction: column;
   height: 100vh;
   justify-content: space-around;
+  background: rgb(239, 250, 239);
 }
 
 /* Heading styles */

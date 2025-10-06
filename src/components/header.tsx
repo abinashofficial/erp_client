@@ -144,6 +144,7 @@ if (empDetail.email==="") {
         // height: '100%', // Ensure it takes full viewport height
         // width: '100%',  // Ensure it takes full viewport width
         // marginLeft:"10px",
+
         boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
       }}>
         <div style={{
@@ -156,8 +157,8 @@ if (empDetail.email==="") {
           left: 0,
           right: 0,
           zIndex: 1,
-          backgroundColor: 'white',
-                  boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
+          backgroundColor: '#f2f4f7',
+                  boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px",
                   height:"90px",
 
         }}>

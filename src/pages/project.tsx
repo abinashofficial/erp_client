@@ -52,9 +52,11 @@ marginTop:"15px"
       style={{ color: "white" }}
           target="_blank"
       rel="noopener noreferrer"
+      
+href="https://erp-management-mu.vercel.app/">
 
-href="https://www.youtube.com/watch?v=lCqEhvqefqs&list=PLL7RrfYQRQay94iEBIUWYfGyz9r2RmXYJ&index=2">
-    ERP Module
+{/* href="https://www.youtube.com/watch?v=lCqEhvqefqs&list=PLL7RrfYQRQay94iEBIUWYfGyz9r2RmXYJ&index=2"> */}
+    Package Management
     </a>
         </nav>  
 </div>
@@ -89,7 +91,7 @@ href="https://www.youtube.com/watch?v=lCqEhvqefqs&list=PLL7RrfYQRQay94iEBIUWYfGy
       rel="noopener noreferrer"
 
     href="https://www.youtube.com/watch?v=Gb6ADWcMLEY">
-        Employee Check - in / out
+        Check - in / out
         </a>
             </nav>  
     </div>
