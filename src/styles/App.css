@@ -245,13 +245,13 @@ button.menu-btn:hover {
   color: black !important; /* Change color on hover */
   /* background-color: transparent !important; */
   /* background-color: white !important; */
-  background-color: white !important;
+  background-color: #f2f4f7  !important;
 
 
 }
 
 button.menu-btn{
-  background: #f2f4f7  !important;
+  background: white !important;
   color: black !important;
 }
 
@@ -466,7 +466,7 @@ button.menu-btn{
   width: 100%;
   max-width: 300px;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 80px;
 }
 
 

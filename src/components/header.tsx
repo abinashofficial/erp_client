@@ -157,7 +157,7 @@ if (empDetail.email==="") {
           left: 0,
           right: 0,
           zIndex: 1,
-          backgroundColor: '#f2f4f7',
+          backgroundColor: 'white',
                   boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px",
                   height:"90px",
 

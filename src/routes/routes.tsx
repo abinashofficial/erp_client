@@ -14,7 +14,7 @@ import Footer from '../components/footer';
 import Service from '../pages/service';
 // import { useAuth } from '../context/authContext';
 import Course from '../pages/course';
-import Project from '../pages/project';
+// import Project from '../pages/project';
 import Profile from '../pages/profile';
 import EditProfile from '../pages/editProfile';
 import Qrscan from '../pages/qrscan';
