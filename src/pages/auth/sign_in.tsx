@@ -440,7 +440,7 @@ setIsHeart(true)
         <div className='main-content'>
               {visible ? (
 
-<div className="form-container">
+<div className="sign-container">
 <div style={{
       display:"flex",
       justifyContent:"center",
