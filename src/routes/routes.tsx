@@ -34,6 +34,7 @@ import Android from '../pages/android';
 // import Coins from '../pages/coins';
 import PS2 from '../pages/ps2';
 import Projects from '../pages/projects';
+import ScheduleGmeet from "../components/gmeet"
 
 
 const Main: React.FC = () => {
@@ -63,6 +64,8 @@ const Main: React.FC = () => {
                 <Route path="/returnpolicy" element={<NoReturnPolicy />} />
                 <Route path="/refundpolicy" element={<NoRefundPolicy />} />
 
+
+        <Route path="/bookdemo" element={<ScheduleGmeet />} />
 
         
         <Route path="/" element={<SignIn />} />
