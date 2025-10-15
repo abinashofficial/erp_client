@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {  FaEarlybirds, FaHome, FaBlog, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { IoGameControllerSharp } from "react-icons/io5";
-import Lottie from "lottie-react";
+// import Lottie from "lottie-react";
 import LogoAnime from './logoanime';
 
 
@@ -13,7 +13,7 @@ type ButtonKey = 'button1' | 'button2' | 'button3' | 'button4' | 'button5';
 
 const Header: React.FC = () => {
     const { logout, empDetail } = useAuth();
-      const [notifications, setNotifications] = useState<string[]>([]);
+      // const [notifications, setNotifications] = useState<string[]>([]);
                const [isHovered, setIsHovered] = useState(false);
            const [animations, setAnimations] = useState<any>(null);
                const [clickedButtons, setClickedButtons] = useState({
@@ -33,34 +33,34 @@ const Header: React.FC = () => {
       .catch((err) => console.error("Failed to load animation:", err));
   }, []); // ✅ Empty dependency array → runs only once
     
-      useEffect(() => {
-        // const ws = new WebSocket(`ws://localhost:8080/ws?userId=${empDetail.email}`);
-        const ws = new WebSocket(`wss://erp-client-pink.vercel.app/ws?userId=${empDetail.email}`);
+      // useEffect(() => {
+      //   // const ws = new WebSocket(`ws://localhost:8080/ws?userId=${empDetail.email}`);
+      //   const ws = new WebSocket(`wss://erp-client-pink.vercel.app/ws?userId=${empDetail.email}`);
 
-        ws.onopen = () => {
-          console.log("WebSocket connection established");
-        };
+      //   ws.onopen = () => {
+      //     console.log("WebSocket connection established");
+      //   };
     
-        ws.onmessage = (event) => {
-          setNotifications((prev) => [...prev, event.data]);    
+      //   ws.onmessage = (event) => {
+      //     setNotifications((prev) => [...prev, event.data]);    
     
-          console.log(event.data)
-          alert(event.data)
-        };
+      //     console.log(event.data)
+      //     alert(event.data)
+      //   };
     
-        ws.onclose = () => {
-          console.log("WebSocket connection closed");
-        };
+      //   ws.onclose = () => {
+      //     console.log("WebSocket connection closed");
+      //   };
     
-        ws.onerror = (error) => {
-          console.error("WebSocket error:", error);
-        };
+      //   ws.onerror = (error) => {
+      //     console.error("WebSocket error:", error);
+      //   };
     
-        // Cleanup on unmount
-        return () => {
-          ws.close();
-        };
-      }, [empDetail.email]);
+      //   // Cleanup on unmount
+      //   return () => {
+      //     ws.close();
+      //   };
+      // }, [empDetail.email]);
 
       
     
@@ -102,14 +102,14 @@ const Header: React.FC = () => {
         navigate('/'); // Redirect to dashboard after login
     };
 
-        const handleSignup = () => {
-if (empDetail.email==="") {
-  navigate('/otpverify')
+//         const handleSignup = () => {
+// if (empDetail.email==="") {
+//   navigate('/otpverify')
 
-}else{
-    navigate('/signup')
-}
-        }
+// }else{
+//     navigate('/signup')
+// }
+//         }
 
     const headerButtonHandle = (buttonKey: ButtonKey, result:string) => {
       navigate(result)

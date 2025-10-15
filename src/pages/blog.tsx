@@ -9,6 +9,8 @@ import ItSupportAnime from "../assets/animations/Itsupportanime.json"
 import ItServiceAnime from "../assets/animations/serviceanime.json"
 import Header from '../components/header';
 import { GoArrowRight } from "react-icons/go";
+import { useNavigate } from 'react-router-dom';
+
 
 
 const services = [
@@ -41,6 +43,8 @@ const services = [
 
 export default function Blog() {
    const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
+    const navigate = useNavigate()
+   
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(orientation: portrait)");
@@ -170,8 +174,10 @@ export default function Blog() {
                 justifyContent:"center",
                 alignItems:"center",
                 flexDirection:"row",
-                cursor:"pointer",
-              }}>
+                cursor:"pointer"
+              }}
+              onClick={()=>navigate('/bookdemo')}
+              >
               
             Get Started <div style={{
               display:"flex",
@@ -287,7 +293,10 @@ export default function Blog() {
                 alignItems:"center",
                 flexDirection:"row",
                 cursor:"pointer",
-              }}>
+              }}
+                            onClick={()=>navigate('/bookdemo')}
+
+              >
               
             Get Started <div style={{
               display:"flex",
