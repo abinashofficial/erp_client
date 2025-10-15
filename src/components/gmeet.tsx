@@ -327,30 +327,100 @@
 
 
 
-
-import { useEffect, useState, useCallback } from "react";
 import { gapi } from "gapi-script";
 import Header from "../components/header";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // // const CLIENT_ID = "542517918505-svmc1d3vh5r4g636mfp7j4d401mhdj7f.apps.googleusercontent.com";
+import { useEffect, useState } from "react";
 
-const CLIENT_ID =
-  "252613924014-pajsq4m0ntcvr099amb4175nik39sj4h.apps.googleusercontent.com";
-const SCOPES = "https://www.googleapis.com/auth/calendar.events";
-const DISCOVERY_DOCS = [
-  "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
+
+const CLIENT_ID = "252613924014-pajsq4m0ntcvr099amb4175nik39sj4h.apps.googleusercontent.com";
+const SCOPES = "https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.events";
+const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+// timeSlots predefined
+const timeSlots = [
+  "09:00 AM - 10:00 AM",
+  "10:00 AM - 11:00 AM",
+  "11:00 AM - 12:00 PM",
+  "12:00 PM - 01:00 PM",
+  "01:00 PM - 02:00 PM",
+  "02:00 PM - 03:00 PM",
+  "03:00 PM - 04:00 PM",
+  "04:00 PM - 05:00 PM",
+  "05:00 PM - 06:00 PM",
 ];
 
+declare global {
+  interface Window {
+    gapi: any;
+  }
+}
+
+// Convert "09:00 AM" → "09:00"
+const convertTo24Hour = (time: string): string => {
+  const [t, modifier] = time.split(" ");
+  let [hours, minutes] = t.split(":").map(Number);
+  if (modifier === "PM" && hours !== 12) hours += 12;
+  if (modifier === "AM" && hours === 12) hours = 0;
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+};
+
+// Map API events to booked slots
+const parseBookedSlots = (events: any[]): string[] => {
+  const booked: string[] = [];
+
+  events.forEach(event => {
+    const start = new Date(event.start.dateTime); // use local time
+    const hours = start.getHours();
+    const minutes = start.getMinutes();
+    const formattedStart = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+
+    // find matching slot
+    const slot = timeSlots.find(s => convertTo24Hour(s.split(" - ")[0]) === formattedStart);
+    if (slot) booked.push(slot);
+  });
+
+  return booked;
+};
+
+// ✅ check if a slot is active (weekday & future & within 9–6)
+const isSlotActive = (date: string, slot: string): boolean => {
+  if (!date) return false;
+
+  const selected = new Date(date);
+  const day = selected.getDay(); // 0=Sun, 6=Sat
+  if (day === 0 || day === 6) return false; // weekends
+
+  const [startLabel] = slot.split(" - ");
+  const start24 = convertTo24Hour(startLabel);
+  const startDateTime = new Date(`${date}T${start24}`);
+  const now = new Date();
+
+  // only future times on same day
+  if (selected.toDateString() === now.toDateString()) {
+    return startDateTime.getTime() > now.getTime();
+  }
+
+  return startDateTime.getTime() > now.getTime();
+};
+
 export default function ScheduleGmeet() {
-  const [signedIn, setSignedIn] = useState(false);
+    const [title, setTitle] = useState("Team Meeting");
+const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [startDate, setDate] = useState<string>("");
   const [selectedSlot, setSelectedSlot] = useState<string>("");
-  const [title, setTitle] = useState("Team Meeting");
-  const [attendees] = useState("prisonbirdstech@gmail.com");
+  const [signedIn, setSignedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const CALENDAR_ID = "prisonbirdstech@gmail.com"; // your public calendar ID
+    const [attendees] = useState("prisonbirdstech@gmail.com");
 
-  const [startTime, setStartTime] = useState(() => {
+const API_KEY = "AIzaSyDpw6VSlJBqfJ09wY2bvYwK4O1ufu3HmCk"; // from Google Cloud console
+  const navigate = useNavigate();
+
+    const [startTime, setStartTime] = useState(() => {
     const d = new Date();
     d.setMinutes(d.getMinutes() + 15);
     return d.toISOString().slice(0, 16);
@@ -361,51 +431,71 @@ export default function ScheduleGmeet() {
     return d.toISOString().slice(0, 16);
   });
 
-  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-
-  // Time slots
-  const timeSlots = [
-    "09:00 AM - 10:00 AM",
-    "10:00 AM - 11:00 AM",
-    "11:00 AM - 12:00 PM",
-    "12:00 PM - 01:00 PM",
-    "01:00 PM - 02:00 PM",
-    "02:00 PM - 03:00 PM",
-    "03:00 PM - 04:00 PM",
-    "04:00 PM - 05:00 PM",
-    "05:00 PM - 06:00 PM",
-  ];
-
-  const convertTo24Hour = (time: string): string => {
-    const [t, modifier] = time.split(" ");
-    let [hours, minutes] = t.split(":").map(Number);
-    if (modifier === "PM" && hours !== 12) hours += 12;
-    if (modifier === "AM" && hours === 12) hours = 0;
-    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-  };
-
-const updateTimeFromSlot = useCallback((date: string, slot: string) => {
-  if (!date || !slot) return;
-
-  const [startLabel, endLabel] = slot.split(" - ");
-  const start24 = convertTo24Hour(startLabel);
-  const end24 = convertTo24Hour(endLabel);
-
-  setStartTime(`${date}T${start24}`);
-  setEndTime(`${date}T${end24}`);
-}, [setStartTime, setEndTime]);
-
-
-  const handleSlotChange = (slot: string) => {
-    setSelectedSlot(slot);
-    updateTimeFromSlot(startDate, slot);
-  };
+  // ✅ load Google API
+  useEffect(() => {
+    gapi.load("client:auth2", () => {
+      gapi.client.init({
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES,
+      }).then(() => {
+        const auth = gapi.auth2.getAuthInstance();
+        setSignedIn(auth.isSignedIn.get());
+        setLoading(false);
+      });
+    });
+  }, []);
 
   const signIn = () => gapi.auth2.getAuthInstance().signIn();
 
-  const isButtonDisabled = !startDate || !selectedSlot || loading;
+  // ✅ Fetch booked events for the selected date
+
+const fetchBookedSlots = async (date: string) => {
+  if (!date) return;
+
+  const startOfDay = new Date(`${date}T00:00:00+05:30`).toISOString();
+  const endOfDay = new Date(`${date}T23:59:59+05:30`).toISOString();
+
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
+        CALENDAR_ID
+      )}/events?key=${API_KEY}&timeMin=${startOfDay}&timeMax=${endOfDay}&singleEvents=true&orderBy=startTime`
+    );
+
+    const data = await res.json();
+    const booked = parseBookedSlots(data.items || []);
+    setBookedSlots(booked);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
+  // ✅ When date changes → fetch booked slots
+  useEffect(() => {
+    if (signedIn && startDate) {
+      fetchBookedSlots(startDate);
+    }
+  }, [startDate, signedIn]);
+
+  // combined check → active + not booked
+  const isSlotAvailable = (date: string, slot: string): boolean => {
+    return isSlotActive(date, slot) && !bookedSlots.includes(slot);
+  };
+
+  const handleSlotChange = (slot: string) => {
+    const available = isSlotAvailable(startDate, slot);
+    if (!available) {
+      toast.error("This slot is not available!");
+      return;
+    }
+    setSelectedSlot(slot);
+      updateTimesFromSlot(startDate, slot); // ✅ update times
+
+  };
+
 
   const createMeet = async () => {
         setLoading(true);
@@ -431,10 +521,10 @@ const updateTimeFromSlot = useCallback((date: string, slot: string) => {
       }
 
       const event = {
-        summary: title,
+        summary: title ,
         start: { dateTime: startISO, timeZone: tz },
         end: { dateTime: endISO, timeZone: tz },
-        attendees: attendees.split(",").map((email) => ({ email: email.trim() })),
+        attendees: attendees.split(",").map((email:any) => ({ email: email.trim() })),
         conferenceData: {
           createRequest: {
             requestId: String(Date.now()),
@@ -466,31 +556,20 @@ const updateTimeFromSlot = useCallback((date: string, slot: string) => {
       }, 3000);
     }
   };
+    const isButtonDisabled = !startDate || !selectedSlot || loading;
+const updateTimesFromSlot = (date: string, slot: string) => {
+  if (!date || !slot) return;
 
-  // gapi init
-  useEffect(() => {
-    gapi.load("client:auth2", () => {
-      gapi.client
-        .init({
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES,
-        })
-        .then(() => {
-          const auth = gapi.auth2.getAuthInstance();
-          setSignedIn(auth.isSignedIn.get());
-          auth.isSignedIn.listen(setSignedIn);
-        });
-    });
-  }, []);
+  const [startLabel, endLabel] = slot.split(" - ");
 
-useEffect(() => {
-  if (selectedSlot && startDate) {
-    updateTimeFromSlot(startDate, selectedSlot);
-  }
-}, [startDate, selectedSlot, updateTimeFromSlot]);
+  // Convert to 24h format
+  const start24 = convertTo24Hour(startLabel);
+  const end24 = convertTo24Hour(endLabel);
 
-
+  // Combine date + time
+  setStartTime(`${date}T${start24}:00`); // append seconds
+  setEndTime(`${date}T${end24}:00`);
+};
   return (
     <div>
       <Header />
@@ -499,7 +578,8 @@ useEffect(() => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "80vh",
+                        height: "90vh",
+
         }}
       >
         {loading ? (
@@ -511,28 +591,23 @@ useEffect(() => {
               alignItems: "center",
               flexDirection: "column",
               padding: 20,
-              marginTop: "80px",
               height: "70vh",
               justifyContent: "center",
+              width:"100%",
             }}
           >
-            <h2>Schedule Demo</h2>
+<h2 style={{
+  marginBottom:"30px",
+}}>Schedule Demo</h2>
 
-            {!signedIn && (
-              <button onClick={signIn}>Sign in with Google</button>
-            )}
+      {!signedIn && <button onClick={signIn}>Sign in with Google</button>}
 
-            {signedIn && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "column",
-                  gap: "20px",
-                }}
-              >
-                <div>
+      {signedIn && (
+        <>
+                    <form onSubmit={createMeet}>
+                   
+
+                        <div className="input-group">
                   <label>Title: </label>
                   <input
                     value={title}
@@ -540,52 +615,72 @@ useEffect(() => {
                   />
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                  }}
-                >
-                  <label>Date: </label>
-                  <div style={{ marginLeft: "10px" }}>
-                    <input
-                      style={{ cursor: "pointer" }}
-                      id="date"
-                      type="date"
-                      value={startDate}
-                      onChange={(e) => setDate(e.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
 
-                <div>
-                  <label>Slot: </label>
-                  <select
-                    id="timeSlot"
-                    value={selectedSlot}
-                    onChange={(e) => handleSlotChange(e.target.value)}
+          <div  className="input-group">
+            <label htmlFor="date-of-birth">Date</label>
+            <input
+                          id="date-of-birth"
+style={{
+  cursor:"pointer",
+}}
+              type="date"
+              value={startDate}
+              onChange={(e) => setDate(e.target.value)}
+              min={new Date().toISOString().split("T")[0]}
+                            required
+ onClick={(e) => (e.currentTarget as HTMLInputElement).showPicker()}
+            />
+          </div>
+
+
+
+                    {/* <div className="input-group">
+            <label htmlFor="date-of-birth">Date of Birth</label>
+            <input
+              id="date-of-birth"
+              type="date"
+  
+              required
+              disabled
+
+            />
+          </div> */}
+
+          <div  className="input-group">
+            <label>Slot: </label>
+            <select
+              value={selectedSlot}
+              onChange={(e) => handleSlotChange(e.target.value)}
+              disabled={!startDate}
+              style={{
+  cursor:"pointer",
+}}
+            >
+              <option value="">Select a time slot</option>
+              {timeSlots.map((slot, i) => {
+               const available = isSlotAvailable(startDate, slot);
+                return (
+                  <option
+                    key={i}
+                    value={slot}
+                    disabled={!available}
                     style={{
-                      height: "30px",
-                      marginLeft: "10px",
-                      cursor: "pointer",
+                      color: available ? "green" : "red",
+                      fontWeight: available ? "bold" : "normal",
                     }}
                   >
-                    <option value="">Select a time slot</option>
-                    {timeSlots.map((slot, index) => (
-                      <option key={index} value={slot}>
-                        {slot}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                    {available ? "🟢" : "🔴"} {slot}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
 
                 {/* Book Button */}
                 <div style={{ marginTop: 10 }}>
                   <button
-                    onClick={createMeet}
-                    disabled={isButtonDisabled}
+ type="submit"                  
+   disabled={isButtonDisabled}
                     style={{
                       cursor: isButtonDisabled ? "not-allowed" : "pointer",
                     }}
@@ -593,10 +688,18 @@ useEffect(() => {
                     {loading ? "Booking..." : "Book Demo"}
                   </button>
                 </div>
-              </div>
-            )}
+                   </form>
+        </>
+      )}
+
+
+
 
           </div>
+
+
+
+
         )}
       </div>
                   <ToastContainer />
