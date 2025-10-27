@@ -31,6 +31,14 @@ interface CountryOption {
   label: JSX.Element;
 }
 
+// ⬆️ Outside component
+const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
+  "+1": { name: "United States", dialCode: "+1", flag: "https://flagcdn.com/us.svg" },
+  "+91": { name: "India", dialCode: "+91", flag: "https://flagcdn.com/in.svg" },
+  "+44": { name: "United Kingdom", dialCode: "+44", flag: "https://flagcdn.com/gb.svg" },
+  "+61": { name: "Australia", dialCode: "+61", flag: "https://flagcdn.com/au.svg" },
+};
+
 
 const Profile: React.FC = () => {
 
@@ -123,28 +131,7 @@ const Profile: React.FC = () => {
 
 
 
-      const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
-        "+1": {
-          name: "United States",
-          dialCode: "+1",
-          flag: "https://flagcdn.com/us.svg",
-        },
-        "+91": {
-          name: "India",
-          dialCode: "+91",
-          flag: "https://flagcdn.com/in.svg",
-        },
-        "+44": {
-          name: "United Kingdom",
-          dialCode: "+44",
-          flag: "https://flagcdn.com/gb.svg",
-        },
-        "+61": {
-          name: "Australia",
-          dialCode: "+61",
-          flag: "https://flagcdn.com/au.svg",
-        },
-      };
+
 
 
       

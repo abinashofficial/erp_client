@@ -29,7 +29,7 @@ const QRCodeScanner: React.FC = () => {
     const {empDetail, login} = useAuth();
     const navigate = useNavigate();
 
-    const [image, setImage] = useState<File | null>(null); // To store the uploaded image
+    // const [image, setImage] = useState<File | null>(null); // To store the uploaded image
   // Extract Employee ID and Name from the scan result
   const extractEmployeeInfo = (scanResult: string | null) => {
     if (!scanResult) return { id: "", name: "" };
@@ -138,7 +138,7 @@ const QRCodeScanner: React.FC = () => {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files ? e.target.files[0] : null;
       if (file) {
-        setImage(file);
+        // setImage(file);
         decodeQRCode(file); // Decode the QR code as soon as the file is uploaded
       }
     };
@@ -174,21 +174,17 @@ const QRCodeScanner: React.FC = () => {
       />
       <div>
         {scanResult ? (
-          <p></p>
+          <span></span>
         ) : (
-          <p>No QR code scanned yet.</p>
+          <span>No QR code scanned yet.</span>
         )}
       </div>
 
-      <div className="links">
-            <a className="link">
-              -----------------
-            </a>
-            <span> OR </span>
-            <a  className="link">
-              -----------------
-            </a>
-          </div>
+<div className="links" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+  <span style={{ flex: 1, height: "1px", backgroundColor: "#ccc" }}></span>
+  <span style={{ color: "#888" }}>OR</span>
+  <span style={{ flex: 1, height: "1px", backgroundColor: "#ccc" }}></span>
+</div>
 
 
       <div style={{

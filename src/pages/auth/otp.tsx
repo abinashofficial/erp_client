@@ -6,8 +6,8 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { AlertColor } from "@mui/material/Alert";
 import { useAuth } from '../../context/authContext';
-import { Link } from 'react-router-dom';
-import { error } from "console";
+// import { Link } from 'react-router-dom';
+// import { error } from "console";
 
 import Select from "react-select";
 
@@ -18,10 +18,10 @@ interface CountryOption {
 
 
 
-interface SignInFormData {
-  email: string;
-  password: string;
-}
+// interface SignInFormData {
+//   email: string;
+//   password: string;
+// }
 
 // Generate OTP For Users
   export const GenerateOTP = (function () {
@@ -52,7 +52,7 @@ interface SignInFormData {
     const [otpValues, setOtpValues] = useState(["", "", "", "", "", ""]);
     const [expiryTime, setExpiryTime] = useState(300);
     const [resendVisible, setResendVisible] = useState(false);
-    const [emailormobile, setEmailorMaobile] = useState(false);
+    // const [emailormobile, setEmailorMaobile] = useState(false);
   
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -226,7 +226,7 @@ console.log(empDetail)
       setSpinner(false)
         try {
           const otplength = otpValues.join("")
-          if (otplength.length == 6) {
+          if (otplength.length === 6) {
           const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
           // const apiUrl = 'http://localhost:8080/public/verify-otp';
           const temp = {
@@ -278,31 +278,31 @@ console.error("Error verifying OTP:", error);
       setOtpSent(true)
     };
   
-    const resendCss = {
-      // backgroundColor: "#313B44",
-      borderRadius: ".375rem",
-      width: "100px",
-      height: "2em",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      fontFamily: "proxima-nova ",
-      fontStyle: "normal",
-      fontWeight: "400",
-      margin: "10px",
-      color: "black",
-      // border: "white",
-      backround:"grey",
-      padding: "8px 19.2px",
-    };
+    // const resendCss = {
+    //   // backgroundColor: "#313B44",
+    //   borderRadius: ".375rem",
+    //   width: "100px",
+    //   height: "2em",
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   fontFamily: "proxima-nova ",
+    //   fontStyle: "normal",
+    //   fontWeight: "400",
+    //   margin: "10px",
+    //   color: "black",
+    //   // border: "white",
+    //   backround:"grey",
+    //   padding: "8px 19.2px",
+    // };
   
-    const resendTimerCss = {
-      // color: "black",
-      border: "white",
-      fontWeight: "bold",
-      padding: "8px 19.2px",
-      backround:"grey",
-    };
+    // const resendTimerCss = {
+    //   // color: "black",
+    //   border: "white",
+    //   fontWeight: "bold",
+    //   padding: "8px 19.2px",
+    //   backround:"grey",
+    // };
 
 
     const handleVerificationChange = (method: "email id" | "mobile no") => {

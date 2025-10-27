@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/home';
-import Dashboard from '../pages/dashboard';
 import SignIn from '../pages/auth/sign_in';
 import SignUp from '../pages/auth/sign_up';
 import Otp from '../pages/auth/otp';
@@ -78,7 +77,6 @@ const Main: React.FC = () => {
                         } />
 
 
-        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/otpverify" element={<Otp />} />

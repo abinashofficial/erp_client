@@ -1,22 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from '../context/authContext';
 
-
 const PresenceTracker = () => {
-        const { setVisible } = useAuth();
-    
-//   const [isOnline, setIsOnline] = useState(true);
+  const { setVisible } = useAuth();
 
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
         console.log("User is offline (tab inactive)");
         setVisible(false);
-        // Optionally: notify your backend here
       } else {
         console.log("User is online (tab active)");
         setVisible(true);
-        // Optionally: notify your backend here
       }
     };
 
@@ -25,13 +20,11 @@ const PresenceTracker = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [setVisible]); // ✅ Add setVisible here
 
-  return (
-    <div>
-      {/* <h1>Status: {isOnline ? "Online" : "Offline"}</h1> */}
-    </div>
-  );
+  return <div>
+    
+  </div>;
 };
 
 export default PresenceTracker;

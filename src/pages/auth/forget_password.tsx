@@ -1,10 +1,10 @@
 // src/pages/SignUp.tsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { useAuth } from '../../context/authContext';
+// import { useAuth } from '../../context/authContext';
 
 
 
@@ -25,7 +25,7 @@ const ForgetPassword: React.FC = () => {
         confirmPassword:"",
         mobile_number:"",
       });
-            const [sendData, setSendData] = useState<SignInFormData>({
+            const [sendData] = useState<SignInFormData>({
               email: '',
               password: '',
               confirmPassword:"",
@@ -85,6 +85,7 @@ const ForgetPassword: React.FC = () => {
      setTimeout(() => {
       navigate('/'); // Redirect to dashboard after login
     }, 5000);
+    console.log(result)
 
      // Handle successful sign-in (e.g., redirect or store token)
    }else if (response.status===400){
@@ -126,11 +127,12 @@ const ForgetPassword: React.FC = () => {
                 <button type="submit">Continue</button>
 
             </form>
-            <p>Already have an account? 
-    <div className='link' onClick={()=>navigate('/')}>
-Sign In
-    </div>
-  </p>
+<p>
+  Already have an account?{' '}
+  <span className="link" onClick={() => navigate('/')}>
+    Sign In
+  </span>
+</p>
             </div>
           ):(<div className="spinner"> </div>
           )}

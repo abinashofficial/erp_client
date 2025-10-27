@@ -28,10 +28,10 @@ interface SignInFormData {
     mobile_number:string;
   }
 
-  function isAllInteger(input: string): boolean {
-    const regex = /^\d+$/; // Matches strings with only digits (0-9)
-    return regex.test(input);
-  }
+  // function isAllInteger(input: string): boolean {
+  //   const regex = /^\d+$/; // Matches strings with only digits (0-9)
+  //   return regex.test(input);
+  // }
 
   interface SignupFormData {
     employee_id:any;
@@ -56,7 +56,7 @@ const SignIn: React.FC = () => {
         password: '',
         mobile_number:"",
       });
-      const [sendData, setSendData] = useState<SignInFormData>({
+      const [sendData] = useState<SignInFormData>({
         email: '',
         password: '',
         mobile_number:"",
@@ -566,18 +566,20 @@ Sign Up
 
 
 
-          <div style={{
-            marginBottom:"20px",
-            marginTop:"20px",
-          }}>
-            <a >
-              -----------------
-            </a>
-            <span> OR </span>
-            <a  >
-              -----------------
-            </a>
-          </div>
+       <div
+  style={{
+    marginBottom: "20px",
+    marginTop: "20px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+  }}
+>
+  <span style={{ flex: 1, height: "1px", backgroundColor: "#ccc" }}></span>
+  <span style={{ color: "#888" }}>OR</span>
+  <span style={{ flex: 1, height: "1px", backgroundColor: "#ccc" }}></span>
+</div>
 
                     <button className="guest-signin-button" onClick={visitGuest}>
             <div style={{

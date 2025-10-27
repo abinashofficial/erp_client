@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import Lottie from "lottie-react";
 
-import DigitalMarketingIcon from "../assets/animations/digital-marketing-anime.json";
-import WebDesignAnime from "../assets/animations/webdesignanime.json"
+// import DigitalMarketingIcon from "../assets/animations/digital-marketing-anime.json";
+// import WebDesignAnime from "../assets/animations/webdesignanime.json"
 import Package from "../assets/animations/package_gif.json"
 import CheckIn from "../assets/animations/checkin.json"
 
@@ -61,7 +61,7 @@ export default function Projects() {
 
 
           <div>
-                                  {index%2==0 ? (
+                                  {index%2===0 ? (
             
  <motion.div
             key={index}

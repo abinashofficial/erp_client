@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Lottie from "lottie-react";
-import PayCoin from "../assets/animations/paycoins.json"
-import coinEmoji from "../assets/animations/coin.json";
+import React, { useState } from 'react';
     import { useAuth } from "../context/authContext"
-            import { toast, ToastContainer } from 'react-toastify';
-            import { FaLinkedin, FaWhatsapp, FaInstagram  } from 'react-icons/fa';
+            // import { toast, ToastContainer } from 'react-toastify';
+            import { FaWhatsapp  } from 'react-icons/fa';
     import upiIcon from "../assets/animations/upi.svg";
 import { QRCodeCanvas } from 'qrcode.react';
 
@@ -12,32 +9,24 @@ import { QRCodeCanvas } from 'qrcode.react';
 
 
 
-    interface SignupFormData {
-  employee_id:any;
-  first_name: any;
-  last_name: any;
-  full_name: any;
-  mobile_number: any;
-  email: any;
-  date_of_birth: any;
-  gender: any;
-  password: any;
-  confirmPassword:any;
-  photo_url:any;
-  country_code:any;
-  access_token:any;
-  coins:any;
-}
+//     interface SignupFormData {
+//   employee_id:any;
+//   first_name: any;
+//   last_name: any;
+//   full_name: any;
+//   mobile_number: any;
+//   email: any;
+//   date_of_birth: any;
+//   gender: any;
+//   password: any;
+//   confirmPassword:any;
+//   photo_url:any;
+//   country_code:any;
+//   access_token:any;
+//   coins:any;
+// }
 
-interface GameSpecs {
-  title:any;
-  size: any;
-  price: any;
-  coins: any;
-  download_link: any;
-  image_link: any;
-  platform: any;
-}
+
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -49,35 +38,37 @@ type ModalProps = {
 
 
 const PayModule: React.FC<ModalProps> = ({ isOpen, onClose, coin, children }) => {
-          const { empDetail, setEmpDetail} = useAuth();
-              const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
+          const { empDetail} = useAuth();
+              // const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
                 const [showQR, setShowQR] = useState(false);
 
           
-              useEffect(() => {
-            setLiveUpdate(empDetail.coins);
-          }, [empDetail.coins]);
-                const [visible, setVisible] = useState<Boolean>(true);
-          
-                               const formData: SignupFormData = {
-  employee_id: empDetail.employee_id,
-  first_name: empDetail.first_name,
-  last_name: empDetail.last_name,
-  full_name: empDetail.full_name,
-  mobile_number: empDetail.mobile_number,
-  email: empDetail.email,
-  date_of_birth: empDetail.date_of_birth,
-  gender: empDetail.gender,
-  password: "",
-  confirmPassword: "",
-  photo_url: empDetail.photo_url,
-  country_code: empDetail.countryCode,
-  access_token: empDetail.access_token,
-  coins: empDetail.coins,
-};
+          //     useEffect(() => {
+          //   setLiveUpdate(empDetail.coins);
+          // }, [empDetail.coins]);
 
-        const [payCoinvisible, setPayCoinVisible] = useState(false);
-                const [redownload, setRedownload] = useState(false);
+
+                // const [visible, setVisible] = useState<Boolean>(true);
+          
+//                                const formData: SignupFormData = {
+//   employee_id: empDetail.employee_id,
+//   first_name: empDetail.first_name,
+//   last_name: empDetail.last_name,
+//   full_name: empDetail.full_name,
+//   mobile_number: empDetail.mobile_number,
+//   email: empDetail.email,
+//   date_of_birth: empDetail.date_of_birth,
+//   gender: empDetail.gender,
+//   password: "",
+//   confirmPassword: "",
+//   photo_url: empDetail.photo_url,
+//   country_code: empDetail.countryCode,
+//   access_token: empDetail.access_token,
+//   coins: empDetail.coins,
+// };
+
+        // const [payCoinvisible, setPayCoinVisible] = useState(false);
+        //         const [redownload, setRedownload] = useState(false);
 
 
   if (!isOpen) return null;
@@ -115,82 +106,82 @@ const PayModule: React.FC<ModalProps> = ({ isOpen, onClose, coin, children }) =>
     window.location.href = upiLink;
   };
 
-          const AddCoins = async (add :any, msg :string) => {
-                    const controller = new AbortController();
-        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+  //         const AddCoins = async (add :any, msg :string) => {
+  //                   const controller = new AbortController();
+  //       setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
-            setVisible(false);
-      const updatedFormData = {
-        ...formData,
-        coins: add,
-      };
+  //           setVisible(false);
+  //     const updatedFormData = {
+  //       ...formData,
+  //       coins: add,
+  //     };
     
-      const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
+  //     const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
     
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${empDetail.access_token}`,
-          },
-          body: JSON.stringify(updatedFormData),
-               signal: controller.signal, // Attach the abort signal to the fetch request
-        });
+  //     try {
+  //       const response = await fetch(apiUrl, {
+  //         method: 'PUT',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `Bearer ${empDetail.access_token}`,
+  //         },
+  //         body: JSON.stringify(updatedFormData),
+  //              signal: controller.signal, // Attach the abort signal to the fetch request
+  //       });
     
-        const result = await response.json();
+  //       const result = await response.json();
     
-        if (response.ok) {
-            setVisible(true);
+  //       if (response.ok) {
+  //           setVisible(true);
     
-          console.log('Updated employee data:', updatedFormData);
-                  setPayCoinVisible(true);
-        setRedownload(true);
-                console.log("You have enough coins to download this game.");
+  //         console.log('Updated employee data:', updatedFormData);
+  //       //           setPayCoinVisible(true);
+  //       // setRedownload(true);
+  //               console.log("You have enough coins to download this game.");
     
-          toast.success(msg);
-                                  setEmpDetail({...empDetail,
-            employee_id: updatedFormData.employee_id,
-            first_name: updatedFormData.first_name,
-            last_name: updatedFormData.last_name,
-            full_name:updatedFormData.full_name,
-            mobile_number: updatedFormData.mobile_number,
-            email: updatedFormData.email,
-            date_of_birth: updatedFormData.date_of_birth,
-            gender: updatedFormData.gender,
-            password: "",
-            photo_url:updatedFormData.photo_url,
-            access_token:updatedFormData.access_token,
-            country_code:updatedFormData.country_code,
-            coins:updatedFormData.coins,
-        })
+  //         toast.success(msg);
+  //                                 setEmpDetail({...empDetail,
+  //           employee_id: updatedFormData.employee_id,
+  //           first_name: updatedFormData.first_name,
+  //           last_name: updatedFormData.last_name,
+  //           full_name:updatedFormData.full_name,
+  //           mobile_number: updatedFormData.mobile_number,
+  //           email: updatedFormData.email,
+  //           date_of_birth: updatedFormData.date_of_birth,
+  //           gender: updatedFormData.gender,
+  //           password: "",
+  //           photo_url:updatedFormData.photo_url,
+  //           access_token:updatedFormData.access_token,
+  //           country_code:updatedFormData.country_code,
+  //           coins:updatedFormData.coins,
+  //       })
 
-        } else if (response.status === 500) {
-            setVisible(true);
-          alert(result.message + " Sign in again");
-          return
-        } else {
-            setVisible(true);
-          console.error('Update failed:', result);
-          return
-        }
-      } catch (error: any) {
-          if (error.name === "AbortError") {
-    setVisible(true)
-    alert("Request timed out");
-    // setError("Request timed out");
-    return
-  } 
-            setVisible(true);
-        alert('Internal server error');
-        console.error('Error:', error);
-        return
-      }
-    };
+  //       } else if (response.status === 500) {
+  //           setVisible(true);
+  //         alert(result.message + " Sign in again");
+  //         return
+  //       } else {
+  //           setVisible(true);
+  //         console.error('Update failed:', result);
+  //         return
+  //       }
+  //     } catch (error: any) {
+  //         if (error.name === "AbortError") {
+  //   setVisible(true)
+  //   alert("Request timed out");
+  //   // setError("Request timed out");
+  //   return
+  // } 
+  //           setVisible(true);
+  //       alert('Internal server error');
+  //       console.error('Error:', error);
+  //       return
+  //     }
+  //   };
 
 
 const handleClose = () => {
-  setRedownload(false);
+  // setRedownload(false);
   onClose();
 };
 
@@ -198,7 +189,6 @@ const handleClose = () => {
   return (
             <div className="modal-backdrop">
   <div className="modal-content">
-    {visible?(
 
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
@@ -265,7 +255,7 @@ const handleClose = () => {
       onClick={() => handleWatsapp()}
     >
      <div className='game-button'>
-        <h3>Collect Coupon</h3>
+        <h3>Contact us</h3>
         <FaWhatsapp size={30} />
 
       </div>
@@ -289,11 +279,11 @@ onClick={handleClose}
       </div>
     </div>
 
-    ) :(<div className="spinner"> </div>)}
+ 
 
 
       </div>
-              <ToastContainer/>
+              {/* <ToastContainer/> */}
 </div>
   );
 };

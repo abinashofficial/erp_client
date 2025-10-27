@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Lottie from "lottie-react";
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
-    import { toast, ToastContainer } from 'react-toastify';
     import phonepayIcon from "../assets/animations/phonepe.svg";
     import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
     import upiIcon from "../assets/animations/upi.svg";
     import PresenceTracker from '../utils/presenceTracker';
-    import PayCoin from "../assets/animations/paycoins.json"
 import Coins from "../pages/coins"
 import PayModule from '../pages/paymodule';
 import Header from '../components/header';
@@ -15,128 +13,112 @@ import Header from '../components/header';
     
 
  
-interface SignupFormData {
-  employee_id:any;
-  first_name: any;
-  last_name: any;
-  full_name: any;
-  mobile_number: any;
-  email: any;
-  date_of_birth: any;
-  gender: any;
-  password: any;
-  confirmPassword:any;
-  photo_url:any;
-  country_code:any;
-  access_token:any;
-  coins:any;
-}
+
 
 const AddCoins: React.FC = () => {
-    const { empDetail, setEmpDetail} = useAuth();
-        const [payCoinvisible, setPayCoinVisible] = useState(false);
-                const [visible, setVisible] = useState<Boolean>(true);
-    const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
+    const { empDetail} = useAuth();
+        // const [payCoinvisible, setPayCoinVisible] = useState(false);
+    // const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
         const [money, setMoney] = useState<any | null>(null);
 
             const [coupon, setCoupon] = useState("");
+                         const [isModalOpen, setIsModalOpen] = useState(false);
 
     
 
-    useEffect(() => {
-  setLiveUpdate(empDetail.coins);
-}, [empDetail.coins]);
-                         const [isModalOpen, setIsModalOpen] = useState(false);
+//     useEffect(() => {
+//   setLiveUpdate(empDetail.coins);
+// }, [empDetail.coins]);
 
-                      const [formData] = useState<SignupFormData>({
-            employee_id:empDetail.employee_id,
-            first_name: empDetail.first_name,
-            last_name: empDetail.last_name,
-            full_name: empDetail.full_name,
-            mobile_number: empDetail.mobile_number,
-            email: empDetail.email,
-            date_of_birth: empDetail.date_of_birth,
-            gender: empDetail.gender,
-            password: "",
-            confirmPassword: "",
-            photo_url: empDetail.photo_url,
-            country_code:empDetail.countryCode,
-            access_token: empDetail.access_token,
-            coins:empDetail.coins, 
-               });
-
+//                       const [formData] = useState<SignupFormData>({
+//             employee_id:empDetail.employee_id,
+//             first_name: empDetail.first_name,
+//             last_name: empDetail.last_name,
+//             full_name: empDetail.full_name,
+//             mobile_number: empDetail.mobile_number,
+//             email: empDetail.email,
+//             date_of_birth: empDetail.date_of_birth,
+//             gender: empDetail.gender,
+//             password: "",
+//             confirmPassword: "",
+//             photo_url: empDetail.photo_url,
+//             country_code:empDetail.countryCode,
+//             access_token: empDetail.access_token,
+//             coins:empDetail.coins, 
+//                });
 
 
 
 
-      const AddCoin = async (add :any) => {
-        setVisible(false);
-  const updatedFormData = {
-    ...formData,
-    coins: add,
-  };
-                   const controller = new AbortController();
-        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
-  const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${empDetail.access_token}`,
-      },
-      body: JSON.stringify(updatedFormData),
-                     signal: controller.signal, // Attach the abort signal to the fetch request
+//       const AddCoin = async (add :any) => {
+//         setVisible(false);
+//   const updatedFormData = {
+//     ...formData,
+//     coins: add,
+//   };
+//                    const controller = new AbortController();
+//         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+//   const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 
-    });
+//   try {
+//     const response = await fetch(apiUrl, {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${empDetail.access_token}`,
+//       },
+//       body: JSON.stringify(updatedFormData),
+//                      signal: controller.signal, // Attach the abort signal to the fetch request
 
-    const result = await response.json();
+//     });
 
-    if (response.ok) {
+//     const result = await response.json();
 
-                    setTimeout(() => {
-      setVisible(true)
-                                        setEmpDetail({...empDetail,
-            employee_id: updatedFormData.employee_id,
-            first_name: updatedFormData.first_name,
-            last_name: updatedFormData.last_name,
-            full_name:updatedFormData.full_name,
-            mobile_number: updatedFormData.mobile_number,
-            email: updatedFormData.email,
-            date_of_birth: updatedFormData.date_of_birth,
-            gender: updatedFormData.gender,
-            password: "",
-            photo_url:updatedFormData.photo_url,
-            access_token:updatedFormData.access_token,
-            country_code:updatedFormData.country_code,
-            coins:updatedFormData.coins,
-        })
+//     if (response.ok) {
 
-      console.log('Updated employee data:', updatedFormData);
-      toast.success('Coins added successfully');
-          setPayCoinVisible(true);
-        }, 3000); // 3000 milliseconds = 3 seconds
+//                     setTimeout(() => {
+//       setVisible(true)
+//                                         setEmpDetail({...empDetail,
+//             employee_id: updatedFormData.employee_id,
+//             first_name: updatedFormData.first_name,
+//             last_name: updatedFormData.last_name,
+//             full_name:updatedFormData.full_name,
+//             mobile_number: updatedFormData.mobile_number,
+//             email: updatedFormData.email,
+//             date_of_birth: updatedFormData.date_of_birth,
+//             gender: updatedFormData.gender,
+//             password: "",
+//             photo_url:updatedFormData.photo_url,
+//             access_token:updatedFormData.access_token,
+//             country_code:updatedFormData.country_code,
+//             coins:updatedFormData.coins,
+//         })
+
+//       console.log('Updated employee data:', updatedFormData);
+//       toast.success('Coins added successfully');
+//           setPayCoinVisible(true);
+//         }, 3000); // 3000 milliseconds = 3 seconds
       
-    } else if (response.status === 500) {
-          alert(result.message + " Sign in again");
-            setVisible(true)
+//     } else if (response.status === 500) {
+//           alert(result.message + " Sign in again");
+//             setVisible(true)
 
-      return
-    } else {
-      console.error('Update failed:', result);
-            setVisible(true)
+//       return
+//     } else {
+//       console.error('Update failed:', result);
+//             setVisible(true)
 
-      return
-    }
-  } catch (error) {
-          setVisible(true)
+//       return
+//     }
+//   } catch (error) {
+//           setVisible(true)
 
-    alert('Internal server error');
-    console.error('Error:', error);
-    return
-  }
-};
+//     alert('Internal server error');
+//     console.error('Error:', error);
+//     return
+//   }
+// };
 
 
   const handleUPIPayment = async (coin :any, pay: any) => {
@@ -166,7 +148,7 @@ const AddCoins: React.FC = () => {
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           const { name, value } = e.target;
-          console.log("Coupon value:", value);  
+          console.log("Coupon value:", value, name);  
           setCoupon(value);
       };
 
@@ -177,10 +159,9 @@ const AddCoins: React.FC = () => {
 
           <PresenceTracker />
 
-                {visible ? (
 
         <div>
-          {payCoinvisible && (
+          {/* {payCoinvisible && (
         <div className="modal-backdrop">
           <Lottie
             style={{
@@ -193,7 +174,10 @@ const AddCoins: React.FC = () => {
             autoplay={true}
             onComplete={() => setPayCoinVisible(false)} // ✅ hide div after 1 cycle
           />
-        </div>)}
+        </div>)} */}
+
+
+
                {/* <div className="modal-backdrop">
           <Lottie
             style={{
@@ -242,13 +226,12 @@ const AddCoins: React.FC = () => {
       display:"flex",
       justifyContent:"space-around",
       flexWrap:"wrap",
-      marginTop:"20px",
     }}>
 
     <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(50, 50);
+  handleUPIPayment(100, 100);
 }}>
 
 
@@ -260,15 +243,15 @@ const AddCoins: React.FC = () => {
     height:"30px",
     width:"30px",
     marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">100 Coins = ₹100</span>
         </div>
 
 
 
       
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
+      {/* <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
         <strong>Now Get 50 Coins = ₹50</strong>
-      </div>
+      </div> */}
                     <div className="common-div">
 <div>
       <p  style={{
@@ -315,7 +298,7 @@ const AddCoins: React.FC = () => {
         <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(275, 300);
+  handleUPIPayment(300, 300);
 }}>
 
 
@@ -327,16 +310,16 @@ const AddCoins: React.FC = () => {
     height:"30px",
     width:"30px",
     marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">300 Coins = ₹300</span>
         </div>
 
 
 
 
       
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
+      {/* <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
         <strong>Now Get 300 Coins = ₹275</strong>
-      </div>
+      </div> */}
                     <div className="common-div">
 <div>
       <p  style={{
@@ -382,7 +365,7 @@ const AddCoins: React.FC = () => {
           <div className="form-container">
 <form onSubmit={(e) => {
   e.preventDefault();
-  handleUPIPayment(450, 500);
+  handleUPIPayment(500, 500);
 }}>
 
 
@@ -394,7 +377,7 @@ const AddCoins: React.FC = () => {
     height:"30px",
     width:"30px",
     marginLeft:"10px"
-}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">1 Coin = ₹50</span>
+}} animationData={coinEmoji} loop autoplay /> <span className="font-semibold">500 Coins = ₹500</span>
         </div>
 
 
@@ -402,9 +385,9 @@ const AddCoins: React.FC = () => {
 
 
       
-      <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
+      {/* <div className="bg-yellow-100 border border-yellow-400 text-yellow-800 rounded-lg px-4 py-2 my-4">
         <strong>Now Get 500 Coins = ₹450</strong>
-      </div>
+      </div> */}
                     <div className="common-div">
 <div>
       <p  style={{
@@ -451,25 +434,12 @@ const AddCoins: React.FC = () => {
 coin={money}
       >
         <p>Make the payment via UPI IDs.</p>
-        <p>Send the payment screenshot via WhatsApp to get your coupon code.</p>
+        {/* <p>Send the payment screenshot via WhatsApp to get your coupon code.</p> */}
       </PayModule>
 
 
-        <ToastContainer/>
     </div>
-              ):(
-            <div style={{
-              display:"flex",
-              justifyContent:"center",
-              alignItems:"center",
-              height:"100vh"
-            }}>
-            <div className="spinner">
 
-            </div>
-            </div>
-
-          )}
                 </div>
 
 

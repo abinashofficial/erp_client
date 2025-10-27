@@ -1097,3 +1097,19 @@ display: flex;
   height: 35px;
   width: 35px;
 }
+
+
+.profile-btn{
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+  align-items: center;
+}
+
+
+.profile-btn:hover {
+  background-color: #e0e0e0;
+}

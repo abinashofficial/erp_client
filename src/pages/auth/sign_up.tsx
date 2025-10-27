@@ -1,13 +1,13 @@
 // src/pages/SignUp.tsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
 import Select from "react-select";
 import Upload from "../uploaddrive"
-import { dividerClasses } from '@mui/material';
+// import { dividerClasses } from '@mui/material';
 
 
 
@@ -33,6 +33,29 @@ interface CountryOption {
   label: JSX.Element;
 }
 
+    const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
+      "+1": {
+        name: "United States",
+        dialCode: "+1",
+        flag: "https://flagcdn.com/us.svg",
+      },
+      "+91": {
+        name: "India",
+        dialCode: "+91",
+        flag: "https://flagcdn.com/in.svg",
+      },
+      "+44": {
+        name: "United Kingdom",
+        dialCode: "+44",
+        flag: "https://flagcdn.com/gb.svg",
+      },
+      "+61": {
+        name: "Australia",
+        dialCode: "+61",
+        flag: "https://flagcdn.com/au.svg",
+      },
+    };
+    
 const SignUp: React.FC = () => {
   // const [visible, setVisible] = useState<Boolean>(true);
 
@@ -224,28 +247,7 @@ const SignUp: React.FC = () => {
       ),
     }));
 
-    const countryMap: Record<string, { name: string; dialCode: string; flag: string }> = {
-      "+1": {
-        name: "United States",
-        dialCode: "+1",
-        flag: "https://flagcdn.com/us.svg",
-      },
-      "+91": {
-        name: "India",
-        dialCode: "+91",
-        flag: "https://flagcdn.com/in.svg",
-      },
-      "+44": {
-        name: "United Kingdom",
-        dialCode: "+44",
-        flag: "https://flagcdn.com/gb.svg",
-      },
-      "+61": {
-        name: "Australia",
-        dialCode: "+61",
-        flag: "https://flagcdn.com/au.svg",
-      },
-    };
+
 
     
 useEffect(() => {
@@ -456,11 +458,12 @@ useEffect(() => {
                 <button type="submit">Sign Up</button>
             </form>
             {/* <p>Already have an account? <Link to="/">Sign In</Link></p> */}
-<p>Already have an account?    
-    <div className='link' onClick={()=>navigate('/')}>
-Sign In
-    </div>
-                </p>
+<p>
+  Already have an account?{' '}
+  <span className="link" onClick={() => navigate('/')}>
+    Sign In
+  </span>
+</p>
 
 
 

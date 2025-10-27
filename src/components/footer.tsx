@@ -9,10 +9,10 @@ import { SiGmail } from 'react-icons/si';
 
 
 
-interface Project {
-  title: string;
-  description: string;
-}
+// interface Project {
+//   title: string;
+//   description: string;
+// }
 
 
 const Footer: React.FC = () => {
