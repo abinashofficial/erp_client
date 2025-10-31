@@ -34,6 +34,7 @@ import Android from '../pages/android';
 import PS2 from '../pages/ps2';
 import Projects from '../pages/projects';
 import ScheduleGmeet from "../components/gmeet"
+import WebDesigns from "../pages/webdesign"
 
 
 const Main: React.FC = () => {
@@ -113,6 +114,15 @@ const Main: React.FC = () => {
             element={
                // <ProtectedRoute>
                     <Game />
+               //  </ProtectedRoute>
+            } 
+        />
+
+                <Route 
+            path="/webdesigns" 
+            element={
+               // <ProtectedRoute>
+                    <WebDesigns />
                //  </ProtectedRoute>
             } 
         />

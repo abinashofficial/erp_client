@@ -24,16 +24,23 @@ const Service: React.FC = () => {
     const [animations, setAnimations] = useState<Animations>({});
       const [serviceSpec] = useState<Services[]>([
         {
-          title: "View Courses",
+          title: "Courses",
           image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753636436/course_nkny1h.jpg",
           json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1759009564/animation_luhjne.json",
           page_link:"/course",
         },
                 {
-          title: "View Projects",
+          title: "Projects",
           image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753636468/projects_ufutjn.jpg",
           json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1759010200/man_working_with_projects_management_animation_gif_download_10674170_z97wak.json",
                     page_link:"/project",
+
+        },  
+                        {
+          title: "Web Designs",
+          image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1761924976/web_designs_hnzsa9.jpg",
+          json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761925151/data_analysis_nkhubi.json",
+                    page_link:"/webdesigns",
 
         },
       ]);
