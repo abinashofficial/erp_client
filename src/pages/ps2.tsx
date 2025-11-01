@@ -411,7 +411,10 @@ gap:"20px",
               className="icon-bounce"
             />  
             </div>
+            <div>
       <p>size {data.size}</p>
+
+            </div>
     </div>
 
     <button
@@ -442,8 +445,13 @@ className='button-coin'
         onClose={() => setIsModalOpen(false)}
 data={gameData}
       >
-        <p>Coins required for one-time download.</p>
-        <p>Reach out to customer support for assistance.</p>      </PrizeModal>
+        <div>
+     <p>Coins required for one-time download.</p>
+        <p>Reach out to customer support for assistance.</p>  
+        </div>
+
+   
+            </PrizeModal>
   </div>
 ))}
 

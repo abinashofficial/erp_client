@@ -376,8 +376,9 @@ const Profile: React.FC = () => {
             </form>
             {empDetail.mobile_number ==="" ? (
             <div>
-            <p>Signed in with Google account? <Link to="/signup">Sign Up</Link></p>
-
+<p>
+  Signed in with Google account? <span><Link to="/signup">Sign Up</Link></span>
+</p>
 
             </div>):(   
                 <div style={{

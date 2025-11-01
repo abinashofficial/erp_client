@@ -35,13 +35,14 @@ import PS2 from '../pages/ps2';
 import Projects from '../pages/projects';
 import ScheduleGmeet from "../components/gmeet"
 import WebDesigns from "../pages/webdesign"
+import GoogleReviews from "../components/googlereviews"
 
 
 const Main: React.FC = () => {
     // const { isAuthenticated } = useAuth();
 
     return (
-        <ErrorBoundary fallback={<p>Something went wrong</p>}>
+<ErrorBoundary fallback={<div>Something went wrong</div>}>
 
         <div className="page-container">
 
@@ -66,6 +67,8 @@ const Main: React.FC = () => {
 
 
         <Route path="/bookdemo" element={<ScheduleGmeet />} />
+                <Route path="/googlereviews" element={<GoogleReviews />} />
+
 
         
         <Route path="/" element={<SignIn />} />

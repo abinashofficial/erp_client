@@ -382,7 +382,6 @@ sendData.mobile_number = ""
     }
 
     const enterTouchEmoji =  () => {
-console.log("leave")
 setIsThink(false);
 setIsPeek(false);
 setTouchEmoji(false) 
@@ -393,7 +392,6 @@ setIsHeart(true)
     }
 
     const leaveHeartEmoji =  () => {
-      console.log("leave")
       setIsThink(false);
       setIsPeek(false);
       setTouchEmoji(true) 

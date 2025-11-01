@@ -913,8 +913,11 @@ gap:"20px",
         onClose={() => setIsModalOpen(false)}
 data={gameData}
       >
+        <div>
         <p>Coins required for one-time download.</p>
         <p>Reach out to customer support for assistance.</p>
+        </div>
+
       </PrizeModal>
   </div>
 ))}

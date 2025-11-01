@@ -433,7 +433,10 @@ const AddCoins: React.FC = () => {
         onClose={() => setIsModalOpen(false)}
 coin={money}
       >
+        <div>
         <p>Make the payment via UPI IDs.</p>
+
+        </div>
         {/* <p>Send the payment screenshot via WhatsApp to get your coupon code.</p> */}
       </PayModule>
 

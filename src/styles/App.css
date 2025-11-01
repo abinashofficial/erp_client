@@ -1090,6 +1090,39 @@ display: flex;
   border-radius: 8px;
   max-width: 400px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+
+/* 📱 Small devices (phones, portrait tablets) */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 16px;
+    max-width: 90%;
+    border-radius: 6px;
+  }
+}
+
+/* 📱 Medium devices (landscape phones, small tablets) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .modal-content {
+    padding: 20px;
+    max-width: 80%;
+  }
+}
+
+/* 💻 Large devices (tablets, small laptops) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modal-content {
+    max-width: 500px;
+  }
+}
+
+/* 🖥️ Extra-large devices (desktops and beyond) */
+@media (min-width: 1025px) {
+  .modal-content {
+    max-width: 600px;
+  }
 }
 
 .button-coin{
@@ -1113,4 +1146,64 @@ display: flex;
 
 .profile-btn:hover {
   background-color: #e0e0e0;
+}
+
+
+.review-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+
+}
+.review-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    color: rgb(17, 17, 17);
+}
+
+.review-title-box {
+  display: flex;
+  flex-direction: column;
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+    justify-content: center;
+    align-items: center;
+    /* margin: 10px; */
+    padding: 10px;
+}
+
+.review-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.write-review-button {
+    display: flex;
+    justify-content: center;
+    /* background: blue; */
+    color: white;
+    height: 35px;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgb(25, 123, 255);
+    width: 110px;
+    cursor: pointer;
+}
+
+.review-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
 }

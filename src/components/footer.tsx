@@ -51,8 +51,8 @@ const Footer: React.FC = () => {
   </a>
         </div>
         <div>
-        <p>&copy; 2024 Prison Birds</p>
-
+        {/* <p>&copy; 2024 Prison Birds</p> */}
+2024 Prison Birds
         </div>
 
         <div>

@@ -334,6 +334,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // // const CLIENT_ID = "542517918505-svmc1d3vh5r4g636mfp7j4d401mhdj7f.apps.googleusercontent.com";
 import { useEffect, useState } from "react";
+import GoogleReviews from "./googlereviews";
+import { useAuth } from '../context/authContext';
+
 
 
 const CLIENT_ID = "252613924014-pajsq4m0ntcvr099amb4175nik39sj4h.apps.googleusercontent.com";
@@ -414,6 +417,10 @@ const [bookedSlots, setBookedSlots] = useState<string[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<string>("");
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<any>(null);
+        const { empDetail, setEmpDetail } = useAuth();
+    
+
   const CALENDAR_ID = "prisonbirdstech@gmail.com"; // your public calendar ID
     const [attendees] = useState("prisonbirdstech@gmail.com");
 
@@ -430,24 +437,87 @@ const API_KEY = "AIzaSyDpw6VSlJBqfJ09wY2bvYwK4O1ufu3HmCk"; // from Google Cloud 
     d.setMinutes(d.getMinutes() + 45);
     return d.toISOString().slice(0, 16);
   });
+  useEffect(() => {
+                      if (empDetail.email ==="" && user!= null){
+        setEmpDetail({...empDetail,
+    employee_id: "",
+    first_name: "",
+    last_name: "",
+    full_name:user.name || "",
+    mobile_number: "",
+    email: user.email || "",
+    date_of_birth: "",
+    gender: "",
+    password: "",
+    photo_url:user.imageUrl || "",
+    confirmPassword:"",
+    access_token: "",
+    country_code:"",
+    coins:"",
+  });
+    }
+  }, [user, setEmpDetail, empDetail]);
 
-
-  // ✅ load Google API
+  // ✅ Load Google API and initialize
   useEffect(() => {
     gapi.load("client:auth2", () => {
-      gapi.client.init({
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES,
-      }).then(() => {
-        const auth = gapi.auth2.getAuthInstance();
-        setSignedIn(auth.isSignedIn.get());
-        setLoading(false);
-      });
+      gapi.client
+        .init({
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES,
+        })
+        .then(() => {
+          const auth = gapi.auth2.getAuthInstance();
+
+          // Check current sign-in state
+          setSignedIn(auth.isSignedIn.get());
+          if (auth.isSignedIn.get()) {
+            const profile = auth.currentUser.get().getBasicProfile();
+            setUser({
+              id: profile.getId(),
+              name: profile.getName(),
+              email: profile.getEmail(),
+              imageUrl: profile.getImageUrl(),
+            });
+
+          }
+
+          // Watch for sign-in status changes
+          auth.isSignedIn.listen((isSignedIn: boolean) => {
+            setSignedIn(isSignedIn);
+            if (isSignedIn) {
+              const profile = auth.currentUser.get().getBasicProfile();
+              setUser({
+                id: profile.getId(),
+                name: profile.getName(),
+                email: profile.getEmail(),
+                imageUrl: profile.getImageUrl(),
+              });
+
+
+            } else {
+              setUser(null);
+            }
+          });
+
+          setLoading(false);
+        });
     });
   }, []);
 
-  const signIn = () => gapi.auth2.getAuthInstance().signIn();
+
+  const signIn = async () => {
+    const googleUser = await gapi.auth2.getAuthInstance().signIn();
+    const profile = googleUser.getBasicProfile();
+    setUser({
+      id: profile.getId(),
+      name: profile.getName(),
+      email: profile.getEmail(),
+      imageUrl: profile.getImageUrl(),
+    });
+    setSignedIn(true);
+  };
 
   // ✅ Fetch booked events for the selected date
 
@@ -545,7 +615,7 @@ const fetchBookedSlots = async (date: string) => {
       console.log("Meet link:", res.result.hangoutLink);
 
       setTimeout(() => {
-        navigate("/blog");
+        navigate("/");
       }, 3000);
     } catch (err) {
       console.error("Error creating meeting:", err);
@@ -573,27 +643,40 @@ const updateTimesFromSlot = (date: string, slot: string) => {
   return (
     <div>
       <Header />
+              {loading ? (
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-                        height: "90vh",
+          // flexDirection:"column",
+          marginTop:"100px",
+        }}
+      >          <div className="spinner"></div>
 
+                </div>
+        ) : (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection:"column",
+          marginTop:"100px",
+          background:"rgb(239, 250, 239)",
         }}
       >
-        {loading ? (
-          <div className="spinner"></div>
-        ) : (
+
+
+
           <div
             style={{
               display: "flex",
               alignItems: "center",
               flexDirection: "column",
               padding: 20,
-              height: "70vh",
               justifyContent: "center",
-              width:"100%",
+              // marginTop:"80px",
             }}
           >
 <h2 style={{
@@ -700,8 +783,13 @@ style={{
 
 
 
-        )}
+                            <GoogleReviews/>
+
       </div>
+              )}
+
+
+
                   <ToastContainer />
 
     </div>
