@@ -774,7 +774,10 @@
         <div className="flex-1">
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-medium">{review.name}</div>
+              <div style={{
+                                fontWeight:"bold"
+
+              }}>{review.name}</div>
               <div className="text-xs text-gray-500">{formatted}</div>
             </div>
             <div className="flex items-center">
