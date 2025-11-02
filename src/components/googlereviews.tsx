@@ -302,6 +302,8 @@
   import  { useMemo, useState, ChangeEvent, FormEvent, useEffect } from "react";
   import { FcGoogle } from "react-icons/fc";
   import { useAuth } from '../context/authContext';
+import { BsChatLeftQuote } from "react-icons/bs";
+import { BsChatRightQuote } from "react-icons/bs";
 
   interface SubmitReview {
     id: number;
@@ -470,7 +472,7 @@
             };
           });
 
-          setGetReviews(parsed);
+      setGetReviews(parsed.reverse());
         } catch (err) {
           console.error(err);
         } finally {
@@ -759,7 +761,12 @@
 
     return (
       <div className="review-box">
-        <div>
+        <div style={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+      }}>
 
         <img
           src={review.avatar}
@@ -786,15 +793,33 @@
           </div>
         </div>
               </div>
-              <div style={{
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center",
-                margin:"10px",
-              }}>
+<div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          // alignItems: "center",
+          margin: "10px",
+          width:"60%",
+        }}
+      >       
+      <div>
+         <  BsChatRightQuote style={{
+          marginBottom:"5px",
+          color:"black",
+         }}/>{" "}
 
-          <p className="mt-3 text-gray-700">{review.comment}</p>
-                      </div>
+{review.comment} {" "}
+        <BsChatLeftQuote style={{
+          marginBottom:"5px",
+                    color:"black",
+
+         }} />
+
+
+      </div>
+
+        {/* <p className="mt-3 text-gray-700"></p> */}
+      </div>
 
 
       </div>
