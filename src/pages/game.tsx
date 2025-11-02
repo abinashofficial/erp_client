@@ -131,6 +131,16 @@ const Game: React.FC = () => {
       platform: "PC",
     },
 
+        {
+      title: "GTA V Compressed",
+      size: "40 GB",
+      price: "Price",
+      coins: 200,
+      download_link: "https://gofile.io/d/grbQk2",
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657170/gtav_fnwq4x.jpg",
+      platform: "PC",
+    },
+
                     {
       title: "COD Vanguard",
       size: "80 GB",
