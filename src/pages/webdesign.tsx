@@ -577,16 +577,15 @@ gap:"20px",
       textAlign: "center",
     }}>
       <h4>{data.title}</h4>
-    <div style={
-      {
-        fontSize:"30px"
-      }
-    }>
+    <div >
     <Lottie style={{
-    height:"30px",
-    width:"30px",
+    height:"50px",
+    width:"50px",
     marginLeft:"10px",
     marginRight: "10px",
+  
+
+
 }} animationData= {animations[data.title]} loop autoplay />
 
     </div>

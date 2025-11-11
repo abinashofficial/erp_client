@@ -427,6 +427,7 @@ button.menu-btn{
   flex-direction: column;
   gap:5px;
   cursor: pointer;
+  background: white;
 }
 
 .rect_img{

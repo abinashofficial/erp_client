@@ -36,8 +36,8 @@ const Course: React.FC = () => {
       {
         title: "Golang",
         description: "Developed by Google, known for its efficiency and concurrency, gaining popularity in cloud infrastructure and backend development.",
-        price: "Free",
-        coins: 0,
+        price: "Price",
+        coins: 50,
         project_link: "",
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752076352/golang_mmibq2.png",
         pdf_link:"",
@@ -222,7 +222,13 @@ gap:"20px",
 // margin:"50px",
       }}>
         {filteredGames.map((data, index) => (
-  <div key={index} className='pc_box'>
+  <div key={index} className='pc_box' onClick={() =>
+      window.open(
+        data.video_link,
+        "_blank",
+        "noopener,noreferrer"
+      )
+    }>
     
     <div style={{
         display:"flex",
@@ -260,6 +266,7 @@ gap:"20px",
 
     </div>
 
+
     <div style={{
       display: "flex",
       flexDirection: "row",
@@ -268,39 +275,25 @@ gap:"20px",
       textAlign: "center",
     }}>
       <h4>{data.title}</h4>
+    <div style={{
+      display:"flex",
+      flexDirection:"row",
+      alignItems:"center",
+    }}>
+    <Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px",
+    marginRight: "10px",
+  
 
+
+}} animationData= {coinEmoji} loop autoplay />
+{data.price === "Price" ? data.coins: data.price} 
+
+    </div>
       {/* <p>size {data.size}</p> */}
     </div>
-
-    <button
-      className='course_box'
-          onClick={() =>
-      window.open(
-        data.video_link,
-        "_blank",
-        "noopener,noreferrer"
-      )
-    }
-    >
-      <div className='game-button'>
-        <h3>{data.price}</h3>
-        <div style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          textAlign: "center",
-        }}>
-          <Lottie
-  className='button-coin'
-            animationData={coinEmoji}
-            loop
-            autoplay
-          />
-          {data.coins}
-        </div>
-      </div>
-    </button>
                       {/* <PrizeModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
