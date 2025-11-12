@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 // import { useAuth } from '../../context/authContext';
 
@@ -136,7 +136,6 @@ const ForgetPassword: React.FC = () => {
             </div>
           ):(<div className="spinner"> </div>
           )}
-<ToastContainer/>
 
         </div>
     );

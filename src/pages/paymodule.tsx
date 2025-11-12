@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
     import { useAuth } from "../context/authContext"
-            // import { toast, ToastContainer } from 'react-toastify';
             import { FaWhatsapp  } from 'react-icons/fa';
     import upiIcon from "../assets/animations/upi.svg";
 import { QRCodeCanvas } from 'qrcode.react';
@@ -283,7 +282,6 @@ onClick={handleClose}
 
 
       </div>
-              {/* <ToastContainer/> */}
 </div>
   );
 };

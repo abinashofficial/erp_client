@@ -36,6 +36,8 @@ import Projects from '../pages/projects';
 import ScheduleGmeet from "../components/gmeet"
 import WebDesigns from "../pages/webdesign"
 import GoogleReviews from "../components/googlereviews"
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 
 const Main: React.FC = () => {
@@ -206,7 +208,7 @@ const Main: React.FC = () => {
 
     </div>
 
-
+<ToastContainer/>
     </div>
         </ErrorBoundary>
 

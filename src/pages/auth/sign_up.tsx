@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/authContext';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
 import Select from "react-select";
 import Upload from "../uploaddrive"
@@ -468,7 +468,6 @@ useEffect(() => {
 
 
         </div>):(<div className="spinner"> </div>)}
-        <ToastContainer/>
 
         </div>
     );

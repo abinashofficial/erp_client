@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import PayCoin from "../assets/animations/paycoins.json"
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
-            import { toast, ToastContainer } from 'react-toastify';
+            import { toast } from 'react-toastify';
 
 
 
@@ -46,6 +46,8 @@ type ModalProps = {
 
 
 const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) => {
+    // const [gameSpecs, setGameSpecs] = useState<GameSpecs[]>([]);
+    // setGameSpecs([data]);
           const { empDetail, setEmpDetail} = useAuth();
               const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
               
@@ -79,7 +81,7 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
   if (!isOpen) return null;
 
 
-          const AddCoins = async (add :any, msg :string) => {
+          const AddCoins = async (add :any, msg :string, index:number) => {
                     const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
@@ -129,7 +131,7 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
             coins:updatedFormData.coins,
         })
           setTimeout(() => {
-  window.open(data.download_link, "_blank", "noopener,noreferrer");
+  window.open(data.download_link[index], "_blank", "noopener,noreferrer");
 }, 3000); // 3000 milliseconds = 3 seconds
         } else if (response.status === 500) {
             setVisible(true);
@@ -154,19 +156,19 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
       }
     };
 
-    const handleDownload = (data : GameSpecs): void => {
+    const handleDownload = (data : GameSpecs, index:any): void => {
       if (!empDetail.employee_id) {
         alert("Please sign in to download the game.");
         return;
       }
 
         if (redownload) {
-  window.open(data.download_link, "_blank", "noopener,noreferrer");
+  window.open(data.download_link[index], "_blank", "noopener,noreferrer");
             return;
         }
 
     if(empDetail.coins && empDetail.coins >= data.coins && data.price.toLowerCase() === "price") {
-            AddCoins(liveUpdate - data.coins, "you have downloaded the game");
+            AddCoins(liveUpdate - data.coins, "you have downloaded the game", index);
 return
     }else{
         alert("You don't have enough coins to download this game. Please add coins.")
@@ -208,17 +210,20 @@ const handleClose = () => {
         </div>)}
 
 
+
+
+                  {data.download_link.map((_:any, index:any) => (
+<div style={{
+  margin:"10px",
+}}>
+
             <button
       className='course_box'
-      onClick={() => handleDownload(data)}
+      onClick={() => handleDownload(data, index)}
     >
-              {redownload ? (
- <div className='game-button'>
-        <h3>Re-Download</h3>
-      </div>
-      ) : (
-     <div className='game-button'>
-        <h3>Download</h3>
+
+     <div key={index} className='game-button'>
+        <h3>Download Server {index+1}</h3>
         <div style={{
           display: "flex",
           flexDirection: "row",
@@ -239,10 +244,15 @@ const handleClose = () => {
          {data.coins}
         </div>
       </div>
-      )}
+                        </button>
+                        </div>
+
+
+                        ))}
+
+
  
 
-    </button>
         <div style={{
             marginTop: "15px",
         }}>
@@ -261,7 +271,6 @@ onClick={handleClose}
 
 
       </div>
-              <ToastContainer/>
 </div>
   );
 };

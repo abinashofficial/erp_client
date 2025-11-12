@@ -330,7 +330,7 @@
 import { gapi } from "gapi-script";
 import Header from "../components/header";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // // const CLIENT_ID = "542517918505-svmc1d3vh5r4g636mfp7j4d401mhdj7f.apps.googleusercontent.com";
 import { useEffect, useState } from "react";
@@ -790,7 +790,6 @@ style={{
 
 
 
-                  <ToastContainer />
 
     </div>
   );
