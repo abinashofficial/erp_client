@@ -13,12 +13,7 @@ import { useNavigate } from 'react-router-dom';
   [key: string]: any; // JSON object for each Lottie animation
 }
 
-
-
-
-
-const Home: React.FC = () => {
-  const services = [
+  const services =  [
   {
     title: 'Digital Marketing',
     description: 'Boost your brand visibility and reach through comprehensive digital marketing strategies. Our services include SEO to enhance search engine rankings, SEM for targeted ads, engaging content marketing, and strategic social media campaigns that captivate your audience and convert leads into loyal customers.',
@@ -50,6 +45,11 @@ const Home: React.FC = () => {
     jsonName:"serviceanime",
   },
 ];
+
+
+
+const Home: React.FC = () => {
+
     const {empDetail} = useAuth();
     const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
         const navigate = useNavigate()

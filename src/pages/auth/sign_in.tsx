@@ -93,7 +93,7 @@ const SignIn: React.FC = () => {
           },
                               {
             title: "smileEmoji",
-            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216601/sleep_emoji_k99eoq.json",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216683/smile_emoji_sitw6r.json",
           },
                                         {
             title: "curseEmoji",

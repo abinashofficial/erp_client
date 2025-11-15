@@ -14,9 +14,6 @@ import { GoArrowRight } from "react-icons/go";
   interface Animations {
   [key: string]: any; // JSON object for each Lottie animation
 }
-
-
-export default function Projects() {
   const services = [
   {
     title: 'Package Management',
@@ -35,6 +32,9 @@ export default function Projects() {
 
   },
 ];
+
+export default function Projects() {
+
    const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
          const [animations, setAnimations] = useState<Animations>({});
    
