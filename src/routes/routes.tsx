@@ -38,7 +38,6 @@ import WebDesigns from "../pages/webdesign"
 import GoogleReviews from "../components/googlereviews"
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import DownloadPage from '../pages/download';
 
 
 const Main: React.FC = () => {
@@ -75,7 +74,6 @@ const Main: React.FC = () => {
 
         
         <Route path="/" element={<SignIn />} />
-<Route path="/download" element={<DownloadPage />} />
 
 
         <Route path="/qrscan" element={<Qrscan />} />
