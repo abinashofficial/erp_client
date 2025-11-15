@@ -5,53 +5,77 @@ import Header from '../components/header';
 import React, { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import Lottie from "lottie-react";
-
-import DigitalMarketingIcon from "../assets/animations/digital-marketing-anime.json";
-import WebDesignAnime from "../assets/animations/webdesignanime.json"
-import ECommerceAnime from "../assets/animations/ecommerceanime.json"
-import ItSupportAnime from "../assets/animations/Itsupportanime.json"
-import ItServiceAnime from "../assets/animations/serviceanime.json"
 import { GoArrowRight } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
 
 
+  interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
 
-const services = [
-  {
-    title: 'Digital Marketing',
-    description: 'Boost your brand visibility and reach through comprehensive digital marketing strategies. Our services include SEO to enhance search engine rankings, SEM for targeted ads, engaging content marketing, and strategic social media campaigns that captivate your audience and convert leads into loyal customers.',
-    icon: DigitalMarketingIcon, // Anime-style fairy
-  },
-  {
-    title: 'Web Development',
-    description: 'Craft visually stunning and user-friendly websites with our modern web design and development solutions. We build responsive, accessible, and lightning-fast web applications using cutting-edge technologies, ensuring your online presence is both functional and captivating across all devices.',
-    icon: WebDesignAnime, // Anime wizard
-  },
-  {
-    title: 'E-Commerce Development',
-    description: 'Launch a powerful online store with our e-commerce development services. We create secure, scalable, and high-performing e-commerce platforms tailored to your business needs, equipped with features like payment integration, inventory management, and customer-centric UX for a seamless shopping experience.',
-    icon: ECommerceAnime, // Anime elf
-  },
-  {
-    title: 'Technical Support',
-    description: 'Stay worry-free with our round-the-clock technical support. Whether it’s software troubleshooting, system maintenance, or hardware configuration, our expert team ensures your IT infrastructure runs smoothly, minimizing downtime and maximizing productivity.',
-    icon: ItSupportAnime, // Anime superhero
-  },
-  {
-    title: 'IT Services',
-    description: 'Empower your business with our full spectrum of IT services. From network setup and infrastructure management to cloud solutions and cybersecurity, we provide enterprise-grade IT support that scales with your growth and adapts to evolving technological needs.',
-    icon: ItServiceAnime, // Anime genie
-  },
-];
+
 
 
 
 const Home: React.FC = () => {
+  const services = [
+  {
+    title: 'Digital Marketing',
+    description: 'Boost your brand visibility and reach through comprehensive digital marketing strategies. Our services include SEO to enhance search engine rankings, SEM for targeted ads, engaging content marketing, and strategic social media campaigns that captivate your audience and convert leads into loyal customers.',
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763229782/digital-marketing-anime_ggzuwy.json", // Anime-style fairy
+    jsonName:"digital_marketing_anime",
+  },
+  {
+    title: 'Web Development',
+    description: 'Craft visually stunning and user-friendly websites with our modern web design and development solutions. We build responsive, accessible, and lightning-fast web applications using cutting-edge technologies, ensuring your online presence is both functional and captivating across all devices.',
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763230044/webdesignanime_cw2i6e.json", // Anime wizard
+    jsonName:"webdesignanime",
+  },
+  {
+    title: 'E-Commerce Development',
+    description: 'Launch a powerful online store with our e-commerce development services. We create secure, scalable, and high-performing e-commerce platforms tailored to your business needs, equipped with features like payment integration, inventory management, and customer-centric UX for a seamless shopping experience.',
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763230092/ecommerceanime_amqcue.json", // Anime elf
+    jsonName:"ecommerceanime",
+  },
+  {
+    title: 'Technical Support',
+    description: 'Stay worry-free with our round-the-clock technical support. Whether it’s software troubleshooting, system maintenance, or hardware configuration, our expert team ensures your IT infrastructure runs smoothly, minimizing downtime and maximizing productivity.',
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763230169/Itsupportanime_t1vdrx.json", // Anime superhero
+    jsonName:"Itsupportanime",
+  },
+  {
+    title: 'IT Services',
+    description: 'Empower your business with our full spectrum of IT services. From network setup and infrastructure management to cloud solutions and cybersecurity, we provide enterprise-grade IT support that scales with your growth and adapts to evolving technological needs.',
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763230223/serviceanime_ivdqsf.json", // Anime genie
+    jsonName:"serviceanime",
+  },
+];
     const {empDetail} = useAuth();
     const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
         const navigate = useNavigate()
        
-    
+             const [animations, setAnimations] = useState<Animations>({});
+       
+                    useEffect(() => {
+                  // Fetch all JSONs in parallel
+                  const fetchAnimations = async () => {
+                    const anims  :any ={};
+                    await Promise.all(
+                      services.map(async (jsonfile) => {
+                        try {
+                          const res = await fetch(jsonfile.jsonLink); // each course has its JSON URL
+                          const data = await res.json();
+                          anims[jsonfile.jsonName] = data; // store by course id
+                        } catch (err) {
+                          console.error("Failed to load animation:", err);
+                        }
+                      })
+                    );
+                    setAnimations(anims);
+                  };
+        fetchAnimations();
+      }, []);
+
       useEffect(() => {
         const mediaQuery = window.matchMedia("(orientation: portrait)");
     
@@ -254,7 +278,7 @@ margin:"50px",
       
           <Lottie
             className="lottie-animation"
-            animationData={service.icon}  
+            animationData={animations[service.jsonName]}  
             loop
             autoplay
             style={{
@@ -437,7 +461,7 @@ margin:"50px",
       
           <Lottie
             className="lottie-animation"
-            animationData={service.icon}  
+            animationData={animations[service.jsonName]}  
             loop
             autoplay
             style={{

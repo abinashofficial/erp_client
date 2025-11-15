@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
-// import coinEmoji from "../assets/animations/coin.json";
-// import windowsicon from "../assets/animations/windows.json"
-// import androidAnime from "../assets/animations/android-anime.json"
-// import { useNavigate } from 'react-router-dom';
-// import playstationAnime from "../assets/animations/playstation.json"
-        // import PrizeModal from "../pages/prizemodal";
         import Coins from "./coins"
 import Header from '../components/header';
 import { IoSearch } from "react-icons/io5";
-// import LawAnime from "../assets/animations/law.json"
 
 
 

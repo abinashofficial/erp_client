@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
-import coinEmoji from "../assets/animations/coin.json";
 import Coins from "../pages/coins"
 import Header from '../components/header';
 import { IoSearch } from "react-icons/io5";
@@ -32,6 +31,14 @@ interface CourseSpecs {
 }
 const Course: React.FC = () => {
   const [animations, setAnimations] = useState<Animations>({});
+          const [coinEmoji, setCoinEmoji] = useState<any>(null);
+  const src = "https://res.cloudinary.com/dababspdo/raw/upload/v1763219996/coin_zhrla1.json";
+    useEffect(() => {
+      fetch(src)
+        .then(res => res.json())
+        .then(json => setCoinEmoji(json))
+        .catch(err => console.error("Failed to load Lottie JSON:", err));
+    }, [src]);
     const [courseSpec] = useState<CourseSpecs[]>([
       {
         title: "Golang",

@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
-import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
-    import phonepayIcon from "../assets/animations/phonepe.svg";
-    import gpayIcon from "../assets/animations/google-pay-primary-logo-logo-svgrepo-com.svg";
-    import upiIcon from "../assets/animations/upi.svg";
     import PresenceTracker from '../utils/presenceTracker';
 import Coins from "../pages/coins"
 import PayModule from '../pages/paymodule';
@@ -24,7 +20,14 @@ const AddCoins: React.FC = () => {
             const [coupon, setCoupon] = useState("");
                          const [isModalOpen, setIsModalOpen] = useState(false);
 
-    
+              const [coinEmoji, setCoinEmoji] = useState<any>(null);
+      const src = "https://res.cloudinary.com/dababspdo/raw/upload/v1763219996/coin_zhrla1.json";
+        useEffect(() => {
+          fetch(src)
+            .then(res => res.json())
+            .then(json => setCoinEmoji(json))
+            .catch(err => console.error("Failed to load Lottie JSON:", err));
+        }, [src]);
 
 //     useEffect(() => {
 //   setLiveUpdate(empDetail.coins);
@@ -272,19 +275,19 @@ const AddCoins: React.FC = () => {
       </button>
       <div>
                                         <img
-              src={upiIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231560/upi_plljga.svg"}
               alt="upiicon"
               style={{ width: "50px", height: "50px" }}
             />  
       
                       <img
-              src={phonepayIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231478/phonepe_edys8q.svg"}
               alt="PhonePe"
               style={{ width: "100px", height: "50px" }}
             />  
       
                             <img
-              src={gpayIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231400/google-pay-primary-logo-logo-svgrepo-com_tvfcsd.svg"}
               alt="gpay"
               style={{ width: "50px", height: "50px" }}
             />  
@@ -340,19 +343,19 @@ const AddCoins: React.FC = () => {
       </button>
 <div>
                                         <img
-              src={upiIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231560/upi_plljga.svg"}
               alt="upiicon"
               style={{ width: "50px", height: "50px" }}
             />  
       
                       <img
-              src={phonepayIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231478/phonepe_edys8q.svg"}
               alt="PhonePe"
               style={{ width: "100px", height: "50px" }}
             />  
       
                             <img
-              src={gpayIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231400/google-pay-primary-logo-logo-svgrepo-com_tvfcsd.svg"}
               alt="gpay"
               style={{ width: "50px", height: "50px" }}
             />  
@@ -408,19 +411,19 @@ const AddCoins: React.FC = () => {
       </button>
 <div>
                                         <img
-              src={upiIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231560/upi_plljga.svg"}
               alt="upiicon"
               style={{ width: "50px", height: "50px" }}
             />  
       
                       <img
-              src={phonepayIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231478/phonepe_edys8q.svg"}
               alt="PhonePe"
               style={{ width: "100px", height: "50px" }}
             />  
       
                             <img
-              src={gpayIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231400/google-pay-primary-logo-logo-svgrepo-com_tvfcsd.svg"}
               alt="gpay"
               style={{ width: "50px", height: "50px" }}
             />  

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
-import PayCoin from "../assets/animations/paycoins.json"
-import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
             import { toast } from 'react-toastify';
 import Header from '../components/header';
@@ -43,7 +41,9 @@ type ModalProps = {
  data :GameSpecs;
   children: React.ReactNode;
 };
-
+  interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
 
 
 const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) => {
@@ -52,7 +52,42 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
           const { empDetail, setEmpDetail} = useAuth();
               const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
               
-          
+                    const [animations, setAnimations] = useState<Animations>({});
+              
+                      const [jsonfiles] = useState([
+                        {
+                          title: "coinEmoji",
+                          link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763219996/coin_zhrla1.json",
+                        },
+                                  {
+                          title: "paidicon",
+                          link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763230482/paycoins_d5puqs.json",
+                        },
+              
+                      ]);
+
+                       useEffect(() => {
+                                    // Fetch all JSONs in parallel
+                                    const fetchAnimations = async () => {
+                                      const anims  :any ={};
+                                      await Promise.all(
+                                        jsonfiles.map(async (jsonfile) => {
+                                          try {
+                                            const res = await fetch(jsonfile.link); // each course has its JSON URL
+                                            const data = await res.json();
+                                            anims[jsonfile.title] = data; // store by course id
+                                          } catch (err) {
+                                            console.error("Failed to load animation:", err);
+                                          }
+                                        })
+                                      );
+                                      setAnimations(anims);
+                                    };
+                          fetchAnimations();
+                        }, [jsonfiles]);
+              
+
+
               useEffect(() => {
             setLiveUpdate(empDetail.coins);
           }, [empDetail.coins]);
@@ -236,7 +271,7 @@ const handleClose = () => {
               height: "100%",
               width: "100%",
             }}
-            animationData={PayCoin}
+            animationData={animations["paidicon"]}
             loop={false}
             autoplay={true}
             onComplete={() => setPayCoinVisible(false)} // ✅ hide div after 1 cycle
@@ -256,7 +291,7 @@ const handleClose = () => {
               width: "40px",
               marginLeft: "10px",
             }}
-            animationData={coinEmoji}
+            animationData={animations["coinEmoji"]}
             loop
             autoplay
           />

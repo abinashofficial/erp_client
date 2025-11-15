@@ -2,34 +2,62 @@ import  { useEffect, useState } from "react";
 import { motion } from 'framer-motion';
 import Lottie from "lottie-react";
 
-// import DigitalMarketingIcon from "../assets/animations/digital-marketing-anime.json";
-// import WebDesignAnime from "../assets/animations/webdesignanime.json"
-import Package from "../assets/animations/package_gif.json"
-import CheckIn from "../assets/animations/checkin.json"
+
 
 
 import Header from '../components/header';
 import { GoArrowRight } from "react-icons/go";
 
 
-const services = [
+
+
+  interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
+
+
+export default function Projects() {
+  const services = [
   {
     title: 'Package Management',
     description: 'The Packaging Management System (PMS) is a role-based platform that streamlines packaging operations across roles like Employee, Project Lead, Inventory Lead, Packer, and Quality Lead. Each role has dedicated interfaces to manage tasks, inventory, packing, and quality checks efficiently. The system covers end-to-end workflows from project creation to packing, inspection, and closure, ensuring traceability and accountability. Overall, it enhances collaboration, quality control, and operational efficiency in packaging management.',
-    icon: Package, // Anime-style fairy
     url:"https://erp-management-mu.vercel.app/",
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763229080/package_gif_a4w3j8.json",
+    jsonName:"package_gif_a4w3j8",
   },
   {
     title: 'Check - in / out',
     description: 'Employee Check-in/Check-out feature using QR code scanning for accurate attendance tracking. Each employee is assigned a unique QR code, which they scan at entry and exit points to record their working hours automatically. The data is stored in the system for attendance monitoring, shift management, and productivity analysis. This ensures secure, contactless, and real-time attendance tracking across the packaging facility.',
-    icon: CheckIn, // Anime wizard
         url:"https://www.youtube.com/watch?v=Gb6ADWcMLEY",
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763229017/checkin_tgqw20.json",
+        jsonName:"package_gif_a4w3j8",
+
 
   },
 ];
-
-export default function Projects() {
    const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
+         const [animations, setAnimations] = useState<Animations>({});
+   
+                useEffect(() => {
+              // Fetch all JSONs in parallel
+              const fetchAnimations = async () => {
+                const anims  :any ={};
+                await Promise.all(
+                  services.map(async (jsonfile) => {
+                    try {
+                      const res = await fetch(jsonfile.jsonLink); // each course has its JSON URL
+                      const data = await res.json();
+                      anims[jsonfile.jsonName] = data; // store by course id
+                    } catch (err) {
+                      console.error("Failed to load animation:", err);
+                    }
+                  })
+                );
+                setAnimations(anims);
+              };
+    fetchAnimations();
+  }, []);
+
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(orientation: portrait)");
@@ -130,7 +158,7 @@ export default function Projects() {
 
     <Lottie
       className="lottie-animation"
-      animationData={service.icon}  
+      animationData={animations[service.jsonName]}  
       loop
       autoplay
       style={{
@@ -309,7 +337,7 @@ export default function Projects() {
 
     <Lottie
       className="lottie-animation"
-      animationData={service.icon}  
+      animationData={animations[service.jsonName]}  
       loop
       autoplay
       style={{

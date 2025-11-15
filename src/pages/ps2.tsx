@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Coins from "./coins"
-import coinEmoji from "../assets/animations/coin.json";
 import Lottie from "lottie-react";
-import androidAnime from "../assets/animations/android-anime.json"
-import windowsAnime from "../assets/animations/windows.json"
-        import playstationAnime from "../assets/animations/playstation.json"
-        import Playstation2Icon from "../assets/animations/playstation-icon.svg"
+        // import Playstation2Icon from "../assets/animations/playstation-icon.svg"
 import Header from '../components/header';
 import { IoSearch } from "react-icons/io5";
 
@@ -26,12 +22,14 @@ interface GameSpecs {
 
 }
 
-
+  interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
 
 const PS2: React.FC = () => {
   const navigate = useNavigate();
 
-
+ const Playstation2Icon = "https://res.cloudinary.com/dababspdo/image/upload/v1763221812/playstation-icon_mqohth.svg"
 const [gameSpecs] = useState<GameSpecs[]>([
         
     {
@@ -157,7 +155,29 @@ const [gameSpecs] = useState<GameSpecs[]>([
 ]);
     const [searchTerm, setSearchTerm] = useState<string>("");
 
+  const [animations, setAnimations] = useState<Animations>({});
   
+          const [jsonfiles] = useState([
+            {
+              title: "windowsicon",
+              link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763219262/windows_x9olxp.json",
+            },
+                      {
+              title: "androidicon",
+              link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763214100/android-anime_ta912x.json",
+            },
+                      {
+              title: "playstationicon",
+              link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763218998/playstation_dqqid1.json",
+            },
+                                {
+              title: "coinsicon",
+              link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763219996/coin_zhrla1.json",
+            },
+  
+          ]);
+
+
     const filteredGames = gameSpecs.filter((game) =>
       game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -171,6 +191,26 @@ const [gameSpecs] = useState<GameSpecs[]>([
         // setIsModalOpen(true);
         // setGameData(data);
 };
+
+                useEffect(() => {
+              // Fetch all JSONs in parallel
+              const fetchAnimations = async () => {
+                const anims  :any ={};
+                await Promise.all(
+                  jsonfiles.map(async (jsonfile) => {
+                    try {
+                      const res = await fetch(jsonfile.link); // each course has its JSON URL
+                      const data = await res.json();
+                      anims[jsonfile.title] = data; // store by course id
+                    } catch (err) {
+                      console.error("Failed to load animation:", err);
+                    }
+                  })
+                );
+                setAnimations(anims);
+              };
+    fetchAnimations();
+  }, [jsonfiles]);
     return (
 
 
@@ -244,11 +284,12 @@ const [gameSpecs] = useState<GameSpecs[]>([
             </div>
 
             <div>
+              {animations["windowsicon"] &&
   <Lottie style={{
     height:"50px",
     width:"30px",
     marginLeft:"10px"
-}} animationData={windowsAnime} loop autoplay />
+}} animationData={animations["windowsicon"]} loop autoplay />}
             </div>
             
               </div>
@@ -273,12 +314,14 @@ const [gameSpecs] = useState<GameSpecs[]>([
             </div>
 
             <div>
-  <Lottie style={{
-    height:"50px",
-    width:"50px",
-    marginLeft:"10px"
-}} animationData={androidAnime} loop autoplay />
+ {animations["androidicon"] &&
+      <Lottie style={{
+        height:"50px",
+        width:"50px",
+        marginLeft:"10px"
+    }} animationData={animations["androidicon"]} loop autoplay />}
             </div>
+
             
               </div>
 
@@ -354,11 +397,12 @@ const [gameSpecs] = useState<GameSpecs[]>([
 
             </div>
                             <div>
+ {animations["playstationicon"] &&
       <Lottie style={{
         height:"45px",
         width:"45px",
         marginLeft:"10px"
-    }} animationData={playstationAnime} loop autoplay />
+    }} animationData={animations["playstationicon"]} loop autoplay />}
                 </div>
                 
               </div>
@@ -431,12 +475,14 @@ gap:"20px",
           alignItems: "center",
           textAlign: "center",
         }}>
+          {animations["coinsicon"] &&
           <Lottie
-className='button-coin'
-            animationData={coinEmoji}
+  className='button-coin'
+            animationData={animations["coinsicon"]}
             loop
             autoplay
           />
+        }
           {data.coins}
         </div>
       </div>

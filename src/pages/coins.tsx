@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
-import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
 import AnimatedNumber from "../utils/AnimeNumber";
     
@@ -34,6 +33,14 @@ const Coins: React.FC<CoinsProps> = ({ isVisible }) => {
     const { empDetail} = useAuth();
 
     const [liveUpdate, setLiveUpdate] = useState<any | null>(null);
+        const [animation, setAnimation] = useState<any>(null);
+const src = "https://res.cloudinary.com/dababspdo/raw/upload/v1763219996/coin_zhrla1.json";
+  useEffect(() => {
+    fetch(src)
+      .then(res => res.json())
+      .then(json => setAnimation(json))
+      .catch(err => console.error("Failed to load Lottie JSON:", err));
+  }, [src]);
     
     useEffect(() => {
   setLiveUpdate(empDetail.coins);
@@ -75,7 +82,7 @@ setLiveUpdate(coins);
   transform: "scale(0.5)",
   height:"100%",
   width:"100%",
-}} animationData={coinEmoji} loop autoplay />
+}} animationData={animation} loop autoplay />
 
         </div>
                 </div>

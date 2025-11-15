@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
     import { useAuth } from "../context/authContext"
             import { FaWhatsapp  } from 'react-icons/fa';
-    import upiIcon from "../assets/animations/upi.svg";
 import { QRCodeCanvas } from 'qrcode.react';
 
 
@@ -239,7 +238,7 @@ const handleClose = () => {
                 Pay via UPI
             </h4>
                                                     <img
-              src={upiIcon}
+              src={"https://res.cloudinary.com/dababspdo/image/upload/v1763231560/upi_plljga.svg"}
               alt="upiicon"
               style={{ width: "50px", height: "50px" }}
             /> 

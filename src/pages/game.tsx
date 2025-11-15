@@ -1,9 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
-import coinEmoji from "../assets/animations/coin.json";
-import windowsicon from "../assets/animations/windows.json"
-import androidAnime from "../assets/animations/android-anime.json"
-import playstationAnime from "../assets/animations/playstation.json"
         import Coins from "./coins"
 import Header from '../components/header';
 import { IoSearch } from "react-icons/io5";
@@ -20,6 +16,9 @@ import { useNavigate } from "react-router-dom";
 
 
 
+  interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
 
 interface GameSpecs {
   title:any;
@@ -790,6 +789,29 @@ const Game: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState<string>("");
 
+      const [animations, setAnimations] = useState<Animations>({});
+
+        const [jsonfiles] = useState([
+          {
+            title: "windowsicon",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763219262/windows_x9olxp.json",
+          },
+                    {
+            title: "androidicon",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763214100/android-anime_ta912x.json",
+          },
+                    {
+            title: "playstationicon",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763218998/playstation_dqqid1.json",
+          },
+                              {
+            title: "coinsicon",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763219996/coin_zhrla1.json",
+          },
+
+        ]);
+
+
   const filteredGames = gameSpecs.filter((game) =>
     game.title.toLowerCase().includes(searchTerm.toLowerCase())
   );  
@@ -801,7 +823,25 @@ const Game: React.FC = () => {
         }
         navigate("/download", { state: { data: data } });
 };
-
+                useEffect(() => {
+              // Fetch all JSONs in parallel
+              const fetchAnimations = async () => {
+                const anims  :any ={};
+                await Promise.all(
+                  jsonfiles.map(async (jsonfile) => {
+                    try {
+                      const res = await fetch(jsonfile.link); // each course has its JSON URL
+                      const data = await res.json();
+                      anims[jsonfile.title] = data; // store by course id
+                    } catch (err) {
+                      console.error("Failed to load animation:", err);
+                    }
+                  })
+                );
+                setAnimations(anims);
+              };
+    fetchAnimations();
+  }, [jsonfiles]);
 
     return (
             <div>
@@ -887,11 +927,12 @@ const Game: React.FC = () => {
                 </div>
     
                 <div>
+                  {animations["windowsicon"] &&
       <Lottie style={{
         height:"50px",
         width:"30px",
         marginLeft:"10px"
-    }} animationData={windowsicon} loop autoplay />
+    }} animationData={animations["windowsicon"]} loop autoplay />}
                 </div>
                 
                   </div>
@@ -916,11 +957,12 @@ const Game: React.FC = () => {
                 </div>
     
                 <div>
+                  {animations["androidicon"] &&
       <Lottie style={{
         height:"50px",
         width:"50px",
         marginLeft:"10px"
-    }} animationData={androidAnime} loop autoplay />
+    }} animationData={animations["androidicon"]} loop autoplay />}
                 </div>
                 
                   </div>
@@ -944,11 +986,12 @@ const Game: React.FC = () => {
 
             </div>
                             <div>
+                  {animations["playstationicon"] &&
       <Lottie style={{
         height:"45px",
         width:"45px",
         marginLeft:"10px"
-    }} animationData={playstationAnime} loop autoplay />
+    }} animationData={animations["playstationicon"]} loop autoplay />}
                 </div>
                 
               </div>
@@ -1000,12 +1043,14 @@ gap:"20px",
         fontSize:"30px"
       }
     }>
+      {animations["windowsicon"] &&
     <Lottie style={{
     height:"25px",
     width:"25px",
     marginLeft:"10px",
     marginRight: "10px",
-}} animationData={windowsicon} loop autoplay />
+}} animationData={animations["windowsicon"]} loop autoplay />
+}
 
     </div>
       <p>size {data.size}</p>
@@ -1024,12 +1069,14 @@ gap:"20px",
           alignItems: "center",
           textAlign: "center",
         }}>
+          {animations["coinsicon"] &&
           <Lottie
   className='button-coin'
-            animationData={coinEmoji}
+            animationData={animations["coinsicon"]}
             loop
             autoplay
           />
+        }
           {data.coins}
         </div>
       </div>

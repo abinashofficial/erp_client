@@ -5,13 +5,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from './firebaseConfig'; // Adjust the path as necessary
 import Lottie from "lottie-react";
-import smileEmoji from "../../assets/animations/smile_emoji.json";
-import peekEmoji from "../../assets/animations/peeking_emoji.json"; 
-import thinkEmoji from "../../assets/animations/thinking_emoji.json"; 
-import curseEmoji from "../../assets/animations/cursing_emoji.json"; 
-import angryEmoji from "../../assets/animations/angry_emoji.json"; 
-import heartFaceEmoji from "../../assets/animations/heartface_emoji.json"; 
-import sleepEmoji from "../../assets/animations/sleep_emoji.json"; 
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
@@ -50,7 +43,13 @@ interface SignInFormData {
     coins:any;
   }
 
+  interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
+
 const SignIn: React.FC = () => {
+    const [animations, setAnimations] = useState<Animations>({});
+  
     const [formData, setFormData] = useState<SignInFormData>({
         email: '',
         password: '',
@@ -75,6 +74,36 @@ const SignIn: React.FC = () => {
       const [count, setCount] = useState(0);
     const { login } = useAuth();
     const navigate = useNavigate();
+        const [jsonfiles] = useState([
+          {
+            title: "angryEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763215161/angry_emoji_mflarr.json",
+          },
+                    {
+            title: "thinkEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763215368/thinking_emoji_kkwaez.json",
+          },
+                              {
+            title: "heartFaceEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216430/heartface_emoji_g6sw48.json",
+          },
+                              {
+            title: "sleepEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216601/sleep_emoji_k99eoq.json",
+          },
+                              {
+            title: "smileEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216601/sleep_emoji_k99eoq.json",
+          },
+                                        {
+            title: "curseEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216794/cursing_emoji_msox6c.json",
+          },
+                                        {
+            title: "peekEmoji",
+            link:"https://res.cloudinary.com/dababspdo/raw/upload/v1763216974/peeking_emoji_r6byzr.json",
+          },
+        ]);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         console.log(name)
@@ -432,6 +461,28 @@ setIsHeart(true)
             return () => clearTimeout(timer);
           }, []);
 
+
+
+                useEffect(() => {
+              // Fetch all JSONs in parallel
+              const fetchAnimations = async () => {
+                const anims  :any ={};
+                await Promise.all(
+                  jsonfiles.map(async (jsonfile) => {
+                    try {
+                      const res = await fetch(jsonfile.link); // each course has its JSON URL
+                      const data = await res.json();
+                      anims[jsonfile.title] = data; // store by course id
+                    } catch (err) {
+                      console.error("Failed to load animation:", err);
+                    }
+                  })
+                );
+                setAnimations(anims);
+              };
+    fetchAnimations();
+  }, [jsonfiles]);
+  
     return (
 
 
@@ -448,39 +499,41 @@ setIsHeart(true)
 <div  style={{ width: 100, height: 100,                 cursor: "pointer",
 }}>
 
-    {touchEmoji ?
+    {touchEmoji && animations["smileEmoji"] ?
      <Lottie
   onClick={()=> handleClick()}
   onMouseEnter={()=> enterTouchEmoji()}
-  animationData={smileEmoji}
+  animationData={animations["smileEmoji"]}
   loop
   autoplay
 /> 
 
 : <div/>}
 
-    {unTouchEmoji ? <Lottie
-  animationData={curseEmoji}
+    {unTouchEmoji && animations["curseEmoji"]? <Lottie
+  animationData={animations["curseEmoji"]}
   loop
   autoplay
 /> : <div/>}
 
-{singleTouchEmoji ? <Lottie
-  animationData={angryEmoji}
+{singleTouchEmoji && animations["angryEmoji"] ? <Lottie
+  animationData={animations["angryEmoji"]}
   loop
   autoplay
 /> : <div/>}
 
-      {isPeek ? <Lottie animationData={peekEmoji} loop autoplay /> : <div/>}
-      {isThink ? <Lottie animationData={thinkEmoji} loop autoplay /> : <div/> }
-      {isSleep ? <Lottie    onClick={()=> handleSleep()}
+      {isPeek && animations["peekEmoji"]? <Lottie animationData={animations["peekEmoji"]} loop autoplay /> : <div/>}
+      {isThink && animations["thinkEmoji"]? <Lottie animationData={animations["thinkEmoji"]} loop autoplay /> : <div/> }
+
+      {isSleep && animations["sleepEmoji"] ? <Lottie    onClick={()=> handleSleep()}
  
- animationData={sleepEmoji} loop autoplay /> : <div/> }
-      {isHeart ? <Lottie
+ animationData={animations["sleepEmoji"]} loop autoplay /> : <div/> }
+
+      {isHeart && animations["heartFaceEmoji"] ? <Lottie
       onMouseLeave={()=> leaveHeartEmoji()}
       onClick={()=> handleClick()}
 
-      animationData={heartFaceEmoji} loop autoplay /> : <div/> }
+      animationData={animations["heartFaceEmoji"]} loop autoplay /> : <div/> }
 
 
     </div>

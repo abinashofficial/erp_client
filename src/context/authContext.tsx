@@ -18,6 +18,9 @@ interface SignupFormData {
     country_code:any,
     coins:any,
   }
+    interface Animations {
+  [key: string]: any; // JSON object for each Lottie animation
+}
   
 
 interface AuthContextType {
@@ -28,6 +31,8 @@ setVisible:(result: boolean) => void
     login: (result: SignupFormData) => void;
     logout: () => void;
     setEmpDetail: (result: SignupFormData) => void;
+    setAnimations:(result: Animations) => void;
+    animations: Animations;
 }
 
 
@@ -37,6 +42,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
     const [visible, setVisible] = useState(true);
+    const [animations, setAnimations] = useState<Animations>({});
         const navigate = useNavigate()
     
     const [empDetail, setEmpDetail] = useState<SignupFormData>({
@@ -129,7 +135,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, [timeoutId]);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout, setEmpDetail, setVisible, visible }}>
+        <AuthContext.Provider value={{ isAuthenticated, empDetail, login, logout, setEmpDetail, setVisible, visible, setAnimations, animations }}>
             {children}
         </AuthContext.Provider>
     );
