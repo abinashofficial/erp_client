@@ -6,7 +6,6 @@ import Lottie from "lottie-react";
 import androidAnime from "../assets/animations/android-anime.json"
 import windowsAnime from "../assets/animations/windows.json"
         import playstationAnime from "../assets/animations/playstation.json"
-                        import PrizeModal from "../pages/prizemodal";
 import Header from '../components/header';
 import { IoSearch } from "react-icons/io5";
 
@@ -31,7 +30,7 @@ const Android: React.FC = () => {
         size: "3 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/grand-theft-auto-san-andreas/GTA-SA-v2.11.277-full-mod-money-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751669834/gtasa_z7hdgt.png",
         platform: "Android",
       },
@@ -40,7 +39,7 @@ const Android: React.FC = () => {
       size: "500 MB",
       price: "Price",
       coins: 50,
-      download_link: "https://www.mediafire.com/file/fn9y0459efhrdl5/gow1.zip/file",
+      download_link: ["https://www.mediafire.com/file/fn9y0459efhrdl5/gow1.zip/file"],
          image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687548/gow1_n2m3qx.jpg",
       platform: "Android",
     },
@@ -49,7 +48,7 @@ const Android: React.FC = () => {
       size: "500 MB",
       price: "Price",
       coins: 50,
-      download_link: "https://www.mediafire.com/file/87ahhnk8oqiuimq/gow2.zip/file",
+      download_link: ["https://www.mediafire.com/file/87ahhnk8oqiuimq/gow2.zip/file"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751687715/gow2_s4q05w.jpg",
       platform: "Android",
     },
@@ -58,7 +57,7 @@ const Android: React.FC = () => {
         size: "3 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://cdn700.onehost.io/2023/Need_For_Speed_Most_Wanted_1.3.128_1695274246_latestmodapks.com.apk",
+        download_link: ["https://cdn700.onehost.io/2023/Need_For_Speed_Most_Wanted_1.3.128_1695274246_latestmodapks.com.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751657434/nfsmw_snouw0.jpg",
         platform: "Android",
       },      {
@@ -66,7 +65,7 @@ const Android: React.FC = () => {
         size: "4 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/naruto-ultimate-ninja-storm/Ultimate-Ninja-STORM-v1.2.6-unlocked-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/naruto-ultimate-ninja-storm/Ultimate-Ninja-STORM-v1.2.6-unlocked-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751669959/naruto_wshd5b.jpg",
         platform: "Android",
       },      {
@@ -74,7 +73,7 @@ const Android: React.FC = () => {
         size: "1 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/leo039s-fortune/Leos-Fortune-v1-0-11-patched-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/leo039s-fortune/Leos-Fortune-v1-0-11-patched-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670018/leo_s_ydbnru.jpg",
         platform: "Android",
       },      {
@@ -82,7 +81,7 @@ const Android: React.FC = () => {
         size: "3 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/grid-autosport/grid-autosport-1.10.2RC1-mod-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/grid-autosport/grid-autosport-1.10.2RC1-mod-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670076/autogrid_qv1enl.jpg",
         platform: "Android",
       },      {
@@ -90,7 +89,7 @@ const Android: React.FC = () => {
         size: "50 MB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/ppsspp-gold-psp-emulator/ppsspp-gold_1.18.1-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/ppsspp-gold-psp-emulator/ppsspp-gold_1.18.1-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670145/ppsspp_vrrbam.png",
         platform: "Android",
       },      {
@@ -98,7 +97,7 @@ const Android: React.FC = () => {
         size: "150 MB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/vector-classic/Vector-Full-v1.4.3-full-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/vector-classic/Vector-Full-v1.4.3-full-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670206/vector_vrebrp.jpg",
         platform: "Android",
       },      {
@@ -106,7 +105,7 @@ const Android: React.FC = () => {
         size: "3 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/shadow-fight-2-se/shadow-fight-2-se-mod-v1.0.12-apkvision.org.apk",
+        download_link: ["https://dl.apkvision.org/shadow-fight-2-se/shadow-fight-2-se-mod-v1.0.12-apkvision.org.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670261/shadowfight2_yhgnqu.jpg",
         platform: "Android",
       },      {
@@ -114,7 +113,7 @@ const Android: React.FC = () => {
         size: "700 MB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/hitman-sniper/hitman-sniper-mod_1.15.13-apkvision.apk",
+        download_link: ["https://dl.apkvision.org/hitman-sniper/hitman-sniper-mod_1.15.13-apkvision.apk"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670336/hitmansniper_m4r3yp.jpg",
         platform: "Android",
       },      {
@@ -122,7 +121,7 @@ const Android: React.FC = () => {
         size: "3 GB",
         price: "Free",
         coins: 0,
-        download_link: "https://dl.apkvision.org/hitman-blood-money-reprisal/hitman-bmr-v1.2RC13-apkvision.apks",
+        download_link: ["https://dl.apkvision.org/hitman-blood-money-reprisal/hitman-bmr-v1.2RC13-apkvision.apks"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670451/hitmanblood_wrnhoj.jpg",
         platform: "Android",
       },      {
@@ -130,7 +129,7 @@ const Android: React.FC = () => {
         size: "50 MB",
         price: "Free",
         coins: 0,
-        download_link: "https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver&pcampaignid=web_share",
+        download_link: ["https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver&pcampaignid=web_share"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670505/zarchiever_nzdsqq.jpg",
         platform: "Android",
       },      {
@@ -138,17 +137,14 @@ const Android: React.FC = () => {
         size: "50 MB",
         price: "Free",
         coins: 0,
-        download_link: "https://www.mediafire.com/file/xm1v86q9q6ssj4j/Aethersx2.zip",
+        download_link: ["https://www.mediafire.com/file/xm1v86q9q6ssj4j/Aethersx2.zip"],
         image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1751670553/aether_lwvnec.png",
         platform: "Android",
       }, 
     ]);
 
   const navigate = useNavigate();
-          
-                         const [isModalOpen, setIsModalOpen] = useState(false);
-                                                    const [gameData, setGameData] = useState<GameSpecs>({} as GameSpecs);
-      
+                
  
     const [searchTerm, setSearchTerm] = useState<string>("");
   
@@ -161,8 +157,10 @@ const Android: React.FC = () => {
   window.open(data.download_link, "_blank", "noopener,noreferrer");
             return;
         }
-        setIsModalOpen(true);
-        setGameData(data);
+        // setIsModalOpen(true);
+        // setGameData(data);
+                navigate("/download", { state: { data: data } });
+
 };
     return (
 
@@ -393,7 +391,7 @@ className='button-coin'
         </div>
       </div>
     </button>
-                      <PrizeModal
+                      {/* <PrizeModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
 data={gameData}
@@ -403,7 +401,7 @@ data={gameData}
         <p>Reach out to customer support for assistance.</p>
         </div>
 
-              </PrizeModal>
+              </PrizeModal> */}
   </div>
 ))}
 

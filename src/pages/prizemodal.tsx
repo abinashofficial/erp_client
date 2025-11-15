@@ -4,6 +4,7 @@ import PayCoin from "../assets/animations/paycoins.json"
 import coinEmoji from "../assets/animations/coin.json";
     import { useAuth } from "../context/authContext"
             import { toast } from 'react-toastify';
+import Header from '../components/header';
 
 
 
@@ -182,12 +183,45 @@ const handleClose = () => {
 
 
   return (
-            <div className="modal-backdrop">
+          <div className='main-content'>
+<Header/>
+    <div 
+    style={{
+      display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+      marginTop:"75px",
+    }}
+    >
+
+
+
   <div className="modal-content">
     {visible?(
 
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
+      <div style={{
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems:"center",
+    }}>
+            <div style={{
+        display:"flex",
+        justifyContent:"center",
+        borderRadius:"10px",
+    }}>
+      <img
+        style={{ borderRadius: "10px",
+          width: "100%",
+                    height: "100%",
+
+         }}
+        src={data.image_link}
+        alt=""
+        sizes="5px"
+      />
+    </div>
         <h2>
             {data.title}
         </h2>
@@ -208,29 +242,14 @@ const handleClose = () => {
             onComplete={() => setPayCoinVisible(false)} // ✅ hide div after 1 cycle
           />
         </div>)}
-
-
-
-
-                  {data.download_link.map((_:any, index:any) => (
-<div style={{
-  margin:"10px",
-}}>
-
-            <button
-      className='course_box'
-      onClick={() => handleDownload(data, index)}
-    >
-
-     <div key={index} className='game-button'>
-        <h3>Download Server {index+1}</h3>
-        <div style={{
+                <div style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-around",
+          justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
         }}>
+          <h3>Price:</h3>
           <Lottie
             style={{
               height: "40px",
@@ -243,6 +262,23 @@ const handleClose = () => {
           />
          {data.coins}
         </div>
+
+
+
+
+                  { data.download_link.map((_:any, index:any) => (
+<div style={{
+  margin:"10px",
+}}>
+
+            <button
+      className='course_box'
+      onClick={() => handleDownload(data, index)}
+    >
+
+     <div key={index} className='game-button'>
+        <h3>Download Server {index+1}</h3>
+
       </div>
                         </button>
                         </div>
@@ -254,6 +290,8 @@ const handleClose = () => {
  
 
         <div style={{
+          display: "flex",
+          justifyContent: "center",
             marginTop: "15px",
         }}>
           <button
@@ -267,11 +305,14 @@ onClick={handleClose}
       </div>
     </div>
 
+
     ) :(<div className="spinner"> </div>)}
 
+        </div>
 
       </div>
-</div>
+            </div>
+
   );
 };
 

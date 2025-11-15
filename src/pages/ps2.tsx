@@ -7,9 +7,9 @@ import androidAnime from "../assets/animations/android-anime.json"
 import windowsAnime from "../assets/animations/windows.json"
         import playstationAnime from "../assets/animations/playstation.json"
         import Playstation2Icon from "../assets/animations/playstation-icon.svg"
-        import PrizeModal from "../pages/prizemodal";
 import Header from '../components/header';
 import { IoSearch } from "react-icons/io5";
+
 
 
 
@@ -23,15 +23,13 @@ interface GameSpecs {
   download_link: any;
   image_link: any;
   platform: any;
+
 }
 
 
 
 const PS2: React.FC = () => {
   const navigate = useNavigate();
-                       const [isModalOpen, setIsModalOpen] = useState(false);
-                                              const [gameData, setGameData] = useState<GameSpecs>({} as GameSpecs);
-
 
 
 const [gameSpecs] = useState<GameSpecs[]>([
@@ -41,7 +39,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "30 GB",
     price: "Price",
     coins: 100,
-    download_link: "https://romsfun.com/download/god-of-war-iii-42825-34746/5",
+    download_link: ["https://romsfun.com/download/god-of-war-iii-42825-34746/5"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/10/March-16-2010-300x345.jpg",
     platform: "PS3",
   },
@@ -51,7 +49,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "3 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/wwe-smackdown-here-comes-the-pain-12960/3",
+    download_link: ["https://romsfun.com/download/wwe-smackdown-here-comes-the-pain-12960/3"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/09/2139896-box_wwesdhctp-300x381.png",
     platform: "PS2",
   },
@@ -61,7 +59,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "35 GB",
     price: "Price",
     coins: 100,
-    download_link: "https://romsfun.com/download/god-of-war-ascension-41046/3",
+    download_link: ["https://romsfun.com/download/god-of-war-ascension-41046/3"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/11/Ascension-ps3-300x345.jpg",
     platform: "PS3",
   },
@@ -70,7 +68,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "7 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/god-of-war-ii-12928/5",
+    download_link: ["https://romsfun.com/download/god-of-war-ii-12928/5"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-II-ps2-300x411.jpg",
     platform: "PS2",
   },
@@ -80,7 +78,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "3 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/mortal-kombat-shaolin-monks-ps2-2-106937/3",
+    download_link: ["https://romsfun.com/download/mortal-kombat-shaolin-monks-ps2-2-106937/3"],
     image_link: "https://romsfun.com/wp-content/uploads/2023/05/Mortal-Kombat-Shaolin-Monks-300x423.jpg",
     platform: "PS2",
   },
@@ -89,7 +87,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "7 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/god-of-war-169969-70788/5",
+    download_link: ["https://romsfun.com/download/god-of-war-169969-70788/5"],
     image_link: "https://romsfun.com/wp-content/uploads/2020/05/cover-God-Of-War-2-Ps2-Pal-Iso-300x416.jpeg",
     platform: "PS2",
   },
@@ -98,7 +96,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "7 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/downhill-domination-12988/4",
+    download_link: ["https://romsfun.com/download/downhill-domination-12988/4"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/09/downhill-domination-box-art-300x426.jpg",
     platform: "PS2",
   },
@@ -107,7 +105,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "2 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/god-hand-13011/3",
+    download_link: ["https://romsfun.com/download/god-hand-13011/3"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/09/153422-God_Hand_Europe_EnFrDeEsIt-1482315106-300x424.jpg",
     platform: "PS2",
   },
@@ -116,7 +114,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "2 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/urban-reign-71066/3",
+    download_link: ["https://romsfun.com/download/urban-reign-71066/3"],
     image_link: "https://romsfun.com/wp-content/uploads/2020/05/51E7QES99ML._SY445_-300x425.jpg",
     platform: "PS2",
   },
@@ -125,7 +123,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "2 GB",
     price: "Price",
     coins: 50,
-    download_link: "https://romsfun.com/download/dragonball-z-budokai-tenkaichi-3-1-12934/2",
+    download_link: ["https://romsfun.com/download/dragonball-z-budokai-tenkaichi-3-1-12934/2"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/Dragon-Ball-Z-Budokai-Tenkaichi-3-300x424.jpg",
     platform: "PS2",
   },
@@ -134,7 +132,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "2 GB",
     price: "Price",
     coins: 20,
-    download_link: "https://romsfun.com/download/dragon-ball-z-shin-budokai-11128/3",
+    download_link: ["https://romsfun.com/download/dragon-ball-z-shin-budokai-11128/3"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/Dragon-Ball-Z-Shin-Budokai-300x523.jpg",
     platform: "PSP",
   },
@@ -143,7 +141,7 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "1 GB",
     price: "Price",
     coins: 20,
-    download_link: "https://romsfun.com/download/god-of-war-ghost-of-sparta-id2-11101/9",
+    download_link: ["https://romsfun.com/download/god-of-war-ghost-of-sparta-id2-11101/9"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-Ghost-of-Sparta-300x514.jpg",
     platform: "PSP",
   },
@@ -152,12 +150,13 @@ const [gameSpecs] = useState<GameSpecs[]>([
     size: "1 GB",
     price: "Price",
     coins: 20,
-    download_link: "https://romsfun.com/download/god-of-war-chains-of-olympus-11095/6",
+    download_link: ["https://romsfun.com/download/god-of-war-chains-of-olympus-11095/6"],
     image_link: "https://romsfun.com/wp-content/uploads/2019/08/God-of-War-Chains-of-Olympus-1-300x485.jpg",
     platform: "PSP",
   },
 ]);
     const [searchTerm, setSearchTerm] = useState<string>("");
+
   
     const filteredGames = gameSpecs.filter((game) =>
       game.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -167,8 +166,10 @@ const [gameSpecs] = useState<GameSpecs[]>([
   window.open(data.download_link, "_blank", "noopener,noreferrer");
             return;
         }
-        setIsModalOpen(true);
-        setGameData(data);
+                navigate("/download", { state: { data: data } });
+
+        // setIsModalOpen(true);
+        // setGameData(data);
 };
     return (
 
@@ -440,7 +441,7 @@ className='button-coin'
         </div>
       </div>
     </button>
-                      <PrizeModal
+                      {/* <PrizeModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
 data={gameData}
@@ -451,7 +452,7 @@ data={gameData}
         </div>
 
    
-            </PrizeModal>
+            </PrizeModal> */}
   </div>
 ))}
 
