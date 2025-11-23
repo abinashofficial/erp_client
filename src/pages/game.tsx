@@ -246,6 +246,15 @@ const Game: React.FC = () => {
       platform: "PC",
     },
             {
+      title: "Zelda",
+      size: "15  GB", 
+      price: "Price",
+      coins: 100,
+      download_link: ["https://gofile.io/d/haNySp", "https://1fichier.com/?jycd76wewu6qbumfrfnr", "https://datanodes.to/nxzqiid1h8hi/The-Legend-of-zelda-Breath-of-the-Wild.rar"],
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1763931619/zelda_vkw2oi.jpg",
+      platform: "PC",
+    },
+            {
       title: "COD MW 3",
       size: "20  GB",
       price: "Price",
@@ -566,6 +575,15 @@ const Game: React.FC = () => {
       coins: 100, 
       download_link: ["https://gofile.io/d/HDR1Aj","https://datanodes.to/4gp6w2ycz207", "https://datanodes.to/gfqv0chfwj8l","https://koyso.to/download/1133"],
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1763203274/sparkingzero_ls6ech.jpg",
+      platform: "PC",
+    },
+                {
+      title: "Mortal Kombat IX",
+      size: "10 GB",
+      price: "Price",
+      coins: 100, 
+      download_link: ["https://datanodes.to/50deg7ftvflt/Mortal-Kombat-Komplete-Edition.rar"],
+      image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1763933489/mkke_awd4r5.jpg",
       platform: "PC",
     },
                 {
