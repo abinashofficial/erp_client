@@ -229,6 +229,7 @@ const AddCoins: React.FC = () => {
       display:"flex",
       justifyContent:"space-around",
       flexWrap:"wrap",
+      background:"rgb(239, 250, 239)",
     }}>
 
     <div className="form-container">

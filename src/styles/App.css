@@ -104,13 +104,13 @@ footer {
   /* margin-top: 10px; */
 }
 
-
+  
 
 .social-media-icons {
   display: flex;
   gap: 15px; /* Space between icons */
   justify-content: center; /* Center the icons */
-  margin-top: 20px; /* Add some margin */
+  margin-top: 30px; /* Add some margin */
   /* background: black; */
   color: black;
 }
@@ -470,7 +470,7 @@ button.menu-btn{
   width: 100%;
   max-width: 300px;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 50px;
 }
 
 .sign-container {

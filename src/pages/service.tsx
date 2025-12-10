@@ -17,6 +17,7 @@ interface Services {
   image_link: any;
     json_link?: any
   page_link?: any
+  icon_link?:any
 }
 
 const Service: React.FC = () => {
@@ -28,12 +29,14 @@ const Service: React.FC = () => {
           image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753636436/course_nkny1h.jpg",
           json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1759009564/animation_luhjne.json",
           page_link:"/course",
+          icon_link:"https://res.cloudinary.com/dababspdo/image/upload/v1765337643/Video-Player--Streamline-Ultimate_jpkfzb.svg",
         },
                 {
           title: "Projects",
           image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753636468/projects_ufutjn.jpg",
           json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1759010200/man_working_with_projects_management_animation_gif_download_10674170_z97wak.json",
                     page_link:"/project",
+                    icon_link:"https://res.cloudinary.com/dababspdo/image/upload/v1765337469/App-Window-Pie-Chart--Streamline-Ultimate_yobcdl.svg",
 
         },  
                         {
@@ -41,6 +44,7 @@ const Service: React.FC = () => {
           image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1761924976/web_designs_hnzsa9.jpg",
           json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761925151/data_analysis_nkhubi.json",
                     page_link:"/webdesigns",
+                    icon_link:"https://res.cloudinary.com/dababspdo/image/upload/v1765337719/Analytics-Pie-2--Streamline-Ultimate_hptcej.svg",
 
         },
       ]);
@@ -87,7 +91,11 @@ gap:"20px",
 // margin:"50px",
       }}>
         {serviceSpec.map((data, index) => (
-  <div key={index} className='pc_box'>
+  <div key={index} className='pc_box'
+             onClick={() => {
+  navigate(data.page_link);
+}}
+  >
     
     <div style={{
         display:"flex",
@@ -123,20 +131,33 @@ gap:"20px",
                  )}
 
     </div>
-
-    <div style={{
+ <div style={{
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-around",
       alignItems: "center",
       textAlign: "center",
-      marginTop: "10px",
+      height:"50px",
     }}>
+      <h4>{data.title}</h4>
+      <img src={data.icon_link} alt="logo" />
 
-      {/* <p>size {data.size}</p> */}
+    {/* <div >
+    <Lottie style={{
+    height:"50px",
+    width:"50px",
+    marginLeft:"10px",
+    marginRight: "10px",
+  
+
+
+}} animationData= {animations[data.title]} loop autoplay />
+
+    </div> */}
     </div>
 
-    <button
+
+    {/* <button
       className='course_box'
  onClick={() => {
   navigate(data.page_link);
@@ -145,7 +166,7 @@ gap:"20px",
       <div className='game-button'>
         <h3>{data.title}</h3>
       </div>
-    </button>
+    </button> */}
 
   </div>
 ))}

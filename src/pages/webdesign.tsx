@@ -39,7 +39,7 @@ const WebDesigns: React.FC = () => {
       size: "120 GB",
       price: "Price",
       coins: 100,
-      download_link: "",
+      download_link: "https://codeload.github.com/themewagon/waggy/zip/refs/tags/v1.0.0",
       image_link: "https://themewagon.com/wp-content/uploads/2024/03/waGGy.png",
       platform: "PC",
         json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
@@ -51,7 +51,7 @@ const WebDesigns: React.FC = () => {
       size: "120 GB",
       price: "Price",
       coins: 100,
-      download_link: "",
+      download_link: "https://codeload.github.com/technext/petsitting/zip/refs/heads/master",
       image_link: "https://themewagon.com/wp-content/uploads/2020/07/anipat.webp",
       platform: "PC",
         json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
@@ -62,7 +62,7 @@ const WebDesigns: React.FC = () => {
       size: "120 GB",
       price: "Price",
       coins: 100,
-      download_link: "",
+      download_link: "https://codeload.github.com/technext/anipat/zip/refs/heads/master",
       image_link: "https://themewagon.com/wp-content/uploads/2020/11/petsitting-1.webp",
       platform: "PC",
         json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
@@ -432,6 +432,41 @@ const WebDesigns: React.FC = () => {
               json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761926061/law_fffkle.json",
   page_link:"https://themewagon.github.io/Texas-Lawyer-2/",
     },
+    {
+      title: "Mobile Repair Templates",
+      size: "120 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/themewagon/nico/zip/refs/tags/v1.0.0",
+      image_link: "https://themewagon.com/wp-content/uploads/2023/03/nico-2.png",
+      platform: "PC",
+              json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1765332989/work_FUV_a5ymgw.json",
+  page_link:"https://themewagon.github.io/nico/",
+    },
+
+        {
+      title: "bootstrap designs",
+      size: "120 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/argon/zip/refs/heads/master",
+      image_link: "https://themewagon.com/wp-content/uploads/2018/08/Argon.webp",
+      platform: "PC",
+      json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://themewagon.github.io/nico/",
+    },
+
+            {
+      title: "bootstrap designs",
+      size: "120 GB",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/blk-design-system/zip/refs/heads/master",
+      image_link: "https://themewagon.com/wp-content/uploads/2018/11/blk-1.jpg",
+      platform: "PC",
+      json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://themewagon.github.io/nico/",
+    },
     
   ]
 )
@@ -582,40 +617,9 @@ gap:"20px",
 }} animationData= {animations[data.title]} loop autoplay />
 
     </div>
-      {/* <p>size {data.size}</p> */}
     </div>
 
-    {/* <button
-      className='course_box'
-      onClick={() => handleDownload(data)}
-    >
-      <div className='game-button'>
-        <h3>{data.price}</h3>
-        <div style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-          textAlign: "center",
-        }}>
-          <Lottie
-  className='button-coin'
-            animationData={coinEmoji}
-            loop
-            autoplay
-          />
-          {data.coins}
-        </div>
-      </div>
-    </button> */}
-                      {/* <PrizeModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-data={gameData}
-      >
-        <p>Coins required for one-time download.</p>
-        <p>Reach out to customer support for assistance.</p>
-      </PrizeModal> */}
+
   </div>
 ))}
 
