@@ -467,6 +467,65 @@ const WebDesigns: React.FC = () => {
       json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
   page_link:"https://themewagon.github.io/nico/",
     },
+
+                                        {
+      title: "GYM Templates",
+      size: "",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/training-studio/zip/refs/tags/v1.0.0",
+      image_link: "https://themewagon.com/wp-content/uploads/2021/12/training-studio-1.png",
+      platform: "PC",
+              json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://themewagon.github.io/training-studio/",
+    },
+
+                {
+      title: "GYM Templates",
+      size: "",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/gymlife/zip/refs/heads/master",
+      image_link: "https://themewagon.com/wp-content/uploads/2020/10/gym-1.jpg",
+      platform: "PC",
+              json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://themewagon.github.io/gymlife/",
+    },
+                    {
+      title: "GYM Templates",
+      size: "",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/ponigym/zip/refs/heads/master",
+      image_link: "https://themewagon.com/wp-content/uploads/2020/05/ponigym-1.jpg",
+      platform: "PC",
+              json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://technext.github.io/ponigym/index.html",
+    },
+
+                        {
+      title: "GYM Templates",
+      size: "",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/gym2/zip/refs/heads/master",
+      image_link: "https://themewagon.com/wp-content/uploads/2020/05/gym2-1.jpg",
+      platform: "PC",
+              json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://themewagon.github.io/gym2/",
+    },
+
+                            {
+      title: "GYM Templates",
+      size: "",
+      price: "Price",
+      coins: 100,
+      download_link: "https://codeload.github.com/technext/zacson/zip/refs/heads/master",
+      image_link: "https://themewagon.com/wp-content/uploads/2020/09/Zacson-1.png",
+      platform: "PC",
+              json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761940921/animals_tnr4xj.json",
+  page_link:"https://themewagon.github.io/zacson/",
+    },
     
   ]
 )
