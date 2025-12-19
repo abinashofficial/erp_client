@@ -20,14 +20,14 @@ import { GoArrowRight } from "react-icons/go";
     description: 'The Packaging Management System (PMS) is a role-based platform that streamlines packaging operations across roles like Employee, Project Lead, Inventory Lead, Packer, and Quality Lead. Each role has dedicated interfaces to manage tasks, inventory, packing, and quality checks efficiently. The system covers end-to-end workflows from project creation to packing, inspection, and closure, ensuring traceability and accountability. Overall, it enhances collaboration, quality control, and operational efficiency in packaging management.',
     url:"https://erp-management-mu.vercel.app/",
     jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763229080/package_gif_a4w3j8.json",
-    jsonName:"package_gif_a4w3j8",
+    jsonName:"package_gif",
   },
   {
     title: 'Check - in / out',
     description: 'Employee Check-in/Check-out feature using QR code scanning for accurate attendance tracking. Each employee is assigned a unique QR code, which they scan at entry and exit points to record their working hours automatically. The data is stored in the system for attendance monitoring, shift management, and productivity analysis. This ensures secure, contactless, and real-time attendance tracking across the packaging facility.',
         url:"https://www.youtube.com/watch?v=Gb6ADWcMLEY",
     jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763229017/checkin_tgqw20.json",
-        jsonName:"package_gif_a4w3j8",
+        jsonName:"CheckIn_gif",
 
 
   },
