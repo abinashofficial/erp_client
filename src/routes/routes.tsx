@@ -23,7 +23,7 @@ import PrivacyPolicy from "../pages/privacypolicy"
 import Terms from "../pages/terms"
 // import Whatsapp from "../pages/whatsapp"
 import '../styles/App.css';
-import Chat from "../pages/chat"
+// import Chat from "../pages/chat"
 import AddCoins from "../pages/earnCoins"
 // import Notification from "../pages/notification"
 import ErrorBoundary from '../utils/errorHandle'
@@ -206,7 +206,7 @@ const Main: React.FC = () => {
         background:"lightgray",
         backgroundColor:"lightgray"
     }}>
-    <Chat />
+    {/* <Chat /> */}
 
     </div>
 
