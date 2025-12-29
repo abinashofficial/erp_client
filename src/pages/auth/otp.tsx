@@ -85,8 +85,10 @@ console.log(empDetail)
       setSpinner(false)
 
              // Add your API endpoint here
-     const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+    //  const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
     // const apiUrl = 'http://localhost:8080/public/get-user';
+         const apiUrl = 'https://crud-production-a206.up.railway.app/public/get-user';
+
     
     
      try {  
@@ -130,13 +132,17 @@ console.log(empDetail)
       try {
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
-                    let apiUrl = 'https://erp-iliw.onrender.com/public/send-otp-email';
+                    // let apiUrl = 'https://erp-iliw.onrender.com/public/send-otp-email';
+                                        let apiUrl = 'https://crud-production-a206.up.railway.app/public/send-otp-email';
+
 
 
           // let apiUrl = 'http://localhost:8080/public/send-otp-email';
 
           if (verificationMethod === "mobile no"){
-            apiUrl = 'https://erp-iliw.onrender.com/public/send-otp-mobile-no';
+            // apiUrl = 'https://erp-iliw.onrender.com/public/send-otp-mobile-no';
+                        apiUrl = 'https://crud-production-a206.up.railway.app/public/send-otp-mobile-no';
+
 
             //  apiUrl = "http://localhost:8080/public/send-otp-mobile-no";
           }
@@ -227,8 +233,10 @@ console.log(empDetail)
         try {
           const otplength = otpValues.join("")
           if (otplength.length === 6) {
-          const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
+          // const apiUrl = 'https://erp-iliw.onrender.com/public/verify-otp';
           // const apiUrl = 'http://localhost:8080/public/verify-otp';
+                    const apiUrl = 'https://crud-production-a206.up.railway.app/public/verify-otp';
+
           const temp = {
             mobile_number :  mobileNumber,
             email: email,

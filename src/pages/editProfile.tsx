@@ -100,8 +100,10 @@ const EditProfile: React.FC = () => {
         console.log('Signing up with', formData);
         // Add your API endpoint here
 
-        const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
+        // const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
 // const apiUrl = 'http://localhost:8080/public/updateprofile';
+        const apiUrl = 'https://crud-production-a206.up.railway.app/public/updateprofile';
+
 
 
  try {

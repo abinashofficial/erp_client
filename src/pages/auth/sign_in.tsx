@@ -184,8 +184,10 @@ sendData.mobile_number = ""
         setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
 
  // Add your API endpoint here
- const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
+//  const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
 // const apiUrl = 'http://localhost:8080/public/signin';
+ const apiUrl = 'https://crud-production-a206.up.railway.app/public/signin';
+
  try {
    const response = await fetch(apiUrl, {
      method: 'POST',
@@ -274,8 +276,10 @@ sendData.mobile_number = ""
         });
 
 
-        const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+        // const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
         // const apiUrl = 'http://localhost:8080/public/get-user';
+                const apiUrl = 'https://crud-production-a206.up.railway.app/public/get-user';
+
 
         const response = await fetch(apiUrl, {
           method: 'POST',

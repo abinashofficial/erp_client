@@ -117,8 +117,10 @@ const SignUp: React.FC = () => {
 
 
         // Add your API endpoint here
-         const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
+        //  const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
         // const apiUrl = 'http://localhost:8080/public/signup';
+                 const apiUrl = 'https://crud-production-a206.up.railway.app/public/signup';
+
 
 
 

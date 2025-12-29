@@ -66,8 +66,9 @@ const ForgetPassword: React.FC = () => {
 
 
          // Add your API endpoint here
- const apiUrl = 'https://erp-iliw.onrender.com/public/recovery';
+//  const apiUrl = 'https://erp-iliw.onrender.com/public/recovery';
 // const apiUrl = 'http://localhost:8080/public/recovery';
+ const apiUrl = 'https://crud-production-a206.up.railway.app/public/recovery';
 
 
  try {

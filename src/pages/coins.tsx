@@ -11,7 +11,9 @@ const useSSE = (userId: string | null, updateCoins: (coins: number) => void) => 
   useEffect(() => {
     if (!userId) return; // handle null here
 
-    const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
+    // const source = new EventSource(`https://erp-iliw.onrender.com/events?userId=${userId}`);
+        const source = new EventSource(`https://crud-production-a206.up.railway.app/events?userId=${userId}`);
+
 
     source.onmessage = (event) => {
       const data = JSON.parse(event.data);

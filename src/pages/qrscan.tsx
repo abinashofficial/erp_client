@@ -51,7 +51,9 @@ const QRCodeScanner: React.FC = () => {
           try {
 
                 setVisible(false)
-                const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+                // const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+                                const apiUrl = 'https://crud-production-a206.up.railway.app/public/get-user';
+
                 // const apiUrl = 'http://localhost:8080/public/get-user';
 
                 const response = await fetch(apiUrl, {

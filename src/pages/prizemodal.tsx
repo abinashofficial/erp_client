@@ -127,7 +127,9 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
         coins: add,
       };
     
-      const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
+      // const apiUrl = 'https://erp-iliw.onrender.com/public/updateprofile';
+            const apiUrl = 'https://crud-production-a206.up.railway.app/public/updateprofile';
+
     
       try {
         const response = await fetch(apiUrl, {
