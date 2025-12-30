@@ -45,21 +45,21 @@ const Footer: React.FC = () => {
         justifyContent:"space-evenly",
         alignItems:"center",
     }}>
-        <div>
+        {/* <div>
         <a href="https://erp-client-pink.vercel.app/terms" target="_blank" rel="noopener noreferrer">
     Terms 
   </a>
-        </div>
+        </div> */}
         <div>
         {/* <p>&copy; 2024 Prison Birds</p> */}
-2024 Prison Birds
+© Copyright Shindentech All Rights Reserved
         </div>
 
-        <div>
+        {/* <div>
         <a href="https://erp-client-pink.vercel.app/privacypolicy" target="_blank" rel="noopener noreferrer">
     Privacy
   </a>.
-        </div>
+        </div> */}
 
 
  

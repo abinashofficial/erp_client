@@ -51,44 +51,9 @@ import { GoArrowRight } from "react-icons/go";
     jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767051377/Invoice_Template_Preview_vwkycy.json",
     jsonName:"invoice_gif",
   },
-        {
-      title: 'Genzy QR Code',
-    description: 'The Packaging Management System (PMS) is a role-based platform that streamlines packaging operations across roles like Employee, Project Lead, Inventory Lead, Packer, and Quality Lead. Each role has dedicated interfaces to manage tasks, inventory, packing, and quality checks efficiently. The system covers end-to-end workflows from project creation to packing, inspection, and closure, ensuring traceability and accountability. Overall, it enhances collaboration, quality control, and operational efficiency in packaging management.',
-    url:"https://erp-management-mu.vercel.app/",
-    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767051515/QR_code_jgjhcy.json",
-    jsonName:"qrcode_gif",
-  },
-          {
-      title: 'Two Factor Authentication',
-    description: 'The Packaging Management System (PMS) is a role-based platform that streamlines packaging operations across roles like Employee, Project Lead, Inventory Lead, Packer, and Quality Lead. Each role has dedicated interfaces to manage tasks, inventory, packing, and quality checks efficiently. The system covers end-to-end workflows from project creation to packing, inspection, and closure, ensuring traceability and accountability. Overall, it enhances collaboration, quality control, and operational efficiency in packaging management.',
-    url:"https://erp-management-mu.vercel.app/",
-    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767051760/Two_factor_authentication_mblp5c.json",
-    jsonName:"2fa_gif",
-  },
-            {
-      title: 'Payment Integration',
-    description: 'The Packaging Management System (PMS) is a role-based platform that streamlines packaging operations across roles like Employee, Project Lead, Inventory Lead, Packer, and Quality Lead. Each role has dedicated interfaces to manage tasks, inventory, packing, and quality checks efficiently. The system covers end-to-end workflows from project creation to packing, inspection, and closure, ensuring traceability and accountability. Overall, it enhances collaboration, quality control, and operational efficiency in packaging management.',
-    url:"https://erp-management-mu.vercel.app/",
-    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767051918/Online_Payment_iqf0go.json",
-    jsonName:"payment_gif",
-  },
-              {
-      title: 'Smart Booking',
-    description: 'The Packaging Management System (PMS) is a role-based platform that streamlines packaging operations across roles like Employee, Project Lead, Inventory Lead, Packer, and Quality Lead. Each role has dedicated interfaces to manage tasks, inventory, packing, and quality checks efficiently. The system covers end-to-end workflows from project creation to packing, inspection, and closure, ensuring traceability and accountability. Overall, it enhances collaboration, quality control, and operational efficiency in packaging management.',
-    url:"https://erp-management-mu.vercel.app/",
-    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767052504/Create_appointment_vtxdbs.json",
-    jsonName:"booking_gif",
-  },
-    {
-    title: 'Digital Marketing',
-    description: 'Boost your brand visibility and reach through comprehensive digital marketing strategies. Our services include SEO to enhance search engine rankings, SEM for targeted ads, engaging content marketing, and strategic social media campaigns that captivate your audience and convert leads into loyal customers.',
-    url:"",
-    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1763229782/digital-marketing-anime_ggzuwy.json", // Anime-style fairy
-    jsonName:"digital_marketing_anime",
-  },
 ];
 
-export default function Projects() {
+export default function Business() {
 
    const [isPortrait, setIsPortrait] = useState(window.matchMedia("(orientation: portrait)").matches);
          const [animations, setAnimations] = useState<Animations>({});
@@ -226,6 +191,8 @@ className="project_box"
     </p>
 
                             </div>
+
+  
 
 
               {/* <button type="submit" className="blog-button"> */}

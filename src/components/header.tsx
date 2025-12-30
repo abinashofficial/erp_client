@@ -1,6 +1,8 @@
 import { useAuth } from '../context/authContext';
 import React, { useState, useEffect, useRef } from 'react';
-import {  FaEarlybirds, FaHome, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
+// import {  FaEarlybirds, FaHome, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaHome, FaServicestack, FaSignOutAlt, FaUser } from 'react-icons/fa';
+
 import { useNavigate } from 'react-router-dom';
 import { IoGameControllerSharp } from "react-icons/io5";
 // import Lottie from "lottie-react";
@@ -212,7 +214,14 @@ const Header: React.FC = () => {
           
   
           >
-            <FaEarlybirds size={50} />
+            {/* <FaEarlybirds size={50} /> */}
+            <img             style={{
+              width: "70px",
+              height: "65px",
+              objectFit: "cover",
+              borderRadius: "50%",
+            }}
+            src="https://res.cloudinary.com/dababspdo/image/upload/v1767024397/IMG_20250731_034505_il6ykn.png" alt="logo" />
 
 
                  

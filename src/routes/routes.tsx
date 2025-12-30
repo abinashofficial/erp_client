@@ -39,6 +39,8 @@ import GoogleReviews from "../components/googlereviews"
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import DownloadPage from '../pages/downloadgame';
+import Business from '../pages/businesshub';
+import Consumer from '../pages/consumerhub';
 
 
 const Main: React.FC = () => {
@@ -113,6 +115,22 @@ const Main: React.FC = () => {
             element={
               //  <ProtectedRoute>
                     <Projects />
+              //  </ProtectedRoute>
+            } 
+        />
+                <Route 
+            path="/businesshub" 
+            element={
+              //  <ProtectedRoute>
+                    <Business />
+              //  </ProtectedRoute>
+            } 
+        />
+                        <Route 
+            path="/consumerhub" 
+            element={
+              //  <ProtectedRoute>
+                    <Consumer />
               //  </ProtectedRoute>
             } 
         />
