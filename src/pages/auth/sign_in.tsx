@@ -60,7 +60,7 @@ const SignIn: React.FC = () => {
         password: '',
         mobile_number:"",
       });
-      const [terms, setTerms] = useState<Boolean>(true);
+      // const [terms, setTerms] = useState<Boolean>(true);
 
       const [visible, setVisible] = useState<Boolean>(true);
       const [isPeek, setIsPeek] = useState(false);
@@ -457,13 +457,13 @@ setIsHeart(true)
           
           }, [isPeek, isThink, singleTouchEmoji, unTouchEmoji, touchEmoji, isHeart]);
 
-          useEffect(() => {
-            // Set a timer to hide the message after 15 seconds
-            const timer = setTimeout(() => setTerms(false), 15000);
+          // useEffect(() => {
+          //   // Set a timer to hide the message after 15 seconds
+          //   const timer = setTimeout(() => setTerms(false), 15000);
         
-            // Cleanup the timer when the component unmounts
-            return () => clearTimeout(timer);
-          }, []);
+          //   // Cleanup the timer when the component unmounts
+          //   return () => clearTimeout(timer);
+          // }, []);
 
 
 
@@ -689,7 +689,7 @@ Scan QR Code
       </div>
               ):(<div className="spinner"> </div>)}
 
-<div className="popdown-message">
+{/* <div className="popdown-message">
   {terms?(
     <div>
 
@@ -720,7 +720,7 @@ By continuing, you agree to Instagram's{" "}
     )
   }
 
-</div>
+</div> */}
 
         </div>
     );

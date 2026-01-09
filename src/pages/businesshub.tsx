@@ -33,7 +33,7 @@ import { GoArrowRight } from "react-icons/go";
     {
     title: 'Cybersecurity',
     description: 'Cybersecurity is a comprehensive security framework designed to protect applications, systems, and data from digital threats. It enforces secure access through authentication, authorization, and encryption across users and services. The system monitors, detects, and responds to threats in real time. This ensures data integrity, system availability, and customer trust.',
-        url:"https://www.youtube.com/watch?v=Gb6ADWcMLEY",
+        url:"",
     jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767038588/security_qntgz8.json",
         jsonName:"Cyber_gif",
   },
