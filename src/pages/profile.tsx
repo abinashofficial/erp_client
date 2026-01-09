@@ -167,45 +167,19 @@ const Profile: React.FC = () => {
       <div className='main-content'>
 <Header/>
 
-<div className="form-container">
-                        {/* <div>
-                        <div style={{
-                          display:"flex",
-            fontSize:"100px",
-            justifyContent:"center",
-            
-                        }}>
-                          
-                        < RxAvatar />
-            
-                        </div>
-</div> */}
+<div style={{
+  display:"flex",
+  flexDirection:"column",
+  width:"100%",
+  justifyContent:"center",
+    background:"white",
+  boxShadow:"0 4px 20px rgba(0, 0, 0, 0.1)",
+  borderRadius:"10px",
+    marginTop:"80px",
+    alignItems:"center",
 
-
-{/* <div 
-        style={{
-          display: 'flex',
-          justifyContent: "space-around",
-          alignItems: 'center',
-          padding:"10px",
-        }}
-        >
-        {empDetail.photo_url && (
-          <img
-            src={empDetail.photo_url}
-            alt="Profile Preview"
-            style={{
-              width: '100px',
-              height: '100px',
-              objectFit: 'cover',
-              borderRadius: '50px',
-            //   marginTop: '10px',
-            }}
-          />
-        )}
-      </div> */}
-
-
+}}>
+  
                         {empDetail.photo_url ? (
                           <div>
       
@@ -246,10 +220,32 @@ const Profile: React.FC = () => {
                               </div>
                           </div>
                         )}
+
+
+<div style={{
+  display:"flex",
+  flexDirection:"row",
+  flexWrap:"wrap",
+  justifyContent:"center",
+  gap:"10px",
+  width:"100%",
+
+
+}}>
+  
+<div className="form-container">
+
+
+
+
                                   <form >
 
                                   <div className="input-group">
             <label htmlFor="first-name">First Name</label>
+            <div style={{
+              width:"100%"
+            }}>
+
             <input
               id="first-name"
               type="text"
@@ -259,9 +255,12 @@ const Profile: React.FC = () => {
               required
               disabled
             />
+                        </div>
+
           </div>
 
-          <div className="input-group">
+
+                    <div className="input-group">
             <label htmlFor="first-name">Last Name</label>
             <input
               id="last-name"
@@ -275,7 +274,10 @@ const Profile: React.FC = () => {
           </div>
 
 
-          <div className="input-group">
+
+
+
+          {/* <div className="input-group">
             <label htmlFor="date-of-birth">Date of Birth</label>
             <input
               id="date-of-birth"
@@ -286,7 +288,7 @@ const Profile: React.FC = () => {
               disabled
 
             />
-          </div>
+          </div> */}
 
           <div className="input-group">
             <label htmlFor="email">Email Address</label>
@@ -302,48 +304,89 @@ const Profile: React.FC = () => {
             />
           </div>
 
-          <div className="input-group">
-            <label htmlFor="mobile-number">Mobile Number</label>
 
 
 
-          <div style={{
-          display:"flex",
-          justifyContent:"space-between",
-          flexWrap:"wrap",
-        }}>
+       
 
-<div style={{
-  display:"flex",
-  alignItems:"center",
-}}>
-<Select
-                  value={selectedCountry}
-                  placeholder="Select Country"
-                  name = "selected_country"
-                  options={countryOptions}
-                  isDisabled={true} // Use isDisabled for disabled state
 
-                  // className="country-select"
+
+
+
+
+
+
+
+
+
+            </form>
+
+
+
+        </div>
+        
+<div className="form-container">
+
+
+
+
+                        {/* {empDetail.photo_url ? (
+                          <div>
+      
+      <div 
+              style={{
+                display: 'flex',
+                justifyContent: "space-around",
+                alignItems: 'center',
+                padding:"10px",
+              }}
+              >
+              {empDetail.photo_url && (
+                <img
+                  src={empDetail.photo_url}
+                  alt="Profile Preview"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    objectFit: 'cover',
+                    borderRadius: '50px',
+                  //   marginTop: '10px',
+                  }}
                 />
-</div>
+              )}
+            </div>
+                          </div>
+                        ):(
+                          <div>
+                              <div style={{
+                                display:"flex",
+                  fontSize:"100px",
+                  justifyContent:"center",
+                  
+                              }}>
+                                
+                              < RxAvatar />
+                  
+                              </div>
+                          </div>
+                        )} */}
+                                  <form >
+
+                                  {/* <div className="input-group">
+            <label htmlFor="first-name">First Name</label>
+            <input
+              id="first-name"
+              type="text"
+              value={empDetail.first_name}
+              onChange={handleChange}
+              placeholder="Enter your first name"
+              required
+              disabled
+            />
+          </div> */}
 
           
-       
-            <input
-          type="text"
-          name="mobile_number"
-          placeholder="Mobile Number"
-          value={empDetail.mobile_number}
-          onChange={handleChange}
-          required
-          disabled
-
-        />
-        </div>
-        </div>
-
-          <div className="input-group">
+                    <div className="input-group">
             <label htmlFor="gender">Gender</label>
             <select
                   style={{
@@ -361,6 +404,81 @@ const Profile: React.FC = () => {
           <option value="Other">Other</option>
         </select>
           </div>
+
+
+
+
+          <div className="input-group">
+            <label htmlFor="date-of-birth">Date of Birth</label>
+            <input
+              id="date-of-birth"
+              type="date"
+              value={formatDate(empDetail.date_of_birth)}
+              onChange={handleChange}
+              required
+              disabled
+
+            />
+          </div>
+
+          {/* <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              type="email"
+              value={empDetail.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+              name="email"
+              disabled
+            />
+          </div> */}
+
+          <div className="input-group">
+            <label htmlFor="mobile-number">Mobile Number</label>
+
+
+
+          <div style={{
+          display:"flex",
+          justifyContent:"center",
+          flexWrap:"wrap",
+          width:"100%",
+          // gap:"10px",
+        }}>
+
+<div className='mobile_number'>
+<Select
+                  value={selectedCountry}
+                  placeholder="Select Country"
+                  name = "selected_country"
+                  options={countryOptions}
+                  isDisabled={true} // Use isDisabled for disabled state
+
+                  // className="country-select"
+                />
+</div>
+
+          
+       <div className='mobile_number'>
+
+            <input
+          type="text"
+          name="mobile_number"
+          placeholder="Mobile Number"
+          value={empDetail.mobile_number}
+          onChange={handleChange}
+          required
+          disabled
+
+        />
+               </div>
+
+        </div>
+        </div>
+
+
        
 
 
@@ -374,6 +492,18 @@ const Profile: React.FC = () => {
 
 
             </form>
+
+
+        </div>
+
+</div>
+
+<div style={{
+  display:"flex",
+  justifyContent:"center",
+  width:"100%",
+}}>
+
             {empDetail.mobile_number ==="" ? (
             <div>
 <p>
@@ -416,9 +546,12 @@ const Profile: React.FC = () => {
                 </div>    
                     
         )}
-
-
         </div>
+
+
+</div>
+
+
 
         </div>
     );

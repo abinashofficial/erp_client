@@ -288,6 +288,17 @@ const EditProfile: React.FC = () => {
         <Header/>
 
               {visible ? (
+                <div style={{
+  display:"flex",
+  flexWrap:"wrap",
+  justifyContent:"center",
+  gap:"10px",
+  width:"100%",
+  marginTop:"80px",
+
+
+}}>
+
 
         <div className="form-container">
                   {empDetail.photo_url ? (
@@ -488,7 +499,9 @@ const EditProfile: React.FC = () => {
             </div>
             </form>
 
-        </div>):(<div className="spinner"> </div>)}
+        </div>
+                        </div>
+):(<div className="spinner"> </div>)}
 
         </div>
     );

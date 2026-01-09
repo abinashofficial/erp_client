@@ -60,11 +60,18 @@ import { GoArrowRight } from "react-icons/go";
     jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767051918/Online_Payment_iqf0go.json",
     jsonName:"payment_gif",
   },
-              {
-      title: 'Google Review',
-    description: 'Boost your online reputation and customer trust with an automated 5-star rating and Google review solution. Make it easy for customers to share feedback, increase positive reviews, and improve local search visibility. Our system helps businesses build credibility, attract new customers, and stand out with a strong, trusted online presence.',
+  //             {
+  //     title: 'Google Review',
+  //   description: 'Boost your online reputation and customer trust with an automated 5-star rating and Google review solution. Make it easy for customers to share feedback, increase positive reviews, and improve local search visibility. Our system helps businesses build credibility, attract new customers, and stand out with a strong, trusted online presence.',
+  //   url:"",
+  //   jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767054769/googlereview_zmyr5o.json",
+  //   jsonName:"review_gif",
+  // },
+                {
+      title: 'Customer Reviews & Ratings',
+    description: 'Customer Reviews & Ratings is a platform that collects, manages, and displays feedback from customers about products or services. It allows users to submit ratings, write reviews, and share experiences, while businesses can monitor and respond to feedback. The system provides analytics to track satisfaction trends and identify improvement areas. This enhances customer trust, engagement, and service quality.',
     url:"",
-    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767054769/googlereview_zmyr5o.json",
+    jsonLink: "https://res.cloudinary.com/dababspdo/raw/upload/v1767915934/Review_jfvfub.json",
     jsonName:"review_gif",
   },
                 {

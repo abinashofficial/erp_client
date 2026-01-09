@@ -442,7 +442,7 @@ button.menu-btn{
   flex-direction: column;
   /* gap:10px; */
   /* cursor: pointer; */
-  /* background: white; */
+  background: white;
 }
 
 .rect_img{
@@ -479,11 +479,11 @@ button.menu-btn{
   background: white;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 300px;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+  width: 40%;
+  /* max-width: 300px; */
   text-align: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .sign-container {
@@ -544,7 +544,7 @@ button.menu-btn{
 }
 
 .input-group input {
-  width: 95%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -1007,8 +1007,7 @@ display: flex;
   font-size: 1rem;
 }
 
-.desktop-only {
-  }
+
 
 @media (max-width: 768px) {
   .mobile-only-header-button {
@@ -1110,6 +1109,12 @@ display: flex;
   width: 85vw;
 }
 
+.mobile_number{
+    display:flex;
+  align-items:center;
+  width:50%;
+}
+
 
 /* 📱 Small devices (phones, portrait tablets) */
 @media (max-width: 480px) {
@@ -1118,6 +1123,13 @@ display: flex;
     max-width: 90%;
     border-radius: 6px;
   }
+  .form-container{
+    width: 100%;
+  }
+  .mobile_number{
+    width: 100%;
+
+  }
 }
 
 /* 📱 Medium devices (landscape phones, small tablets) */
@@ -1125,6 +1137,13 @@ display: flex;
   .modal-content {
     padding: 20px;
     max-width: 80%;
+  }
+    .form-container{
+    width: 100%;
+  }
+    .mobile_number{
+    width: 100%;
+
   }
 }
 
