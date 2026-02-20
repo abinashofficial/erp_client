@@ -54,7 +54,6 @@ interface CountryOption {
     };
     
 const Internship: React.FC = () => {
-  // const [visible, setVisible] = useState<Boolean>(true);
 
 
     const { empDetail, visible, setVisible } = useAuth();
@@ -72,9 +71,6 @@ const Internship: React.FC = () => {
   duration:"",
   role:"",
       });
-
-
-//  setFormData({ ...formData, ["photo_url"]: empDetail.photo_url });
 
 
 
@@ -101,7 +97,7 @@ const handleSignUp = async (e: React.FormEvent) => {
   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sec timeout
   setVisible(false);
 
-  console.log('Signing up with', formData);
+  console.log('Submiting up with', formData);
 
   // API endpoint
   // const apiUrl = 'http://localhost:8080/public/internship';
@@ -124,7 +120,7 @@ const handleSignUp = async (e: React.FormEvent) => {
     console.log('Result:', result);
 
     if (response.ok) {
-      toast.success('Signed up successfully');
+      toast.success('Registered successfully');
 
       // Open new tab after 5 seconds and restore visibility
       setTimeout(() => {
@@ -366,6 +362,7 @@ useEffect(() => {
                   placeholder="Select Country"
                   isDisabled ={empDetail.mobile_number}
                   className="country-select"
+                  required
                 />
 </div>
 
