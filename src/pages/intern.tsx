@@ -1,31 +1,28 @@
 // src/pages/SignUp.tsx
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/authContext';
 import { toast } from 'react-toastify';
 import { RxAvatar } from "react-icons/rx";
 import Select from "react-select";
-import Upload from "../uploaddrive"
+import CloudinaryUploader from './uploaddrive';
+import { useAuth } from '../context/authContext';
 // import { dividerClasses } from '@mui/material';
 
 
 
-interface SignupFormData {
-  employee_id:any;
+
+
+interface IntershipFormData {
   first_name: any;
   last_name: any;
-  full_name: any;
   mobile_number: any;
   email: any;
   date_of_birth: any;
   gender: any;
-  password: any;
-  confirmPassword:any;
   photo_url:any;
   country_code:any;
-  access_token:any;
-  coins:any,
+  duration:any;
+  role:any;
 }
 
 interface CountryOption {
@@ -56,31 +53,25 @@ interface CountryOption {
       },
     };
     
-const SignUp: React.FC = () => {
+const Internship: React.FC = () => {
   // const [visible, setVisible] = useState<Boolean>(true);
 
 
-    const { login, empDetail, visible, setVisible } = useAuth();
+    const { empDetail, visible, setVisible } = useAuth();
     const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
 
-      const [formData, setFormData] = useState<SignupFormData>({
-        employee_id:'',
-        first_name: '',
-        last_name: '',
-        full_name: '',
-        mobile_number: empDetail.mobile_number  || "",
-        email: empDetail.email,
-        date_of_birth: '',
-        gender: '',
-        password: '',
-        confirmPassword:'',
-        photo_url:"",
-        country_code:empDetail.country_code,
-        access_token:"",
-        coins:0,
+      const [formData, setFormData] = useState<IntershipFormData>({
+  first_name: "",
+  last_name: "",
+  mobile_number: "",
+  email: "",
+  date_of_birth: "",
+  gender: "",
+  photo_url:"",
+  country_code:"",
+  duration:"",
+  role:"",
       });
-
- const navigate = useNavigate()
 
 
 //  setFormData({ ...formData, ["photo_url"]: empDetail.photo_url });
@@ -98,117 +89,72 @@ const SignUp: React.FC = () => {
 
 
 
-    const handleSignUp = async(e: React.FormEvent) => {
-      e.preventDefault();
-      if (empDetail.photo_url && empDetail.photo_url.length > 0) {
-        formData.photo_url = empDetail.photo_url
-      }
-      const controller = new AbortController();
-      setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
-        setVisible(false)
+const handleSignUp = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-        if (formData.password !== formData.confirmPassword) {
-            alert("Passwords doesn't match");
-            setVisible(true)
-            return;
-        }
+  // Attach photo URL if exists
+  if (empDetail.photo_url && empDetail.photo_url.length > 0) {
+    formData.photo_url = empDetail.photo_url;
+  }
 
-        console.log('Signing up with', formData);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 sec timeout
+  setVisible(false);
 
+  console.log('Signing up with', formData);
 
-        // Add your API endpoint here
-        //  const apiUrl = 'https://erp-iliw.onrender.com/public/signup';
-        // const apiUrl = 'http://localhost:8080/public/signup';
-                 const apiUrl = 'https://crud-production-a206.up.railway.app/public/signup';
+  // API endpoint
+  // const apiUrl = 'http://localhost:8080/public/internship';
+  const apiUrl = 'https://crud-production-a206.up.railway.app/public/internship';
 
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        created_at: new Date().toISOString(), // current timestamp
+      }),
+      signal: controller.signal,
+    });
 
+    const result = await response.json();
+    console.log('Result:', result);
 
+    if (response.ok) {
+      toast.success('Signed up successfully');
 
+      // Open new tab after 5 seconds and restore visibility
+      setTimeout(() => {
+        window.open('https://shindentech.vercel.app', '_blank');
+        setVisible(true);
+      }, 5000);
 
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          created_at: new Date().toISOString(), // Set created_at to current timestamp
-        }),
-      });
-      const result = await response.json();
-      console.log('result :', result);
-
-      if (response.ok) {
-        console.log('Signed up successful:', result);
-
-
-        setFormData({...formData,
-          employee_id: result.employee_id,
-          first_name: result.first_name,
-          last_name: result.last_name,
-          full_name: (result.first_name + " " + result.last_name),
-          mobile_number: result.mobile_number,
-          email: result.email,
-          date_of_birth: result.date_of_birth,
-          gender: result.gender,
-          password: result.password,
-          photo_url:result.photo_url,
-          access_token:result.access_token,
-          country_code:result.country_code,
-          coins:result.coins,
-      })
-
-
-      const empDetail = ({
-        employee_id: result.employee_id,
-        first_name: result.first_name,
-        last_name: result.last_name,
-        full_name:result.first_name + " " + result.last_name,
-        mobile_number: result.mobile_number,
-        email: result.email,
-        date_of_birth: result.date_of_birth,
-        gender: result.gender,
-        password: result.password,
-        photo_url:result.photo_url,
-        confirmPassword:result.confirmPassword,
-        access_token:result.access_token,
-        country_code:result.country_code,
-        coins:result.coins,
-      });
-        toast.success('Signed up successful');
-        setTimeout(() => {
-          login(empDetail);
-         navigate('/home'); // Redirect to dashboard after login
-       }, 5000);
-
-      }else if (response.status===401){
-        setVisible(true)
-        alert("This mobile number is already registered.");
-      }else if (response.status===400){
-        setVisible(true)
-        alert("This Email is already registered.");
-      }else{
-        console.error('Signup failed:', response);
-        alert("Internal server Error");
-        setVisible(true)
-
-      }
-    } catch (error:any) {
-      if (error.name === "AbortError") {
-        setVisible(true)
-        alert("Request timed out");
-        return
-        // setError("Request timed out");
-      } else {
-        setVisible(true)
-        alert("Internal server Error");
-        console.log(error, "Internal server Error")
-        return
-        // setError("Failed to fetch data: " + err.message);
-      }
+    } else if (response.status === 401) {
+      alert('This mobile number is already registered.');
+      setVisible(true);
+    } else if (response.status === 400) {
+      alert('This Email is already registered.');
+      setVisible(true);
+    } else {
+      console.error('Signup failed:', response);
+      alert('Internal server error');
+      setVisible(true);
     }
-    };
+  } catch (error: any) {
+    if (error.name === 'AbortError') {
+      alert('Request timed out');
+    } else {
+      console.error('Internal server error:', error);
+      alert('Internal server error');
+    }
+    setVisible(true);
+  } finally {
+    clearTimeout(timeoutId); // clean up timeout
+  }
+};
 
     const countryData = [
       {
@@ -280,9 +226,14 @@ useEffect(() => {
     };
     return (
       <div className='main-content'>
+        {/* <Header/> */}
               {visible ? (
 
-        <div className="form-container">
+        <div className="form-container"
+        // style={{
+        //     marginTop:"60px"
+        // }}
+        >
 
 
 {/* <div style={{
@@ -338,13 +289,48 @@ useEffect(() => {
                                 )}
 
 
+                  <h2>College ID Card</h2>
 
-                      <h2>Profile Picture</h2>
-
-      <Upload/>
+    
+      <CloudinaryUploader/>
 
 
             <form onSubmit={handleSignUp}>
+
+
+                            <div
+            style={{
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"space-between",
+            }}>
+        <label>Duration:</label>
+        <select
+                  style={{
+                    height:"40px",
+                    borderRadius:"10px",
+                  }}
+          name="duration"
+          value={formData.duration}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Duration</option>
+          <option value="Week">1 Week</option>
+          <option value="Weeks">2 Weeks</option>
+                    <option value="1 Month">1 Month</option>
+            <option value="2 Months">2 Months</option>
+                    <option value="3 Months">3 Months</option>
+                                <option value="6 Months">6 Months</option>
+
+
+
+        </select>
+      </div>
+
+
+
+
         <input
           type="text"
           placeholder="Name"
@@ -443,31 +429,46 @@ useEffect(() => {
           <option value="Other">Other</option>
         </select>
       </div>
-        <input
-          type="password"
-          name="password"
-          placeholder= "Password"
-          value={formData.password}
+
+                           <div
+            style={{
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"space-between",
+              marginTop:"20px",
+            }}>
+        <label>Role:</label>
+        <select
+                  style={{
+                    height:"40px",
+                    borderRadius:"10px",
+                  }}
+          name="role"
+          value={formData.role}
           onChange={handleChange}
           required
-        />
-                <input
-          type="password"
-          name="confirmPassword"
-          placeholder= "Confirm Password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-                <button type="submit">Sign Up</button>
+        >
+          <option value="">Select Role</option>
+          <option value="IT & Technology">IT & Technology</option>
+          <option value="Marketing & Digital Media">Marketing & Digital Media</option>
+                    <option value="Engineering & Logistics">Engineering & Logistics</option>
+            <option value="Finance & Consulting">Finance & Consulting</option>
+                    <option value="Other Roles">Other Roles</option>
+
+
+        </select>
+      </div>
+
+
+       <button
+       style={{
+        marginTop:"20px",
+    }}
+       type="submit">Submit</button>
+
             </form>
             {/* <p>Already have an account? <Link to="/">Sign In</Link></p> */}
-<p>
-  Already have an account?{' '}
-  <span className="link" onClick={() => navigate('/')}>
-    Sign In
-  </span>
-</p>
+
 
 
 
@@ -477,4 +478,4 @@ useEffect(() => {
     );
 };
 
-export default SignUp;
+export default Internship;

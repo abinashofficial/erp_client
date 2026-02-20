@@ -366,6 +366,7 @@ const EditProfile: React.FC = () => {
           />
         )}
       </div> */}
+                  <h2>Profile Picture</h2>
 
                         <UploadDrive/>
             <form onSubmit={handleSignUp}>

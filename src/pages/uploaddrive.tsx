@@ -65,7 +65,6 @@ setEmpDetail({ ...empDetail, photo_url: data.secure_url });
     <div style={{
         marginBottom:"30px",
     }}>
-                  <h2>Profile Picture</h2>
 
 
 

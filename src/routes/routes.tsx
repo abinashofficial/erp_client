@@ -33,7 +33,6 @@ import Android from '../pages/android';
 // import Coins from '../pages/coins';
 import PS2 from '../pages/ps2';
 import Projects from '../pages/projects';
-import ScheduleGmeet from "../components/gmeet"
 import WebDesigns from "../pages/webdesign"
 import GoogleReviews from "../components/googlereviews"
 import "react-toastify/dist/ReactToastify.css";
@@ -41,7 +40,7 @@ import { ToastContainer } from "react-toastify";
 import DownloadPage from '../pages/downloadgame';
 import Business from '../pages/businesshub';
 import Consumer from '../pages/consumerhub';
-
+import Internship from '../pages/intern';
 
 const Main: React.FC = () => {
 
@@ -70,7 +69,6 @@ const Main: React.FC = () => {
                 <Route path="/refundpolicy" element={<NoRefundPolicy />} />
 
 
-        <Route path="/bookdemo" element={<ScheduleGmeet />} />
                 <Route path="/googlereviews" element={<GoogleReviews />} />
 
 
@@ -190,6 +188,12 @@ const Main: React.FC = () => {
             path="/course" 
             element={
                     <Course />
+            } 
+        />
+        <Route 
+            path="/internship" 
+            element={
+                    < Internship/>
             } 
         />
 
