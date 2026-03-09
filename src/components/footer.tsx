@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
         </div> */}
         <div>
         {/* <p>&copy; 2024 Prison Birds</p> */}
-© Copyright Shindentech All Rights Reserved
+© Copyright PrisonBirds All Rights Reserved
         </div>
 
         {/* <div>
