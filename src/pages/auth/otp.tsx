@@ -8,6 +8,12 @@ import { AlertColor } from "@mui/material/Alert";
 import { useAuth } from '../../context/authContext';
 // import { Link } from 'react-router-dom';
 // import { error } from "console";
+import { FcGoogle } from "react-icons/fc";
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from './firebaseConfig'; // Adjust the path as necessary
+
+
+
 
 import Select from "react-select";
 
@@ -16,7 +22,22 @@ interface CountryOption {
   label: JSX.Element;
 }
 
-
+  interface SignupFormData {
+    employee_id:any;
+    first_name: any;
+    last_name: any;
+    full_name: any;
+    mobile_number: any;
+    email: any;
+    date_of_birth: any;
+    gender: any;
+    password: any;
+    confirmPassword:any;
+    photo_url:any;
+    access_token:any;
+    country_code:any;
+    coins:any;
+  }
 
 // interface SignInFormData {
 //   email: string;
@@ -42,7 +63,7 @@ interface CountryOption {
     const [verificationMethod, setVerificationMethod] = useState<"email id" | "mobile no">("email id");
     const [mobileNumber, setMobileNumber] = useState("");
     const [selectedCountry, setSelectedCountry] = useState<CountryOption | null>(null);
-    const {empDetail } = useAuth();
+    const {empDetail, login } = useAuth();
       const [email, setEmail] = useState("");
       const [otp, setOtp] = useState("");
       const [otpSent, setOtpSent] = useState(true);
@@ -380,6 +401,85 @@ console.error("Error verifying OTP:", error);
       const remainingSeconds = seconds % 60;
       return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
+
+
+    
+        const handleGoogleSignIn = async(e: React.FormEvent) => {
+          setSpinner(false)
+          e.preventDefault();
+          const controller = new AbortController();
+          setTimeout(() => controller.abort(), 60000); // 10 seconds timeout
+          try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user; // The signed-in user info
+            console.log('User Info:', user);
+    
+      
+  
+            empDetail.email = user.email
+            empDetail.photo_url = user.photoURL
+    
+    
+            // const apiUrl = 'https://erp-iliw.onrender.com/public/get-user';
+            // const apiUrl = 'http://localhost:8080/public/get-user';
+                    const apiUrl = 'https://crud-production-a206.up.railway.app/public/get-user';
+    
+    
+            const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(empDetail),
+                   signal: controller.signal, // Attach the abort signal to the fetch request
+            });
+    
+                
+           if (response.ok) {   
+            const result:SignupFormData = await response.json();
+            const empDetails = ({
+              employee_id: result.employee_id,
+              first_name: result.first_name,
+              last_name: result.last_name,
+              full_name:result.first_name + " " + result.last_name,
+              mobile_number: result.mobile_number,
+              email: result.email,
+              date_of_birth: result.date_of_birth,
+              gender: result.gender,
+              password: result.password,
+              photo_url:  result.photo_url,
+              confirmPassword:result.confirmPassword,
+              access_token: result.access_token,
+              country_code:result.country_code,
+              coins:result.coins,
+            });
+    
+            
+            login(empDetails)
+            navigate('/home'); // Redirect to dashboard after login
+            // Handle successful sign-in (e.g., redirect or store token)
+            setSpinner(true)
+          }else{  
+            // login(empDetail)
+            navigate('/signup'); // Redirect to dashboard after login
+      
+            // Handle user info and proceed with your signup logic
+          } 
+        }catch (error: any) {
+          if (error.name === "AbortError") {
+            setSpinner(true)
+            alert("Request timed out");
+            return
+            // setError("Request timed out");
+          } 
+            setSpinner(true)
+            alert("Internal server Error " + error);
+            console.log(error, "Internal server Error")
+            // setError("Failed to fetch data: " + err.message);
+          return
+        }
+    
+        };
   
     return (
       <div className="main-content">
@@ -468,6 +568,28 @@ console.error("Error verifying OTP:", error);
             <button type="submit" className="verify-button">
               Send Verification Code
             </button>
+                              <button style={{
+                                marginTop:"20px"
+                              }} className="google-signin-button" onClick={handleGoogleSignIn}>
+                    <div style={{
+                        display:"flex",
+                        flexDirection:"row",
+                        gap:"20px"
+                    }}>
+                    <FcGoogle style={{
+          height:"25px",
+          width:"25px",
+        }} />
+        <div style={{
+            display:"flex",
+            alignItems:"center",
+        }}>
+        Sign up with Google
+        
+        </div>
+                    </div>
+        
+                  </button>
             <p className="signin-link">
           Already have an account? 
     <div className='link' onClick={()=>navigate('/')}>
@@ -565,12 +687,14 @@ Sign In
             Resend OTP {expiryTime > 0 && `in ${formatTime(expiryTime)}`}
           </button>
         </p>
+
       <p className="signin-link">
           Already have an account? 
     <div className='link' onClick={()=>navigate('/')}>
 Sign In
     </div>
         </p>
+        
   
           </div>):(<div> </div>)}
   

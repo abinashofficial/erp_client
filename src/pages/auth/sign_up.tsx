@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
         gender: '',
         password: '',
         confirmPassword:'',
-        photo_url:"",
+        photo_url:empDetail.photo_url,
         country_code:empDetail.country_code,
         access_token:"",
         coins:0,
