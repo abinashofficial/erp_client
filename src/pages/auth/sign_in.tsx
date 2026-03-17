@@ -507,6 +507,8 @@ setIsHeart(true)
      <Lottie
   onClick={()=> handleClick()}
   onMouseEnter={()=> enterTouchEmoji()}
+      onTouchStart={()=> enterTouchEmoji()}
+  onTouchEnd={()=> leaveHeartEmoji()}
   animationData={animations["smileEmoji"]}
   loop
   autoplay
