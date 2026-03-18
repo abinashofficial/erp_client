@@ -199,8 +199,10 @@ const PrizeModal: React.FC<ModalProps> = ({ isOpen, onClose, data, children }) =
         alert("Please sign in to download the game.");
         return;
       }
-
-        if (redownload) {
+              if (data.price.toLowerCase() === "free") {
+  window.open(data.download_link[index], "_blank", "noopener,noreferrer");
+            return;
+        }else if (redownload) {
   window.open(data.download_link[index], "_blank", "noopener,noreferrer");
             return;
         }

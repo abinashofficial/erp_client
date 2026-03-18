@@ -412,7 +412,7 @@ const Game: React.FC = () => {
       platform: "PC",
     },
 
-                       {
+                       {  
       title: "WWE 2K25",
       size: "100 GB",
       price: "Price",
@@ -841,6 +841,7 @@ const Game: React.FC = () => {
         }
         navigate("/download", { state: { data: data } });
 };
+
                 useEffect(() => {
               // Fetch all JSONs in parallel
               const fetchAnimations = async () => {

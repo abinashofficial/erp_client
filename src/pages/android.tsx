@@ -24,6 +24,24 @@ interface GameSpecs {
     
 const Android: React.FC = () => {
     const [gameSpecs] = useState<GameSpecs[]>([
+            {
+        title: "RDR",
+        size: "3 GB",
+        price: "Free",
+        coins: 0,
+        download_link: ["https://dl.apkvision.org/red-dead-redemption/RDR-ROCKSTAR-v1.58.63226194-vanilla-full-apkvision.apks"],
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1753905989/readdead_ulja0s.jpg",
+        platform: "Android",
+      },
+                  {
+        title: "WWWe 2K25",
+        size: "3 GB",
+        price: "Free",
+        coins: 0,
+        download_link: ["https://dl.apkvision.org/wwe-2k25-netflix-edition/WWE-2K25-v0.1363.0-unlocked-apkvision.apk"],
+        image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752132027/wwe2k25_xa2hmq.jpg",
+        platform: "Android",
+      },
       {
         title: "GTA SA",
         size: "3 GB",
@@ -173,14 +191,11 @@ const Android: React.FC = () => {
     );
 
   const handleDownload = (data : GameSpecs): void => {
-        if (data.price === "Free") {
-  window.open(data.download_link, "_blank", "noopener,noreferrer");
-            return;
-        }
-        // setIsModalOpen(true);
-        // setGameData(data);
-                navigate("/download", { state: { data: data } });
-
+  //       if (data.price === "Free") {
+  // window.open(data.download_link, "_blank", "noopener,noreferrer");
+  //           return;
+  //       }
+        navigate("/download", { state: { data: data } });
 };
 
  useEffect(() => {
