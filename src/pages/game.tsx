@@ -506,12 +506,21 @@ const Game: React.FC = () => {
       platform: "PC",
     },
                                    {
-      title: "Tomb Raider",
+      title: "Rise of the Tomb Raider",
       size: "30 GB",
       price: "Price",
       coins: 100, 
       download_link: ["https://gofile.io/d/Wx3vLq", "https://datanodes.to/zos9v2m5q74a/Rise-of-the-Tomb-Raider-SteamRIP.com.rar", "https://koyso.to/download/354"],
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1763201686/tombraider_nbbvwi.jpg",
+      platform: "PC",
+    },
+    {
+          title: "Tomb Raider",
+      size: "10 GB",
+      price: "Price",
+      coins: 100, 
+      download_link: ["https://cdn1.trashbytes.to/Tomb.Raider.v1.1.838.rar?verify=1773973262-CLnWmr5kYfjX%2Bx8BzvUoVQX5ejYVadbAP9pCK4kswf4%3D"],
+      image_link: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/203160/capsule_616x353.jpg",
       platform: "PC",
     },
                                        {
