@@ -421,6 +421,15 @@ const Game: React.FC = () => {
       image_link: "https://res.cloudinary.com/dababspdo/image/upload/v1752132027/wwe2k25_xa2hmq.jpg",
       platform: "PC",
     },
+                           {  
+      title: "WWE 2K19",
+      size: "50 GB",
+      price: "Price",
+      coins: 100,
+      download_link: ["https://datanodes.to/3d907s4r30i5/WWE-2k19-SteamRIP.com.rar", "https://datanodes.to/9i4judqivz7c/WWE_2K19_-_SteamGG.net.zip","https://datavaults.co/hs1uoz4ional/WWE_2k19_[CONOR].rar", "https://ankergames.net/game/wwe-2k19"],
+      image_link: "https://steamrip.com/wp-content/uploads/2021/07/wwe-2k19-free-download-preinstalled-steamrip.jpg",
+      platform: "PC",
+    },
 
                    {
       title: "FIFA 23",
