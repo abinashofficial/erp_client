@@ -195,7 +195,7 @@ const WebDesigns: React.FC = () => {
       size: "120 GB",
       price: "Price",
       coins: 100,
-      download_link: "",
+      download_link: "https://codeload.github.com/technext/judge/zip/refs/heads/master",
       image_link: "https://themewagon.com/wp-content/uploads/2020/12/judge.jpg",
       platform: "PC",
               json_link:"https://res.cloudinary.com/dababspdo/raw/upload/v1761926061/law_fffkle.json",

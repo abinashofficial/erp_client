@@ -198,7 +198,7 @@ const Header: React.FC = () => {
           zIndex: 1,
           backgroundColor: 'white',
                   boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                  height:"90px",
+                  height:"80px",
 
         }}>
 
@@ -206,7 +206,7 @@ const Header: React.FC = () => {
             display:"flex",
             flexDirection:"column",
             justifyContent:"center",
-            height:"90px",
+            height:"80px",
             marginLeft:"10px",
             cursor:"pointer",
           }}
@@ -216,8 +216,8 @@ const Header: React.FC = () => {
           >
             {/* <FaEarlybirds size={50} /> */}
             <img             style={{
-              width: "70px",
-              height: "65px",
+              width: "60px",
+              height: "55px",
               objectFit: "cover",
               borderRadius: "50%",
             }}
@@ -333,8 +333,8 @@ Service
             src={empDetail.photo_url}
             alt="Profile"
             style={{
-              width: "60px",
-              height: "60px",
+              width: "50px",
+              height: "50px",
               objectFit: "cover",
               borderRadius: "50%",
             }}
