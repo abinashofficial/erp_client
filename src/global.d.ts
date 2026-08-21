@@ -7,3 +7,6 @@ declare global {
     confirmationResult: any; // For confirmation result
   }
 }
+
+
+declare module "*.css";

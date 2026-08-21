@@ -12,14 +12,14 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@toolpad/core": "^0.11.0",
+    "@toolpad/core": "^0.1.55",
     "@types/gapi": "^0.0.47",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.108",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "axios": "^1.7.9",
-    "firebase": "^10.13.2",
+    "firebase": "^12.18.0",
     "framer-motion": "^12.12.1",
     "gapi-script": "^1.2.0",
     "html2canvas": "^1.4.1",
@@ -34,10 +34,11 @@
     "react-player": "^2.16.0",
     "react-qr-code": "^2.0.15",
     "react-qr-scanner": "^1.0.0-alpha.11",
-    "react-router-dom": "^6.26.2",
+    "react-router-dom": "^7.18.2",
     "react-scripts": "^5.0.1",
     "react-select": "^5.9.0",
-    "react-toastify": "^10.0.5",
+    "react-toastify": "^10.0.6",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -69,7 +70,14 @@
     "@types/firebase": "^3.2.1",
     "@types/gapi.client.calendar": "^3.0.12",
     "@types/react-qr-reader": "^2.1.7",
-    "eslint": "^8.57.1",
-    "typescript": "^4.9.5"
+    "eslint": "^8.57.1"
+  },
+  "allowScripts": {
+    "core-js@2.6.12": true,
+    "esbuild@0.25.5": true,
+    "@firebase/util@1.15.3": true,
+    "protobufjs@7.6.5": true,
+    "core-js-pure@3.50.0": true,
+    "core-js@3.50.0": true
   }
 }
