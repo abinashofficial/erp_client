@@ -105,36 +105,91 @@ const QRCodeScanner: React.FC = () => {
     }
   };
     
-  // Decode QR code from image file
-  const decodeQRCode = (file: File) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
+const decodeQRCode = (file: File) => {
+  if (!file) {
+    alert("Please select an image.");
+    return;
+  }
 
-        if (context) {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          context.drawImage(img, 0, 0, img.width, img.height);
+  console.log("File:", {
+    name: file.name,
+    type: file.type,
+    size: file.size,
+  });
 
-          // Get image data from canvas
-          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-          const qrCode = jsQR(imageData.data, imageData.width, imageData.height);
+  const reader = new FileReader();
 
-          if (qrCode) {
-            setScanResult(qrCode.data); // Set the QR code text
-            handleScan(qrCode.data)
-          } else {
-            alert("No QR code found.")
-          }
+  reader.onload = () => {
+    const img = new Image();
+
+    img.onload = () => {
+      console.log("Image loaded:", img.width, img.height);
+
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+
+      if (!context) {
+        console.error("Could not get canvas context");
+        return;
+      }
+
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+
+      context.drawImage(
+        img,
+        0,
+        0,
+        img.naturalWidth,
+        img.naturalHeight
+      );
+
+      try {
+        const imageData = context.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        console.log("Image data loaded");
+
+        const qrCode = jsQR(
+          imageData.data,
+          imageData.width,
+          imageData.height
+        );
+
+        if (qrCode) {
+          console.log("QR detected:", qrCode.data);
+
+          setScanResult(qrCode.data);
+          handleScan(qrCode.data);
+        } else {
+          console.log("QR not detected");
+          alert("No QR code found.");
         }
-      };
-      img.src = reader.result as string; // Set the image source
+      } catch (error) {
+        console.error("Canvas error:", error);
+        alert("Unable to process this image.");
+      }
     };
-    reader.readAsDataURL(file); // Read the image file as data URL
+
+    img.onerror = (error) => {
+      console.error("Image loading failed:", error);
+      alert("Failed to load image.");
+    };
+
+    img.src = reader.result as string;
   };
+
+  reader.onerror = (error) => {
+    console.error("FileReader error:", error);
+    alert("Failed to read the image.");
+  };
+
+  reader.readAsDataURL(file);
+};
 
   
     // Handle image upload
