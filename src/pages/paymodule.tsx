@@ -195,13 +195,15 @@ const handleClose = () => {
 </div>
 
 {showQR && (
-        <div style={{ marginTop: 20,
+        <div style={{
+            padding: "20px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: "white",
             borderRadius: "20px",
+            marginBottom: "10px",
          }}>
           <h2>Scan to Pay</h2>
           <QRCodeCanvas value={`upi://pay?pa=abinash1411999-1@oksbi&pn=abinash&am=${coin}&cu=INR&tn=${encodeURIComponent('for buy coins')}`} size={200} />

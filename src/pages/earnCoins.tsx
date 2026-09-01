@@ -230,9 +230,11 @@ const AddCoins: React.FC = () => {
       justifyContent:"space-around",
       flexWrap:"wrap",
       background:"rgb(239, 250, 239)",
+      gap:"20px",
+      padding:"20px",
     }}>
 
-    <div className="form-container">
+    <div className="addcoins-container">
 <form onSubmit={(e) => {
   e.preventDefault();
   handleUPIPayment(100, 100);
@@ -299,7 +301,7 @@ const AddCoins: React.FC = () => {
 
 
 
-        <div className="form-container">
+        <div className="addcoins-container">
 <form onSubmit={(e) => {
   e.preventDefault();
   handleUPIPayment(300, 300);
@@ -366,7 +368,7 @@ const AddCoins: React.FC = () => {
 
 
 
-          <div className="form-container">
+          <div className="addcoins-container">
 <form onSubmit={(e) => {
   e.preventDefault();
   handleUPIPayment(500, 500);

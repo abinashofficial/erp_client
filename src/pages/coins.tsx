@@ -79,6 +79,7 @@ setLiveUpdate(coins);
                             <div style={{
             height:"100px",
             width:"100px",
+            margin:"-20px",
         }}>
 <Lottie style={{
   transform: "scale(0.5)",

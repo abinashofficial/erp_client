@@ -475,6 +475,7 @@ button.menu-btn{
   transition: background-color 0.3s ease;
 }
 
+
 .form-container {
   background: white;
   padding: 2rem;
@@ -485,6 +486,19 @@ button.menu-btn{
   text-align: center;
   /* margin-top: 50px; */
 }
+
+
+.addcoins-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
+  width: 20%;
+  /* max-width: 300px; */
+  text-align: center;
+  /* margin-top: 50px; */
+}
+
 
 .sign-container {
   background: white;
@@ -1126,6 +1140,9 @@ display: flex;
   .form-container{
     width: 100%;
   }
+  .addcoins-container{
+    width: 100%;
+  }
   .mobile_number{
     width: 100%;
 
@@ -1139,6 +1156,9 @@ display: flex;
     max-width: 80%;
   }
     .form-container{
+    width: 100%;
+  }
+  .addcoins-container{
     width: 100%;
   }
     .mobile_number{

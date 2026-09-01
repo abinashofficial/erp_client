@@ -42,8 +42,9 @@ const QRCodeScanner: React.FC = () => {
   const handleScan = async (data: any) =>{
     const controller = new AbortController();
     setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
-    if (data) {
-       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data);
+    if (data !== null && data.text !== "") {
+
+       const  {id: extractedId, name: extractedName} = extractEmployeeInfo(data.text);
         empDetail.employee_id = extractedId
         empDetail.email = extractedName
         console.log("Extracted Employee ID:", extractedId);
