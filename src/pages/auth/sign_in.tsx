@@ -181,7 +181,7 @@ sendData.mobile_number = ""
 
       console.log("sendData: ", message)
         const controller = new AbortController();
-        setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+        setTimeout(() => controller.abort(), 15000); // 15 seconds timeout
 
  // Add your API endpoint here
 //  const apiUrl = 'https://erp-iliw.onrender.com/public/signin';
@@ -251,7 +251,7 @@ sendData.mobile_number = ""
       setVisible(false)
       e.preventDefault();
       const controller = new AbortController();
-      setTimeout(() => controller.abort(), 10000); // 10 seconds timeout
+      setTimeout(() => controller.abort(), 30000); // 30 seconds timeout
       try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user; // The signed-in user info
